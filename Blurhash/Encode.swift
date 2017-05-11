@@ -2,7 +2,9 @@ import UIKit
 
 extension UIImage {
     public func blurHash(components: (Int, Int)) -> String? {
-        guard cgImage?.colorSpace?.numberOfComponents == 3,
+        guard components.0 >= 1, components.0 <= 8,
+        components.1 >= 1, components.1 <= 8,
+        cgImage?.colorSpace?.numberOfComponents == 3,
         cgImage?.bitsPerPixel == 24 || cgImage?.bitsPerPixel == 32 else { return nil }
 
         guard let cgImage = cgImage,
@@ -10,7 +12,8 @@ extension UIImage {
         let data = dataProvider.data,
         let pixels = CFDataGetBytePtr(data) else { return nil }
 
-        var hash = "\(components.0),\(components.1)"
+        let sizeFlag = (components.0 - 1) + ((components.1 - 1) << 3)
+        var hash = sizeFlag.encode64(length: 1)
 
         let width = cgImage.width
         let height = cgImage.height
@@ -22,7 +25,21 @@ extension UIImage {
                     cos(Float.pi * Float(x) * $0 / Float(width)) * cos(Float.pi * Float(y) * $1 / Float(height))
                 }
 
-                hash += ",\(r),\(g),\(b)"
+print("\((r,g,b))")
+
+                if x == 0, y == 0 {
+                    let roundedR = max(0, min(255, Int(floor(r + 0.5))))
+                    let roundedG = max(0, min(255, Int(floor(g + 0.5))))
+                    let roundedB = max(0, min(255, Int(floor(b + 0.5))))
+                    let rgb = (roundedR << 16) + (roundedG << 8) + roundedB
+                    hash += rgb.encode64(length: 4)
+                } else {
+                    let clippedR = max(0, min(15, Int(floor(r / 4 + 8.5))))
+                    let clippedG = max(0, min(15, Int(floor(g / 4 + 8.5))))
+                    let clippedB = max(0, min(15, Int(floor(b / 4 + 8.5))))
+                    let rgb = (clippedR << 8) + (clippedG << 4) + clippedB
+                    hash += rgb.encode64(length: 2)
+                }
             }
         }
 

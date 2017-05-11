@@ -2,18 +2,33 @@ import UIKit
 
 extension UIImage {
     public convenience init?(blurHash: String, size: CGSize, punch: Float = 1) {
-        let components = blurHash.components(separatedBy: ",")
+        let string = blurHash as NSString
+        guard string.length >= 5 else { return nil }
 
-        guard components.count >= 2,
-        let numX = Int(components[0]),
-        let numY = Int(components[1]),
-        components.count == 2 + 3 * numX * numY else { return nil }
+        let sizeFlag = string.substring(with: NSRange(location: 0, length: 1)).decode64()
+        let numY = (sizeFlag >> 3) + 1
+        let numX = (sizeFlag & 7) + 1
+
+print("\(numX) \(numY)")
+
+        guard string.length == 3 + 2 * numX * numY else { return nil }
 
         let colours: [(Float, Float, Float)] = (0 ..< numX * numY).map { i in
-            let r = Float(components[2 + 3 * i + 0])!
-            let g = Float(components[2 + 3 * i + 1])!
-            let b = Float(components[2 + 3 * i + 2])!
-            return (r, g, b)
+            if i == 0 {
+                let value = string.substring(with: NSRange(location: 1, length: 4)).decode64()
+                let intR = value >> 16
+                let intG = (value >> 8) & 255
+                let intB = value & 255
+                print("\((Float(intR), Float(intG), Float(intB)))")
+                return (Float(intR), Float(intG), Float(intB))
+            } else {
+                let value = string.substring(with: NSRange(location: 3 + i * 2, length: 2)).decode64()
+                let intR = value >> 8
+                let intG = (value >> 4) & 15
+                let intB = value & 15
+                print("\(((Float(intR) - 8) * 4, (Float(intG) - 8) * 4, (Float(intB) - 8) * 4))")
+                return ((Float(intR) - 8) * 4, (Float(intG) - 8) * 4, (Float(intB) - 8) * 4)
+            }
         }
 
         UIGraphicsBeginImageContextWithOptions(size, false, 1)
