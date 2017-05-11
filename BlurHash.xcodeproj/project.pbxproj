@@ -8,12 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		1B49CD201EC4721A006F8E7D /* Blurhash.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B49CD1E1EC4721A006F8E7D /* Blurhash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B49CD271EC47243006F8E7D /* Encode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD261EC47243006F8E7D /* Encode.swift */; };
+		1B49CD291EC4724C006F8E7D /* Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD281EC4724C006F8E7D /* Decode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1B49CD1B1EC4721A006F8E7D /* Blurhash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Blurhash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BlurHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B49CD1E1EC4721A006F8E7D /* Blurhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Blurhash.h; sourceTree = "<group>"; };
 		1B49CD1F1EC4721A006F8E7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B49CD261EC47243006F8E7D /* Encode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encode.swift; sourceTree = "<group>"; };
+		1B49CD281EC4724C006F8E7D /* Decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decode.swift; sourceTree = "<group>"; };
+		1B49CD2A1EC47294006F8E7D /* BlurHash.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = BlurHash.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,25 +35,29 @@
 		1B49CD111EC4721A006F8E7D = {
 			isa = PBXGroup;
 			children = (
-				1B49CD1D1EC4721A006F8E7D /* Blurhash */,
+				1B49CD1D1EC4721A006F8E7D /* BlurHash */,
 				1B49CD1C1EC4721A006F8E7D /* Products */,
+				1B49CD2A1EC47294006F8E7D /* BlurHash.playground */,
 			);
 			sourceTree = "<group>";
 		};
 		1B49CD1C1EC4721A006F8E7D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1B49CD1B1EC4721A006F8E7D /* Blurhash.framework */,
+				1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1B49CD1D1EC4721A006F8E7D /* Blurhash */ = {
+		1B49CD1D1EC4721A006F8E7D /* BlurHash */ = {
 			isa = PBXGroup;
 			children = (
+				1B49CD261EC47243006F8E7D /* Encode.swift */,
 				1B49CD1E1EC4721A006F8E7D /* Blurhash.h */,
 				1B49CD1F1EC4721A006F8E7D /* Info.plist */,
+				1B49CD281EC4724C006F8E7D /* Decode.swift */,
 			);
+			name = BlurHash;
 			path = Blurhash;
 			sourceTree = "<group>";
 		};
@@ -66,9 +75,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1B49CD1A1EC4721A006F8E7D /* Blurhash */ = {
+		1B49CD1A1EC4721A006F8E7D /* BlurHash */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1B49CD231EC4721A006F8E7D /* Build configuration list for PBXNativeTarget "Blurhash" */;
+			buildConfigurationList = 1B49CD231EC4721A006F8E7D /* Build configuration list for PBXNativeTarget "BlurHash" */;
 			buildPhases = (
 				1B49CD161EC4721A006F8E7D /* Sources */,
 				1B49CD171EC4721A006F8E7D /* Frameworks */,
@@ -79,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = Blurhash;
+			name = BlurHash;
 			productName = Blurhash;
-			productReference = 1B49CD1B1EC4721A006F8E7D /* Blurhash.framework */;
+			productReference = 1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -95,11 +104,12 @@
 				TargetAttributes = {
 					1B49CD1A1EC4721A006F8E7D = {
 						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 1B49CD151EC4721A006F8E7D /* Build configuration list for PBXProject "Blurhash" */;
+			buildConfigurationList = 1B49CD151EC4721A006F8E7D /* Build configuration list for PBXProject "BlurHash" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -111,7 +121,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1B49CD1A1EC4721A006F8E7D /* Blurhash */,
+				1B49CD1A1EC4721A006F8E7D /* BlurHash */,
 			);
 		};
 /* End PBXProject section */
@@ -131,6 +141,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B49CD271EC47243006F8E7D /* Encode.swift in Sources */,
+				1B49CD291EC4724C006F8E7D /* Decode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +253,7 @@
 		1B49CD241EC4721A006F8E7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -249,9 +262,10 @@
 				INFOPLIST_FILE = Blurhash/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.Blurhash;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -259,6 +273,7 @@
 		1B49CD251EC4721A006F8E7D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -267,7 +282,7 @@
 				INFOPLIST_FILE = Blurhash/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.Blurhash;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -277,7 +292,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1B49CD151EC4721A006F8E7D /* Build configuration list for PBXProject "Blurhash" */ = {
+		1B49CD151EC4721A006F8E7D /* Build configuration list for PBXProject "BlurHash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B49CD211EC4721A006F8E7D /* Debug */,
@@ -286,13 +301,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1B49CD231EC4721A006F8E7D /* Build configuration list for PBXNativeTarget "Blurhash" */ = {
+		1B49CD231EC4721A006F8E7D /* Build configuration list for PBXNativeTarget "BlurHash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B49CD241EC4721A006F8E7D /* Debug */,
 				1B49CD251EC4721A006F8E7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
