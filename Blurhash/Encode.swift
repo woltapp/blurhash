@@ -1,6 +1,9 @@
 import UIKit
 
 extension UIImage {
+//    let quantizationTable: (Float, Float, Float) = [
+//    ]
+
     public func blurHash(components: (Int, Int)) -> String? {
         guard components.0 >= 1, components.0 <= 8,
         components.1 >= 1, components.1 <= 8,
@@ -28,15 +31,15 @@ extension UIImage {
 print("\((r,g,b))")
 
                 if x == 0, y == 0 {
-                    let roundedR = max(0, min(255, Int(floor(r + 0.5))))
-                    let roundedG = max(0, min(255, Int(floor(g + 0.5))))
-                    let roundedB = max(0, min(255, Int(floor(b + 0.5))))
+                    let roundedR = linearToGamma(r)
+                    let roundedG = linearToGamma(g)
+                    let roundedB = linearToGamma(b)
                     let rgb = (roundedR << 16) + (roundedG << 8) + roundedB
                     hash += rgb.encode64(length: 4)
                 } else {
-                    let clippedR = max(0, min(15, Int(floor(r / 4 + 8.5))))
-                    let clippedG = max(0, min(15, Int(floor(g / 4 + 8.5))))
-                    let clippedB = max(0, min(15, Int(floor(b / 4 + 8.5))))
+                    let clippedR = max(0, min(15, Int(floor(r * 255 / 4 + 8.5))))
+                    let clippedG = max(0, min(15, Int(floor(g * 255 / 4 + 8.5))))
+                    let clippedB = max(0, min(15, Int(floor(b * 255 / 4 + 8.5))))
                     let rgb = (clippedR << 8) + (clippedG << 4) + clippedB
                     hash += rgb.encode64(length: 2)
                 }
@@ -56,9 +59,9 @@ print("\((r,g,b))")
         for x in 0 ..< width {
             for y in 0 ..< height {
                 let basis = basisFunction(Float(x), Float(y))
-                r += basis * Float(buffer[bytesPerPixel * x + pixelOffset + 0 + y * bytesPerRow])
-                g += basis * Float(buffer[bytesPerPixel * x + pixelOffset + 1 + y * bytesPerRow])
-                b += basis * Float(buffer[bytesPerPixel * x + pixelOffset + 2 + y * bytesPerRow])
+                r += basis * gammaToLinear(buffer[bytesPerPixel * x + pixelOffset + 0 + y * bytesPerRow])
+                g += basis * gammaToLinear(buffer[bytesPerPixel * x + pixelOffset + 1 + y * bytesPerRow])
+                b += basis * gammaToLinear(buffer[bytesPerPixel * x + pixelOffset + 2 + y * bytesPerRow])
             }
         }
 
@@ -68,4 +71,16 @@ print("\((r,g,b))")
     }
 
 //        context.draw(cgImage, in: CGRect(x: 0, y: 0, width: CGFloat(size), height: CGFloat(size)))
+}
+
+func linearToGamma(_ value: Float) -> Int {
+    return Int(max(0, min(255, floor(pow(value, 1 / 2.2) * 255) + 0.5)))
+}
+
+func gammaToLinear(_ value: UInt8) -> Float {
+    return pow(Float(value) / 255, 2.2)
+}
+
+func gammaToLinear(_ value: Int) -> Float {
+    return pow(Float(value) / 255, 2.2)
 }

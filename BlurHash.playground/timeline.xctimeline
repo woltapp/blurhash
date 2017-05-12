@@ -3,7 +3,7 @@
    version = "3.0">
    <TimelineItems>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=5&amp;CharacterRangeLoc=89&amp;EndingColumnNumber=10&amp;EndingLineNumber=5&amp;StartingColumnNumber=5&amp;StartingLineNumber=5&amp;Timestamp=516193337.33215"
+         documentLocation = "#CharacterRangeLen=5&amp;CharacterRangeLoc=89&amp;EndingColumnNumber=10&amp;EndingLineNumber=5&amp;StartingColumnNumber=5&amp;StartingLineNumber=5&amp;Timestamp=516265753.583142"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
@@ -13,28 +13,33 @@
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=10&amp;CharacterRangeLoc=178&amp;EndingColumnNumber=14&amp;EndingLineNumber=9&amp;StartingColumnNumber=5&amp;StartingLineNumber=9&amp;Timestamp=516205864.189891"
+         documentLocation = "#CharacterRangeLen=10&amp;CharacterRangeLoc=178&amp;EndingColumnNumber=14&amp;EndingLineNumber=9&amp;StartingColumnNumber=5&amp;StartingLineNumber=9&amp;Timestamp=516265753.583446"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=4&amp;CharacterRangeLoc=130&amp;EndingColumnNumber=9&amp;EndingLineNumber=7&amp;StartingColumnNumber=5&amp;StartingLineNumber=7&amp;Timestamp=516205864.190022"
+         documentLocation = "#CharacterRangeLen=4&amp;CharacterRangeLoc=130&amp;EndingColumnNumber=9&amp;EndingLineNumber=7&amp;StartingColumnNumber=5&amp;StartingLineNumber=7&amp;Timestamp=516265753.583637"
          lockedSize = "{527.5, 50}"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=0&amp;CharacterRangeLoc=381&amp;EndingColumnNumber=25&amp;EndingLineNumber=13&amp;StartingColumnNumber=1&amp;StartingLineNumber=13&amp;Timestamp=516205864.190114"
+         documentLocation = "#CharacterRangeLen=0&amp;CharacterRangeLoc=452&amp;EndingColumnNumber=25&amp;EndingLineNumber=14&amp;StartingColumnNumber=1&amp;StartingLineNumber=14&amp;Timestamp=516268803.017895"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=10&amp;CharacterRangeLoc=247&amp;EndingColumnNumber=15&amp;EndingLineNumber=10&amp;StartingColumnNumber=5&amp;StartingLineNumber=10&amp;Timestamp=516205864.190204"
+         documentLocation = "#CharacterRangeLen=10&amp;CharacterRangeLoc=247&amp;EndingColumnNumber=15&amp;EndingLineNumber=10&amp;StartingColumnNumber=5&amp;StartingLineNumber=10&amp;Timestamp=516265753.583893"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=10&amp;CharacterRangeLoc=316&amp;EndingColumnNumber=15&amp;EndingLineNumber=11&amp;StartingColumnNumber=5&amp;StartingLineNumber=11&amp;Timestamp=516205864.190283"
+         documentLocation = "#CharacterRangeLen=10&amp;CharacterRangeLoc=318&amp;EndingColumnNumber=15&amp;EndingLineNumber=11&amp;StartingColumnNumber=5&amp;StartingLineNumber=11&amp;Timestamp=516268766.758763"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "#CharacterRangeLen=10&amp;CharacterRangeLoc=387&amp;EndingColumnNumber=15&amp;EndingLineNumber=12&amp;StartingColumnNumber=5&amp;StartingLineNumber=12&amp;Timestamp=516268808.839491"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>

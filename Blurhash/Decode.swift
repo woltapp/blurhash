@@ -20,14 +20,14 @@ print("\(numX) \(numY)")
                 let intG = (value >> 8) & 255
                 let intB = value & 255
                 print("\((Float(intR), Float(intG), Float(intB)))")
-                return (Float(intR), Float(intG), Float(intB))
+                return (gammaToLinear(intR), gammaToLinear(intG), gammaToLinear(intB))
             } else {
                 let value = string.substring(with: NSRange(location: 3 + i * 2, length: 2)).decode64()
                 let intR = value >> 8
                 let intG = (value >> 4) & 15
                 let intB = value & 15
-                print("\(((Float(intR) - 8) * 4, (Float(intG) - 8) * 4, (Float(intB) - 8) * 4))")
-                return ((Float(intR) - 8) * 4, (Float(intG) - 8) * 4, (Float(intB) - 8) * 4)
+                print("\(((Float(intR) - 8) / 255 * 4, (Float(intG) - 8) / 255 * 4, (Float(intB) - 8) / 255 * 4))")
+                return ((Float(intR) - 8) / 255 * 4, (Float(intG) - 8) / 255 * 4, (Float(intB) - 8) / 255 * 4)
             }
         }
 
@@ -53,8 +53,10 @@ print("\(numX) \(numY)")
                     }
                 }
 
-                let scale: Float = 255
-                let c = UIColor(red: CGFloat(r / scale), green: CGFloat(g / scale), blue: CGFloat(b / scale), alpha: 1)
+                let c = UIColor(red: CGFloat(pow(r, 1 / 2.2)),
+                green: CGFloat(pow(g, 1 / 2.2)),
+                blue: CGFloat(pow(b, 1 / 2.2)),
+                alpha: 1)
                 c.setFill()
                 UIRectFill(CGRect(x: x, y: y, width: 1, height: 1))
             }
