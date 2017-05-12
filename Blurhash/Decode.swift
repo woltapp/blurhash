@@ -20,7 +20,7 @@ extension UIImage {
                 return decodeDC(value)
             } else {
                 let value = string.substring(with: NSRange(location: 4 + i * 2, length: 2)).decode64()
-                return decodeAC(value, maximumValue: maximumValue)
+                return decodeAC(value, maximumValue: maximumValue * punch)
             }
         }
 
@@ -39,10 +39,9 @@ extension UIImage {
                     for i in 0 ..< numX {
                         let basis = cos(Float.pi * Float(x) * Float(i) / Float(width)) * cos(Float.pi * Float(y) * Float(j) / Float(height))
                         let colour = colours[i + j * numX]
-                        let boost: Float = (i == 0 && j == 0) ? 1 : punch
-                        r += colour.0 * basis * boost
-                        g += colour.1 * basis * boost
-                        b += colour.2 * basis * boost
+                        r += colour.0 * basis
+                        g += colour.1 * basis
+                        b += colour.2 * basis
                     }
                 }
 
