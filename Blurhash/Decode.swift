@@ -3,31 +3,24 @@ import UIKit
 extension UIImage {
     public convenience init?(blurHash: String, size: CGSize, punch: Float = 1) {
         let string = blurHash as NSString
-        guard string.length >= 5 else { return nil }
+        guard string.length >= 6 else { return nil }
 
         let sizeFlag = string.substring(with: NSRange(location: 0, length: 1)).decode64()
         let numY = (sizeFlag >> 3) + 1
         let numX = (sizeFlag & 7) + 1
 
-print("\(numX) \(numY)")
+        let quantisedMaximumValue = string.substring(with: NSRange(location: 1, length: 1)).decode64()
+        let maximumValue = Float(quantisedMaximumValue + 1) / 128
 
-        guard string.length == 3 + 2 * numX * numY else { return nil }
+        guard string.length == 4 + 2 * numX * numY else { return nil }
 
         let colours: [(Float, Float, Float)] = (0 ..< numX * numY).map { i in
             if i == 0 {
-                let value = string.substring(with: NSRange(location: 1, length: 4)).decode64()
-                let intR = value >> 16
-                let intG = (value >> 8) & 255
-                let intB = value & 255
-                print("\((Float(intR), Float(intG), Float(intB)))")
-                return (gammaToLinear(intR), gammaToLinear(intG), gammaToLinear(intB))
+                let value = string.substring(with: NSRange(location: 2, length: 4)).decode64()
+                return decodeDC(value)
             } else {
-                let value = string.substring(with: NSRange(location: 3 + i * 2, length: 2)).decode64()
-                let intR = value >> 8
-                let intG = (value >> 4) & 15
-                let intB = value & 15
-                print("\(((Float(intR) - 8) / 255 * 4, (Float(intG) - 8) / 255 * 4, (Float(intB) - 8) / 255 * 4))")
-                return ((Float(intR) - 8) / 255 * 4, (Float(intG) - 8) / 255 * 4, (Float(intB) - 8) / 255 * 4)
+                let value = string.substring(with: NSRange(location: 4 + i * 2, length: 2)).decode64()
+                return decodeAC(value, maximumValue: maximumValue)
             }
         }
 
@@ -71,4 +64,25 @@ print("\(numX) \(numY)")
             return nil
         }
     }
+}
+
+func decodeDC(_ value: Int) -> (Float, Float, Float) {
+    let intR = value >> 16
+    let intG = (value >> 8) & 255
+    let intB = value & 255
+    return (gammaToLinear(intR), gammaToLinear(intG), gammaToLinear(intB))
+}
+
+func decodeAC(_ value: Int, maximumValue: Float) -> (Float, Float, Float) {
+    let quantR = value >> 8
+    let quantG = (value >> 4) & 15
+    let quantB = value & 15
+
+    let rgb = (
+        signPow((Float(quantR) - 8) / 8, 3.0) * maximumValue * 2,
+        signPow((Float(quantG) - 8) / 8, 3.0) * maximumValue * 2,
+        signPow((Float(quantB) - 8) / 8, 3.0) * maximumValue * 2
+    )
+
+    return rgb
 }

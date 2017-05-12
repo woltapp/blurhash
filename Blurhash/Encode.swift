@@ -15,35 +15,37 @@ extension UIImage {
         let data = dataProvider.data,
         let pixels = CFDataGetBytePtr(data) else { return nil }
 
-        let sizeFlag = (components.0 - 1) + ((components.1 - 1) << 3)
-        var hash = sizeFlag.encode64(length: 1)
-
         let width = cgImage.width
         let height = cgImage.height
         let bytesPerRow = cgImage.bytesPerRow
 
+        var factors: [(Float, Float, Float)] = []
         for y in 0 ..< components.1 {
             for x in 0 ..< components.0 {
-                let (r, g, b) = multiplyBasisFunction(pixels: pixels, width: width, height: height, bytesPerRow: bytesPerRow, bytesPerPixel: cgImage.bitsPerPixel / 8, pixelOffset: 0) {
+                let factor = multiplyBasisFunction(pixels: pixels, width: width, height: height, bytesPerRow: bytesPerRow, bytesPerPixel: cgImage.bitsPerPixel / 8, pixelOffset: 0) {
                     cos(Float.pi * Float(x) * $0 / Float(width)) * cos(Float.pi * Float(y) * $1 / Float(height))
                 }
-
-print("\((r,g,b))")
-
-                if x == 0, y == 0 {
-                    let roundedR = linearToGamma(r)
-                    let roundedG = linearToGamma(g)
-                    let roundedB = linearToGamma(b)
-                    let rgb = (roundedR << 16) + (roundedG << 8) + roundedB
-                    hash += rgb.encode64(length: 4)
-                } else {
-                    let clippedR = max(0, min(15, Int(floor(r * 255 / 4 + 8.5))))
-                    let clippedG = max(0, min(15, Int(floor(g * 255 / 4 + 8.5))))
-                    let clippedB = max(0, min(15, Int(floor(b * 255 / 4 + 8.5))))
-                    let rgb = (clippedR << 8) + (clippedG << 4) + clippedB
-                    hash += rgb.encode64(length: 2)
-                }
+                factors.append(factor)
             }
+        }
+
+        let dc = factors.first!
+        let ac = factors.dropFirst()
+
+        var hash = ""
+
+        let sizeFlag = (components.0 - 1) + ((components.1 - 1) << 3)
+        hash += sizeFlag.encode64(length: 1)
+
+        let actualMaximumValue = ac.map({ max($0.0, $0.1, $0.2) }).max()!
+        let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 128 - 0.5))))
+        let maximumValue = Float(quantisedMaximumValue + 1) / 128
+        hash += quantisedMaximumValue.encode64(length: 1)
+
+        hash += encodeDC(dc).encode64(length: 4)
+
+        for factor in ac {
+            hash += encodeAC(factor, maximumValue: maximumValue).encode64(length: 2)
         }
 
         return hash
@@ -84,3 +86,23 @@ func gammaToLinear(_ value: UInt8) -> Float {
 func gammaToLinear(_ value: Int) -> Float {
     return pow(Float(value) / 255, 2.2)
 }
+
+func encodeDC(_ value: (Float, Float, Float)) -> Int {
+    let roundedR = linearToGamma(value.0)
+    let roundedG = linearToGamma(value.1)
+    let roundedB = linearToGamma(value.2)
+    return (roundedR << 16) + (roundedG << 8) + roundedB
+}
+
+func encodeAC(_ value: (Float, Float, Float), maximumValue: Float) -> Int {
+    let quantR = Int(max(0, min(15, floor(signPow(value.0 / maximumValue, 0.333) * 8 + 8.5))))
+    let quantG = Int(max(0, min(15, floor(signPow(value.1 / maximumValue, 0.333) * 8 + 8.5))))
+    let quantB = Int(max(0, min(15, floor(signPow(value.2 / maximumValue, 0.333) * 8 + 8.5))))
+
+    return (quantR << 8) + (quantG << 4) + quantB
+}
+
+func signPow(_ value: Float, _ exp: Float) -> Float {
+    return copysign(pow(abs(value), exp), value)
+}
+
