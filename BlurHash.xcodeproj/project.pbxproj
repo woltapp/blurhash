@@ -7,13 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0A250F1EC5E90C00F25F08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0A250E1EC5E90C00F25F08 /* AppDelegate.swift */; };
+		1B0A25111EC5E90C00F25F08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0A25101EC5E90C00F25F08 /* ViewController.swift */; };
+		1B0A25141EC5E90C00F25F08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25121EC5E90C00F25F08 /* Main.storyboard */; };
+		1B0A25161EC5E90C00F25F08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25151EC5E90C00F25F08 /* Assets.xcassets */; };
+		1B0A25191EC5E90C00F25F08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25171EC5E90C00F25F08 /* LaunchScreen.storyboard */; };
+		1B0A251E1EC5EA0500F25F08 /* BlurHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */; };
+		1B0A251F1EC5EA0500F25F08 /* BlurHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1B0A25291EC5EAB000F25F08 /* pic1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25241EC5EAB000F25F08 /* pic1.png */; };
+		1B0A252A1EC5EAB000F25F08 /* pic2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25251EC5EAB000F25F08 /* pic2.png */; };
+		1B0A252B1EC5EAB000F25F08 /* pic3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25261EC5EAB000F25F08 /* pic3.png */; };
+		1B0A252C1EC5EAB000F25F08 /* pic4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25271EC5EAB000F25F08 /* pic4.png */; };
+		1B0A252D1EC5EAB000F25F08 /* pic5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25281EC5EAB000F25F08 /* pic5.png */; };
 		1B49CD201EC4721A006F8E7D /* Blurhash.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B49CD1E1EC4721A006F8E7D /* Blurhash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B49CD271EC47243006F8E7D /* Encode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD261EC47243006F8E7D /* Encode.swift */; };
 		1B49CD291EC4724C006F8E7D /* Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD281EC4724C006F8E7D /* Decode.swift */; };
 		1B787C901EC4A29C00F167D3 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B787C8F1EC4A29C00F167D3 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1B0A25201EC5EA0500F25F08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1B49CD121EC4721A006F8E7D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B49CD1A1EC4721A006F8E7D;
+			remoteInfo = BlurHash;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1B0A25221EC5EA0500F25F08 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1B0A251F1EC5EA0500F25F08 /* BlurHash.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1B0A250C1EC5E90C00F25F08 /* BlurHashTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlurHashTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B0A250E1EC5E90C00F25F08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1B0A25101EC5E90C00F25F08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1B0A25131EC5E90C00F25F08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1B0A25151EC5E90C00F25F08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1B0A25181EC5E90C00F25F08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1B0A251A1EC5E90C00F25F08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B0A25241EC5EAB000F25F08 /* pic1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic1.png; sourceTree = "<group>"; };
+		1B0A25251EC5EAB000F25F08 /* pic2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic2.png; sourceTree = "<group>"; };
+		1B0A25261EC5EAB000F25F08 /* pic3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic3.png; sourceTree = "<group>"; };
+		1B0A25271EC5EAB000F25F08 /* pic4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic4.png; sourceTree = "<group>"; };
+		1B0A25281EC5EAB000F25F08 /* pic5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic5.png; sourceTree = "<group>"; };
 		1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BlurHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B49CD1E1EC4721A006F8E7D /* Blurhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Blurhash.h; sourceTree = "<group>"; };
 		1B49CD1F1EC4721A006F8E7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -24,6 +72,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1B0A25091EC5E90C00F25F08 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B0A251E1EC5EA0500F25F08 /* BlurHash.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1B49CD171EC4721A006F8E7D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -34,10 +90,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B0A250D1EC5E90C00F25F08 /* BlurHashTest */ = {
+			isa = PBXGroup;
+			children = (
+				1B0A25231EC5EAA300F25F08 /* Images */,
+				1B0A250E1EC5E90C00F25F08 /* AppDelegate.swift */,
+				1B0A25101EC5E90C00F25F08 /* ViewController.swift */,
+				1B0A25121EC5E90C00F25F08 /* Main.storyboard */,
+				1B0A25151EC5E90C00F25F08 /* Assets.xcassets */,
+				1B0A25171EC5E90C00F25F08 /* LaunchScreen.storyboard */,
+				1B0A251A1EC5E90C00F25F08 /* Info.plist */,
+			);
+			path = BlurHashTest;
+			sourceTree = "<group>";
+		};
+		1B0A25231EC5EAA300F25F08 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1B0A25241EC5EAB000F25F08 /* pic1.png */,
+				1B0A25251EC5EAB000F25F08 /* pic2.png */,
+				1B0A25261EC5EAB000F25F08 /* pic3.png */,
+				1B0A25271EC5EAB000F25F08 /* pic4.png */,
+				1B0A25281EC5EAB000F25F08 /* pic5.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		1B49CD111EC4721A006F8E7D = {
 			isa = PBXGroup;
 			children = (
 				1B49CD1D1EC4721A006F8E7D /* BlurHash */,
+				1B0A250D1EC5E90C00F25F08 /* BlurHashTest */,
 				1B49CD1C1EC4721A006F8E7D /* Products */,
 				1B49CD2A1EC47294006F8E7D /* BlurHash.playground */,
 			);
@@ -47,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */,
+				1B0A250C1EC5E90C00F25F08 /* BlurHashTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,6 +162,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		1B0A250B1EC5E90C00F25F08 /* BlurHashTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B0A251D1EC5E90C00F25F08 /* Build configuration list for PBXNativeTarget "BlurHashTest" */;
+			buildPhases = (
+				1B0A25081EC5E90C00F25F08 /* Sources */,
+				1B0A25091EC5E90C00F25F08 /* Frameworks */,
+				1B0A250A1EC5E90C00F25F08 /* Resources */,
+				1B0A25221EC5EA0500F25F08 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1B0A25211EC5EA0500F25F08 /* PBXTargetDependency */,
+			);
+			name = BlurHashTest;
+			productName = BlurHashTest;
+			productReference = 1B0A250C1EC5E90C00F25F08 /* BlurHashTest.app */;
+			productType = "com.apple.product-type.application";
+		};
 		1B49CD1A1EC4721A006F8E7D /* BlurHash */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B49CD231EC4721A006F8E7D /* Build configuration list for PBXNativeTarget "BlurHash" */;
@@ -102,11 +205,18 @@
 		1B49CD121EC4721A006F8E7D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Dag Ågren";
 				TargetAttributes = {
+					1B0A250B1EC5E90C00F25F08 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 6GE6LAAR8V;
+						ProvisioningStyle = Automatic;
+					};
 					1B49CD1A1EC4721A006F8E7D = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 6GE6LAAR8V;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -118,6 +228,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 1B49CD111EC4721A006F8E7D;
 			productRefGroup = 1B49CD1C1EC4721A006F8E7D /* Products */;
@@ -125,11 +236,27 @@
 			projectRoot = "";
 			targets = (
 				1B49CD1A1EC4721A006F8E7D /* BlurHash */,
+				1B0A250B1EC5E90C00F25F08 /* BlurHashTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1B0A250A1EC5E90C00F25F08 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B0A25291EC5EAB000F25F08 /* pic1.png in Resources */,
+				1B0A252A1EC5EAB000F25F08 /* pic2.png in Resources */,
+				1B0A252B1EC5EAB000F25F08 /* pic3.png in Resources */,
+				1B0A252C1EC5EAB000F25F08 /* pic4.png in Resources */,
+				1B0A252D1EC5EAB000F25F08 /* pic5.png in Resources */,
+				1B0A25191EC5E90C00F25F08 /* LaunchScreen.storyboard in Resources */,
+				1B0A25161EC5E90C00F25F08 /* Assets.xcassets in Resources */,
+				1B0A25141EC5E90C00F25F08 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1B49CD191EC4721A006F8E7D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -140,6 +267,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1B0A25081EC5E90C00F25F08 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B0A25111EC5E90C00F25F08 /* ViewController.swift in Sources */,
+				1B0A250F1EC5E90C00F25F08 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1B49CD161EC4721A006F8E7D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -152,7 +288,64 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		1B0A25211EC5EA0500F25F08 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B49CD1A1EC4721A006F8E7D /* BlurHash */;
+			targetProxy = 1B0A25201EC5EA0500F25F08 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1B0A25121EC5E90C00F25F08 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B0A25131EC5E90C00F25F08 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1B0A25171EC5E90C00F25F08 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B0A25181EC5E90C00F25F08 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		1B0A251B1EC5E90C00F25F08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6GE6LAAR8V;
+				INFOPLIST_FILE = BlurHashTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1B0A251C1EC5E90C00F25F08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6GE6LAAR8V;
+				INFOPLIST_FILE = BlurHashTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		1B49CD211EC4721A006F8E7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -260,11 +453,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6GE6LAAR8V;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Blurhash/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -280,11 +475,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6GE6LAAR8V;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Blurhash/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -296,6 +493,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1B0A251D1EC5E90C00F25F08 /* Build configuration list for PBXNativeTarget "BlurHashTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B0A251B1EC5E90C00F25F08 /* Debug */,
+				1B0A251C1EC5E90C00F25F08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		1B49CD151EC4721A006F8E7D /* Build configuration list for PBXProject "BlurHash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

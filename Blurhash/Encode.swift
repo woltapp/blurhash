@@ -37,10 +37,16 @@ extension UIImage {
         let sizeFlag = (components.0 - 1) + ((components.1 - 1) << 3)
         hash += sizeFlag.encode64(length: 1)
 
-        let actualMaximumValue = ac.map({ max($0.0, $0.1, $0.2) }).max()!
-        let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 128 - 0.5))))
-        let maximumValue = Float(quantisedMaximumValue + 1) / 128
-        hash += quantisedMaximumValue.encode64(length: 1)
+        let maximumValue: Float
+        if ac.count > 0 {
+            let actualMaximumValue = ac.map({ max($0.0, $0.1, $0.2) }).max()!
+            let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 128 - 0.5))))
+            maximumValue = Float(quantisedMaximumValue + 1) / 128
+            hash += quantisedMaximumValue.encode64(length: 1)
+        } else {
+            maximumValue = 1
+            hash += 0.encode64(length: 1)
+        }
 
         hash += encodeDC(dc).encode64(length: 4)
 
@@ -76,7 +82,7 @@ extension UIImage {
 }
 
 func linearToGamma(_ value: Float) -> Int {
-    return Int(max(0, min(255, floor(pow(value, 1 / 2.2) * 255) + 0.5)))
+    return Int(floor(pow(max(0, min(1, value)), 1 / 2.2) * 255) + 0.5)
 }
 
 func gammaToLinear(_ value: UInt8) -> Float {

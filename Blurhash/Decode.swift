@@ -24,10 +24,11 @@ extension UIImage {
             }
         }
 
-        UIGraphicsBeginImageContextWithOptions(size, false, 1)
-
         let width = Int(size.width)
         let height = Int(size.height)
+        let bytesPerRow = width * 3
+        guard let data = CFDataCreateMutable(kCFAllocatorDefault, bytesPerRow * height) else { return nil }
+        guard let pixels = CFDataGetMutableBytePtr(data) else { return nil }
 
         for y in 0 ..< height {
             for x in 0 ..< width {
@@ -45,23 +46,23 @@ extension UIImage {
                     }
                 }
 
-                let c = UIColor(red: CGFloat(pow(r, 1 / 2.2)),
-                green: CGFloat(pow(g, 1 / 2.2)),
-                blue: CGFloat(pow(b, 1 / 2.2)),
-                alpha: 1)
-                c.setFill()
-                UIRectFill(CGRect(x: x, y: y, width: 1, height: 1))
+                let intR = UInt8(linearToGamma(r))
+                let intG = UInt8(linearToGamma(g))
+                let intB = UInt8(linearToGamma(b))
+
+                pixels[3 * x + 0 + y * bytesPerRow] = intR
+                pixels[3 * x + 1 + y * bytesPerRow] = intG
+                pixels[3 * x + 2 + y * bytesPerRow] = intB
             }
         }
 
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
 
-        if let cgImage = newImage?.cgImage {
-            self.init(cgImage: cgImage)
-        } else {
-            return nil
-        }
+        guard let provider = CGDataProvider(data: data) else { return nil }
+        guard let cgImage = CGImage(width: width, height: height, bitsPerComponent: 8, bitsPerPixel: 24, bytesPerRow: bytesPerRow,
+        space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: bitmapInfo, provider: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent) else { return nil }
+
+        self.init(cgImage: cgImage)
     }
 }
 
