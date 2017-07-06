@@ -144,8 +144,7 @@
 				1B49CD281EC4724C006F8E7D /* Decode.swift */,
 				1B787C8F1EC4A29C00F167D3 /* StringExtension.swift */,
 			);
-			name = BlurHash;
-			path = Blurhash;
+			path = BlurHash;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,6 +499,7 @@
 				1B0A251C1EC5E90C00F25F08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1B49CD151EC4721A006F8E7D /* Build configuration list for PBXProject "BlurHash" */ = {
 			isa = XCConfigurationList;
