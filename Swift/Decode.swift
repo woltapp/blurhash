@@ -46,9 +46,9 @@ extension UIImage {
                     }
                 }
 
-                let intR = UInt8(linearToGamma(r))
-                let intG = UInt8(linearToGamma(g))
-                let intB = UInt8(linearToGamma(b))
+                let intR = UInt8(linearTosRGB(r))
+                let intG = UInt8(linearTosRGB(g))
+                let intB = UInt8(linearTosRGB(b))
 
                 pixels[3 * x + 0 + y * bytesPerRow] = intR
                 pixels[3 * x + 1 + y * bytesPerRow] = intG
@@ -70,7 +70,7 @@ func decodeDC(_ value: Int) -> (Float, Float, Float) {
     let intR = value >> 16
     let intG = (value >> 8) & 255
     let intB = value & 255
-    return (gammaToLinear(intR), gammaToLinear(intG), gammaToLinear(intB))
+    return (sRGBToLinear(intR), sRGBToLinear(intG), sRGBToLinear(intB))
 }
 
 func decodeAC(_ value: Int, maximumValue: Float) -> (Float, Float, Float) {

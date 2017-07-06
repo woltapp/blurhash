@@ -1,9 +1,6 @@
 import UIKit
 
 extension UIImage {
-//    let quantizationTable: (Float, Float, Float) = [
-//    ]
-
     public func blurHash(components: (Int, Int)) -> String? {
         guard components.0 >= 1, components.0 <= 8,
         components.1 >= 1, components.1 <= 8,
@@ -67,9 +64,9 @@ extension UIImage {
         for x in 0 ..< width {
             for y in 0 ..< height {
                 let basis = basisFunction(Float(x), Float(y))
-                r += basis * gammaToLinear(buffer[bytesPerPixel * x + pixelOffset + 0 + y * bytesPerRow])
-                g += basis * gammaToLinear(buffer[bytesPerPixel * x + pixelOffset + 1 + y * bytesPerRow])
-                b += basis * gammaToLinear(buffer[bytesPerPixel * x + pixelOffset + 2 + y * bytesPerRow])
+                r += basis * sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 0 + y * bytesPerRow])
+                g += basis * sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 1 + y * bytesPerRow])
+                b += basis * sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 2 + y * bytesPerRow])
             }
         }
 
@@ -77,26 +74,12 @@ extension UIImage {
 
         return (r / scale, g / scale, b / scale)
     }
-
-//        context.draw(cgImage, in: CGRect(x: 0, y: 0, width: CGFloat(size), height: CGFloat(size)))
-}
-
-func linearToGamma(_ value: Float) -> Int {
-    return Int(floor(pow(max(0, min(1, value)), 1 / 2.2) * 255) + 0.5)
-}
-
-func gammaToLinear(_ value: UInt8) -> Float {
-    return pow(Float(value) / 255, 2.2)
-}
-
-func gammaToLinear(_ value: Int) -> Float {
-    return pow(Float(value) / 255, 2.2)
 }
 
 func encodeDC(_ value: (Float, Float, Float)) -> Int {
-    let roundedR = linearToGamma(value.0)
-    let roundedG = linearToGamma(value.1)
-    let roundedB = linearToGamma(value.2)
+    let roundedR = linearTosRGB(value.0)
+    let roundedG = linearTosRGB(value.1)
+    let roundedB = linearTosRGB(value.2)
     return (roundedR << 16) + (roundedG << 8) + roundedB
 }
 
@@ -112,3 +95,14 @@ func signPow(_ value: Float, _ exp: Float) -> Float {
     return copysign(pow(abs(value), exp), value)
 }
 
+func linearTosRGB(_ value: Float) -> Int {
+    let v = max(0, min(1, value))
+	if v <= 0.0031308 { return Int(v * 12.92 * 255 + 0.5) }
+	else { return Int((1.055 * pow(v, 1 / 2.4) - 0.055) * 255 + 0.5) }
+}
+
+func sRGBToLinear<Type: Integer>(_ value: Type) -> Float {
+    let v = Float(value.toIntMax()) / 255
+	if v <= 0.04045 { return v / 12.92 }
+	else { return pow((v + 0.055) / 1.055, 2.4) }
+}

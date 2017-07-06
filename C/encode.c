@@ -6,8 +6,8 @@
 static float *multiplyBasisFunction(int xComponent, int yComponent, int width, int height, uint8_t *rgb, size_t bytesPerRow);
 static char *encode_int(int value, int length, char *destination);
 
-static int linearToGamma(float value);
-static float gammaToLinear(int value);
+static int linearTosRGB(float value);
+static float sRGBToLinear(int value);
 static int encodeDC(float r, float g, float b);
 static int encodeAC(float r, float g, float b, float maximumValue);
 static float signPow(float value, float exp);
@@ -70,9 +70,9 @@ static float *multiplyBasisFunction(int xComponent, int yComponent, int width, i
     for(int y = 0; y < height; y++) {
         for(int x = 0; x < width; x++) {
             float basis = cosf(M_PI * xComponent * x / width) * cosf(M_PI * yComponent * y / height);
-            r += basis * gammaToLinear(rgb[3 * x + 0 + y * bytesPerRow]);
-            g += basis * gammaToLinear(rgb[3 * x + 1 + y * bytesPerRow]);
-            b += basis * gammaToLinear(rgb[3 * x + 2 + y * bytesPerRow]);
+            r += basis * sRGBToLinear(rgb[3 * x + 0 + y * bytesPerRow]);
+            g += basis * sRGBToLinear(rgb[3 * x + 1 + y * bytesPerRow]);
+            b += basis * sRGBToLinear(rgb[3 * x + 2 + y * bytesPerRow]);
         }
     }
 
@@ -86,18 +86,22 @@ static float *multiplyBasisFunction(int xComponent, int yComponent, int width, i
     return result;
 }
 
-static int linearToGamma(float value) {
-    return floorf(powf(fmaxf(0, fminf(1, value)), 1 / 2.2) * 255) + 0.5;
+static int linearTosRGB(float value) {
+    float v = fmaxf(0, fminf(1, value));
+	if(v <= 0.0031308) return v * 12.92 * 255 + 0.5;
+	else return (1.055 * powf(v, 1 / 2.4) - 0.055) * 255 + 0.5;
 }
 
-static float gammaToLinear(int value) {
-    return powf((float)value / 255, 2.2);
+static float sRGBToLinear(int value) {
+    float v = (float)value / 255;
+	if(v <= 0.04045) return v / 12.92;
+	else return powf((v + 0.055) / 1.055, 2.4);
 }
 
 static int encodeDC(float r, float g, float b) {
-    int roundedR = linearToGamma(r);
-    int roundedG = linearToGamma(g);
-    int roundedB = linearToGamma(b);
+    int roundedR = linearTosRGB(r);
+    int roundedG = linearTosRGB(g);
+    int roundedB = linearTosRGB(b);
     return (roundedR << 16) + (roundedG << 8) + roundedB;
 }
 
