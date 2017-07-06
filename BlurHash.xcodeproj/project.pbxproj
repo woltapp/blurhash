@@ -67,7 +67,6 @@
 		1B49CD1F1EC4721A006F8E7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B49CD261EC47243006F8E7D /* Encode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encode.swift; sourceTree = "<group>"; };
 		1B49CD281EC4724C006F8E7D /* Decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decode.swift; sourceTree = "<group>"; };
-		1B49CD2A1EC47294006F8E7D /* BlurHash.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = BlurHash.playground; sourceTree = "<group>"; };
 		1B787C8F1EC4A29C00F167D3 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,7 +121,6 @@
 				1B49CD1D1EC4721A006F8E7D /* BlurHash */,
 				1B0A250D1EC5E90C00F25F08 /* BlurHashTest */,
 				1B49CD1C1EC4721A006F8E7D /* Products */,
-				1B49CD2A1EC47294006F8E7D /* BlurHash.playground */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,7 +142,8 @@
 				1B49CD281EC4724C006F8E7D /* Decode.swift */,
 				1B787C8F1EC4A29C00F167D3 /* StringExtension.swift */,
 			);
-			path = BlurHash;
+			name = BlurHash;
+			path = ../BlurHash/Swift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
