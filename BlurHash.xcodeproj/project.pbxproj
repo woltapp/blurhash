@@ -19,6 +19,8 @@
 		1B0A252B1EC5EAB000F25F08 /* pic3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25261EC5EAB000F25F08 /* pic3.png */; };
 		1B0A252C1EC5EAB000F25F08 /* pic4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25271EC5EAB000F25F08 /* pic4.png */; };
 		1B0A252D1EC5EAB000F25F08 /* pic5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25281EC5EAB000F25F08 /* pic5.png */; };
+		1B2BA1CA1F0E5EE3006057C1 /* encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B2BA1C81F0E5EE3006057C1 /* encode.c */; };
+		1B2BA1CB1F0E5EEA006057C1 /* blurhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B2BA1C41F0E5ED6006057C1 /* blurhash.c */; };
 		1B49CD201EC4721A006F8E7D /* Blurhash.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B49CD1E1EC4721A006F8E7D /* Blurhash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B49CD271EC47243006F8E7D /* Encode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD261EC47243006F8E7D /* Encode.swift */; };
 		1B49CD291EC4724C006F8E7D /* Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD281EC4724C006F8E7D /* Decode.swift */; };
@@ -47,6 +49,15 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B2BA1BB1F0E5EC5006057C1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +73,11 @@
 		1B0A25261EC5EAB000F25F08 /* pic3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic3.png; sourceTree = "<group>"; };
 		1B0A25271EC5EAB000F25F08 /* pic4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic4.png; sourceTree = "<group>"; };
 		1B0A25281EC5EAB000F25F08 /* pic5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic5.png; sourceTree = "<group>"; };
+		1B2BA1BD1F0E5EC5006057C1 /* blurhash */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = blurhash; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B2BA1C41F0E5ED6006057C1 /* blurhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blurhash.c; sourceTree = "<group>"; };
+		1B2BA1C81F0E5EE3006057C1 /* encode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = encode.c; sourceTree = "<group>"; };
+		1B2BA1C91F0E5EE3006057C1 /* encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encode.h; sourceTree = "<group>"; };
+		1B2BA1CC1F0E692F006057C1 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BlurHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B49CD1E1EC4721A006F8E7D /* Blurhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Blurhash.h; sourceTree = "<group>"; };
 		1B49CD1F1EC4721A006F8E7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,6 +92,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B0A251E1EC5EA0500F25F08 /* BlurHash.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B2BA1BA1F0E5EC5006057C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,10 +138,23 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		1B2BA1B81F0E5E91006057C1 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				1B2BA1C41F0E5ED6006057C1 /* blurhash.c */,
+				1B2BA1C81F0E5EE3006057C1 /* encode.c */,
+				1B2BA1C91F0E5EE3006057C1 /* encode.h */,
+				1B2BA1CC1F0E692F006057C1 /* stb_image.h */,
+			);
+			name = C;
+			path = ../BlurHash/C;
+			sourceTree = "<group>";
+		};
 		1B49CD111EC4721A006F8E7D = {
 			isa = PBXGroup;
 			children = (
-				1B49CD1D1EC4721A006F8E7D /* BlurHash */,
+				1B49CD1D1EC4721A006F8E7D /* Swift */,
+				1B2BA1B81F0E5E91006057C1 /* C */,
 				1B0A250D1EC5E90C00F25F08 /* BlurHashTest */,
 				1B49CD1C1EC4721A006F8E7D /* Products */,
 			);
@@ -129,20 +165,21 @@
 			children = (
 				1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */,
 				1B0A250C1EC5E90C00F25F08 /* BlurHashTest.app */,
+				1B2BA1BD1F0E5EC5006057C1 /* blurhash */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1B49CD1D1EC4721A006F8E7D /* BlurHash */ = {
+		1B49CD1D1EC4721A006F8E7D /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				1B787C8F1EC4A29C00F167D3 /* StringExtension.swift */,
 				1B49CD261EC47243006F8E7D /* Encode.swift */,
+				1B49CD281EC4724C006F8E7D /* Decode.swift */,
 				1B49CD1E1EC4721A006F8E7D /* Blurhash.h */,
 				1B49CD1F1EC4721A006F8E7D /* Info.plist */,
-				1B49CD281EC4724C006F8E7D /* Decode.swift */,
-				1B787C8F1EC4A29C00F167D3 /* StringExtension.swift */,
 			);
-			name = BlurHash;
+			name = Swift;
 			path = ../BlurHash/Swift;
 			sourceTree = "<group>";
 		};
@@ -179,6 +216,23 @@
 			productReference = 1B0A250C1EC5E90C00F25F08 /* BlurHashTest.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1B2BA1BC1F0E5EC5006057C1 /* blurhash */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B2BA1C11F0E5EC6006057C1 /* Build configuration list for PBXNativeTarget "blurhash" */;
+			buildPhases = (
+				1B2BA1B91F0E5EC5006057C1 /* Sources */,
+				1B2BA1BA1F0E5EC5006057C1 /* Frameworks */,
+				1B2BA1BB1F0E5EC5006057C1 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = blurhash;
+			productName = blurhash;
+			productReference = 1B2BA1BD1F0E5EC5006057C1 /* blurhash */;
+			productType = "com.apple.product-type.tool";
+		};
 		1B49CD1A1EC4721A006F8E7D /* BlurHash */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B49CD231EC4721A006F8E7D /* Build configuration list for PBXNativeTarget "BlurHash" */;
@@ -212,6 +266,11 @@
 						DevelopmentTeam = 6GE6LAAR8V;
 						ProvisioningStyle = Automatic;
 					};
+					1B2BA1BC1F0E5EC5006057C1 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 6GE6LAAR8V;
+						ProvisioningStyle = Automatic;
+					};
 					1B49CD1A1EC4721A006F8E7D = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 6GE6LAAR8V;
@@ -235,6 +294,7 @@
 			targets = (
 				1B49CD1A1EC4721A006F8E7D /* BlurHash */,
 				1B0A250B1EC5E90C00F25F08 /* BlurHashTest */,
+				1B2BA1BC1F0E5EC5006057C1 /* blurhash */,
 			);
 		};
 /* End PBXProject section */
@@ -271,6 +331,15 @@
 			files = (
 				1B0A25111EC5E90C00F25F08 /* ViewController.swift in Sources */,
 				1B0A250F1EC5E90C00F25F08 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B2BA1B91F0E5EC5006057C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B2BA1CB1F0E5EEA006057C1 /* blurhash.c in Sources */,
+				1B2BA1CA1F0E5EE3006057C1 /* encode.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +410,28 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		1B2BA1C21F0E5EC6006057C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				DEVELOPMENT_TEAM = 6GE6LAAR8V;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1B2BA1C31F0E5EC6006057C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				DEVELOPMENT_TEAM = 6GE6LAAR8V;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -455,7 +546,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Blurhash/Info.plist;
+				INFOPLIST_FILE = Swift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -477,7 +568,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Blurhash/Info.plist;
+				INFOPLIST_FILE = Swift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -499,6 +590,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		1B2BA1C11F0E5EC6006057C1 /* Build configuration list for PBXNativeTarget "blurhash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B2BA1C21F0E5EC6006057C1 /* Debug */,
+				1B2BA1C31F0E5EC6006057C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		1B49CD151EC4721A006F8E7D /* Build configuration list for PBXProject "BlurHash" */ = {
 			isa = XCConfigurationList;
