@@ -5,9 +5,9 @@ blurhash: blurhash.c encode.c encode.h stb_image.h
 extensions: python ruby
 
 .PHONY: python
-python: BlurHash.i encode.h
-	swig -outdir ../Python/ -o ../Python/BlurHash.c -python BlurHash.i
+python: blurhash.i encode.h
+	swig -outdir ../Python/ -o ../Python/BlurHash.c -python blurhash.i
 
 .PHONY: ruby
-ruby: BlurHash.i encode.h
-	swig -outdir ../Ruby/ -o ../Ruby/BlurHash.c -ruby BlurHash.i
+ruby: blurhash.i encode.h
+	swig -outdir ../Ruby/ -o ../Ruby/BlurHash.c -ruby blurhash.i
