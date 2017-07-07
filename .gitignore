@@ -12,4 +12,11 @@
 !default.perspectivev3
 xcuserdata/
 C/blurhash
+Ruby/.*
+Ruby/Makefile
+Python/build/
+*.bundle
+*.so
+*.o
+*.pyc
 

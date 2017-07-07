@@ -136,7 +136,7 @@ static char characters[64]="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP
 
 static char *encode_int(int value, int length, char *destination) {
     for(int i = 1; i <= length; i++) {
-        char digit = (value >> (6 * (length - i))) & 63;
+        int digit = (value >> (6 * (length - i))) & 63;
         *destination++ = characters[digit];
     }
     return destination;
