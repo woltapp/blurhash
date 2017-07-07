@@ -2,8 +2,6 @@
 
 #include <stdio.h>
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
 
 int main(int argc, const char **argv) {
     if(argc != 4) {
@@ -18,14 +16,11 @@ int main(int argc, const char **argv) {
         return 1;
     }
 
-    int width, height, channels;
-    unsigned char *data = stbi_load(argv[3], &width, &height, &channels, 3);
-    if(!data) {
+    const char *hash = blurHashForFile(xComponents, yComponents, argv[3]);
+    if(!hash) {
         fprintf(stderr, "Failed to load image file \"%s\".\n", argv[3]);
         return 1;
     }
-
-    const char *hash = encode(xComponents, yComponents, width, height, data, width * 3);
 
     printf("%s\n", hash);
 
