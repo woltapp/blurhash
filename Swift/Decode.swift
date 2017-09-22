@@ -12,9 +12,9 @@ extension UIImage {
         let quantisedMaximumValue = string.substring(with: NSRange(location: 1, length: 1)).decode64()
         let maximumValue = Float(quantisedMaximumValue + 1) / 128
 
-        guard string.length == 4 + 2 * numX * numY else { return nil }
+        guard string.length == 6 + 2 * numX * numY else { return nil }
 
-        let colours: [(Float, Float, Float)] = (0 ..< numX * numY).map { i in
+        let colours: [(Float, Float, Float)] = (0 ... numX * numY).map { i in
             if i == 0 {
                 let value = string.substring(with: NSRange(location: 2, length: 4)).decode64()
                 return decodeDC(value)
@@ -32,14 +32,24 @@ extension UIImage {
 
         for y in 0 ..< height {
             for x in 0 ..< width {
-                var r: Float = 0
-                var g: Float = 0
-                var b: Float = 0
+                let baseColour = colours[0]
+                var r: Float = baseColour.0
+                var g: Float = baseColour.1
+                var b: Float = baseColour.2
 
-                for j in 0 ..< numY {
-                    for i in 0 ..< numX {
-                        let basis = cos(Float.pi * Float(x) * Float(i) / Float(width)) * cos(Float.pi * Float(y) * Float(j) / Float(height))
-                        let colour = colours[i + j * numX]
+                for q in 0 ..< numY {
+                    for k in 0 ..< numX {
+                        let basis: Float
+                        let fx = Double(x) - Double(width) / 2
+                        let fy = Double(y) - Double(height) / 2
+                        let rr = sqrt(fx * fx + fy * fy) / (Double(width) / 2)
+                        let omega = atan2(fy, fx)
+                        let K = (k + 1) / 2
+                        let Rkq = UIImage.Rqk[q][K]
+                        let isCosine = k % 2 == 0
+                        basis = Float(1 / (sqrt(Double.pi) * abs(jn(K + 1, Rkq))) * jn(K, Rkq * rr) * (isCosine ? cos(omega * Double(K)) : sin(omega * Double(K))))
+
+                        let colour = colours[k + q * numX + 1]
                         r += colour.0 * basis
                         g += colour.1 * basis
                         b += colour.2 * basis

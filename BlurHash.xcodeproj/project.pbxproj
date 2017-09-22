@@ -25,6 +25,7 @@
 		1B49CD271EC47243006F8E7D /* Encode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD261EC47243006F8E7D /* Encode.swift */; };
 		1B49CD291EC4724C006F8E7D /* Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD281EC4724C006F8E7D /* Decode.swift */; };
 		1B787C901EC4A29C00F167D3 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B787C8F1EC4A29C00F167D3 /* StringExtension.swift */; };
+		1BED97AA1F75488E00255036 /* pic6.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BED97A91F75486400255036 /* pic6.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		1B49CD261EC47243006F8E7D /* Encode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encode.swift; sourceTree = "<group>"; };
 		1B49CD281EC4724C006F8E7D /* Decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decode.swift; sourceTree = "<group>"; };
 		1B787C8F1EC4A29C00F167D3 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		1BED97A91F75486400255036 /* pic6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pic6.png; path = ../../../Downloads/pic6.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				1B0A25261EC5EAB000F25F08 /* pic3.png */,
 				1B0A25271EC5EAB000F25F08 /* pic4.png */,
 				1B0A25281EC5EAB000F25F08 /* pic5.png */,
+				1BED97A91F75486400255036 /* pic6.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 			files = (
 				1B0A25291EC5EAB000F25F08 /* pic1.png in Resources */,
 				1B0A252A1EC5EAB000F25F08 /* pic2.png in Resources */,
+				1BED97AA1F75488E00255036 /* pic6.png in Resources */,
 				1B0A252B1EC5EAB000F25F08 /* pic3.png in Resources */,
 				1B0A252C1EC5EAB000F25F08 /* pic4.png in Resources */,
 				1B0A252D1EC5EAB000F25F08 /* pic5.png in Resources */,
@@ -627,6 +631,7 @@
 				1B2BA1C31F0E5EC6006057C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1B49CD151EC4721A006F8E7D /* Build configuration list for PBXProject "BlurHash" */ = {
 			isa = XCConfigurationList;

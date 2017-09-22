@@ -9,6 +9,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var yComponentsLabel: UILabel?
 
     let images: [UIImage] = [
+        UIImage(named: "pic6.png")!,
         UIImage(named: "pic2.png")!,
         UIImage(named: "pic1.png")!,
         UIImage(named: "pic3.png")!,
@@ -34,7 +35,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func xPlusTapped() {
-        if xComponents < 8 {
+        if xComponents < 10 {
             xComponents += 1
             updateEncode()
             updateDecode()
@@ -50,7 +51,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func yPlusTapped() {
-        if yComponents < 8 {
+        if yComponents < 5 {
             yComponents += 1
             updateEncode()
             updateDecode()
@@ -80,7 +81,11 @@ class ViewController: UIViewController {
     }
 
     func updateDecode() {
-        let blurImage = UIImage(blurHash: blurHash, size: CGSize(width: 32, height: 32), punch: punch)
+        guard let image = originalImageView?.image else { return }
+        let blurImage = UIImage(blurHash: blurHash, size: CGSize(
+        width: Int(ceil(32 * sqrt(image.size.width / image.size.height))),
+        height: Int(ceil(32 * sqrt(image.size.height / image.size.width)))),
+        punch: punch)
 
         blurImageView?.image = blurImage
     }
