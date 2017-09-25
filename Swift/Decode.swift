@@ -6,15 +6,15 @@ extension UIImage {
         guard string.length >= 6 else { return nil }
 
         let sizeFlag = string.substring(with: NSRange(location: 0, length: 1)).decode64()
-        let numY = (sizeFlag >> 3) + 1
-        let numX = (sizeFlag & 7) + 1
+        let numY = (sizeFlag / 10) + 1
+        let numX = (sizeFlag % 10) + 1
 
         let quantisedMaximumValue = string.substring(with: NSRange(location: 1, length: 1)).decode64()
         let maximumValue = Float(quantisedMaximumValue + 1) / 128
 
-        guard string.length == 6 + 2 * numX * numY else { return nil }
+        guard string.length == 4 + 2 * numX * numY else { return nil }
 
-        let colours: [(Float, Float, Float)] = (0 ... numX * numY).map { i in
+        let colours: [(Float, Float, Float)] = (0 ..< numX * numY).map { i in
             if i == 0 {
                 let value = string.substring(with: NSRange(location: 2, length: 4)).decode64()
                 return decodeDC(value)
@@ -32,14 +32,12 @@ extension UIImage {
 
         for y in 0 ..< height {
             for x in 0 ..< width {
-                let baseColour = colours[0]
-                var r: Float = baseColour.0
-                var g: Float = baseColour.1
-                var b: Float = baseColour.2
+                var r: Float = 0
+                var g: Float = 0
+                var b: Float = 0
 
                 for q in 0 ..< numY {
                     for k in 0 ..< numX {
-                        let basis: Float
                         let fx = Double(x) - Double(width) / 2
                         let fy = Double(y) - Double(height) / 2
                         let rr = sqrt(fx * fx + fy * fy) / (Double(width) / 2)
@@ -47,9 +45,10 @@ extension UIImage {
                         let K = (k + 1) / 2
                         let Rkq = UIImage.Rqk[q][K]
                         let isCosine = k % 2 == 0
-                        basis = Float(1 / (sqrt(Double.pi) * abs(jn(K + 1, Rkq))) * jn(K, Rkq * rr) * (isCosine ? cos(omega * Double(K)) : sin(omega * Double(K))))
+                        let normalisation = Rkq == 0 ? 1 : 1 / (sqrt(Double.pi) * abs(jn(K + 1, Rkq)))
+                        let basis = Float(normalisation * jn(K, Rkq * rr) * (isCosine ? cos(omega * Double(K)) : sin(omega * Double(K))))
 
-                        let colour = colours[k + q * numX + 1]
+                        let colour = colours[k + q * numX]
                         r += colour.0 * basis
                         g += colour.1 * basis
                         b += colour.2 * basis
