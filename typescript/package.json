@@ -6,7 +6,8 @@
   "types": "dist/index.t.js",
   "scripts": {
     "build": "tsc",
-    "demo": "webpack-dev-server"
+    "demo": "webpack-dev-server",
+    "prepublish": "tsc"
   },
   "keywords": [
     "blurhash"
