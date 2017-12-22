@@ -2,6 +2,10 @@ import UIKit
 
 extension UIImage {
     static let Rqk: [[Double]] = [
+        // TODO:
+        // http://wwwal.kuicr.kyoto-u.ac.jp/www/accelerator/a4/besselroot.htmlx
+        // http://www.math.usm.edu/lambers/mat415/lecture15.pdf
+
         [0, 1.8412, 3.0542, 4.2012, 5.3175, 6.4156],
         [3.8317, 5.3314, 6.7061, 8.0152, 9.2824, 10.5199],
         [7.0156, 8.5363, 9.9695, 11.3459, 12.6819, 13.9872],
@@ -44,6 +48,7 @@ extension UIImage {
                     let Rkq = UIImage.Rqk[q][K]
                     let isCosine = k % 2 == 0
                     let normalisation = Rkq == 0 ? 1 : 1 / (sqrt(Double.pi) * abs(jn(K + 1, Rkq)))
+                    if k == 0 && q != 0 { return 0 }
                     return Float(normalisation * jn(K, Rkq * r) * (isCosine ? cos(omega * Double(K)) : sin(omega * Double(K))))
                 }
 
