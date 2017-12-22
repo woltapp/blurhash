@@ -28,6 +28,7 @@ extension UIImage {
         let height = Int(size.height)
         let bytesPerRow = width * 3
         guard let data = CFDataCreateMutable(kCFAllocatorDefault, bytesPerRow * height) else { return nil }
+        CFDataSetLength(data, bytesPerRow * height)
         guard let pixels = CFDataGetMutableBytePtr(data) else { return nil }
 
         for y in 0 ..< height {
