@@ -24,7 +24,7 @@ extension Int {
 extension String {
     func decode64() -> Int {
         var value: Int = 0
-        for character in characters {
+        for character in self {
             if let digit = digitCharacters.index(of: String(character)) {
                 value = (value << 6) + digit
             }

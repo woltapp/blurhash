@@ -101,8 +101,8 @@ func linearTosRGB(_ value: Float) -> Int {
 	else { return Int((1.055 * pow(v, 1 / 2.4) - 0.055) * 255 + 0.5) }
 }
 
-func sRGBToLinear<Type: Integer>(_ value: Type) -> Float {
-    let v = Float(value.toIntMax()) / 255
+func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
+    let v = Float(Int64(value)) / 255
 	if v <= 0.04045 { return v / 12.92 }
 	else { return pow((v + 0.055) / 1.055, 2.4) }
 }
