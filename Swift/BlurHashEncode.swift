@@ -1,7 +1,7 @@
 import UIKit
 
 extension UIImage {
-    public func blurHash(components: (Int, Int)) -> String? {
+    public func blurHash(numberOfComponents components: (Int, Int)) -> String? {
         guard components.0 >= 1, components.0 <= 8,
         components.1 >= 1, components.1 <= 8,
         cgImage?.colorSpace?.numberOfComponents == 3,
@@ -76,14 +76,14 @@ extension UIImage {
     }
 }
 
-func encodeDC(_ value: (Float, Float, Float)) -> Int {
+private func encodeDC(_ value: (Float, Float, Float)) -> Int {
     let roundedR = linearTosRGB(value.0)
     let roundedG = linearTosRGB(value.1)
     let roundedB = linearTosRGB(value.2)
     return (roundedR << 16) + (roundedG << 8) + roundedB
 }
 
-func encodeAC(_ value: (Float, Float, Float), maximumValue: Float) -> Int {
+private func encodeAC(_ value: (Float, Float, Float), maximumValue: Float) -> Int {
     let quantR = Int(max(0, min(15, floor(signPow(value.0 / maximumValue, 0.333) * 8 + 8.5))))
     let quantG = Int(max(0, min(15, floor(signPow(value.1 / maximumValue, 0.333) * 8 + 8.5))))
     let quantB = Int(max(0, min(15, floor(signPow(value.2 / maximumValue, 0.333) * 8 + 8.5))))
@@ -91,18 +91,39 @@ func encodeAC(_ value: (Float, Float, Float), maximumValue: Float) -> Int {
     return (quantR << 8) + (quantG << 4) + quantB
 }
 
-func signPow(_ value: Float, _ exp: Float) -> Float {
+private func signPow(_ value: Float, _ exp: Float) -> Float {
     return copysign(pow(abs(value), exp), value)
 }
 
-func linearTosRGB(_ value: Float) -> Int {
+private func linearTosRGB(_ value: Float) -> Int {
     let v = max(0, min(1, value))
 	if v <= 0.0031308 { return Int(v * 12.92 * 255 + 0.5) }
 	else { return Int((1.055 * pow(v, 1 / 2.4) - 0.055) * 255 + 0.5) }
 }
 
-func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
+private func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
     let v = Float(Int64(value)) / 255
 	if v <= 0.04045 { return v / 12.92 }
 	else { return pow((v + 0.055) / 1.055, 2.4) }
+}
+
+private let digitCharacters = [
+    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+    "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+    "u", "v", "w", "x", "y", "z", "A", "B", "C", "D",
+    "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+    "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+    "Y", "Z", ":", ";"
+]
+
+private extension Int {
+	func encode64(length: Int) -> String {
+        var result = ""
+        for i in 1 ... length {
+            let digit = (self >> (6 * (length - i))) & 63
+            result += digitCharacters[digit]
+        }
+        return result
+    }
 }

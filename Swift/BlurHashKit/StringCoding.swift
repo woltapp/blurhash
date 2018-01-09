@@ -1,6 +1,6 @@
 import Foundation
 
-let digitCharacters = [
+private let digitCharacters = [
     "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
     "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
@@ -10,12 +10,12 @@ let digitCharacters = [
     "Y", "Z", ":", ";"
 ]
 
-extension Int {
-    func encode64(length: Int) -> String {
+extension BinaryInteger {
+	func encode64(length: Int) -> String {
         var result = ""
         for i in 1 ... length {
             let digit = (self >> (6 * (length - i))) & 63
-            result += digitCharacters[digit]
+            result += digitCharacters[Int(digit)]
         }
         return result
     }

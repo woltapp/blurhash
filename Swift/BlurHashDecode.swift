@@ -67,14 +67,14 @@ extension UIImage {
     }
 }
 
-func decodeDC(_ value: Int) -> (Float, Float, Float) {
+private func decodeDC(_ value: Int) -> (Float, Float, Float) {
     let intR = value >> 16
     let intG = (value >> 8) & 255
     let intB = value & 255
     return (sRGBToLinear(intR), sRGBToLinear(intG), sRGBToLinear(intB))
 }
 
-func decodeAC(_ value: Int, maximumValue: Float) -> (Float, Float, Float) {
+private func decodeAC(_ value: Int, maximumValue: Float) -> (Float, Float, Float) {
     let quantR = value >> 8
     let quantG = (value >> 4) & 15
     let quantB = value & 15
@@ -86,4 +86,42 @@ func decodeAC(_ value: Int, maximumValue: Float) -> (Float, Float, Float) {
     )
 
     return rgb
+}
+
+private func signPow(_ value: Float, _ exp: Float) -> Float {
+    return copysign(pow(abs(value), exp), value)
+}
+
+private func linearTosRGB(_ value: Float) -> Int {
+    let v = max(0, min(1, value))
+	if v <= 0.0031308 { return Int(v * 12.92 * 255 + 0.5) }
+	else { return Int((1.055 * pow(v, 1 / 2.4) - 0.055) * 255 + 0.5) }
+}
+
+private func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
+    let v = Float(Int64(value)) / 255
+	if v <= 0.04045 { return v / 12.92 }
+	else { return pow((v + 0.055) / 1.055, 2.4) }
+}
+
+private let digitCharacters = [
+    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+    "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+    "u", "v", "w", "x", "y", "z", "A", "B", "C", "D",
+    "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+    "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+    "Y", "Z", ":", ";"
+]
+
+private extension String {
+    func decode64() -> Int {
+        var value: Int = 0
+        for character in self {
+            if let digit = digitCharacters.index(of: String(character)) {
+                value = (value << 6) + digit
+            }
+        }
+        return value
+    }
 }

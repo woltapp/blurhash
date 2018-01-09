@@ -1,7 +1,7 @@
 import UIKit
 import BlurHash
 
-class ViewController: UIViewController {
+class SimpleViewController: UIViewController {
     @IBOutlet weak var originalImageView: UIImageView?
     @IBOutlet weak var hashLabel: UILabel?
     @IBOutlet weak var blurImageView: UIImageView?
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
 
     func updateEncode() {
         originalImageView?.image = images[imageIndex]
-        blurHash = images[imageIndex].blurHash(components: (xComponents, yComponents))!
+        blurHash = images[imageIndex].blurHash(numberOfComponents: (xComponents, yComponents))!
         hashLabel?.text = blurHash
         xComponentsLabel?.text = String(xComponents)
         yComponentsLabel?.text = String(yComponents)

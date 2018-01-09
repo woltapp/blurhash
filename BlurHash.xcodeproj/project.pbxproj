@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1B0A250F1EC5E90C00F25F08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0A250E1EC5E90C00F25F08 /* AppDelegate.swift */; };
-		1B0A25111EC5E90C00F25F08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0A25101EC5E90C00F25F08 /* ViewController.swift */; };
+		1B0A25111EC5E90C00F25F08 /* SimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0A25101EC5E90C00F25F08 /* SimpleViewController.swift */; };
 		1B0A25141EC5E90C00F25F08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25121EC5E90C00F25F08 /* Main.storyboard */; };
 		1B0A25161EC5E90C00F25F08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25151EC5E90C00F25F08 /* Assets.xcassets */; };
 		1B0A25191EC5E90C00F25F08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25171EC5E90C00F25F08 /* LaunchScreen.storyboard */; };
-		1B0A251E1EC5EA0500F25F08 /* BlurHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */; };
-		1B0A251F1EC5EA0500F25F08 /* BlurHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1B0A251E1EC5EA0500F25F08 /* BlurHashKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B49CD1B1EC4721A006F8E7D /* BlurHashKit.framework */; };
+		1B0A251F1EC5EA0500F25F08 /* BlurHashKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B49CD1B1EC4721A006F8E7D /* BlurHashKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1B0A25291EC5EAB000F25F08 /* pic1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25241EC5EAB000F25F08 /* pic1.png */; };
 		1B0A252A1EC5EAB000F25F08 /* pic2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25251EC5EAB000F25F08 /* pic2.png */; };
 		1B0A252B1EC5EAB000F25F08 /* pic3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A25261EC5EAB000F25F08 /* pic3.png */; };
@@ -22,9 +22,16 @@
 		1B2BA1CA1F0E5EE3006057C1 /* encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B2BA1C81F0E5EE3006057C1 /* encode.c */; };
 		1B2BA1CB1F0E5EEA006057C1 /* blurhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B2BA1C41F0E5ED6006057C1 /* blurhash.c */; };
 		1B49CD201EC4721A006F8E7D /* Blurhash.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B49CD1E1EC4721A006F8E7D /* Blurhash.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B49CD271EC47243006F8E7D /* Encode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD261EC47243006F8E7D /* Encode.swift */; };
-		1B49CD291EC4724C006F8E7D /* Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD281EC4724C006F8E7D /* Decode.swift */; };
-		1B787C901EC4A29C00F167D3 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B787C8F1EC4A29C00F167D3 /* StringExtension.swift */; };
+		1BAA606D1FF40A0800E42DD7 /* BlurHashEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD261EC47243006F8E7D /* BlurHashEncode.swift */; };
+		1BAA606E1FF40A0B00E42DD7 /* BlurHashDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD281EC4724C006F8E7D /* BlurHashDecode.swift */; };
+		1BAA60711FF40A2F00E42DD7 /* BlurHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60701FF40A2F00E42DD7 /* BlurHash.swift */; };
+		1BAA60731FF40AEA00E42DD7 /* ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60721FF40AEA00E42DD7 /* ToString.swift */; };
+		1BAA60751FF40AF200E42DD7 /* FromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60741FF40AF200E42DD7 /* FromString.swift */; };
+		1BAA60771FF40C4C00E42DD7 /* ToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60761FF40C4C00E42DD7 /* ToUIImage.swift */; };
+		1BAA60791FF40C5800E42DD7 /* FromUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60781FF40C5800E42DD7 /* FromUIImage.swift */; };
+		1BAA607B1FF40D8900E42DD7 /* StringCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA607A1FF40D8900E42DD7 /* StringCoding.swift */; };
+		1BAA607D1FF422AE00E42DD7 /* ColourSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA607C1FF422AE00E42DD7 /* ColourSpace.swift */; };
+		1BC34D7A2005818D00A17481 /* AdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC34D792005818D00A17481 /* AdvancedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +51,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1B0A251F1EC5EA0500F25F08 /* BlurHash.framework in Embed Frameworks */,
+				1B0A251F1EC5EA0500F25F08 /* BlurHashKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,7 +70,7 @@
 /* Begin PBXFileReference section */
 		1B0A250C1EC5E90C00F25F08 /* BlurHashTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlurHashTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B0A250E1EC5E90C00F25F08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1B0A25101EC5E90C00F25F08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1B0A25101EC5E90C00F25F08 /* SimpleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleViewController.swift; sourceTree = "<group>"; };
 		1B0A25131EC5E90C00F25F08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B0A25151EC5E90C00F25F08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B0A25181EC5E90C00F25F08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,12 +91,19 @@
 		1B2BA1DA1F0F8A64006057C1 /* setup.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = setup.py; sourceTree = "<group>"; };
 		1B2BA1DB1F0F8E2E006057C1 /* BlurHash.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = BlurHash.c; path = ../../BlurHash/Ruby/BlurHash.c; sourceTree = "<group>"; };
 		1B2BA1DC1F0F8E2E006057C1 /* extconf.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = extconf.rb; path = ../../BlurHash/Ruby/extconf.rb; sourceTree = "<group>"; };
-		1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BlurHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B49CD1B1EC4721A006F8E7D /* BlurHashKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BlurHashKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B49CD1E1EC4721A006F8E7D /* Blurhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Blurhash.h; sourceTree = "<group>"; };
 		1B49CD1F1EC4721A006F8E7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B49CD261EC47243006F8E7D /* Encode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encode.swift; sourceTree = "<group>"; };
-		1B49CD281EC4724C006F8E7D /* Decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decode.swift; sourceTree = "<group>"; };
-		1B787C8F1EC4A29C00F167D3 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		1B49CD261EC47243006F8E7D /* BlurHashEncode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurHashEncode.swift; sourceTree = "<group>"; };
+		1B49CD281EC4724C006F8E7D /* BlurHashDecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurHashDecode.swift; sourceTree = "<group>"; };
+		1BAA60701FF40A2F00E42DD7 /* BlurHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurHash.swift; sourceTree = "<group>"; };
+		1BAA60721FF40AEA00E42DD7 /* ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToString.swift; sourceTree = "<group>"; };
+		1BAA60741FF40AF200E42DD7 /* FromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromString.swift; sourceTree = "<group>"; };
+		1BAA60761FF40C4C00E42DD7 /* ToUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToUIImage.swift; sourceTree = "<group>"; };
+		1BAA60781FF40C5800E42DD7 /* FromUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromUIImage.swift; sourceTree = "<group>"; };
+		1BAA607A1FF40D8900E42DD7 /* StringCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCoding.swift; sourceTree = "<group>"; };
+		1BAA607C1FF422AE00E42DD7 /* ColourSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourSpace.swift; sourceTree = "<group>"; };
+		1BC34D792005818D00A17481 /* AdvancedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B0A251E1EC5EA0500F25F08 /* BlurHash.framework in Frameworks */,
+				1B0A251E1EC5EA0500F25F08 /* BlurHashKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,7 +137,8 @@
 			children = (
 				1B0A25231EC5EAA300F25F08 /* Images */,
 				1B0A250E1EC5E90C00F25F08 /* AppDelegate.swift */,
-				1B0A25101EC5E90C00F25F08 /* ViewController.swift */,
+				1B0A25101EC5E90C00F25F08 /* SimpleViewController.swift */,
+				1BC34D792005818D00A17481 /* AdvancedViewController.swift */,
 				1B0A25121EC5E90C00F25F08 /* Main.storyboard */,
 				1B0A25151EC5E90C00F25F08 /* Assets.xcassets */,
 				1B0A25171EC5E90C00F25F08 /* LaunchScreen.storyboard */,
@@ -192,7 +207,7 @@
 		1B49CD1C1EC4721A006F8E7D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */,
+				1B49CD1B1EC4721A006F8E7D /* BlurHashKit.framework */,
 				1B0A250C1EC5E90C00F25F08 /* BlurHashTest.app */,
 				1B2BA1BD1F0E5EC5006057C1 /* blurhash */,
 			);
@@ -202,14 +217,28 @@
 		1B49CD1D1EC4721A006F8E7D /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				1B787C8F1EC4A29C00F167D3 /* StringExtension.swift */,
-				1B49CD261EC47243006F8E7D /* Encode.swift */,
-				1B49CD281EC4724C006F8E7D /* Decode.swift */,
+				1BAA606F1FF40A1E00E42DD7 /* BlurHashKit */,
+				1B49CD261EC47243006F8E7D /* BlurHashEncode.swift */,
+				1B49CD281EC4724C006F8E7D /* BlurHashDecode.swift */,
 				1B49CD1E1EC4721A006F8E7D /* Blurhash.h */,
 				1B49CD1F1EC4721A006F8E7D /* Info.plist */,
 			);
 			name = Swift;
 			path = ../BlurHash/Swift;
+			sourceTree = "<group>";
+		};
+		1BAA606F1FF40A1E00E42DD7 /* BlurHashKit */ = {
+			isa = PBXGroup;
+			children = (
+				1BAA60701FF40A2F00E42DD7 /* BlurHash.swift */,
+				1BAA60741FF40AF200E42DD7 /* FromString.swift */,
+				1BAA60721FF40AEA00E42DD7 /* ToString.swift */,
+				1BAA60781FF40C5800E42DD7 /* FromUIImage.swift */,
+				1BAA60761FF40C4C00E42DD7 /* ToUIImage.swift */,
+				1BAA607C1FF422AE00E42DD7 /* ColourSpace.swift */,
+				1BAA607A1FF40D8900E42DD7 /* StringCoding.swift */,
+			);
+			path = BlurHashKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +291,9 @@
 			productReference = 1B2BA1BD1F0E5EC5006057C1 /* blurhash */;
 			productType = "com.apple.product-type.tool";
 		};
-		1B49CD1A1EC4721A006F8E7D /* BlurHash */ = {
+		1B49CD1A1EC4721A006F8E7D /* BlurHashKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1B49CD231EC4721A006F8E7D /* Build configuration list for PBXNativeTarget "BlurHash" */;
+			buildConfigurationList = 1B49CD231EC4721A006F8E7D /* Build configuration list for PBXNativeTarget "BlurHashKit" */;
 			buildPhases = (
 				1B49CD161EC4721A006F8E7D /* Sources */,
 				1B49CD171EC4721A006F8E7D /* Frameworks */,
@@ -275,9 +304,9 @@
 			);
 			dependencies = (
 			);
-			name = BlurHash;
+			name = BlurHashKit;
 			productName = Blurhash;
-			productReference = 1B49CD1B1EC4721A006F8E7D /* BlurHash.framework */;
+			productReference = 1B49CD1B1EC4721A006F8E7D /* BlurHashKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -322,7 +351,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1B49CD1A1EC4721A006F8E7D /* BlurHash */,
+				1B49CD1A1EC4721A006F8E7D /* BlurHashKit */,
 				1B0A250B1EC5E90C00F25F08 /* BlurHashTest */,
 				1B2BA1BC1F0E5EC5006057C1 /* blurhash */,
 			);
@@ -359,7 +388,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B0A25111EC5E90C00F25F08 /* ViewController.swift in Sources */,
+				1BAA606E1FF40A0B00E42DD7 /* BlurHashDecode.swift in Sources */,
+				1BC34D7A2005818D00A17481 /* AdvancedViewController.swift in Sources */,
+				1B0A25111EC5E90C00F25F08 /* SimpleViewController.swift in Sources */,
+				1BAA606D1FF40A0800E42DD7 /* BlurHashEncode.swift in Sources */,
 				1B0A250F1EC5E90C00F25F08 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,9 +409,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B49CD271EC47243006F8E7D /* Encode.swift in Sources */,
-				1B49CD291EC4724C006F8E7D /* Decode.swift in Sources */,
-				1B787C901EC4A29C00F167D3 /* StringExtension.swift in Sources */,
+				1BAA60711FF40A2F00E42DD7 /* BlurHash.swift in Sources */,
+				1BAA607D1FF422AE00E42DD7 /* ColourSpace.swift in Sources */,
+				1BAA60751FF40AF200E42DD7 /* FromString.swift in Sources */,
+				1BAA607B1FF40D8900E42DD7 /* StringCoding.swift in Sources */,
+				1BAA60771FF40C4C00E42DD7 /* ToUIImage.swift in Sources */,
+				1BAA60731FF40AEA00E42DD7 /* ToString.swift in Sources */,
+				1BAA60791FF40C5800E42DD7 /* FromUIImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,7 +424,7 @@
 /* Begin PBXTargetDependency section */
 		1B0A25211EC5EA0500F25F08 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1B49CD1A1EC4721A006F8E7D /* BlurHash */;
+			target = 1B49CD1A1EC4721A006F8E7D /* BlurHashKit */;
 			targetProxy = 1B0A25201EC5EA0500F25F08 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -592,7 +628,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHash;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -614,7 +650,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHash;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -651,7 +687,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1B49CD231EC4721A006F8E7D /* Build configuration list for PBXNativeTarget "BlurHash" */ = {
+		1B49CD231EC4721A006F8E7D /* Build configuration list for PBXNativeTarget "BlurHashKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B49CD241EC4721A006F8E7D /* Debug */,
