@@ -3,32 +3,32 @@ import Foundation
 public extension BlurHash {
 	var string: String {
 		let flatComponents = components.reduce([]) { $0 + $1 }
-        let dc = flatComponents.first!
-        let ac = flatComponents.dropFirst()
+		let dc = flatComponents.first!
+		let ac = flatComponents.dropFirst()
 
-        var hash = ""
+		var hash = ""
 
-        let sizeFlag = (numberOfHorizontalComponents - 1) + ((numberOfVerticalComponents - 1) << 3)
-        hash += sizeFlag.encode64(length: 1)
+		let sizeFlag = (numberOfHorizontalComponents - 1) + ((numberOfVerticalComponents - 1) << 3)
+		hash += sizeFlag.encode64(length: 1)
 
-        let maximumValue: Float
-        if ac.count > 0 {
-            let actualMaximumValue = ac.map({ max($0.0, $0.1, $0.2) }).max()!
-            let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 64 - 0.5))))
-            maximumValue = Float(quantisedMaximumValue + 1) / 64
-            hash += quantisedMaximumValue.encode64(length: 1)
-        } else {
-            maximumValue = 1
-            hash += 0.encode64(length: 1)
-        }
+		let maximumValue: Float
+		if ac.count > 0 {
+			let actualMaximumValue = ac.map({ max($0.0, $0.1, $0.2) }).max()!
+			let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 64 - 0.5))))
+			maximumValue = Float(quantisedMaximumValue + 1) / 64
+			hash += quantisedMaximumValue.encode64(length: 1)
+		} else {
+			maximumValue = 1
+			hash += 0.encode64(length: 1)
+		}
 
-        hash += encodeDC(dc).encode64(length: 4)
+		hash += encodeDC(dc).encode64(length: 4)
 
-        for factor in ac {
-            hash += encodeAC(factor, maximumValue: maximumValue).encode64(length: 2)
-        }
+		for factor in ac {
+			hash += encodeAC(factor, maximumValue: maximumValue).encode64(length: 2)
+		}
 
-        return hash
+		return hash
 	}
 
 	private func encodeDC(_ value: (Float, Float, Float)) -> Int {

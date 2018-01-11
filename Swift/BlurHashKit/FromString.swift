@@ -2,27 +2,27 @@ import Foundation
 
 public extension BlurHash {
 	init?(string: String) {
-        let nsString = string as NSString
-        guard nsString.length >= 6 else { return nil }
+		let nsString = string as NSString
+		guard nsString.length >= 6 else { return nil }
 
-        let sizeFlag = nsString.substring(with: NSRange(location: 0, length: 1)).decode64()
-        let numY = (sizeFlag >> 3) + 1
-        let numX = (sizeFlag & 7) + 1
+		let sizeFlag = nsString.substring(with: NSRange(location: 0, length: 1)).decode64()
+		let numY = (sizeFlag >> 3) + 1
+		let numX = (sizeFlag & 7) + 1
 
-        let quantisedMaximumValue = nsString.substring(with: NSRange(location: 1, length: 1)).decode64()
-        let maximumValue = Float(quantisedMaximumValue + 1) / 64
+		let quantisedMaximumValue = nsString.substring(with: NSRange(location: 1, length: 1)).decode64()
+		let maximumValue = Float(quantisedMaximumValue + 1) / 64
 
-        guard nsString.length == 4 + 2 * numX * numY else { return nil }
+		guard nsString.length == 4 + 2 * numX * numY else { return nil }
 
 		self.components = (0 ..< numY).map { y in
 			return (0 ..< numX).map { x in
 				if x == 0 && y == 0 {
-                	let value = nsString.substring(with: NSRange(location: 2, length: 4)).decode64()
-                	return BlurHash.decodeDC(value)
+					let value = nsString.substring(with: NSRange(location: 2, length: 4)).decode64()
+					return BlurHash.decodeDC(value)
 				} else {
 					let i = x + y * numX
-                	let value = nsString.substring(with: NSRange(location: 4 + i * 2, length: 2)).decode64()
-                	return BlurHash.decodeAC(value, maximumValue: maximumValue)
+					let value = nsString.substring(with: NSRange(location: 4 + i * 2, length: 2)).decode64()
+					return BlurHash.decodeAC(value, maximumValue: maximumValue)
 				}
 			}
 		}
