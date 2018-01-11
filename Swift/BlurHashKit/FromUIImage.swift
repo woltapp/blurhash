@@ -23,8 +23,9 @@ public extension BlurHash {
 
         self.components = (0 ..< components.1).map { y in
             return (0 ..< components.0).map { x in
+            	let normalisation: Float = (x == 0 && y == 0) ? 1 : 2
                 return BlurHash.multiplyBasisFunction(pixels: pixels, width: width, height: height, bytesPerRow: bytesPerRow, bytesPerPixel: cgImage.bitsPerPixel / 8, pixelOffset: 0) {
-                    cos(Float.pi * Float(x) * $0 / Float(width)) * cos(Float.pi * Float(y) * $1 / Float(height))
+                    normalisation * cos(Float.pi * Float(x) * $0 / Float(width)) * cos(Float.pi * Float(y) * $1 / Float(height))
                 }
             }
         }
@@ -46,9 +47,9 @@ public extension BlurHash {
             }
         }
 
-        let scale = Float(width * height)
+        let scale = 1 / Float(width * height)
 
-        return (r / scale, g / scale, b / scale)
+        return (r * scale, g * scale, b * scale)
     }
 }
 

@@ -67,7 +67,7 @@ class AdvancedViewController: UIViewController {
         originalImageView?.image = image
 
         let blurHash = BlurHash(image: images[imageIndex], numberOfComponents: (xComponents, yComponents))!
-		uncompressedBlurImageView?.image = blurHash.punch(2).image(numberOfPixels: 1024, originalSize: image.size)
+		uncompressedBlurImageView?.image = blurHash.image(numberOfPixels: 1024, originalSize: image.size)
 
         hashLabel?.text = blurHash.string
         let decodedBlurHash = BlurHash(string: blurHash.string)!

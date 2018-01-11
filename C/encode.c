@@ -60,8 +60,8 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
             actualMaximumValue = fmaxf(ac[i], actualMaximumValue);
         }
 
-        int quantisedMaximumValue = fmaxf(0, fminf(63, floorf(actualMaximumValue * 128 - 0.5)));
-        maximumValue = ((float)quantisedMaximumValue + 1) / 128;
+        int quantisedMaximumValue = fmaxf(0, fminf(63, floorf(actualMaximumValue * 64 - 0.5)));
+        maximumValue = ((float)quantisedMaximumValue + 1) / 64;
         ptr = encode_int(quantisedMaximumValue, 1, ptr);
     } else {
         maximumValue = 1;
@@ -81,6 +81,7 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 
 static float *multiplyBasisFunction(int xComponent, int yComponent, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
     float r = 0, g = 0, b = 0;
+    float normalisation = (xComponent == 0 && yComponent == 0) ? 1 : 2;
 
     for(int y = 0; y < height; y++) {
         for(int x = 0; x < width; x++) {
@@ -91,12 +92,12 @@ static float *multiplyBasisFunction(int xComponent, int yComponent, int width, i
         }
     }
 
-    float scale = width * height;
+    float scale = normalisation / (width * height);
 
     static float result[3];
-    result[0] = r / scale;
-    result[1] = g / scale;
-    result[2] = b / scale;
+    result[0] = r * scale;
+    result[1] = g * scale;
+    result[2] = b * scale;
 
     return result;
 }

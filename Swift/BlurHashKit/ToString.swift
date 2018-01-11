@@ -14,8 +14,8 @@ public extension BlurHash {
         let maximumValue: Float
         if ac.count > 0 {
             let actualMaximumValue = ac.map({ max($0.0, $0.1, $0.2) }).max()!
-            let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 128 - 0.5))))
-            maximumValue = Float(quantisedMaximumValue + 1) / 128
+            let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 64 - 0.5))))
+            maximumValue = Float(quantisedMaximumValue + 1) / 64
             hash += quantisedMaximumValue.encode64(length: 1)
         } else {
             maximumValue = 1

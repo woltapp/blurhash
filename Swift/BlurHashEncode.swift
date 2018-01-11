@@ -19,8 +19,9 @@ extension UIImage {
         var factors: [(Float, Float, Float)] = []
         for y in 0 ..< components.1 {
             for x in 0 ..< components.0 {
+                let normalisation: Float = (x == 0 && y == 0) ? 1 : 2
                 let factor = multiplyBasisFunction(pixels: pixels, width: width, height: height, bytesPerRow: bytesPerRow, bytesPerPixel: cgImage.bitsPerPixel / 8, pixelOffset: 0) {
-                    cos(Float.pi * Float(x) * $0 / Float(width)) * cos(Float.pi * Float(y) * $1 / Float(height))
+                    normalisation * cos(Float.pi * Float(x) * $0 / Float(width)) * cos(Float.pi * Float(y) * $1 / Float(height))
                 }
                 factors.append(factor)
             }
@@ -37,8 +38,8 @@ extension UIImage {
         let maximumValue: Float
         if ac.count > 0 {
             let actualMaximumValue = ac.map({ max($0.0, $0.1, $0.2) }).max()!
-            let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 128 - 0.5))))
-            maximumValue = Float(quantisedMaximumValue + 1) / 128
+            let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 64 - 0.5))))
+            maximumValue = Float(quantisedMaximumValue + 1) / 64
             hash += quantisedMaximumValue.encode64(length: 1)
         } else {
             maximumValue = 1
@@ -70,9 +71,9 @@ extension UIImage {
             }
         }
 
-        let scale = Float(width * height)
+        let scale = 1 / Float(width * height)
 
-        return (r / scale, g / scale, b / scale)
+        return (r * scale, g * scale, b * scale)
     }
 }
 
@@ -97,14 +98,14 @@ private func signPow(_ value: Float, _ exp: Float) -> Float {
 
 private func linearTosRGB(_ value: Float) -> Int {
     let v = max(0, min(1, value))
-	if v <= 0.0031308 { return Int(v * 12.92 * 255 + 0.5) }
-	else { return Int((1.055 * pow(v, 1 / 2.4) - 0.055) * 255 + 0.5) }
+    if v <= 0.0031308 { return Int(v * 12.92 * 255 + 0.5) }
+    else { return Int((1.055 * pow(v, 1 / 2.4) - 0.055) * 255 + 0.5) }
 }
 
 private func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
     let v = Float(Int64(value)) / 255
-	if v <= 0.04045 { return v / 12.92 }
-	else { return pow((v + 0.055) / 1.055, 2.4) }
+    if v <= 0.04045 { return v / 12.92 }
+    else { return pow((v + 0.055) / 1.055, 2.4) }
 }
 
 private let digitCharacters = [
@@ -118,7 +119,7 @@ private let digitCharacters = [
 ]
 
 private extension Int {
-	func encode64(length: Int) -> String {
+    func encode64(length: Int) -> String {
         var result = ""
         for i in 1 ... length {
             let digit = (self >> (6 * (length - i))) & 63

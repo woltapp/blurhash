@@ -10,7 +10,7 @@ public extension BlurHash {
         let numX = (sizeFlag & 7) + 1
 
         let quantisedMaximumValue = nsString.substring(with: NSRange(location: 1, length: 1)).decode64()
-        let maximumValue = Float(quantisedMaximumValue + 1) / 128
+        let maximumValue = Float(quantisedMaximumValue + 1) / 64
 
         guard nsString.length == 4 + 2 * numX * numY else { return nil }
 
@@ -41,9 +41,9 @@ public extension BlurHash {
 		let quantB = value & 15
 
 		let rgb = (
-			signPow((Float(quantR) - 8) / 8, 3.0) * maximumValue * 2,
-			signPow((Float(quantG) - 8) / 8, 3.0) * maximumValue * 2,
-			signPow((Float(quantB) - 8) / 8, 3.0) * maximumValue * 2
+			signPow((Float(quantR) - 8) / 8, 3.0) * maximumValue,
+			signPow((Float(quantG) - 8) / 8, 3.0) * maximumValue,
+			signPow((Float(quantB) - 8) / 8, 3.0) * maximumValue
 		)
 
 		return rgb
