@@ -122,9 +122,9 @@ static int encodeDC(float r, float g, float b) {
 }
 
 static int encodeAC(float r, float g, float b, float maximumValue) {
-    int quantR = fmaxf(0, fminf(15, floorf(signPow(r / maximumValue, 0.333) * 8 + 8.5)));
-    int quantG = fmaxf(0, fminf(15, floorf(signPow(g / maximumValue, 0.333) * 8 + 8.5)));
-    int quantB = fmaxf(0, fminf(15, floorf(signPow(b / maximumValue, 0.333) * 8 + 8.5)));
+    int quantR = fmaxf(0, fminf(15, floorf(signPow(r / maximumValue, 0.333) * 7 + 7.5)));
+    int quantG = fmaxf(0, fminf(15, floorf(signPow(g / maximumValue, 0.333) * 7 + 7.5)));
+    int quantB = fmaxf(0, fminf(15, floorf(signPow(b / maximumValue, 0.333) * 7 + 7.5)));
 
     return (quantR << 8) + (quantG << 4) + quantB;
 }
