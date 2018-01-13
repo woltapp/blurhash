@@ -13,23 +13,19 @@ public extension BlurHash {
 
 		for y in 0 ..< height {
 			for x in 0 ..< width {
-				var r: Float = 0
-				var g: Float = 0
-				var b: Float = 0
+				var c: (Float, Float, Float) = (0, 0, 0)
 
 				for j in 0 ..< numberOfVerticalComponents {
 					for i in 0 ..< numberOfHorizontalComponents {
 						let basis = cos(Float.pi * Float(x) * Float(i) / Float(width)) * cos(Float.pi * Float(y) * Float(j) / Float(height))
 						let component = components[j][i]
-						r += component.0 * basis
-						g += component.1 * basis
-						b += component.2 * basis
+						c += component * basis
 					}
 				}
 
-				let intR = UInt8(linearTosRGB(r))
-				let intG = UInt8(linearTosRGB(g))
-				let intB = UInt8(linearTosRGB(b))
+				let intR = UInt8(linearTosRGB(c.0))
+				let intG = UInt8(linearTosRGB(c.1))
+				let intB = UInt8(linearTosRGB(c.2))
 
 				pixels[3 * x + 0 + y * bytesPerRow] = intR
 				pixels[3 * x + 1 + y * bytesPerRow] = intG

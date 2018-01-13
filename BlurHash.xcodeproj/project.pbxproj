@@ -32,6 +32,9 @@
 		1BAA607B1FF40D8900E42DD7 /* StringCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA607A1FF40D8900E42DD7 /* StringCoding.swift */; };
 		1BAA607D1FF422AE00E42DD7 /* ColourSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA607C1FF422AE00E42DD7 /* ColourSpace.swift */; };
 		1BC34D7A2005818D00A17481 /* AdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC34D792005818D00A17481 /* AdvancedViewController.swift */; };
+		1BC34D7C200988ED00A17481 /* GeneratedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC34D7B200988ED00A17481 /* GeneratedViewController.swift */; };
+		1BC34D7E20098E1500A17481 /* TupleMaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC34D7D20098E1500A17481 /* TupleMaths.swift */; };
+		1BC34D8020098E2F00A17481 /* Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC34D7F20098E2F00A17481 /* Generation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +107,9 @@
 		1BAA607A1FF40D8900E42DD7 /* StringCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCoding.swift; sourceTree = "<group>"; };
 		1BAA607C1FF422AE00E42DD7 /* ColourSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourSpace.swift; sourceTree = "<group>"; };
 		1BC34D792005818D00A17481 /* AdvancedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedViewController.swift; sourceTree = "<group>"; };
+		1BC34D7B200988ED00A17481 /* GeneratedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedViewController.swift; sourceTree = "<group>"; };
+		1BC34D7D20098E1500A17481 /* TupleMaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TupleMaths.swift; sourceTree = "<group>"; };
+		1BC34D7F20098E2F00A17481 /* Generation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 				1B0A250E1EC5E90C00F25F08 /* AppDelegate.swift */,
 				1B0A25101EC5E90C00F25F08 /* SimpleViewController.swift */,
 				1BC34D792005818D00A17481 /* AdvancedViewController.swift */,
+				1BC34D7B200988ED00A17481 /* GeneratedViewController.swift */,
 				1B0A25121EC5E90C00F25F08 /* Main.storyboard */,
 				1B0A25151EC5E90C00F25F08 /* Assets.xcassets */,
 				1B0A25171EC5E90C00F25F08 /* LaunchScreen.storyboard */,
@@ -235,6 +242,8 @@
 				1BAA60721FF40AEA00E42DD7 /* ToString.swift */,
 				1BAA60781FF40C5800E42DD7 /* FromUIImage.swift */,
 				1BAA60761FF40C4C00E42DD7 /* ToUIImage.swift */,
+				1BC34D7F20098E2F00A17481 /* Generation.swift */,
+				1BC34D7D20098E1500A17481 /* TupleMaths.swift */,
 				1BAA607C1FF422AE00E42DD7 /* ColourSpace.swift */,
 				1BAA607A1FF40D8900E42DD7 /* StringCoding.swift */,
 			);
@@ -392,6 +401,7 @@
 				1BC34D7A2005818D00A17481 /* AdvancedViewController.swift in Sources */,
 				1B0A25111EC5E90C00F25F08 /* SimpleViewController.swift in Sources */,
 				1BAA606D1FF40A0800E42DD7 /* BlurHashEncode.swift in Sources */,
+				1BC34D7C200988ED00A17481 /* GeneratedViewController.swift in Sources */,
 				1B0A250F1EC5E90C00F25F08 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,10 +421,12 @@
 			files = (
 				1BAA60711FF40A2F00E42DD7 /* BlurHash.swift in Sources */,
 				1BAA607D1FF422AE00E42DD7 /* ColourSpace.swift in Sources */,
+				1BC34D7E20098E1500A17481 /* TupleMaths.swift in Sources */,
 				1BAA60751FF40AF200E42DD7 /* FromString.swift in Sources */,
 				1BAA607B1FF40D8900E42DD7 /* StringCoding.swift in Sources */,
 				1BAA60771FF40C4C00E42DD7 /* ToUIImage.swift in Sources */,
 				1BAA60731FF40AEA00E42DD7 /* ToString.swift in Sources */,
+				1BC34D8020098E2F00A17481 /* Generation.swift in Sources */,
 				1BAA60791FF40C5800E42DD7 /* FromUIImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -626,7 +638,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Swift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -648,7 +660,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Swift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
