@@ -57,7 +57,7 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
     if(acCount > 0) {
         float actualMaximumValue = 0;
         for(int i = 0; i < acCount * 3; i++) {
-            actualMaximumValue = fmaxf(ac[i], actualMaximumValue);
+            actualMaximumValue = fmaxf(fabsf(ac[i]), actualMaximumValue);
         }
 
         int quantisedMaximumValue = fmaxf(0, fminf(63, floorf(actualMaximumValue * 64 - 0.5)));
