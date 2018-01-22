@@ -6,6 +6,18 @@ class AdvancedViewController: UIViewController {
     @IBOutlet weak var uncompressedBlurImageView: UIImageView?
     @IBOutlet weak var hashLabel: UILabel?
     @IBOutlet weak var compressedBlurImageView: UIImageView?
+
+    @IBOutlet weak var darknessBlurImageView: UIImageView?
+    @IBOutlet weak var topLeftCornerLabel: UILabel?
+    @IBOutlet weak var topEdgeLabel: UILabel?
+    @IBOutlet weak var topRightCornerLabel: UILabel?
+    @IBOutlet weak var leftEdgeLabel: UILabel?
+    @IBOutlet weak var centreLabel: UILabel?
+    @IBOutlet weak var rightEdgeLabel: UILabel?
+    @IBOutlet weak var bottomLeftCornerLabel: UILabel?
+    @IBOutlet weak var bottomEdgeLabel: UILabel?
+    @IBOutlet weak var bottomRightCornerLabel: UILabel?
+
     @IBOutlet weak var xComponentsLabel: UILabel?
     @IBOutlet weak var yComponentsLabel: UILabel?
 
@@ -13,6 +25,7 @@ class AdvancedViewController: UIViewController {
         UIImage(named: "pic2.png")!,
         UIImage(named: "pic1.png")!,
         UIImage(named: "pic3.png")!,
+        UIImage(named: "pic6.png")!,
         UIImage(named: "pic4.png")!,
         UIImage(named: "pic5.png")!,
     ]
@@ -73,10 +86,31 @@ class AdvancedViewController: UIViewController {
         let decodedBlurHash = BlurHash(string: blurHash.string)!
 
         compressedBlurImageView?.image = decodedBlurHash.image(numberOfPixels: 1024, originalSize: image.size)
+        darknessBlurImageView?.image = decodedBlurHash.image(numberOfPixels: 1024, originalSize: image.size)
+
+        setDarkness(label: topLeftCornerLabel, isDark: decodedBlurHash.isTopLeftCornerDark, light: "Ⓛ", dark: "Ⓓ")
+        setDarkness(label: topEdgeLabel, isDark: decodedBlurHash.isTopEdgeDark, light: "------Light------", dark: "------Dark------")
+        setDarkness(label: topRightCornerLabel, isDark: decodedBlurHash.isTopRightCornerDark, light: "Ⓛ", dark: "Ⓓ")
+        setDarkness(label: leftEdgeLabel, isDark: decodedBlurHash.isLeftEdgeDark, light: "|\n|\nLight\n|\n|", dark: "|\n|\nDark\n|\n|")
+        setDarkness(label: centreLabel, isDark: decodedBlurHash.isDark, light: "Light", dark: "Dark")
+        setDarkness(label: rightEdgeLabel, isDark: decodedBlurHash.isRightEdgeDark, light: "|\n|\nLight\n|\n|", dark: "|\n|\nDark\n|\n|")
+        setDarkness(label: bottomLeftCornerLabel, isDark: decodedBlurHash.isBottomLeftCornerDark, light: "Ⓛ", dark: "Ⓓ")
+        setDarkness(label: bottomEdgeLabel, isDark: decodedBlurHash.isBottomEdgeDark, light: "------Light------", dark: "------Dark------")
+        setDarkness(label: bottomRightCornerLabel, isDark: decodedBlurHash.isBottomRightCornerDark, light: "Ⓛ", dark: "Ⓓ")
 
         xComponentsLabel?.text = String(xComponents)
         yComponentsLabel?.text = String(yComponents)
 
+    }
+
+    func setDarkness(label: UILabel?, isDark: Bool, light: String, dark: String) {
+        if isDark {
+            label?.textColor = .white
+            label?.text = dark
+        } else {
+            label?.textColor = .black
+            label?.text = light
+        }
     }
 
 }

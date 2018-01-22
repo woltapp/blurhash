@@ -1,5 +1,4 @@
 import UIKit
-import BlurHash
 
 class SimpleViewController: UIViewController {
     @IBOutlet weak var originalImageView: UIImageView?
@@ -12,6 +11,7 @@ class SimpleViewController: UIViewController {
         UIImage(named: "pic2.png")!,
         UIImage(named: "pic1.png")!,
         UIImage(named: "pic3.png")!,
+        UIImage(named: "pic6.png")!,
     ]
 
     var imageIndex: Int = 0
