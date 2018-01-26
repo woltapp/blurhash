@@ -41,9 +41,9 @@ public extension BlurHash {
 		let quantB = value & 15
 
 		let rgb = (
-			signPow((Float(quantR) - 7) / 7, 3.0) * maximumValue,
-			signPow((Float(quantG) - 7) / 7, 3.0) * maximumValue,
-			signPow((Float(quantB) - 7) / 7, 3.0) * maximumValue
+			signPow((Float(quantR) - 8) / 7, 3.0) * maximumValue,
+			signPow((Float(quantG) - 8) / 7, 3.0) * maximumValue,
+			signPow((Float(quantB) - 8) / 7, 3.0) * maximumValue
 		)
 
 		return rgb

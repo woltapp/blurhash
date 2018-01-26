@@ -85,9 +85,9 @@ private func encodeDC(_ value: (Float, Float, Float)) -> Int {
 }
 
 private func encodeAC(_ value: (Float, Float, Float), maximumValue: Float) -> Int {
-    let quantR = Int(max(0, min(15, floor(signPow(value.0 / maximumValue, 0.333) * 8 + 8.5))))
-    let quantG = Int(max(0, min(15, floor(signPow(value.1 / maximumValue, 0.333) * 8 + 8.5))))
-    let quantB = Int(max(0, min(15, floor(signPow(value.2 / maximumValue, 0.333) * 8 + 8.5))))
+    let quantR = Int(max(0, min(15, floor(signPow(value.0 / maximumValue, 0.333) * 7 + 8.5))))
+    let quantG = Int(max(0, min(15, floor(signPow(value.1 / maximumValue, 0.333) * 7 + 8.5))))
+    let quantB = Int(max(0, min(15, floor(signPow(value.2 / maximumValue, 0.333) * 7 + 8.5))))
 
     return (quantR << 8) + (quantG << 4) + quantB
 }
