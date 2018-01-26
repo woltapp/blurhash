@@ -47,8 +47,7 @@ extension UIImage {
                     let K = (k + 1) / 2
                     let Rkq = UIImage.Rqk[q][K]
                     let isCosine = k % 2 == 0
-                    let normalisation = Rkq == 0 ? 1 : 1 / (sqrt(Double.pi) * abs(jn(K + 1, Rkq)))
-                    if k == 0 && q != 0 { return 0 }
+                    let normalisation = Rkq == 0 ? 1 : sqrt(Double.pi)
                     return Float(normalisation * jn(K, Rkq * r) * (isCosine ? cos(omega * Double(K)) : sin(omega * Double(K))))
                 }
 

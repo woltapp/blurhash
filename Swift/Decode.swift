@@ -28,6 +28,7 @@ extension UIImage {
         let height = Int(size.height)
         let bytesPerRow = width * 3
         guard let data = CFDataCreateMutable(kCFAllocatorDefault, bytesPerRow * height) else { return nil }
+        CFDataSetLength(data, bytesPerRow * height)
         guard let pixels = CFDataGetMutableBytePtr(data) else { return nil }
 
         for y in 0 ..< height {
@@ -45,7 +46,7 @@ extension UIImage {
                         let K = (k + 1) / 2
                         let Rkq = UIImage.Rqk[q][K]
                         let isCosine = k % 2 == 0
-                        let normalisation = Rkq == 0 ? 1 : 1 / (sqrt(Double.pi) * abs(jn(K + 1, Rkq)))
+                        let normalisation = Rkq == 0 ? 1 : sqrt(Double.pi)
                         let basis = Float(normalisation * jn(K, Rkq * rr) * (isCosine ? cos(omega * Double(K)) : sin(omega * Double(K))))
 
                         let colour = colours[k + q * numX]
