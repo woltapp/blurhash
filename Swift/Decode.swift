@@ -14,7 +14,7 @@ extension UIImage {
 
         guard string.length == 4 + 2 * numX * numY else { return nil }
 
-        let colours: [(Float, Float, Float)] = (0 ..< numX * numY).map { i in
+        var colours: [(Float, Float, Float)] = (0 ..< numX * numY).map { i in
             if i == 0 {
                 let value = string.substring(with: NSRange(location: 2, length: 4)).decode64()
                 return decodeDC(value)
@@ -46,8 +46,8 @@ extension UIImage {
                         let K = (k + 1) / 2
                         let Rkq = UIImage.Rqk[q][K]
                         let isCosine = k % 2 == 0
-                        let normalisation = Rkq == 0 ? 1 : sqrt(Double.pi)
-                        let basis = Float(normalisation * jn(K, Rkq * rr) * (isCosine ? cos(omega * Double(K)) : sin(omega * Double(K))))
+                        //let normalisation = Rkq == 0 ? 1 : sqrt(Double.pi)
+                        let basis = Float(/*normalisation * */jn(K, Rkq * rr) * (isCosine ? cos(omega * Double(K)) : sin(omega * Double(K))))
 
                         let colour = colours[k + q * numX]
                         r += colour.0 * basis
@@ -89,9 +89,9 @@ func decodeAC(_ value: Int, maximumValue: Float) -> (Float, Float, Float) {
     let quantB = value & 15
 
     let rgb = (
-        signPow((Float(quantR) - 8) / 8, 3.0) * maximumValue * 2,
-        signPow((Float(quantG) - 8) / 8, 3.0) * maximumValue * 2,
-        signPow((Float(quantB) - 8) / 8, 3.0) * maximumValue * 2
+        signPow((Float(quantR) - 8) / 7, 3.0) * maximumValue * 2,
+        signPow((Float(quantG) - 8) / 7, 3.0) * maximumValue * 2,
+        signPow((Float(quantB) - 8) / 7, 3.0) * maximumValue * 2
     )
 
     return rgb

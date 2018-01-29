@@ -19,6 +19,8 @@ extension UIImage {
         [14.9309, 16.4706, 17.9598, 19.4094, 20.8269, 22.2178],*/
     ]
 
+    // https://lmb.informatik.uni-freiburg.de/Publications/2008/WRB08/wa_report01_08.pdf
+
     public func blurHash(components: (Int, Int)) -> String? {
         guard components.0 >= 1, components.0 <= 10,
         components.1 >= 1, components.1 <= 5,
@@ -47,11 +49,12 @@ extension UIImage {
                     let K = (k + 1) / 2
                     let Rkq = UIImage.Rqk[q][K]
                     let isCosine = k % 2 == 0
-                    let normalisation = Rkq == 0 ? 1 : sqrt(Double.pi)
-                    return Float(normalisation * jn(K, Rkq * r) * (isCosine ? cos(omega * Double(K)) : sin(omega * Double(K))))
+                    return Float(/**/jn(K, Rkq * r) * (isCosine ? cos(omega * Double(K)) : sin(omega * Double(K))))
                 }
-
-                factors.append(factor)
+                let normalisation: Float = q == 0 && k == 0 ? 1 : 0.5
+                let normalisedFactor = (factor.0 * normalisation, factor.1 * normalisation, factor.2 * normalisation)
+print("\(q) \(k): \(normalisedFactor)")
+                factors.append(normalisedFactor)
             }
         }
 
@@ -65,7 +68,7 @@ extension UIImage {
 
         let maximumValue: Float
         if ac.count > 0 {
-            let actualMaximumValue = ac.map({ max($0.0, $0.1, $0.2) }).max()!
+            let actualMaximumValue = ac.flatMap({ [abs($0.0), abs($0.1), abs($0.2)] }).max()!
             let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 128 - 0.5))))
             maximumValue = Float(quantisedMaximumValue + 1) / 128
             hash += quantisedMaximumValue.encode64(length: 1)
@@ -89,6 +92,7 @@ extension UIImage {
         var b: Float = 0
 
         let buffer = UnsafeBufferPointer(start: pixels, count: height * bytesPerRow)
+        var scale: Float = 0
 
         for x in 0 ..< width {
             for y in 0 ..< height {
@@ -96,10 +100,9 @@ extension UIImage {
                 r += basis * (sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 0 + y * bytesPerRow]))
                 g += basis * (sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 1 + y * bytesPerRow]))
                 b += basis * (sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 2 + y * bytesPerRow]))
+                scale += basis * basis
             }
         }
-
-        let scale = Float(width * height)
 
         return (r / scale, g / scale, b / scale)
     }
@@ -113,9 +116,9 @@ func encodeDC(_ value: (Float, Float, Float)) -> Int {
 }
 
 func encodeAC(_ value: (Float, Float, Float), maximumValue: Float) -> Int {
-    let quantR = Int(max(0, min(15, floor(signPow(value.0 / maximumValue, 0.333) * 8 + 8.5))))
-    let quantG = Int(max(0, min(15, floor(signPow(value.1 / maximumValue, 0.333) * 8 + 8.5))))
-    let quantB = Int(max(0, min(15, floor(signPow(value.2 / maximumValue, 0.333) * 8 + 8.5))))
+    let quantR = Int(max(0, min(15, floor(signPow(value.0 / maximumValue, 0.333) * 7 + 8.5))))
+    let quantG = Int(max(0, min(15, floor(signPow(value.1 / maximumValue, 0.333) * 7 + 8.5))))
+    let quantB = Int(max(0, min(15, floor(signPow(value.2 / maximumValue, 0.333) * 7 + 8.5))))
 
     return (quantR << 8) + (quantG << 4) + quantB
 }
