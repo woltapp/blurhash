@@ -1,0 +1,22 @@
+{
+  "name": "blurhash",
+  "version": "0.0.1",
+  "description": "Decoder for the Wolt BlurHash alrgorithm.",
+  "main": "dist/index.js",
+  "types": "dist/index.t.js",
+  "scripts": {
+    "build": "tsc",
+    "demo": "webpack-dev-server"
+  },
+  "keywords": [
+    "blurhash"
+  ],
+  "author": "omahlama",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-loader": "3.2.0",
+    "typescript": "2.6.2",
+    "webpack": "3.10.0",
+    "webpack-dev-server": "2.9.7"
+  }
+}
