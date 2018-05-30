@@ -2,24 +2,23 @@ import UIKit
 
 extension UIImage {
     public convenience init?(blurHash: String, size: CGSize, punch: Float = 1) {
-        let string = blurHash as NSString
-        guard string.length >= 6 else { return nil }
+        guard blurHash.count >= 6 else { return nil }
 
-        let sizeFlag = string.substring(with: NSRange(location: 0, length: 1)).decode64()
+        let sizeFlag = String(blurHash[0]).decode64()
         let numY = (sizeFlag >> 3) + 1
         let numX = (sizeFlag & 7) + 1
 
-        let quantisedMaximumValue = string.substring(with: NSRange(location: 1, length: 1)).decode64()
+        let quantisedMaximumValue = String(blurHash[1]).decode64()
         let maximumValue = Float(quantisedMaximumValue + 1) / 64
 
-        guard string.length == 4 + 2 * numX * numY else { return nil }
+        guard blurHash.count == 4 + 2 * numX * numY else { return nil }
 
         let colours: [(Float, Float, Float)] = (0 ..< numX * numY).map { i in
             if i == 0 {
-                let value = string.substring(with: NSRange(location: 2, length: 4)).decode64()
+                let value = String(blurHash[2 ..< 6]).decode64()
                 return decodeDC(value)
             } else {
-                let value = string.substring(with: NSRange(location: 4 + i * 2, length: 2)).decode64()
+                let value = String(blurHash[4 + i * 2 ..< 4 + i * 2 + 2]).decode64()
                 return decodeAC(value, maximumValue: maximumValue * punch)
             }
         }
@@ -124,4 +123,22 @@ private extension String {
         }
         return value
     }
+}
+
+private extension String {
+	subscript (offset: Int) -> Character {
+		return self[index(startIndex, offsetBy: offset)]
+	}
+
+	subscript (bounds: CountableClosedRange<Int>) -> Substring {
+		let start = index(startIndex, offsetBy: bounds.lowerBound)
+		let end = index(startIndex, offsetBy: bounds.upperBound)
+		return self[start...end]
+	}
+
+	subscript (bounds: CountableRange<Int>) -> Substring {
+		let start = index(startIndex, offsetBy: bounds.lowerBound)
+		let end = index(startIndex, offsetBy: bounds.upperBound)
+		return self[start..<end]
+	}
 }

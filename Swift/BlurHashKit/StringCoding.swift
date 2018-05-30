@@ -11,11 +11,11 @@ private let encodeCharacters = [
 ]
 
 private let decodeCharacters: [String: Int] = {
-    var dict: [String: Int] = [:]
-    for (index, character) in encodeCharacters.enumerated() {
-        dict[character] = index
-    }
-    return dict
+	var dict: [String: Int] = [:]
+	for (index, character) in encodeCharacters.enumerated() {
+		dict[character] = index
+	}
+	return dict
 }()
 
 extension BinaryInteger {
