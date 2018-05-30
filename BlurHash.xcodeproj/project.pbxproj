@@ -220,7 +220,7 @@
 				1B2BA1B81F0E5E91006057C1 /* C */,
 				1B2BA1CD1F0F7AF3006057C1 /* Ruby */,
 				1B2BA1D31F0F8A64006057C1 /* Python */,
-				1BEFFFA420BEE66400187F3F /* typescript */,
+				1BEFFFA420BEE66400187F3F /* Typescript */,
 				1B0A250D1EC5E90C00F25F08 /* BlurHashTest */,
 				1B49CD1C1EC4721A006F8E7D /* Products */,
 			);
@@ -266,7 +266,7 @@
 			path = BlurHashKit;
 			sourceTree = "<group>";
 		};
-		1BEFFFA420BEE66400187F3F /* typescript */ = {
+		1BEFFFA420BEE66400187F3F /* Typescript */ = {
 			isa = PBXGroup;
 			children = (
 				1BEFFFA620BEE66400187F3F /* demo */,
@@ -275,7 +275,7 @@
 				1BEFFFB720BEE66400187F3F /* package.json */,
 				1BEFFFB820BEE66400187F3F /* tsconfig.json */,
 			);
-			path = typescript;
+			path = Typescript;
 			sourceTree = "<group>";
 		};
 		1BEFFFA620BEE66400187F3F /* demo */ = {
