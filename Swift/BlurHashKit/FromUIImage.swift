@@ -2,9 +2,9 @@ import UIKit
 
 public extension BlurHash {
 	init?(image: UIImage, numberOfComponents components: (Int, Int)) {
-		guard components.0 >= 1, components.0 <= 8,
-		components.1 >= 1, components.1 <= 8 else {
-			fatalError("Number of components bust be between 1 and 8 inclusive on each axis")
+		guard components.0 >= 1, components.0 <= 9,
+		components.1 >= 1, components.1 <= 9 else {
+			fatalError("Number of components bust be between 1 and 9 inclusive on each axis")
 		}
 
 		guard let cgImage = image.cgImage,

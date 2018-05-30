@@ -8,24 +8,24 @@ public extension BlurHash {
 
 		var hash = ""
 
-		let sizeFlag = (numberOfHorizontalComponents - 1) + ((numberOfVerticalComponents - 1) << 3)
-		hash += sizeFlag.encode64(length: 1)
+		let sizeFlag = (numberOfHorizontalComponents - 1) + (numberOfVerticalComponents - 1) * 9
+		hash += sizeFlag.encode87(length: 1)
 
 		let maximumValue: Float
 		if ac.count > 0 {
 			let actualMaximumValue = ac.map({ max(abs($0.0), abs($0.1), abs($0.2)) }).max()!
-			let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 64 - 0.5))))
-			maximumValue = Float(quantisedMaximumValue + 1) / 64
-			hash += quantisedMaximumValue.encode64(length: 1)
+			let quantisedMaximumValue = Int(max(0, min(86, floor(actualMaximumValue * 87 - 0.5))))
+			maximumValue = Float(quantisedMaximumValue + 1) / 87
+			hash += quantisedMaximumValue.encode87(length: 1)
 		} else {
 			maximumValue = 1
-			hash += 0.encode64(length: 1)
+			hash += 0.encode87(length: 1)
 		}
 
-		hash += encodeDC(dc).encode64(length: 4)
+		hash += encodeDC(dc).encode87(length: 4)
 
 		for factor in ac {
-			hash += encodeAC(factor, maximumValue: maximumValue).encode64(length: 2)
+			hash += encodeAC(factor, maximumValue: maximumValue).encode87(length: 2)
 		}
 
 		return hash
@@ -39,10 +39,10 @@ public extension BlurHash {
 	}
 
 	private func encodeAC(_ value: (Float, Float, Float), maximumValue: Float) -> Int {
-		let quantR = Int(max(0, min(15, floor(signPow(value.0 / maximumValue, 0.333) * 7 + 8.5))))
-		let quantG = Int(max(0, min(15, floor(signPow(value.1 / maximumValue, 0.333) * 7 + 8.5))))
-		let quantB = Int(max(0, min(15, floor(signPow(value.2 / maximumValue, 0.333) * 7 + 8.5))))
+		let quantR = Int(max(0, min(18, floor(signPow(value.0 / maximumValue, 0.5) * 9 + 9.5))))
+		let quantG = Int(max(0, min(18, floor(signPow(value.1 / maximumValue, 0.5) * 9 + 9.5))))
+		let quantB = Int(max(0, min(18, floor(signPow(value.2 / maximumValue, 0.5) * 9 + 9.5))))
 
-		return (quantR << 8) + (quantG << 4) + quantB
+		return quantR * 19 * 19 + quantG * 19 + quantB
 	}
 }

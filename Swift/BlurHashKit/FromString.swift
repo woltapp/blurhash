@@ -4,23 +4,23 @@ public extension BlurHash {
 	init?(string: String) {
 		guard string.count >= 6 else { return nil }
 
-		let sizeFlag = String(string[0]).decode64()
-		let numY = (sizeFlag >> 3) + 1
-		let numX = (sizeFlag & 7) + 1
+		let sizeFlag = String(string[0]).decode87()
+		let numY = (sizeFlag / 9) + 1
+		let numX = (sizeFlag % 9) + 1
 
-		let quantisedMaximumValue = String(string[1]).decode64()
-		let maximumValue = Float(quantisedMaximumValue + 1) / 64
+		let quantisedMaximumValue = String(string[1]).decode87()
+		let maximumValue = Float(quantisedMaximumValue + 1) / 87
 
 		guard string.count == 4 + 2 * numX * numY else { return nil }
 
 		self.components = (0 ..< numY).map { y in
 			return (0 ..< numX).map { x in
 				if x == 0 && y == 0 {
-					let value = String(string[2 ..< 6]).decode64()
+					let value = String(string[2 ..< 6]).decode87()
 					return BlurHash.decodeDC(value)
 				} else {
 					let i = x + y * numX
-					let value = String(string[4 + i * 2 ..< 4 + i * 2 + 2]).decode64()
+					let value = String(string[4 + i * 2 ..< 4 + i * 2 + 2]).decode87()
 					return BlurHash.decodeAC(value, maximumValue: maximumValue)
 				}
 			}
@@ -35,14 +35,14 @@ public extension BlurHash {
 	}
 
 	private static func decodeAC(_ value: Int, maximumValue: Float) -> (Float, Float, Float) {
-		let quantR = value >> 8
-		let quantG = (value >> 4) & 15
-		let quantB = value & 15
+		let quantR = value / (19 * 19)
+		let quantG = (value / 19) % 19
+		let quantB = value % 19
 
 		let rgb = (
-			signPow((Float(quantR) - 8) / 7, 3.0) * maximumValue,
-			signPow((Float(quantG) - 8) / 7, 3.0) * maximumValue,
-			signPow((Float(quantB) - 8) / 7, 3.0) * maximumValue
+			signPow((Float(quantR) - 9) / 9, 2) * maximumValue,
+			signPow((Float(quantG) - 9) / 9, 2) * maximumValue,
+			signPow((Float(quantB) - 9) / 9, 2) * maximumValue
 		)
 
 		return rgb

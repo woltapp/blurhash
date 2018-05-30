@@ -46,7 +46,7 @@ class AdvancedViewController: UIViewController {
     }
 
     @IBAction func xPlusTapped() {
-        if xComponents < 8 {
+        if xComponents < 9 {
             xComponents += 1
             update()
         }
@@ -60,7 +60,7 @@ class AdvancedViewController: UIViewController {
     }
 
     @IBAction func yPlusTapped() {
-        if yComponents < 8 {
+        if yComponents < 9 {
             yComponents += 1
             update()
         }
