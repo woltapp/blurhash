@@ -1,4 +1,4 @@
-import { decode64 } from './base64';
+import { decode83 } from './base83';
 import { sRGBToLinear, signPow, linearTosRGB } from './utils';
 
 const decodeDC = (value: number) => {
@@ -9,14 +9,14 @@ const decodeDC = (value: number) => {
 };
 
 const decodeAC = (value: number, maximumValue: number) => {
-  const quantR = value >> 8;
-  const quantG = (value >> 4) & 15;
-  const quantB = value & 15;
+  const quantR = Math.floor(value / (19 * 19));
+  const quantG = Math.floor(value / 19) % 19;
+  const quantB = value % 19;
 
   const rgb = [
-    signPow((quantR - 8) / 8, 3.0) * maximumValue * 2,
-    signPow((quantG - 8) / 8, 3.0) * maximumValue * 2,
-    signPow((quantB - 8) / 8, 3.0) * maximumValue * 2,
+    signPow((quantR - 9) / 9, 2.0) * maximumValue,
+    signPow((quantG - 9) / 9, 2.0) * maximumValue,
+    signPow((quantB - 9) / 9, 2.0) * maximumValue,
   ];
 
   return rgb;
@@ -30,12 +30,12 @@ const decode = (blurhash: string, width: number, height: number, punch?: number)
     return null;
   }
 
-  const sizeFlag = decode64(blurhash[0]);
-  const numY = (sizeFlag >> 3) + 1;
-  const numX = (sizeFlag & 7) + 1;
+  const sizeFlag = decode83(blurhash[0]);
+  const numY = Math.floor(sizeFlag / 9) + 1;
+  const numX = (sizeFlag % 9) + 1;
 
-  const quantisedMaximumValue = decode64(blurhash[1]);
-  const maximumValue = (quantisedMaximumValue + 1) / 128;
+  const quantisedMaximumValue = decode83(blurhash[1]);
+  const maximumValue = (quantisedMaximumValue + 1) / 83;
 
   if (blurhash.length !== 4 + 2 * numX * numY) {
     console.error('blurhash length mismatch', blurhash.length, 4 + 2 * numX * numY);
@@ -45,10 +45,10 @@ const decode = (blurhash: string, width: number, height: number, punch?: number)
   const colors = new Array(numX * numY);
   for (let i = 0; i < colors.length; i++) {
     if (i === 0) {
-      const value = decode64(blurhash.substring(2, 6));
+      const value = decode83(blurhash.substring(2, 6));
       colors[i] = decodeDC(value);
     } else {
-      const value = decode64(blurhash.substring(4 + i * 2, 6 + i * 2));
+      const value = decode83(blurhash.substring(4 + i * 2, 6 + i * 2));
       colors[i] = decodeAC(value, maximumValue * punch);
     }
   }

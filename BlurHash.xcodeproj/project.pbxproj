@@ -114,6 +114,15 @@
 		1BC34D7D20098E1500A17481 /* TupleMaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TupleMaths.swift; sourceTree = "<group>"; };
 		1BC34D7F20098E2F00A17481 /* Generation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generation.swift; sourceTree = "<group>"; };
 		1BDE56D02011EC5F00569DCB /* ColourProbes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourProbes.swift; sourceTree = "<group>"; };
+		1BEFFFA720BEE66400187F3F /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		1BEFFFB520BEE66400187F3F /* webpack.config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = webpack.config.js; sourceTree = "<group>"; };
+		1BEFFFB720BEE66400187F3F /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		1BEFFFB820BEE66400187F3F /* tsconfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tsconfig.json; sourceTree = "<group>"; };
+		1BEFFFBA20BEE66400187F3F /* decode.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = decode.ts; sourceTree = "<group>"; };
+		1BEFFFBB20BEE66400187F3F /* demo.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = demo.ts; sourceTree = "<group>"; };
+		1BEFFFBC20BEE66400187F3F /* utils.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = utils.ts; sourceTree = "<group>"; };
+		1BEFFFBD20BEE66400187F3F /* index.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = index.ts; sourceTree = "<group>"; };
+		1BEFFFBE20BEE66400187F3F /* base83.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = base83.ts; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +220,7 @@
 				1B2BA1B81F0E5E91006057C1 /* C */,
 				1B2BA1CD1F0F7AF3006057C1 /* Ruby */,
 				1B2BA1D31F0F8A64006057C1 /* Python */,
+				1BEFFFA420BEE66400187F3F /* typescript */,
 				1B0A250D1EC5E90C00F25F08 /* BlurHashTest */,
 				1B49CD1C1EC4721A006F8E7D /* Products */,
 			);
@@ -254,6 +264,38 @@
 				1BDE56D02011EC5F00569DCB /* ColourProbes.swift */,
 			);
 			path = BlurHashKit;
+			sourceTree = "<group>";
+		};
+		1BEFFFA420BEE66400187F3F /* typescript */ = {
+			isa = PBXGroup;
+			children = (
+				1BEFFFA620BEE66400187F3F /* demo */,
+				1BEFFFB920BEE66400187F3F /* src */,
+				1BEFFFB520BEE66400187F3F /* webpack.config.js */,
+				1BEFFFB720BEE66400187F3F /* package.json */,
+				1BEFFFB820BEE66400187F3F /* tsconfig.json */,
+			);
+			path = typescript;
+			sourceTree = "<group>";
+		};
+		1BEFFFA620BEE66400187F3F /* demo */ = {
+			isa = PBXGroup;
+			children = (
+				1BEFFFA720BEE66400187F3F /* index.html */,
+			);
+			path = demo;
+			sourceTree = "<group>";
+		};
+		1BEFFFB920BEE66400187F3F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1BEFFFBA20BEE66400187F3F /* decode.ts */,
+				1BEFFFBB20BEE66400187F3F /* demo.ts */,
+				1BEFFFBC20BEE66400187F3F /* utils.ts */,
+				1BEFFFBD20BEE66400187F3F /* index.ts */,
+				1BEFFFBE20BEE66400187F3F /* base83.ts */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

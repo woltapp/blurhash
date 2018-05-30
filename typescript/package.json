@@ -1,6 +1,6 @@
 {
   "name": "blurhash",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Decoder for the Wolt BlurHash alrgorithm.",
   "main": "dist/index.js",
   "types": "dist/index.t.js",
