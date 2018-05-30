@@ -28,10 +28,10 @@ const char *blurHashForFile(int xComponents, int yComponents,const char *filenam
 }
 
 const char *blurHashForPixels(int xComponents, int yComponents, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
-    static char buffer[2 + 4 + (8 * 8 - 1) * 2 + 1];
+    static char buffer[2 + 4 + (9 * 9 - 1) * 2 + 1];
 
-    if(xComponents < 1 || xComponents > 8) return NULL;
-    if(yComponents < 1 || yComponents > 8) return NULL;
+    if(xComponents < 1 || xComponents > 9) return NULL;
+    if(yComponents < 1 || yComponents > 9) return NULL;
 
     float factors[yComponents][xComponents][3];
     memset(factors, 0, sizeof(factors));
@@ -50,7 +50,7 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
     int acCount = xComponents * yComponents - 1;
     char *ptr = buffer;
 
-    int sizeFlag = (xComponents - 1) + ((yComponents - 1) << 3);
+    int sizeFlag = (xComponents - 1) + (yComponents - 1) * 9;
     ptr = encode_int(sizeFlag, 1, ptr);
 
     float maximumValue;
@@ -60,8 +60,8 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
             actualMaximumValue = fmaxf(fabsf(ac[i]), actualMaximumValue);
         }
 
-        int quantisedMaximumValue = fmaxf(0, fminf(63, floorf(actualMaximumValue * 64 - 0.5)));
-        maximumValue = ((float)quantisedMaximumValue + 1) / 64;
+        int quantisedMaximumValue = fmaxf(0, fminf(82, floorf(actualMaximumValue * 83 - 0.5)));
+        maximumValue = ((float)quantisedMaximumValue + 1) / 83;
         ptr = encode_int(quantisedMaximumValue, 1, ptr);
     } else {
         maximumValue = 1;
@@ -122,22 +122,26 @@ static int encodeDC(float r, float g, float b) {
 }
 
 static int encodeAC(float r, float g, float b, float maximumValue) {
-    int quantR = fmaxf(0, fminf(15, floorf(signPow(r / maximumValue, 0.333) * 7 + 8.5)));
-    int quantG = fmaxf(0, fminf(15, floorf(signPow(g / maximumValue, 0.333) * 7 + 8.5)));
-    int quantB = fmaxf(0, fminf(15, floorf(signPow(b / maximumValue, 0.333) * 7 + 8.5)));
+    int quantR = fmaxf(0, fminf(18, floorf(signPow(r / maximumValue, 0.5) * 9 + 9.5)));
+    int quantG = fmaxf(0, fminf(18, floorf(signPow(g / maximumValue, 0.5) * 9 + 9.5)));
+    int quantB = fmaxf(0, fminf(18, floorf(signPow(b / maximumValue, 0.5) * 9 + 9.5)));
 
-    return (quantR << 8) + (quantG << 4) + quantB;
+    return quantR * 19 * 19 + quantG * 19 + quantB;
 }
 
 static float signPow(float value, float exp) {
     return copysignf(powf(fabsf(value), exp), value);
 }
 
-static char characters[64]="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:;";
+static char characters[83]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~";
 
 static char *encode_int(int value, int length, char *destination) {
-    for(int i = 1; i <= length; i++) {
-        int digit = (value >> (6 * (length - i))) & 63;
+	int divisor = 1;
+    for(int i = 0; i < length - 1; i++) divisor *= 83;
+
+    for(int i = 0; i < length; i++) {
+        int digit = (value / divisor) % 83;
+        divisor /= 83;
         *destination++ = characters[digit];
     }
     return destination;
