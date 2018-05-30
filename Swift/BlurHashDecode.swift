@@ -4,21 +4,21 @@ extension UIImage {
     public convenience init?(blurHash: String, size: CGSize, punch: Float = 1) {
         guard blurHash.count >= 6 else { return nil }
 
-        let sizeFlag = String(blurHash[0]).decode64()
-        let numY = (sizeFlag >> 3) + 1
-        let numX = (sizeFlag & 7) + 1
+		let sizeFlag = String(blurHash[0]).decode83()
+		let numY = (sizeFlag / 9) + 1
+		let numX = (sizeFlag % 9) + 1
 
-        let quantisedMaximumValue = String(blurHash[1]).decode64()
-        let maximumValue = Float(quantisedMaximumValue + 1) / 64
+		let quantisedMaximumValue = String(blurHash[1]).decode83()
+		let maximumValue = Float(quantisedMaximumValue + 1) / 83
 
         guard blurHash.count == 4 + 2 * numX * numY else { return nil }
 
         let colours: [(Float, Float, Float)] = (0 ..< numX * numY).map { i in
             if i == 0 {
-                let value = String(blurHash[2 ..< 6]).decode64()
+				let value = String(blurHash[2 ..< 6]).decode83()
                 return decodeDC(value)
             } else {
-                let value = String(blurHash[4 + i * 2 ..< 4 + i * 2 + 2]).decode64()
+                let value = String(blurHash[4 + i * 2 ..< 4 + i * 2 + 2]).decode83()
                 return decodeAC(value, maximumValue: maximumValue * punch)
             }
         }
@@ -74,17 +74,17 @@ private func decodeDC(_ value: Int) -> (Float, Float, Float) {
 }
 
 private func decodeAC(_ value: Int, maximumValue: Float) -> (Float, Float, Float) {
-    let quantR = value >> 8
-    let quantG = (value >> 4) & 15
-    let quantB = value & 15
+	let quantR = value / (19 * 19)
+	let quantG = (value / 19) % 19
+	let quantB = value % 19
 
-    let rgb = (
-        signPow((Float(quantR) - 8) / 7, 3.0) * maximumValue,
-        signPow((Float(quantG) - 8) / 7, 3.0) * maximumValue,
-        signPow((Float(quantB) - 8) / 7, 3.0) * maximumValue
-    )
+	let rgb = (
+		signPow((Float(quantR) - 9) / 9, 2) * maximumValue,
+		signPow((Float(quantG) - 9) / 9, 2) * maximumValue,
+		signPow((Float(quantB) - 9) / 9, 2) * maximumValue
+	)
 
-    return rgb
+	return rgb
 }
 
 private func signPow(_ value: Float, _ exp: Float) -> Float {
@@ -103,26 +103,28 @@ private func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
     else { return pow((v + 0.055) / 1.055, 2.4) }
 }
 
-private let digitCharacters = [
-    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
-    "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-    "u", "v", "w", "x", "y", "z", "A", "B", "C", "D",
-    "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-    "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
-    "Y", "Z", ":", ";"
-]
+private let encodeCharacters: [String] = {
+    return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~".map { String($0) }
+}()
 
-private extension String {
-    func decode64() -> Int {
-        var value: Int = 0
-        for character in self {
-            if let digit = digitCharacters.index(of: String(character)) {
-                value = (value << 6) + digit
-            }
-        }
-        return value
-    }
+private let decodeCharacters: [String: Int] = {
+	var dict: [String: Int] = [:]
+	for (index, character) in encodeCharacters.enumerated() {
+		dict[character] = index
+	}
+	return dict
+}()
+
+extension String {
+	func decode83() -> Int {
+		var value: Int = 0
+		for character in self {
+			if let digit = decodeCharacters[String(character)] {
+				value = value * 83 + digit
+			}
+		}
+		return value
+	}
 }
 
 private extension String {

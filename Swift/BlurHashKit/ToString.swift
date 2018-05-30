@@ -9,23 +9,23 @@ public extension BlurHash {
 		var hash = ""
 
 		let sizeFlag = (numberOfHorizontalComponents - 1) + (numberOfVerticalComponents - 1) * 9
-		hash += sizeFlag.encode87(length: 1)
+		hash += sizeFlag.encode83(length: 1)
 
 		let maximumValue: Float
 		if ac.count > 0 {
 			let actualMaximumValue = ac.map({ max(abs($0.0), abs($0.1), abs($0.2)) }).max()!
-			let quantisedMaximumValue = Int(max(0, min(86, floor(actualMaximumValue * 87 - 0.5))))
-			maximumValue = Float(quantisedMaximumValue + 1) / 87
-			hash += quantisedMaximumValue.encode87(length: 1)
+			let quantisedMaximumValue = Int(max(0, min(82, floor(actualMaximumValue * 83 - 0.5))))
+			maximumValue = Float(quantisedMaximumValue + 1) / 83
+			hash += quantisedMaximumValue.encode83(length: 1)
 		} else {
 			maximumValue = 1
-			hash += 0.encode87(length: 1)
+			hash += 0.encode83(length: 1)
 		}
 
-		hash += encodeDC(dc).encode87(length: 4)
+		hash += encodeDC(dc).encode83(length: 4)
 
 		for factor in ac {
-			hash += encodeAC(factor, maximumValue: maximumValue).encode87(length: 2)
+			hash += encodeAC(factor, maximumValue: maximumValue).encode83(length: 2)
 		}
 
 		return hash

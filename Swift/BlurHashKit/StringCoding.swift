@@ -1,7 +1,7 @@
 import Foundation
 
 private let encodeCharacters: [String] = {
-    return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!#$%()*+,-.:;=?@[]^_`{|}~".map { String($0) }
+    return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~".map { String($0) }
 }()
 
 private let decodeCharacters: [String: Int] = {
@@ -13,10 +13,10 @@ private let decodeCharacters: [String: Int] = {
 }()
 
 extension BinaryInteger {
-	func encode87(length: Int) -> String {
+	func encode83(length: Int) -> String {
 		var result = ""
 		for i in 1 ... length {
-			let digit = (Int(self) / pow(87, length - i)) % 87
+			let digit = (Int(self) / pow(83, length - i)) % 83
 			result += encodeCharacters[Int(digit)]
 		}
 		return result
@@ -24,11 +24,11 @@ extension BinaryInteger {
 }
 
 extension String {
-	func decode87() -> Int {
+	func decode83() -> Int {
 		var value: Int = 0
 		for character in self {
 			if let digit = decodeCharacters[String(character)] {
-				value = value * 87 + digit
+				value = value * 83 + digit
 			}
 		}
 		return value

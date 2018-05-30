@@ -2,8 +2,8 @@ import UIKit
 
 extension UIImage {
     public func blurHash(numberOfComponents components: (Int, Int)) -> String? {
-        guard components.0 >= 1, components.0 <= 8,
-        components.1 >= 1, components.1 <= 8,
+        guard components.0 >= 1, components.0 <= 9,
+        components.1 >= 1, components.1 <= 9,
         cgImage?.colorSpace?.numberOfComponents == 3,
         cgImage?.bitsPerPixel == 24 || cgImage?.bitsPerPixel == 32 else { return nil }
 
@@ -32,24 +32,24 @@ extension UIImage {
 
         var hash = ""
 
-        let sizeFlag = (components.0 - 1) + ((components.1 - 1) << 3)
-        hash += sizeFlag.encode64(length: 1)
+		let sizeFlag = (components.0 - 1) + (components.1 - 1) * 9
+		hash += sizeFlag.encode83(length: 1)
 
-        let maximumValue: Float
-        if ac.count > 0 {
-            let actualMaximumValue = ac.map({ max(abs($0.0), abs($0.1), abs($0.2)) }).max()!
-            let quantisedMaximumValue = Int(max(0, min(63, floor(actualMaximumValue * 64 - 0.5))))
-            maximumValue = Float(quantisedMaximumValue + 1) / 64
-            hash += quantisedMaximumValue.encode64(length: 1)
-        } else {
-            maximumValue = 1
-            hash += 0.encode64(length: 1)
-        }
+		let maximumValue: Float
+		if ac.count > 0 {
+			let actualMaximumValue = ac.map({ max(abs($0.0), abs($0.1), abs($0.2)) }).max()!
+			let quantisedMaximumValue = Int(max(0, min(82, floor(actualMaximumValue * 83 - 0.5))))
+			maximumValue = Float(quantisedMaximumValue + 1) / 83
+			hash += quantisedMaximumValue.encode83(length: 1)
+		} else {
+			maximumValue = 1
+			hash += 0.encode83(length: 1)
+		}
 
-        hash += encodeDC(dc).encode64(length: 4)
+        hash += encodeDC(dc).encode83(length: 4)
 
         for factor in ac {
-            hash += encodeAC(factor, maximumValue: maximumValue).encode64(length: 2)
+            hash += encodeAC(factor, maximumValue: maximumValue).encode83(length: 2)
         }
 
         return hash
@@ -85,11 +85,11 @@ private func encodeDC(_ value: (Float, Float, Float)) -> Int {
 }
 
 private func encodeAC(_ value: (Float, Float, Float), maximumValue: Float) -> Int {
-    let quantR = Int(max(0, min(15, floor(signPow(value.0 / maximumValue, 0.333) * 7 + 8.5))))
-    let quantG = Int(max(0, min(15, floor(signPow(value.1 / maximumValue, 0.333) * 7 + 8.5))))
-    let quantB = Int(max(0, min(15, floor(signPow(value.2 / maximumValue, 0.333) * 7 + 8.5))))
+	let quantR = Int(max(0, min(18, floor(signPow(value.0 / maximumValue, 0.5) * 9 + 9.5))))
+	let quantG = Int(max(0, min(18, floor(signPow(value.1 / maximumValue, 0.5) * 9 + 9.5))))
+	let quantB = Int(max(0, min(18, floor(signPow(value.2 / maximumValue, 0.5) * 9 + 9.5))))
 
-    return (quantR << 8) + (quantG << 4) + quantB
+	return quantR * 19 * 19 + quantG * 19 + quantB
 }
 
 private func signPow(_ value: Float, _ exp: Float) -> Float {
@@ -108,23 +108,21 @@ private func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
     else { return pow((v + 0.055) / 1.055, 2.4) }
 }
 
-private let digitCharacters = [
-    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
-    "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-    "u", "v", "w", "x", "y", "z", "A", "B", "C", "D",
-    "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-    "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
-    "Y", "Z", ":", ";"
-]
+private let encodeCharacters: [String] = {
+    return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~".map { String($0) }
+}()
 
-private extension Int {
-    func encode64(length: Int) -> String {
-        var result = ""
-        for i in 1 ... length {
-            let digit = (self >> (6 * (length - i))) & 63
-            result += digitCharacters[digit]
-        }
-        return result
-    }
+extension BinaryInteger {
+	func encode83(length: Int) -> String {
+		var result = ""
+		for i in 1 ... length {
+			let digit = (Int(self) / pow(83, length - i)) % 83
+			result += encodeCharacters[Int(digit)]
+		}
+		return result
+	}
+}
+
+private func pow(_ base: Int, _ exponent: Int) -> Int {
+    return (0 ..< exponent).reduce(1) { value, _ in value * base }
 }

@@ -4,23 +4,23 @@ public extension BlurHash {
 	init?(string: String) {
 		guard string.count >= 6 else { return nil }
 
-		let sizeFlag = String(string[0]).decode87()
+		let sizeFlag = String(string[0]).decode83()
 		let numY = (sizeFlag / 9) + 1
 		let numX = (sizeFlag % 9) + 1
 
-		let quantisedMaximumValue = String(string[1]).decode87()
-		let maximumValue = Float(quantisedMaximumValue + 1) / 87
+		let quantisedMaximumValue = String(string[1]).decode83()
+		let maximumValue = Float(quantisedMaximumValue + 1) / 83
 
 		guard string.count == 4 + 2 * numX * numY else { return nil }
 
 		self.components = (0 ..< numY).map { y in
 			return (0 ..< numX).map { x in
 				if x == 0 && y == 0 {
-					let value = String(string[2 ..< 6]).decode87()
+					let value = String(string[2 ..< 6]).decode83()
 					return BlurHash.decodeDC(value)
 				} else {
 					let i = x + y * numX
-					let value = String(string[4 + i * 2 ..< 4 + i * 2 + 2]).decode87()
+					let value = String(string[4 + i * 2 ..< 4 + i * 2 + 2]).decode83()
 					return BlurHash.decodeAC(value, maximumValue: maximumValue)
 				}
 			}
