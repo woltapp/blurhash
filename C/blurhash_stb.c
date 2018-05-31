@@ -1,7 +1,11 @@
 #include "encode.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 #include <stdio.h>
 
+const char *blurHashForFile(int xComponents, int yComponents,const char *filename);
 
 int main(int argc, const char **argv) {
     if(argc != 4) {
@@ -25,4 +29,16 @@ int main(int argc, const char **argv) {
     printf("%s\n", hash);
 
     return 0;
+}
+
+const char *blurHashForFile(int xComponents, int yComponents,const char *filename) {
+    int width, height, channels;
+    unsigned char *data = stbi_load(filename, &width, &height, &channels, 3);
+    if(!data) return NULL;
+
+    const char *hash = blurHashForPixels(xComponents, yComponents, width, height, data, width * 3);
+
+    stbi_image_free(data);
+
+    return hash;
 }

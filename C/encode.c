@@ -3,9 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
-
 static float *multiplyBasisFunction(int xComponent, int yComponent, int width, int height, uint8_t *rgb, size_t bytesPerRow);
 static char *encode_int(int value, int length, char *destination);
 
@@ -14,18 +11,6 @@ static float sRGBToLinear(int value);
 static int encodeDC(float r, float g, float b);
 static int encodeAC(float r, float g, float b, float maximumValue);
 static float signPow(float value, float exp);
-
-const char *blurHashForFile(int xComponents, int yComponents,const char *filename) {
-    int width, height, channels;
-    unsigned char *data = stbi_load(filename, &width, &height, &channels, 3);
-    if(!data) return NULL;
-
-    const char *hash = blurHashForPixels(xComponents, yComponents, width, height, data, width * 3);
-
-    stbi_image_free(data);
-
-    return hash;
-}
 
 const char *blurHashForPixels(int xComponents, int yComponents, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
     static char buffer[2 + 4 + (9 * 9 - 1) * 2 + 1];
