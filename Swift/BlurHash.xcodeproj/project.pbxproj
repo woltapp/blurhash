@@ -123,6 +123,13 @@
 		1BEFFFBE20BEE66400187F3F /* base83.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = base83.ts; sourceTree = "<group>"; };
 		1BEFFFBF20BFDC1600187F3F /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		1BEFFFC120BFE05600187F3F /* BlurHashDecoder.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = BlurHashDecoder.kt; sourceTree = "<group>"; };
+		1BEFFFC220BFE33E00187F3F /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		1BEFFFC320BFE34800187F3F /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Readme.md; path = ../Readme.md; sourceTree = "<group>"; };
+		1BEFFFC420BFE35300187F3F /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		1BEFFFC520BFE35D00187F3F /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		1BEFFFC620BFF7B100187F3F /* Algorithm.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Algorithm.md; path = ../Algorithm.md; sourceTree = "<group>"; };
+		1BEFFFC720BFF7B100187F3F /* CodeOfConduct.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CodeOfConduct.md; path = ../CodeOfConduct.md; sourceTree = "<group>"; };
+		1BEFFFC820C000DE00187F3F /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,7 +230,11 @@
 				1BEFFFC020BFE05600187F3F /* Kotlin */,
 				1B2BA1CD1F0F7AF3006057C1 /* Ruby */,
 				1B2BA1D31F0F8A64006057C1 /* Python */,
-				1BEFFFA420BEE66400187F3F /* Typescript */,
+				1BEFFFA420BEE66400187F3F /* TypeScript */,
+				1BEFFFC620BFF7B100187F3F /* Algorithm.md */,
+				1BEFFFC720BFF7B100187F3F /* CodeOfConduct.md */,
+				1BEFFFC820C000DE00187F3F /* License.txt */,
+				1BEFFFC320BFE34800187F3F /* Readme.md */,
 				1B49CD1C1EC4721A006F8E7D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -245,6 +256,7 @@
 				1BAA606F1FF40A1E00E42DD7 /* BlurHashKit */,
 				1B49CD261EC47243006F8E7D /* BlurHashEncode.swift */,
 				1B49CD281EC4724C006F8E7D /* BlurHashDecode.swift */,
+				1BEFFFC420BFE35300187F3F /* Readme.md */,
 			);
 			name = Swift;
 			sourceTree = "<group>";
@@ -267,7 +279,7 @@
 			path = BlurHashKit;
 			sourceTree = "<group>";
 		};
-		1BEFFFA420BEE66400187F3F /* Typescript */ = {
+		1BEFFFA420BEE66400187F3F /* TypeScript */ = {
 			isa = PBXGroup;
 			children = (
 				1BEFFFA620BEE66400187F3F /* demo */,
@@ -275,9 +287,10 @@
 				1BEFFFB520BEE66400187F3F /* webpack.config.js */,
 				1BEFFFB720BEE66400187F3F /* package.json */,
 				1BEFFFB820BEE66400187F3F /* tsconfig.json */,
+				1BEFFFC520BFE35D00187F3F /* Readme.md */,
 			);
-			name = Typescript;
-			path = ../Typescript;
+			name = TypeScript;
+			path = ../TypeScript;
 			sourceTree = "<group>";
 		};
 		1BEFFFA620BEE66400187F3F /* demo */ = {
@@ -304,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				1BEFFFC120BFE05600187F3F /* BlurHashDecoder.kt */,
+				1BEFFFC220BFE33E00187F3F /* Readme.md */,
 			);
 			name = Kotlin;
 			path = ../Kotlin;
