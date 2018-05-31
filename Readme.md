@@ -10,6 +10,8 @@ images into your data to show as placeholders?
 
 BlurHash will solve your problems! How? Like this:
 
+<img src="Media/WhyBlurHash.jpg" width="600">
+
 ## How does it work
 
 In short, BlurHash takes an image, and gives you a short string (only 20-30 characters!) that represents the placeholder for this
@@ -20,8 +22,7 @@ whatever data format you use. For instance, it can easily be added as a field in
 
 In summary:
 
-<img src = "Media/HowItWorks1.jpg" width="250">
-<img src = "Media/HowItWorks2.jpg" width="250">
+<img src="Media/HowItWorks1.jpg" width="250"><span width="16px"/><img src="Media/HowItWorks2.jpg" width="250">
 
 Want to know all the gory technical details? Read the [algorithm description](Algorithm.md).
 
@@ -38,6 +39,9 @@ So far, we have created these implementations:
 * [Kotlin](Kotlin) - A simple decoder implementation for Android.
 * [TypeScript][TypeScript] - A simple decode implementation.
 * [Python](Python) - Integration of the C encoder code into Python.
+
+These cover our use cases, but could probably use polishing, extending and improving. Perhaps you'd like to help?
+Which brings us to...
 
 ## Contributing
 

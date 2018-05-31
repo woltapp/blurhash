@@ -20,20 +20,20 @@ Here follows an example of a BlurHash string, with the different parts labelled:
     Example: LNMF%n00%#MwS|WCWEM{R*bbWBbH
     Legend:  12333344....................
 
-1. Number of components, 1 digit.
+1. **Number of components, 1 digit.**
    
    For a BlurHash with `nx` components along the X axis and `ny` components along the Y axis, this is equal to `(nx - 1) + (ny - 1) * 9`.
 
-2. Maximum AC component value, 1 digit.
+2. **Maximum AC component value, 1 digit.**
    
    All AC components are scaled by this value. It represents a floating-point value of `(max + 1) / 83`.
 
-3. Average colour. 4 digits.
+3. **Average colour. 4 digits.**
    
    The average colour of the image in sRGB space, encoded as a 24-bit RGB value, with R in the most signficant position. This value can
    be used directly if you only want the average colour rather than the full DCT-encoded image.
 
-4. AC components, 2 digits each, `nx * ny - 1` components in total.
+4. **AC components, 2 digits each, `nx * ny - 1` components in total.**
    
    The AC components of the DCT transform, ordred by increasing X first, then Y. These values range from 0 to 6859. See below for a
    more detailed description.
