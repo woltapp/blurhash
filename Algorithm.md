@@ -17,8 +17,8 @@ the full algorithm. The AC components are encoded lossily.
 
 Here follows an example of a BlurHash string, with the different parts labelled:
 
-`Example: LNMF%n00%#MwS|WCWEM{R*bbWBbH`
-`Legend:  12333344....................`
+    Example: LNMF%n00%#MwS|WCWEM{R*bbWBbH
+    Legend:  12333344....................
 
 1. Number of components, 1 digit.
    

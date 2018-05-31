@@ -20,8 +20,8 @@ whatever data format you use. For instance, it can easily be added as a field in
 
 In summary:
 
-![Example of algoritm](Media/HowItWorks1.jpg)
-![Example of algoritm](Media/HowItWorks2.jpg)
+<img src = "Media/HowItWorks1.jpg" width="250">
+<img src = "Media/HowItWorks2.jpg" width="250">
 
 Want to know all the gory technical details? Read the [algorithm description](Algorithm.md).
 
