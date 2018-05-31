@@ -49,7 +49,7 @@ We'd love contributions! The algorithm is [very simple](Algorithm.md) - less tha
 ported to your platform of choice. And having support for more platforms would be wonderful! So, Java decoder? Golang encoder?
 Haskell? Rust? We want them all!
 
-We will also try to tag any issues on our [issue tracker](issues) that we'd love help with, so if you just want to dip in, go have a look.
+We will also try to tag any issues on our [issue tracker](https://github.com/woltapp/blurhash/issues) that we'd love help with, so if you just want to dip in, go have a look.
 
 You can file a pull request with us, or you can start your own repo and project if you want to run everything yourself, we don't mind.
 
