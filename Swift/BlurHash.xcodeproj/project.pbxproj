@@ -122,6 +122,7 @@
 		1BEFFFBD20BEE66400187F3F /* index.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = index.ts; sourceTree = "<group>"; };
 		1BEFFFBE20BEE66400187F3F /* base83.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = base83.ts; sourceTree = "<group>"; };
 		1BEFFFBF20BFDC1600187F3F /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		1BEFFFC120BFE05600187F3F /* BlurHashDecoder.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = BlurHashDecoder.kt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +220,7 @@
 			children = (
 				1B49CD1D1EC4721A006F8E7D /* Swift */,
 				1B2BA1B81F0E5E91006057C1 /* C */,
+				1BEFFFC020BFE05600187F3F /* Kotlin */,
 				1B2BA1CD1F0F7AF3006057C1 /* Ruby */,
 				1B2BA1D31F0F8A64006057C1 /* Python */,
 				1BEFFFA420BEE66400187F3F /* Typescript */,
@@ -296,6 +298,15 @@
 				1BEFFFBE20BEE66400187F3F /* base83.ts */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		1BEFFFC020BFE05600187F3F /* Kotlin */ = {
+			isa = PBXGroup;
+			children = (
+				1BEFFFC120BFE05600187F3F /* BlurHashDecoder.kt */,
+			);
+			name = Kotlin;
+			path = ../Kotlin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
