@@ -38,7 +38,7 @@ So far, we have created these implementations:
   There is also an example app to play around with the algorithm.
 * [Kotlin](Kotlin) - A simple decoder implementation for Android.
 * [TypeScript](TypeScript) - A simple decode implementation.
-* [Python](Python) - Integration of the C encoder code into Python.
+* [Python](https://github.com/creditornot/blurhash-python) - Integration of the C encoder code into Python.
 
 These cover our use cases, but could probably use polishing, extending and improving. Perhaps you'd like to help?
 Which brings us to...
