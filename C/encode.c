@@ -50,7 +50,7 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 		}
 
 		int quantisedMaximumValue = fmaxf(0, fminf(82, floorf(actualMaximumValue * 83 - 0.5)));
-		maximumValue = ((float)quantisedMaximumValue + 1) / 83;
+		maximumValue = ((float)quantisedMaximumValue + 1) / 166;
 		ptr = encode_int(quantisedMaximumValue, 1, ptr);
 	} else {
 		maximumValue = 1;

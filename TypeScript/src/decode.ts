@@ -35,7 +35,7 @@ const decode = (blurhash: string, width: number, height: number, punch?: number)
   const numX = (sizeFlag % 9) + 1;
 
   const quantisedMaximumValue = decode83(blurhash[1]);
-  const maximumValue = (quantisedMaximumValue + 1) / 83;
+  const maximumValue = (quantisedMaximumValue + 1) / 166;
 
   if (blurhash.length !== 4 + 2 * numX * numY) {
     console.error('blurhash length mismatch', blurhash.length, 4 + 2 * numX * numY);

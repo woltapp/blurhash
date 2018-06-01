@@ -9,7 +9,7 @@ extension UIImage {
 		let numX = (sizeFlag % 9) + 1
 
 		let quantisedMaximumValue = String(blurHash[1]).decode83()
-		let maximumValue = Float(quantisedMaximumValue + 1) / 83
+        let maximumValue = Float(quantisedMaximumValue + 1) / 166
 
         guard blurHash.count == 4 + 2 * numX * numY else { return nil }
 

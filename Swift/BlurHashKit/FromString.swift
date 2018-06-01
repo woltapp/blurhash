@@ -9,7 +9,7 @@ public extension BlurHash {
 		let numX = (sizeFlag % 9) + 1
 
 		let quantisedMaximumValue = String(string[1]).decode83()
-		let maximumValue = Float(quantisedMaximumValue + 1) / 83
+		let maximumValue = Float(quantisedMaximumValue + 1) / 166
 
 		guard string.count == 4 + 2 * numX * numY else { return nil }
 
