@@ -15,9 +15,9 @@ BlurHash will solve your problems! How? Like this:
 ## How does it work
 
 In short, BlurHash takes an image, and gives you a short string (only 20-30 characters!) that represents the placeholder for this
-image. You would do this on the backend of your service, and store the string along the image. When you send data to your
+image. You do this on the backend of your service, and store the string along with the image. When you send data to your
 client, you send both the URL to the image, and the BlurHash string. Your client then takes the string, and decodes it into an
-image that it shows while the real image is loading over the network. The string is short enough that comfortably fits in with
+image that it shows while the real image is loading over the network. The string is short enough that it comfortably fits into
 whatever data format you use. For instance, it can easily be added as a field in a JSON object.
 
 In summary:
@@ -49,7 +49,8 @@ We'd love contributions! The algorithm is [very simple](Algorithm.md) - less tha
 ported to your platform of choice. And having support for more platforms would be wonderful! So, Java decoder? Golang encoder?
 Haskell? Rust? We want them all!
 
-We will also try to tag any issues on our [issue tracker](https://github.com/woltapp/blurhash/issues) that we'd love help with, so if you just want to dip in, go have a look.
+We will also try to tag any issues on our [issue tracker](https://github.com/woltapp/blurhash/issues) that we'd love help with, so
+if you just want to dip in, go have a look.
 
 You can file a pull request with us, or you can start your own repo and project if you want to run everything yourself, we don't mind.
 
@@ -59,16 +60,16 @@ If you do want to contribute to this project, we have a [code of conduct](CodeOf
 
 ### How fast is encoding? Decoding?
 
-The implementations here are not very optimised. Running them on very large images can be a bit slow. The performance of
-the encoder and decoder is about the same for the same input or output size, so decoding very large placeholders, especially
-on your UI thread, can be a bit slow.
+These implementations are not very optimised. Running them on very large images can be a bit slow. The performance of
+the encoder and decoder are about the same for the same input or output size, so decoding very large placeholders, especially
+on your UI thread, can also be a bit slow.
 
-However! The trick to using the algorithm correctly is to not run it on full-sized data. The fine detail of an image is all thrown away,
+However! The trick to using the algorithm efficiently is to not run it on full-sized data. The fine detail of an image is all thrown away,
 so you should scale your images down before running BlurHash on them. If you are creating thumbnails, run BlurHash on those
 instead of the full images.
 
-Similarly, when displaying the placeholders, very small images scaled work very well. We usually decode placeholders that are
-32 or even 20 pixels wide, and then let the UI layer scale them up, which is indistinguishable from decoding them at full size.
+Similarly, when displaying the placeholders, very small images work very well when scaled up. We usually decode placeholders
+that are 32 or even 20 pixels wide, and then let the UI layer scale them up, which is indistinguishable from decoding them at full size.
 
 ### How do I pick the number of X and Y components?
 
@@ -78,6 +79,15 @@ seems to strike a nice balance.
 
 However, you should adjust the number of components depending on the aspect ratio of your images. For instance, very wide
 images should have more X components and fewer Y components.
+
+The Swift example project contains a test app where you can play around with the parameters and see the results.
+
+### What is the `punch` parameter in some of these implementations?
+
+It is a parameter that adjusts the contrast on the decoded image. 1 means normal, smaller values will make the effect more subtle,
+and larger values will make it stronger. This is basically a design parameter, which lets you adjust the look.
+
+Technically, what it does is scale the AC components up or down.
 
 ## Authors
 
