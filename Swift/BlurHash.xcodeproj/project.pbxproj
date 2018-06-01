@@ -100,6 +100,7 @@
 		1B1B250320C13E9700D8EF03 /* encode.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = encode.c; sourceTree = "<group>"; };
 		1B1B250420C13E9700D8EF03 /* build_blurhash.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = build_blurhash.py; sourceTree = "<group>"; };
 		1B1B250520C13E9700D8EF03 /* encode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = encode.h; sourceTree = "<group>"; };
+		1B1B250620C1491900D8EF03 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		1B2BA1BD1F0E5EC5006057C1 /* blurhash */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = blurhash; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B2BA1C41F0E5ED6006057C1 /* blurhash_stb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blurhash_stb.c; sourceTree = "<group>"; };
 		1B2BA1C81F0E5EE3006057C1 /* encode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = encode.c; sourceTree = "<group>"; };
@@ -259,6 +260,7 @@
 				1B2BA1C91F0E5EE3006057C1 /* encode.h */,
 				1B2BA1CC1F0E692F006057C1 /* stb_image.h */,
 				1BEFFFBF20BFDC1600187F3F /* Makefile */,
+				1B1B250620C1491900D8EF03 /* Readme.md */,
 			);
 			name = C;
 			path = ../C;
