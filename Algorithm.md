@@ -17,7 +17,7 @@ as an sRGB value, for easy use without impleneting the full algorithm. The AC co
 
 Here follows an example of a BlurHash string, with the different parts labelled:
 
-    Example: LNMF%n00%#MwS|WCWEM{R*bbWBbH
+    Example: LlMF%n00%#MwS|WCWEM{R*bbWBbH
     Legend:  12333344....................
 
 1. **Number of components, 1 digit.**

@@ -1,7 +1,7 @@
 # BlurHash encoder in portable C
 
 This code implements an encoder for the BlurHash algorithm in C. It can be used to integrate into other language
-using an FFI interface. Currently the Python uses this code.
+using an FFI interface. Currently the Python integration uses this code.
 
 ## Usage as a library
 
@@ -24,8 +24,8 @@ It will be overwritten on the next call into the function, so be careful!
 ## Usage as a command-line tool
 
 You can also build a command-line version to test the encoder. However, note that it uses `stb_image` to load images,
-which is not really security-hardened, so it is **not** recommended to use this version in production! Use one of the integrations
-instead, which use more robust image loading libraries.
+which is not really security-hardened, so it is **not** recommended to use this version in production on untrusted data!
+Use one of the integrations instead, which use more robust image loading libraries.
 
 Nevertheless, if you want to try it out quickly, simply run:
 
