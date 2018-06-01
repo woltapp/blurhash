@@ -89,6 +89,31 @@ and larger values will make it stronger. This is basically a design parameter, w
 
 Technically, what it does is scale the AC components up or down.
 
+### Why base 83?
+
+First, 83 seems to be about how many low-ASCII characters you can find that are safe for use in all of JSON, HTML and shells.
+
+Secondly, 83 * 83 is very close to, and a little more than, 19 * 19 * 19, making it ideal for encoding three AC components in two
+characters.
+
+### What about using the full Unicode character set to get a more efficient encoding?
+
+We haven't looked into how much overehead UTF-8 encoding would introduce versus base 83 in single-byte characters, but
+the encoding and decoding would probably be a lot more complicated, so in the spirit of minimalism BlurHash uses the simpler
+option. It might also be awkward to copy-paste, depending on OS capabilities.
+
+If you think it can be done and is worth it, though, do make your own version and show us! We'd love to see it in action.
+
+### What about other basis represenations than DCT?
+
+This is something we'd *love* to try. The DCT looks quite ugly when you increase the number of components, probably because
+the shape of the basis functions becomes too visible. Using a different basis with more aesthetically pleasing shape might be
+a big win.
+
+However, we have not managed come up with one. Some experimenting with a [Fourier-Bessel base](https://en.wikipedia.org/wiki/Fourier–Bessel_series),
+targeted at images that are going to be cropped into circles has been done, but without much success. Here again we'd love
+to see what you can come up with!
+
 ## Authors
 
 * [Dag Ågren](https://github.com/DagAgren) - Original algorithm design, Swift and C implementations
