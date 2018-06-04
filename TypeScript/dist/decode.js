@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var base64_1 = require("./base64");
+var base83_1 = require("./base83");
 var utils_1 = require("./utils");
 var decodeDC = function (value) {
     var intR = value >> 16;
@@ -9,13 +9,13 @@ var decodeDC = function (value) {
     return [utils_1.sRGBToLinear(intR), utils_1.sRGBToLinear(intG), utils_1.sRGBToLinear(intB)];
 };
 var decodeAC = function (value, maximumValue) {
-    var quantR = value >> 8;
-    var quantG = (value >> 4) & 15;
-    var quantB = value & 15;
+    var quantR = Math.floor(value / (19 * 19));
+    var quantG = Math.floor(value / 19) % 19;
+    var quantB = value % 19;
     var rgb = [
-        utils_1.signPow((quantR - 8) / 8, 3.0) * maximumValue * 2,
-        utils_1.signPow((quantG - 8) / 8, 3.0) * maximumValue * 2,
-        utils_1.signPow((quantB - 8) / 8, 3.0) * maximumValue * 2,
+        utils_1.signPow((quantR - 9) / 9, 2.0) * maximumValue,
+        utils_1.signPow((quantG - 9) / 9, 2.0) * maximumValue,
+        utils_1.signPow((quantB - 9) / 9, 2.0) * maximumValue,
     ];
     return rgb;
 };
@@ -25,11 +25,11 @@ var decode = function (blurhash, width, height, punch) {
         console.error('too short blurhash');
         return null;
     }
-    var sizeFlag = base64_1.decode64(blurhash[0]);
-    var numY = (sizeFlag >> 3) + 1;
-    var numX = (sizeFlag & 7) + 1;
-    var quantisedMaximumValue = base64_1.decode64(blurhash[1]);
-    var maximumValue = (quantisedMaximumValue + 1) / 128;
+    var sizeFlag = base83_1.decode83(blurhash[0]);
+    var numY = Math.floor(sizeFlag / 9) + 1;
+    var numX = (sizeFlag % 9) + 1;
+    var quantisedMaximumValue = base83_1.decode83(blurhash[1]);
+    var maximumValue = (quantisedMaximumValue + 1) / 166;
     if (blurhash.length !== 4 + 2 * numX * numY) {
         console.error('blurhash length mismatch', blurhash.length, 4 + 2 * numX * numY);
         return null;
@@ -37,11 +37,11 @@ var decode = function (blurhash, width, height, punch) {
     var colors = new Array(numX * numY);
     for (var i = 0; i < colors.length; i++) {
         if (i === 0) {
-            var value = base64_1.decode64(blurhash.substring(2, 6));
+            var value = base83_1.decode83(blurhash.substring(2, 6));
             colors[i] = decodeDC(value);
         }
         else {
-            var value = base64_1.decode64(blurhash.substring(4 + i * 2, 6 + i * 2));
+            var value = base83_1.decode83(blurhash.substring(4 + i * 2, 6 + i * 2));
             colors[i] = decodeAC(value, maximumValue * punch);
         }
     }
