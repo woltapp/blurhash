@@ -10,17 +10,19 @@ const componentYElement = document.getElementById("y") as HTMLInputElement;
 
 function render() {
   const blurhash = blurhashElement.value;
-  const pixels = decode(blurhash, 32, 32);
-  if (pixels) {
-    const ctx = canvas.getContext("2d");
+  if (blurhash) {
+    const pixels = decode(blurhash, 32, 32);
+    if (pixels) {
+      const ctx = canvas.getContext("2d");
 
-    const imageData = new ImageData(pixels, 32, 32);
-    ctx.putImageData(imageData, 0, 0);
+      const imageData = new ImageData(pixels, 32, 32);
+      ctx.putImageData(imageData, 0, 0);
+    }
   }
 }
 
 function clamp(n: number) {
-    return Math.min(9, Math.max(1, n));
+  return Math.min(9, Math.max(1, n));
 }
 
 function doEncode() {
