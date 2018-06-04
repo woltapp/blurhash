@@ -1,28 +1,61 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Blurhash test file</title>
-        <style>
-            * {
-                box-sizing: border-box;
-            }
 
-            #canvas {
-                display: block;
-                width: 632px;
-                height: 356px;
-            }
+<head>
+    <title>Blurhash test file</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-            #blurhash {
-                margin-top: 20px;
-                font-size: 24px;
-                width: 632px;
-            }
-        </style>
-    </head>
-    <body>
-        <canvas id="canvas" width="32" height="32"></canvas>
-        <input id="blurhash" type="text" value="LNMF%n00%#MwS|WCWEM{R*bbWBbH" />
-        <script src="./demo.js"></script>
-    </body>
+        .wrapper {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .blurhashWrapper {
+            padding: 0 20px;
+        }
+
+        canvas {
+            display: block;
+            width: 632px;
+            height: 356px;
+            background: #ccc;
+        }
+
+        #blurhash {
+            margin-top: 20px;
+            font-size: 24px;
+            width: 632px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>BlurHash demo</h1>
+    <div class="wrapper">
+        <div>
+            <h2>Encode</h2>
+            <canvas id="original" width="632" height="356"></canvas>
+            <label>File:
+                <input id="fileinput" type="file" accept="image/*" />
+            </label>
+            <label>Components
+                <input type="number" id="x" value="3" min="1" max="9" />
+                <input type="number" id="y" value="2" min="1" max="9" />
+            </label>
+        </div>
+        <div class="blurhashWrapper">
+            <h2>Blurhash</h2>
+            <input id="blurhash" type="text" value="LNMF%n00%#MwS|WCWEM{R*bbWBbH" />
+        </div>
+        <div>
+            <h2>Decode</h2>
+            <canvas id="canvas" width="32" height="32"></canvas>
+        </div>
+    </div>
+    <script src="./demo.js"></script>
+</body>
+
 </html>
