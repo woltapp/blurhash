@@ -19,3 +19,12 @@ export const decode83 = (str: String) => {
     }
     return value;
 }
+
+export const encode83 = (n: number, length: number): string => {
+	var result = ""
+	for(let i=1; i<=length; i++) {
+		let digit = (Math.floor(n) / Math.pow(83, length-i)) % 83;
+		result += digitCharacters[Math.floor(digit)];
+	}
+	return result
+}
