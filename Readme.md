@@ -33,11 +33,11 @@ platform.
 
 So far, we have created these implementations:
 
-* [C](C) - A simple encoder implemenation in portable C code.
-* [Swift](Swift) - Simple encoder and decoder implementations, and a larger library offering advanced features.
+* [C](C) - An encoder implemenation in portable C code.
+* [Swift](Swift) - Encoder and decoder implementations, and a larger library offering advanced features.
   There is also an example app to play around with the algorithm.
-* [Kotlin](Kotlin) - A simple decoder implementation for Android.
-* [TypeScript](TypeScript) - A simple decode implementation.
+* [Kotlin](Kotlin) - A decoder implementation for Android.
+* [TypeScript](TypeScript) - Encoder and decoder implementations, and an example page to test.
 * [Python](https://github.com/creditornot/blurhash-python) - Integration of the C encoder code into Python.
 
 These cover our use cases, but could probably use polishing, extending and improving. Perhaps you'd like to help?
