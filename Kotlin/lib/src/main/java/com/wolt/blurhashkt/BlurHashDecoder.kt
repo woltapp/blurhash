@@ -1,9 +1,7 @@
-package com.wolt.android.presentation.ui.helpers
+package com.wolt.blurhashkt
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
-import com.wolt.android.WoltApp
 import java.lang.Math.*
 
 /**
