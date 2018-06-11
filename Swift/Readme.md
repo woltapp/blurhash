@@ -2,13 +2,13 @@
 
 ## Standalone decoder and encoder
 
-[BlurHashDecoder.swift](BlurHashDecoder.swift) and [BlurHashEncoder.swift](BlurHashEncoder.swift) contain a decoder
+[BlurHashDecode.swift](BlurHashDecode.swift) and [BlurHashEncode.swift](BlurHashEncode.swift) contain a decoder
 and encoder for BlurHash to and from `UIImage`. Both files are completeiy standalone, and can simply be copied into your
 project directly.
 
 ### Decoding
 
-[BlurHashDecoder.swift](BlurHashDecoder.swift) implements the following extension on `UIImage`:
+[BlurHashDecode.swift](BlurHashDecode.swift) implements the following extension on `UIImage`:
 
 	public convenience init?(blurHash: String, size: CGSize, punch: Float = 1)
 
@@ -21,7 +21,7 @@ The parameters are:
 
 ### Encoding
 
- [BlurHashEncoder.swift](BlurHashEncoder.swift) implements the following extension on `UIImage`:
+ [BlurHashEncode.swift](BlurHashEncode.swift) implements the following extension on `UIImage`:
 
 	public func blurHash(numberOfComponents components: (Int, Int)) -> String?
 
