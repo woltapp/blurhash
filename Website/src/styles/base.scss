@@ -1,0 +1,91 @@
+html {
+  height: 100%;
+  @include fluid-type(font-size, 20rem, 100rem, 0.8rem, 1rem);
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  min-width: 320px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+strong,
+label,
+input,
+textarea,
+input,
+button {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder,
+input:-moz-placeholder {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  color: $text-grey-light;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+li,
+strong,
+label,
+input,
+textarea {
+  color: $dark-grey;
+  line-height: 1.4;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+h5 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+h6 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+body > svg {
+  display: none;
+}
+
+p,
+label,
+textarea,
+input,
+label,
+select,
+button,
+textarea {
+  font-size: 1rem;
+}
