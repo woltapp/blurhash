@@ -1,0 +1,31 @@
+{
+  "printWidth": 100,
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "options": {
+        "singleQuote": true,
+        "trailingComma": "all"
+      }
+    },
+    {
+      "files": ["webpack.config.js"],
+      "options": {
+        "trailingComma": "es5"
+      }
+    },
+    {
+      "files": ["*.css", "*.scss"],
+      "options": {
+        "parser": "scss",
+        "singleQuote": true
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
+}
