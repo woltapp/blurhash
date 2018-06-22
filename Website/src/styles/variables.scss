@@ -1,0 +1,21 @@
+@function rem($pixels, $context: 16px) {
+  $pixels: strip-units($pixels);
+  $context: strip-units($context);
+  @return ($pixels / $context) * 1rem;
+}
+
+$wolt-id-blue: #0019ff;
+$header-height: 70px;
+// Brand
+$wolt-blue: #0065aa;
+$wolt-blue-light: #4a90e2;
+$wolt-blue-lighter: rgba(74, 144, 226, 0.5);
+$wolt-blue-gradient: linear-gradient(-180deg, #0077c8 0%, #0065aa 100%);
+
+// Text
+$offwhite: #eff1f3;
+$offwhite-light: #f7f8f9;
+$dark-grey: #202125;
+$text-color: #404040;
+$text-grey: #838383;
+$text-grey-light: #acacac;

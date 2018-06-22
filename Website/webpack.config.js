@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Is the current build a development build
 const IS_DEV = process.env.NODE_ENV === 'dev';
@@ -21,6 +22,9 @@ module.exports = {
     modules: [dirNode, dirApp, dirAssets],
   },
   plugins: [
+    new ExtractTextPlugin({
+      filename: '[name].[hash].css',
+    }),
     new webpack.DefinePlugin({
       IS_DEV: IS_DEV,
     }),
@@ -45,31 +49,39 @@ module.exports = {
       // CSS / SASS
       {
         test: /\.scss/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: IS_DEV,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: IS_DEV,
+              },
             },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: IS_DEV,
-              includePaths: [dirAssets],
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: IS_DEV,
+                includePaths: [dirAssets],
+              },
             },
-          },
-        ],
+          ],
+        }),
       },
 
       // IMAGES
       {
-        test: /\.(jpe?g|png|gif)$/,
+        test: /\.(jpe?g|png|gif|svg)$/,
         loader: 'file-loader',
         options: {
           name: '[path][name].[ext]',
         },
+      },
+
+      // FONTS
+      {
+        test: /\.(eot|otf|woff2?|ttf)[\?]?.*$/, // eslint-disable-line
+        use: 'file-loader?name=fonts/[name].[ext]',
       },
     ],
   },
