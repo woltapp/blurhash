@@ -22,3 +22,7 @@ Python/build/
 
 # Typescript
 typescript/node_modules/
+
+# Website
+Website/node_modules/
+Website/dist/
