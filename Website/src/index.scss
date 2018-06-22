@@ -3,3 +3,80 @@
 @import 'styles/variables.scss';
 @import 'styles/base.scss';
 @import 'styles/averta.scss';
+
+#hero {
+  .header {
+    height: $header-height;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo {
+  }
+
+  .content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .title {
+    font-family: AvertaStdPE-Semibold;
+    font-size: 6.6rem;
+    margin: 0;
+    margin-bottom: 2rem;
+  }
+
+  .description {
+    margin: 0;
+    font-size: 1.5rem;
+    width: 700px;
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .button {
+    border-radius: 4px;
+    padding: 1rem;
+    min-width: 10rem;
+    color: #fff;
+    font-weight: 500;
+    background-color: $wolt-id-blue;
+    margin-bottom: 2.5rem;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      background-color: mix(#fff, $wolt-id-blue, 24);
+    }
+
+    &:active {
+      background-color: mix($dark-grey, $wolt-id-blue, 12);
+    }
+  }
+
+  .link {
+    position: relative;
+    font-weight: 500;
+    text-decoration: none;
+    line-height: 1.8;
+    &::after {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      content: '';
+      border: 1px solid $dark-grey;
+      border-bottom: 0;
+    }
+  }
+}
+
+section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
