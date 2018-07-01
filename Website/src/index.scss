@@ -8,6 +8,14 @@
   position: absolute;
   top: top($top);
   left: left($left);
+
+  & > canvas {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 #hero {
