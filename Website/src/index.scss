@@ -4,6 +4,12 @@
 @import 'styles/base.scss';
 @import 'styles/averta.scss';
 
+@mixin img($top, $left) {
+  position: absolute;
+  top: top($top);
+  left: left($left);
+}
+
 #hero {
   .header {
     height: $header-height;
@@ -14,9 +20,11 @@
   }
 
   .logo {
+    z-index: 1;
   }
 
   .content {
+    z-index: 1;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -73,9 +81,33 @@
       border-bottom: 0;
     }
   }
+
+  .images {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .img1 {
+    @include img(55, 919);
+  }
+  .img2 {
+    @include img(169, 216);
+  }
+  .img3 {
+    @include img(338, 1162);
+  }
+  .img4 {
+    @include img(482, 1038);
+  }
+  .img5 {
+    @include img(551, 235);
+  }
 }
 
 section {
+  position: relative;
   height: 100vh;
   display: flex;
   flex-direction: column;
