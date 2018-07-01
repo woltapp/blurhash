@@ -26,3 +26,11 @@
 @function strip-unit($value) {
   @return $value / ($value * 0 + 1);
 }
+
+@function top($px) {
+  @return $px / 768 * 100%;
+}
+
+@function left($px) {
+  @return $px / 1440 * 100%;
+}

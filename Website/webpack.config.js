@@ -4,8 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Is the current build a development build
-const IS_DEV = process.env.NODE_ENV === 'dev';
+const env = process.env.NODE_ENV;
 
+const IS_DEV = !env ? true : env;
 const dirNode = 'node_modules';
 const dirApp = path.join(__dirname, 'src');
 const dirAssets = path.join(__dirname, 'assets');
@@ -47,27 +48,47 @@ module.exports = {
       },
 
       // CSS / SASS
-      {
-        test: /\.scss/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: IS_DEV,
+      IS_DEV
+        ? {
+            test: /\.scss/,
+            use: [
+              'style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: IS_DEV,
+                },
               },
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: IS_DEV,
-                includePaths: [dirAssets],
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: IS_DEV,
+                  includePaths: [dirAssets],
+                },
               },
-            },
-          ],
-        }),
-      },
+            ],
+          }
+        : {
+            test: /\.scss/,
+            loader: ExtractTextPlugin.extract({
+              fallback: 'style-loader',
+              use: [
+                {
+                  loader: 'css-loader',
+                  options: {
+                    sourceMap: IS_DEV,
+                  },
+                },
+                {
+                  loader: 'sass-loader',
+                  options: {
+                    sourceMap: IS_DEV,
+                    includePaths: [dirAssets],
+                  },
+                },
+              ],
+            }),
+          },
 
       // IMAGES
       {
