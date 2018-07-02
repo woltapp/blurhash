@@ -23,7 +23,7 @@
   }
 }
 
-#hero {
+.hero {
   .header {
     height: $header-height;
     background-color: #fff;
@@ -141,9 +141,10 @@
   }
 }
 
-section {
+.section {
   position: relative;
   height: 100vh;
+  background: #fff;
   display: flex;
   flex-direction: column;
 }
