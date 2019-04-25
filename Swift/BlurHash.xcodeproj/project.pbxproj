@@ -22,6 +22,16 @@
 		1B19DF602015E72C00D8FCD7 /* pic6.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B19DF5F2015E72B00D8FCD7 /* pic6.png */; };
 		1B2BA1CA1F0E5EE3006057C1 /* encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B2BA1C81F0E5EE3006057C1 /* encode.c */; };
 		1B2BA1CB1F0E5EEA006057C1 /* blurhash_stb.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B2BA1C41F0E5ED6006057C1 /* blurhash_stb.c */; };
+		1B6C71FD2272453D000D3BB1 /* BlurHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60701FF40A2F00E42DD7 /* BlurHash.swift */; };
+		1B6C71FE2272453D000D3BB1 /* FromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60741FF40AF200E42DD7 /* FromString.swift */; };
+		1B6C71FF2272453D000D3BB1 /* ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60721FF40AEA00E42DD7 /* ToString.swift */; };
+		1B6C72002272453D000D3BB1 /* FromUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60781FF40C5800E42DD7 /* FromUIImage.swift */; };
+		1B6C72012272453D000D3BB1 /* ToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60761FF40C4C00E42DD7 /* ToUIImage.swift */; };
+		1B6C72022272453D000D3BB1 /* Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC34D7F20098E2F00A17481 /* Generation.swift */; };
+		1B6C72032272453D000D3BB1 /* TupleMaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC34D7D20098E1500A17481 /* TupleMaths.swift */; };
+		1B6C72042272453D000D3BB1 /* ColourSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA607C1FF422AE00E42DD7 /* ColourSpace.swift */; };
+		1B6C72052272453D000D3BB1 /* StringCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA607A1FF40D8900E42DD7 /* StringCoding.swift */; };
+		1B6C72062272453D000D3BB1 /* ColourProbes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE56D02011EC5F00569DCB /* ColourProbes.swift */; };
 		1BAA606D1FF40A0800E42DD7 /* BlurHashEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD261EC47243006F8E7D /* BlurHashEncode.swift */; };
 		1BAA606E1FF40A0B00E42DD7 /* BlurHashDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD281EC4724C006F8E7D /* BlurHashDecode.swift */; };
 		1BAA60711FF40A2F00E42DD7 /* BlurHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60701FF40A2F00E42DD7 /* BlurHash.swift */; };
@@ -69,6 +79,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		1B6C71F42272451E000D3BB1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +129,8 @@
 		1B49CD1F1EC4721A006F8E7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B49CD261EC47243006F8E7D /* BlurHashEncode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurHashEncode.swift; sourceTree = "<group>"; };
 		1B49CD281EC4724C006F8E7D /* BlurHashDecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurHashDecode.swift; sourceTree = "<group>"; };
+		1B6C71F122724500000D3BB1 /* BlurHashKit copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BlurHashKit copy-Info.plist"; path = "/Users/dag/Code/Toot/BlurHash/BlurHashKit copy-Info.plist"; sourceTree = "<absolute>"; };
+		1B6C71F62272451E000D3BB1 /* libBlurHashKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBlurHashKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BAA60701FF40A2F00E42DD7 /* BlurHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurHash.swift; sourceTree = "<group>"; };
 		1BAA60721FF40AEA00E42DD7 /* ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToString.swift; sourceTree = "<group>"; };
 		1BAA60741FF40AF200E42DD7 /* FromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromString.swift; sourceTree = "<group>"; };
@@ -159,6 +180,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1B49CD171EC4721A006F8E7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B6C71F32272451E000D3BB1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -279,6 +307,7 @@
 				1BEFFFC820C000DE00187F3F /* License.txt */,
 				1BEFFFC320BFE34800187F3F /* Readme.md */,
 				1B49CD1C1EC4721A006F8E7D /* Products */,
+				1B6C71F122724500000D3BB1 /* BlurHashKit copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -288,6 +317,7 @@
 				1B49CD1B1EC4721A006F8E7D /* BlurHashKit.framework */,
 				1B0A250C1EC5E90C00F25F08 /* BlurHashTest.app */,
 				1B2BA1BD1F0E5EC5006057C1 /* blurhash */,
+				1B6C71F62272451E000D3BB1 /* libBlurHashKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -433,13 +463,31 @@
 			productReference = 1B49CD1B1EC4721A006F8E7D /* BlurHashKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		1B6C71F52272451E000D3BB1 /* libBlurHashKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B6C71FA2272451E000D3BB1 /* Build configuration list for PBXNativeTarget "libBlurHashKit" */;
+			buildPhases = (
+				1B6C71F22272451E000D3BB1 /* Sources */,
+				1B6C71F32272451E000D3BB1 /* Frameworks */,
+				1B6C71F42272451E000D3BB1 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libBlurHashKit;
+			productName = libBlurHash;
+			productReference = 1B6C71F62272451E000D3BB1 /* libBlurHashKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1B49CD121EC4721A006F8E7D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				DefaultBuildSystemTypeForWorkspace = Latest;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Dag Ågren";
 				TargetAttributes = {
@@ -460,6 +508,11 @@
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
+					1B6C71F52272451E000D3BB1 = {
+						CreatedOnToolsVersion = 10.2;
+						DevelopmentTeam = M9KXCWYWYR;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 1B49CD151EC4721A006F8E7D /* Build configuration list for PBXProject "BlurHash" */;
@@ -467,6 +520,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -476,6 +530,7 @@
 			projectRoot = "";
 			targets = (
 				1B49CD1A1EC4721A006F8E7D /* BlurHashKit */,
+				1B6C71F52272451E000D3BB1 /* libBlurHashKit */,
 				1B0A250B1EC5E90C00F25F08 /* BlurHashTest */,
 				1B2BA1BC1F0E5EC5006057C1 /* blurhash */,
 			);
@@ -548,6 +603,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B6C71F22272451E000D3BB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B6C71FE2272453D000D3BB1 /* FromString.swift in Sources */,
+				1B6C72022272453D000D3BB1 /* Generation.swift in Sources */,
+				1B6C72032272453D000D3BB1 /* TupleMaths.swift in Sources */,
+				1B6C72002272453D000D3BB1 /* FromUIImage.swift in Sources */,
+				1B6C72042272453D000D3BB1 /* ColourSpace.swift in Sources */,
+				1B6C72052272453D000D3BB1 /* StringCoding.swift in Sources */,
+				1B6C71FF2272453D000D3BB1 /* ToString.swift in Sources */,
+				1B6C71FD2272453D000D3BB1 /* BlurHash.swift in Sources */,
+				1B6C72062272453D000D3BB1 /* ColourProbes.swift in Sources */,
+				1B6C72012272453D000D3BB1 /* ToUIImage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -585,7 +657,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6GE6LAAR8V;
 				INFOPLIST_FILE = BlurHashTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -600,7 +671,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6GE6LAAR8V;
 				INFOPLIST_FILE = BlurHashTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -680,7 +750,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -736,7 +806,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -759,7 +829,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = BlurHashKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -781,12 +850,50 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = BlurHashKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		1B6C71FB2272451E000D3BB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M9KXCWYWYR;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = BlurHashKit;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1B6C71FC2272451E000D3BB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M9KXCWYWYR;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = BlurHashKit;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -825,6 +932,15 @@
 			buildConfigurations = (
 				1B49CD241EC4721A006F8E7D /* Debug */,
 				1B49CD251EC4721A006F8E7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B6C71FA2272451E000D3BB1 /* Build configuration list for PBXNativeTarget "libBlurHashKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B6C71FB2272451E000D3BB1 /* Debug */,
+				1B6C71FC2272451E000D3BB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

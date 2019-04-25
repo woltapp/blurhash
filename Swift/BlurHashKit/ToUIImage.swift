@@ -42,22 +42,27 @@ extension BlurHash {
 		return cgImage
 	}
 
+	public func cgImage(numberOfPixels: Int = 1024, originalSize size: CGSize) -> CGImage? {
+		let width: CGFloat
+		let height: CGFloat
+		if size.width > size.height {
+			width = floor(sqrt(CGFloat(numberOfPixels) * size.width / size.height) + 0.5)
+			height = floor(CGFloat(numberOfPixels) / width + 0.5)
+		} else {
+			height = floor(sqrt(CGFloat(numberOfPixels) * size.height / size.width) + 0.5)
+			width = floor(CGFloat(numberOfPixels) / height + 0.5)
+		}
+		return cgImage(size: CGSize(width: width, height: height))
+	}
+
 	public func image(size: CGSize) -> UIImage? {
 		guard let cgImage = cgImage(size: size) else { return nil }
 		return UIImage(cgImage: cgImage)
 	}
 
 	public func image(numberOfPixels: Int = 1024, originalSize size: CGSize) -> UIImage? {
-		let width: CGFloat
-		let height: CGFloat
-		if size.width > size.height {
-			width = floor(sqrt(CGFloat(numberOfPixels)) * size.width / size.height + 0.5)
-			height = floor(CGFloat(numberOfPixels) / width + 0.5)
-		} else {
-			height = floor(sqrt(CGFloat(numberOfPixels)) * size.height / size.width + 0.5)
-			width = floor(CGFloat(numberOfPixels) / height + 0.5)
-		}
-		return image(size: CGSize(width: width, height: height))
+		guard let cgImage = cgImage(numberOfPixels: numberOfPixels, originalSize: size) else { return nil }
+		return UIImage(cgImage: cgImage)
 	}
 }
 
@@ -65,6 +70,12 @@ extension BlurHash {
     public convenience init?(blurHash string: String, size: CGSize, punch: Float = 1) {
         guard let blurHash = BlurHash(string: string),
         let cgImage = blurHash.punch(punch).cgImage(size: size) else { return nil }
+        self.init(cgImage: cgImage)
+    }
+
+    public convenience init?(blurHash string: String, numberOfPixels: Int = 1024, originalSize size: CGSize, punch: Float = 1) {
+        guard let blurHash = BlurHash(string: string),
+        let cgImage = blurHash.punch(punch).cgImage(numberOfPixels: numberOfPixels, originalSize: size) else { return nil }
         self.init(cgImage: cgImage)
     }
 }
