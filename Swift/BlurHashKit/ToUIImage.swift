@@ -1,6 +1,6 @@
 import UIKit
 
-public extension BlurHash {
+extension BlurHash {
 	public func cgImage(size: CGSize) -> CGImage? {
 		let width = Int(size.width)
 		let height = Int(size.height)
@@ -61,3 +61,10 @@ public extension BlurHash {
 	}
 }
 
+@objc extension UIImage {
+    public convenience init?(blurHash string: String, size: CGSize, punch: Float = 1) {
+        guard let blurHash = BlurHash(string: string),
+        let cgImage = blurHash.punch(punch).cgImage(size: size) else { return nil }
+        self.init(cgImage: cgImage)
+    }
+}

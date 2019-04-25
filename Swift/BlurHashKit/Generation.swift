@@ -1,6 +1,6 @@
 import UIKit
 
-public extension BlurHash {
+extension BlurHash {
 	public init(horizontalGradientFrom leftColour: UIColor, to rightColour: UIColor) {
 		let average = (leftColour.linear + rightColour.linear) / 2
 		let difference = (leftColour.linear - rightColour.linear) / 2

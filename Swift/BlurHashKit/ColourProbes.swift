@@ -1,6 +1,6 @@
 import Foundation
 
-public extension BlurHash {
+extension BlurHash {
     public func linearRGB(atX: Float) -> (Float, Float, Float) {
         return components[0].enumerated().reduce((0, 0, 0)) { (sum, xEnumerated) in
             let (x, component) = xEnumerated
@@ -39,7 +39,7 @@ public extension BlurHash {
     public var bottomRightCornerLinearRGB: (Float, Float, Float) { return linearRGB(at: (1, 1)) }
 }
 
-public extension BlurHash {
+extension BlurHash {
     public func isDark(linearRGB rgb: (Float, Float, Float)) -> Bool {
         return rgb.0 * 0.299 + rgb.1 * 0.587 + rgb.2 * 0.114 < 0.5
     }
