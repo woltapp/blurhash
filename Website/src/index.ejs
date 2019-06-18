@@ -1,54 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no"
+    />
     <title><%= htmlWebpackPlugin.options.title %></title>
-</head>
-<body id="fullpage">
-  <div class="hero section">
-    <div class="imagesContainer">
-      <div class="img1">
-        <canvas width="32" height="32" class="image-canvas-bg"></canvas>
-        <img src="../assets/images/img1.jpg" class="image-bg"/>
+  </head>
+  <body id="fullpage">
+    <div class="hero section">
+      <div class="imagesContainer">
+        <div class="img1">
+          <canvas width="32" height="32" class="image-canvas-bg"></canvas>
+          <img src="../assets/images/img1.jpg" class="image-bg" />
+        </div>
+        <div class="img2">
+          <canvas width="32" height="32" class="image-canvas-bg"></canvas>
+          <img src="../assets/images/img2.jpg" class="image-bg" />
+        </div>
+        <div class="img3">
+          <canvas width="32" height="32" class="image-canvas-bg"></canvas>
+          <img src="../assets/images/img3.jpg" class="image-bg" />
+        </div>
+        <div class="img4">
+          <canvas width="32" height="32" class="image-canvas-bg"></canvas>
+          <img src="../assets/images/img4.jpg" class="image-bg" />
+        </div>
+        <div class="img5">
+          <canvas width="32" height="32" class="image-canvas-bg"></canvas>
+          <img src="../assets/images/img5.jpg" class="image-bg" />
+        </div>
       </div>
-      <div class="img2">
-        <canvas width="32" height="32" class="image-canvas-bg"></canvas>
-        <img src="../assets/images/img2.jpg" class="image-bg"/>
+      <header class="header">
+        <img class="logo" src="../assets/svg/wolt-logo.svg" />
+      </header>
+      <div class="content">
+        <h1 class="title">
+          BlurHash
+        </h1>
+        <p class="description">
+          BlurHash is a compact representation of a placeholder for an image.
+        </p>
+        <button class="button">
+          Get started
+        </button>
+        <a class="link" href="#">
+          More on our blog
+        </a>
       </div>
-      <div class="img3">
-        <canvas width="32" height="32" class="image-canvas-bg"></canvas>
-        <img src="../assets/images/img3.jpg" class="image-bg"/>
-      </div>
-      <div class="img4">
-        <canvas width="32" height="32" class="image-canvas-bg"></canvas>
-        <img src="../assets/images/img4.jpg" class="image-bg"/>
-      </div>
-      <div class="img5">
-        <canvas width="32" height="32" class="image-canvas-bg"></canvas>
-        <img src="../assets/images/img5.jpg" class="image-bg"/>
-      </div>     
     </div>
-    <header class="header">
-      <img class="logo" src="../assets/svg/wolt-logo.svg" />
-    </header>
-    <div class="content">
-      <h1 class="title">
-        BlurHash
-      </h1>
-      <p class="description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <div class="section why-blurhash">
+      <div class="content">
+        <h2>Why BlurHash?</h2>
+        <h3>Why would you want this?</h3>
+        <p>
+          Does your designer cry every time you load their beautifully designed screen, and it is
+          full of empty boxes because all the images have not loaded yet? Does your database
+          engineer cry when you want to solve this by trying to cram little thumbnail images into
+          your data to show as placeholders?
+        </p>
+      </div>
+    </div>
+    <div class="section how-it-works">
+      <h2>How does it work?</h2>
+      <p>
+        In short, BlurHash takes an image, and gives you a short string (only 20-30 characters!)
+        that represents the placeholder for this image. You do this on the backend of your service,
+        and store the string along with the image. When you send data to your client, you send both
+        the URL to the image, and the BlurHash string. Your client then takes the string, and
+        decodes it into an image that it shows while the real image is loading over the network. The
+        string is short enough that it comfortably fits into whatever data format you use. For
+        instance, it can easily be added as a field in a JSON object.
       </p>
-      <button class="button">
-        Get started
-      </button>
-      <a class="link" href="#">
-        More on our blog
+    </div>
+    <div class="section get-started">
+      <h2>Get started</h2>
+      <p>
+        The same exported data can be used on all platforms. Get the BlurHash library for your
+        platform of choice.
+      </p>
+      <a class="white-button" href="https://github.com/woltapp/blurhash">
+        More on github
       </a>
     </div>
-  </div>
-  <div class="section">
-
-  </div>
-</body>
+  </body>
 </html>

@@ -23,7 +23,16 @@
   }
 }
 
+h2 {
+  font-family: Helvetica;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 70px;
+}
+
 .hero {
+  height: 100vh;
+
   .header {
     height: $header-height;
     background-color: #fff;
@@ -143,8 +152,89 @@
 
 .section {
   position: relative;
-  height: 100vh;
   background: #fff;
   display: flex;
   flex-direction: column;
+}
+
+.why-blurhash {
+  position: relative;
+  padding-left: 30vw;
+  padding-top: 24px;
+  padding-bottom: 50px;
+  min-height: 800px;
+  display: flex;
+
+  &:after {
+    content: '';
+    height: 731px;
+    width: 365px;
+    position: absolute;
+    top: 75px;
+    right: 60%;
+
+    background-image: url(../assets/images/iPhone-X-Silver.png);
+  }
+
+  .content {
+    background: rgba(229, 238, 255, 0.37);
+    padding-left: 20vw;
+    padding-right: 20vw;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.34px;
+  }
+}
+
+.how-it-works {
+  text-align: center;
+
+  p {
+    font-family: Helvetica;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    max-width: 870px;
+    margin: 0 auto;
+  }
+}
+
+.get-started {
+  background: url(../assets/images/get-started-bg.jpg);
+  max-width: 1180px;
+  height: 556px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  h2,
+  p {
+    color: #fff;
+  }
+
+  p {
+    font-size: 24px;
+    line-height: 32px;
+    padding: 0 20%;
+  }
+
+  .white-button {
+    background: #fff;
+    padding: 1rem 2rem;
+    color: $wolt-id-blue;
+    text-decoration: none;
+  }
 }
