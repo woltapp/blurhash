@@ -1,4 +1,11 @@
 {
-  "presets": [["es2015", { "modules": false }], "stage-0"],
-  "plugins": ["transform-decorators-legacy", "transform-runtime"]
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": "> 0.25%, not dead",
+        "modules": false
+      }
+    ]
+  ]
 }
