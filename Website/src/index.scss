@@ -30,6 +30,26 @@ h2 {
   line-height: 70px;
 }
 
+.button {
+  border-radius: 4px;
+  padding: 1rem;
+  min-width: 10rem;
+  color: #fff;
+  font-weight: 500;
+  background-color: $wolt-id-blue;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    background-color: mix(#fff, $wolt-id-blue, 24);
+  }
+
+  &:active {
+    background-color: mix($dark-grey, $wolt-id-blue, 12);
+  }
+}
+
+
 .hero {
   height: 100vh;
 
@@ -39,6 +59,10 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .button {
+    margin-bottom: 2.5rem;
   }
 
   .logo {
@@ -70,25 +94,6 @@ h2 {
     margin-bottom: 3.5rem;
   }
 
-  .button {
-    border-radius: 4px;
-    padding: 1rem;
-    min-width: 10rem;
-    color: #fff;
-    font-weight: 500;
-    background-color: $wolt-id-blue;
-    margin-bottom: 2.5rem;
-
-    &:hover,
-    &:focus {
-      outline: none;
-      background-color: mix(#fff, $wolt-id-blue, 24);
-    }
-
-    &:active {
-      background-color: mix($dark-grey, $wolt-id-blue, 12);
-    }
-  }
 
   .link {
     position: relative;
@@ -210,6 +215,151 @@ h2 {
   }
 }
 
+.demo {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 100px 0 130px;
+  display: flex;
+  justify-content: stretch;
+
+  .part {
+    position: relative;
+    flex: 1;
+    margin: 0 24px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+
+      &:after {
+        content: unset;
+      }
+    }
+
+    &:after {
+      content: '';
+      background: url("../assets/images/arrow.svg");
+      width: 72px;
+      height: 25px;
+      position: absolute;
+      top: -32px;
+      right: -63px;
+    }
+  }
+
+  .explain {
+    margin: 24px 0;
+    font-size: 18px;
+    text-align: center;
+    line-height: 24px;
+  }
+
+  .predefined {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 200px;
+
+    label {
+      position: relative;
+      width: 45%;
+      margin-bottom: 5%;
+
+      input {
+        position: absolute;
+        top: 10;
+        left: 10;
+      }
+
+      img {
+        width: 100%;
+        height: 90px;
+      }
+    }
+
+    #original-canvas {
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out; 
+    }
+  }
+
+  #file-upload {
+    display: none;
+  }
+
+  .dimension {
+    margin-top: 24px;
+    font-size: 14px;
+    color: #868789;
+    letter-spacing: -0.15px;
+    text-align: center;
+    line-height: 20px;
+
+    > div {
+      margin-top: 12px;
+    }
+
+    input {
+      background: #FFFFFF;
+      border: 1px solid rgba(32,33,37,0.12);
+      border-radius: 4px;
+      text-align: center;
+      width: 46px;
+      height: 40px;
+    }
+  }
+
+  .demo-blurhash {
+    position: relative;
+    box-shadow: 0 4px 20px rgba(32, 33, 37, 0.2);
+    height: 200px;
+    background: #ffffff;
+    border-radius: 2px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:focus-within {
+      box-shadow: 0 4px 20px rgba(32, 33, 37, 0.4);
+    }
+  }
+
+  #demo-blurhash {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  #demo-blurhash-output {
+    color: $wolt-id-blue;
+    word-break: break-all;
+
+    &.error {
+      color: $error-color-id;
+    }
+  }
+
+  #demo-canvas {
+    height: 200px;
+    width: 100%;
+    background: hotpink;
+  }
+}
+
 .get-started {
   background: url(../assets/images/get-started-bg.jpg);
   max-width: 1180px;
@@ -219,6 +369,10 @@ h2 {
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  h2 {
+    margin: 0;
+  }
 
   h2,
   p {
