@@ -34,8 +34,8 @@ function renderSelectedFile() {
   const file = fileInput.files[0];
   if (file) {
     var img = new Image();
+    originalCanvas.classList.add('visible');
     img.onload = function() {
-      originalCanvas.style.opacity = 1;
       renderImage(img);
     };
     img.src = URL.createObjectURL(fileInput.files[0]);
@@ -66,6 +66,14 @@ function renderBlurhash() {
     );
     blurhashElement.value = blurhash;
     render();
+}
+
+function renderSelectedImage() {
+    console.log("renderSelectedImage")
+    const firstPredefinedImage = document.querySelector(".predefined input:checked + img");
+    originalCanvas.classList.remove('visible');
+    fileInput.value = "";
+    renderImage(firstPredefinedImage);
 
 }
 
@@ -74,11 +82,10 @@ blurhashElement.addEventListener('keyup', render);
 fileInput.addEventListener('change', renderSelectedFile);
 componentXElement.addEventListener('keyup', renderBlurhash);
 componentYElement.addEventListener('keyup', renderBlurhash);
-predefined.addEventListener('change', e => {
-  const image = e.target.parentElement.lastElementChild;
-  renderImage(image);
-});
+predefined.addEventListener('change', renderSelectedImage);
+originalCanvas.addEventListener('click', renderSelectedImage);
+
 
 export default function() {
-  render();
+    renderFirstImage();
 }

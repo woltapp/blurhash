@@ -309,6 +309,7 @@ h2 {
       position: relative;
       width: 45%;
       margin-bottom: 5%;
+      cursor: pointer;
 
       input {
         position: absolute;
@@ -331,6 +332,13 @@ h2 {
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.2s ease-in-out; 
+      background: #eee;
+
+      &.visible {
+        pointer-events: unset;
+        opacity: 1;
+        cursor: pointer;
+      }
     }
   }
 
