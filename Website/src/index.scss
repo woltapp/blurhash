@@ -28,6 +28,11 @@ h2 {
   font-weight: 400;
   font-size: 60px;
   line-height: 70px;
+
+  @media screen and (max-width: 600px) {
+    font-size: 40px;
+    line-height: 50px;
+  }
 }
 
 .button {
@@ -84,14 +89,17 @@ h2 {
     font-size: 6.6rem;
     margin: 0;
     margin-bottom: 2rem;
+
+    @media screen and (max-width: 600px) {
+      font-size: 4rem;
+    }
   }
 
   .description {
-    margin: 0;
+    margin: 0 2rem 3.5rem;
     font-size: 1.5rem;
-    width: 700px;
+    max-width: 700px;
     text-align: center;
-    margin-bottom: 3.5rem;
   }
 
 
@@ -164,27 +172,28 @@ h2 {
 
 .why-blurhash {
   position: relative;
-  padding-left: 30vw;
   padding-top: 24px;
   padding-bottom: 50px;
-  min-height: 800px;
   display: flex;
 
-  &:after {
-    content: '';
-    height: 731px;
-    width: 365px;
-    position: absolute;
-    top: 75px;
-    right: 60%;
+  @media screen and (min-width: 600px) {
+    padding-left: 30vw;
+    min-height: 800px;
 
-    background-image: url(../assets/images/iPhone-X-Silver.png);
+    &:after {
+      content: '';
+      height: 731px;
+      width: 365px;
+      position: absolute;
+      top: 75px;
+      right: 60%;
+  
+      background-image: url(../assets/images/iPhone-X-Silver.png);
+    }      
   }
 
   .content {
     background: rgba(229, 238, 255, 0.37);
-    padding-left: 20vw;
-    padding-right: 20vw;
     height: 100%;
     flex: 1;
     display: flex;
@@ -194,6 +203,11 @@ h2 {
 
     font-size: 16px;
     line-height: 22px;
+    padding: 0 24px 24px;
+
+    @media screen and (min-width: 600px) {
+      padding: 0 20vw 50px;;
+    }
   }
 
   h3 {
@@ -212,6 +226,11 @@ h2 {
     letter-spacing: -0.5px;
     max-width: 870px;
     margin: 0 auto;
+
+    @media screen and (max-width: 600px) {
+      font-size: 20px;
+      padding: 0 24px;
+    }
   }
 }
 
@@ -221,6 +240,11 @@ h2 {
   padding: 100px 0 130px;
   display: flex;
   justify-content: stretch;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    padding: 24px;
+  }
 
   .part {
     position: relative;
@@ -238,6 +262,10 @@ h2 {
       }
     }
 
+    @media screen and (max-width: 600px) {
+      margin: 24px 0;
+    }
+
     &:after {
       content: '';
       background: url("../assets/images/arrow.svg");
@@ -246,6 +274,15 @@ h2 {
       position: absolute;
       top: -32px;
       right: -63px;
+
+      @media screen and (max-width: 600px) {
+        top: unset;
+        right: unset;
+        bottom: -45px;
+        left: calc(50% - 32px);
+        transform: rotate(90deg);
+        z-index: 1;
+      }
     }
   }
 
@@ -357,7 +394,7 @@ h2 {
   #demo-canvas {
     height: 200px;
     width: 100%;
-    background: hotpink;
+    background: #ddd;
   }
 }
 
@@ -384,6 +421,10 @@ h2 {
     font-size: 24px;
     line-height: 32px;
     padding: 0 20%;
+
+    @media screen and (max-width: 600px) {
+      padding: 0 24px;
+    }
   }
 
   .white-button {
