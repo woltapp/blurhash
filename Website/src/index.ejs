@@ -73,6 +73,59 @@
         string is short enough that it comfortably fits into whatever data format you use. For
         instance, it can easily be added as a field in a JSON object.
       </p>
+      <div class="demo">
+        <div class="part">
+          <div class="predefined">
+            <label>
+              <input type="radio" value="1" name="predefined" />
+              <img src="../assets/images/img1.jpg" />
+            </label>
+            <label>
+              <input type="radio" value="2" name="predefined" />
+              <img src="../assets/images/img2.jpg" />
+            </label>
+            <label>
+              <input type="radio" value="3" name="predefined" />
+              <img src="../assets/images/img3.jpg" />
+            </label>
+            <label>
+              <input type="radio" value="4" name="predefined" />
+              <img src="../assets/images/img4.jpg" />
+            </label>
+            <canvas id="original-canvas"></canvas>
+          </div>
+          <p class="explain">
+            Pick image or upload your own
+          </p>
+          <label for="file-upload" class="button">
+            Upload
+          </label>
+          <input id="file-upload" type="file" accept="image/*" />
+          <div class="dimension">
+            Components
+            <div>
+              <input id="component-x" type="text" value="3" />
+              x
+              <input id="component-y" type="text" value="4" />
+            </div>
+          </div>
+        </div>
+        <div class="part">
+          <div class="demo-blurhash">
+            <input type="text" id="demo-blurhash" value="" />
+            <span id="demo-blurhash-output" />
+          </div>
+          <p class="explain">
+            BlurHash string
+          </p>
+        </div>
+        <div class="part">
+          <canvas id="demo-canvas" width="32" height="32"></canvas>
+          <p class="explain">
+            Result
+          </p>
+        </div>
+      </div>
     </div>
     <div class="section get-started">
       <h2>Get started</h2>

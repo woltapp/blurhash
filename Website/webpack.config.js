@@ -22,6 +22,7 @@ module.exports = {
   resolve: {
     modules: [dirNode, dirApp, dirAssets],
   },
+  devtool: IS_DEV ? '#cheap-module-source-map' : '#source-map',
   plugins: [
     new ExtractTextPlugin({
       filename: '[name].[hash].css',
