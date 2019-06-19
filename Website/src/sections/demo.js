@@ -7,6 +7,7 @@ const originalCanvas = document.getElementById('original-canvas');
 const fileInput = document.getElementById('file-upload');
 const componentXElement = document.getElementById('component-x');
 const componentYElement = document.getElementById('component-y');
+const predefined = document.querySelector('.predefined');
 
 function render() {
   const blurhash = blurhashElement.value;
@@ -26,43 +27,57 @@ function render() {
 }
 
 function clamp(n) {
-  return Math.min(9, Math.max(1, n));
+  return isNaN(n) ? 1 : Math.min(9, Math.max(1, n));
 }
 
-function doEncode() {
+function renderSelectedFile() {
   const file = fileInput.files[0];
-  const componentX = clamp(+componentXElement.value);
-  const componentY = clamp(+componentYElement.value);
   if (file) {
-    const ctx = originalCanvas.getContext('2d');
     var img = new Image();
     img.onload = function() {
-      ctx.drawImage(img, 0, 0, originalCanvas.width, originalCanvas.height);
       originalCanvas.style.opacity = 1;
-      URL.revokeObjectURL(img.src);
-
-      setTimeout(() => {
-        const imageData = ctx.getImageData(0, 0, originalCanvas.width, originalCanvas.height);
-        const blurhash = encode(
-          imageData.data,
-          imageData.width,
-          imageData.height,
-          componentX,
-          componentY,
-        );
-        blurhashElement.value = blurhash;
-        render();
-      }, 0);
+      renderImage(img);
     };
     img.src = URL.createObjectURL(fileInput.files[0]);
   }
 }
 
+function renderImage(img) {
+  const ctx = originalCanvas.getContext('2d');
+
+  ctx.drawImage(img, 0, 0, originalCanvas.width, originalCanvas.height);
+  URL.revokeObjectURL(img.src);
+
+  setTimeout(renderBlurhash, 0);
+}
+
+function renderBlurhash() {
+    const ctx = originalCanvas.getContext('2d');
+    const componentX = clamp(+componentXElement.value);
+    const componentY = clamp(+componentYElement.value);
+  
+    const imageData = ctx.getImageData(0, 0, originalCanvas.width, originalCanvas.height);
+    const blurhash = encode(
+      imageData.data,
+      imageData.width,
+      imageData.height,
+      componentX,
+      componentY,
+    );
+    blurhashElement.value = blurhash;
+    render();
+
+}
+
 blurhashElement.addEventListener('change', render);
 blurhashElement.addEventListener('keyup', render);
-fileInput.addEventListener('change', doEncode);
-componentXElement.addEventListener('keyup', doEncode);
-componentYElement.addEventListener('keyup', doEncode);
+fileInput.addEventListener('change', renderSelectedFile);
+componentXElement.addEventListener('keyup', renderBlurhash);
+componentYElement.addEventListener('keyup', renderBlurhash);
+predefined.addEventListener('change', e => {
+  const image = e.target.parentElement.lastElementChild;
+  renderImage(image);
+});
 
 export default function() {
   render();
