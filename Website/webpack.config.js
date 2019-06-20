@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // Is the current build a development build
 const env = process.env.NODE_ENV;
@@ -24,7 +24,7 @@ module.exports = {
   },
   devtool: IS_DEV ? '#cheap-module-source-map' : '#source-map',
   plugins: [
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
     }),
     new webpack.DefinePlugin({
@@ -49,48 +49,25 @@ module.exports = {
       },
 
       // CSS / SASS
-      IS_DEV
-        ? {
-            test: /\.scss/,
-            use: [
-              'style-loader',
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: IS_DEV,
-                },
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  sourceMap: IS_DEV,
-                  includePaths: [dirAssets],
-                },
-              },
-            ],
-          }
-        : {
-            test: /\.scss/,
-            loader: ExtractTextPlugin.extract({
-              fallback: 'style-loader',
-              use: [
-                {
-                  loader: 'css-loader',
-                  options: {
-                    sourceMap: IS_DEV,
-                  },
-                },
-                {
-                  loader: 'sass-loader',
-                  options: {
-                    sourceMap: IS_DEV,
-                    includePaths: [dirAssets],
-                  },
-                },
-              ],
-            }),
+      {
+        test: /\.scss/,
+        use: [
+          IS_DEV && MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: IS_DEV,
+            },
           },
-
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: IS_DEV,
+              includePaths: [dirAssets],
+            },
+          },
+        ],
+      },
       // IMAGES
       {
         test: /\.(jpe?g|png|gif|svg)$/,
