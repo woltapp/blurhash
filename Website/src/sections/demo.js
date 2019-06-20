@@ -52,29 +52,28 @@ function renderImage(img) {
 }
 
 function renderBlurhash() {
-    const ctx = originalCanvas.getContext('2d');
-    const componentX = clamp(+componentXElement.value);
-    const componentY = clamp(+componentYElement.value);
-  
-    const imageData = ctx.getImageData(0, 0, originalCanvas.width, originalCanvas.height);
-    const blurhash = encode(
-      imageData.data,
-      imageData.width,
-      imageData.height,
-      componentX,
-      componentY,
-    );
-    blurhashElement.value = blurhash;
-    render();
+  const ctx = originalCanvas.getContext('2d');
+  const componentX = clamp(+componentXElement.value);
+  const componentY = clamp(+componentYElement.value);
+
+  const imageData = ctx.getImageData(0, 0, originalCanvas.width, originalCanvas.height);
+  const blurhash = encode(
+    imageData.data,
+    imageData.width,
+    imageData.height,
+    componentX,
+    componentY,
+  );
+  blurhashElement.value = blurhash;
+  render();
 }
 
 function renderSelectedImage() {
-    console.log("renderSelectedImage")
-    const firstPredefinedImage = document.querySelector(".predefined input:checked + img");
-    originalCanvas.classList.remove('visible');
-    fileInput.value = "";
-    renderImage(firstPredefinedImage);
-
+  console.log('renderSelectedImage');
+  const firstPredefinedImage = document.querySelector('.predefined input:checked + img');
+  originalCanvas.classList.remove('visible');
+  fileInput.value = '';
+  renderImage(firstPredefinedImage);
 }
 
 blurhashElement.addEventListener('change', render);
@@ -85,7 +84,6 @@ componentYElement.addEventListener('keyup', renderBlurhash);
 predefined.addEventListener('change', renderSelectedImage);
 originalCanvas.addEventListener('click', renderSelectedImage);
 
-
 export default function() {
-    renderFirstImage();
+  renderSelectedImage();
 }
