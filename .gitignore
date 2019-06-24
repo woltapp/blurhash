@@ -19,6 +19,3 @@ Python/build/
 *.so
 *.o
 *.pyc
-
-# Typescript
-TypeScript/node_modules/
