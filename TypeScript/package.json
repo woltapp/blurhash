@@ -6,7 +6,7 @@
   "types": "dist/index.t.js",
   "scripts": {
     "build": "tsc",
-    "demo": "webpack-dev-server"
+    "demo": "webpack-dev-server --mode development"
   },
   "keywords": [
     "blurhash"
@@ -14,9 +14,10 @@
   "author": "omahlama",
   "license": "MIT",
   "devDependencies": {
-    "ts-loader": "3.2.0",
-    "typescript": "2.6.2",
-    "webpack": "3.10.0",
-    "webpack-dev-server": "2.9.7"
+    "ts-loader": "6.0.4",
+    "typescript": "3.5.2",
+    "webpack": "4.35.0",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "3.7.2"
   }
 }
