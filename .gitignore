@@ -21,4 +21,4 @@ Python/build/
 *.pyc
 
 # Typescript
-typescript/node_modules/
+TypeScript/node_modules/
