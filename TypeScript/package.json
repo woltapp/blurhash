@@ -5,8 +5,10 @@
   "main": "dist/index.js",
   "types": "dist/index.t.js",
   "scripts": {
-    "build": "tsc",
-    "demo": "webpack-dev-server --mode development"
+    "build": "npm run ts",
+    "demo": "webpack-dev-server --mode development",
+    "ts": "tsc",
+    "ts:watch": "npm run ts -- --noEmit --watch"
   },
   "keywords": [
     "blurhash"
