@@ -1,13 +1,12 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es5",
-        "declaration": true,
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "noImplicitAny": true,
-    },
-    "include": [
-        "src/index.ts"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es5"],
+    "declaration": true,
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true
+  },
+  "include": ["src/index.ts"]
 }
