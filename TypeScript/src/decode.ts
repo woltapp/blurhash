@@ -1,5 +1,5 @@
-import { decode83 } from './base83';
-import { sRGBToLinear, signPow, linearTosRGB } from './utils';
+import { decode83 } from "./base83";
+import { sRGBToLinear, signPow, linearTosRGB } from "./utils";
 
 const decodeDC = (value: number) => {
   const intR = value >> 16;
@@ -16,17 +16,22 @@ const decodeAC = (value: number, maximumValue: number) => {
   const rgb = [
     signPow((quantR - 9) / 9, 2.0) * maximumValue,
     signPow((quantG - 9) / 9, 2.0) * maximumValue,
-    signPow((quantB - 9) / 9, 2.0) * maximumValue,
+    signPow((quantB - 9) / 9, 2.0) * maximumValue
   ];
 
   return rgb;
 };
 
-const decode = (blurhash: string, width: number, height: number, punch?: number) => {
+const decode = (
+  blurhash: string,
+  width: number,
+  height: number,
+  punch?: number
+) => {
   punch = punch | 1;
 
   if (blurhash.length < 6) {
-    console.error('too short blurhash');
+    console.error("too short blurhash");
     return null;
   }
 
@@ -38,7 +43,11 @@ const decode = (blurhash: string, width: number, height: number, punch?: number)
   const maximumValue = (quantisedMaximumValue + 1) / 166;
 
   if (blurhash.length !== 4 + 2 * numX * numY) {
-    console.error('blurhash length mismatch', blurhash.length, 4 + 2 * numX * numY);
+    console.error(
+      "blurhash length mismatch",
+      blurhash.length,
+      4 + 2 * numX * numY
+    );
     return null;
   }
 
@@ -64,7 +73,9 @@ const decode = (blurhash: string, width: number, height: number, punch?: number)
 
       for (let j = 0; j < numY; j++) {
         for (let i = 0; i < numX; i++) {
-          const basis = Math.cos(Math.PI * x * i / width) * Math.cos(Math.PI * y * j / height);
+          const basis =
+            Math.cos((Math.PI * x * i) / width) *
+            Math.cos((Math.PI * y * j) / height);
           let color = colors[i + j * numX];
           r += color[0] * basis;
           g += color[1] * basis;
