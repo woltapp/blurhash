@@ -99,6 +99,13 @@ and larger values will make it stronger. This is basically a design parameter, w
 
 Technically, what it does is scale the AC components up or down.
 
+### Is this only useful as an image loading placeholder?
+
+Well, that is what it was designed for originally, but it turns out to be useful for a few other things:
+
+* Masking images without having to use expensive blurs - [Mastodon](http://github.com/tootsuite/mastodon) uses it for this.
+* The data representation makes it quite easy to extract colour averages of the image for different areas. You can easily find approximations of things like the average colour of the top edge of the image, or of a corner. There is some code in the Swift BlurHashKit implementation to experiment with this. Also, the average colour of the entire image is just the DC component and can be decoded even without implementing any of the more complicated DCT stuff.
+
 ### Why base 83?
 
 First, 83 seems to be about how many low-ASCII characters you can find that are safe for use in all of JSON, HTML and shells.
