@@ -1,6 +1,10 @@
 import { imageHashes } from '../constants';
 import decode from '../../../TypeScript/dist/decode';
 import Velocity from 'velocity-animate';
+import smoothscroll from 'smoothscroll-polyfill';
+
+// kick off the polyfill!
+smoothscroll.polyfill();
 
 function hero() {
   const images = document.getElementsByClassName('image-bg');
@@ -86,6 +90,10 @@ function hero() {
     imageContainer[0].style.transform = translateY(transform);
     imageContainer[0].style.webkitTransform = translateY(transform);
   }
+
+  document.getElementById("get-started").addEventListener('click', () => {
+    document.querySelector(".why-blurhash").scrollIntoView({ behavior: 'smooth' });
+  })
 }
 
 export default hero;

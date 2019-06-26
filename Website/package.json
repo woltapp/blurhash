@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "clean": "rm -rf dist/*"
   },
   "author": "serushakov",
   "license": "ISC",
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.4.5",
+    "smoothscroll-polyfill": "0.4.4",
     "velocity-animate": "1.5.2"
   }
 }
