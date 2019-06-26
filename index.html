@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no"
+    />
+    <title>BlurHash</title>
+  <link href="blurhash.9ff0be442c083ccf656c.css" rel="stylesheet"></head>
+  <body id="fullpage">
+    <div class="hero section">
+      <div class="imagesContainer">
+        <div class="img1">
+          <canvas width="32" height="32" class="image-canvas-bg"></canvas>
+          <img src="assets/images/img1.jpg" class="image-bg" />
+        </div>
+        <div class="img2">
+          <canvas width="32" height="32" class="image-canvas-bg"></canvas>
+          <img src="assets/images/img2.jpg" class="image-bg" />
+        </div>
+        <div class="img3">
+          <canvas width="32" height="32" class="image-canvas-bg"></canvas>
+          <img src="assets/images/img3.jpg" class="image-bg" />
+        </div>
+        <div class="img4">
+          <canvas width="32" height="32" class="image-canvas-bg"></canvas>
+          <img src="assets/images/img4.jpg" class="image-bg" />
+        </div>
+        <div class="img5">
+          <canvas width="32" height="32" class="image-canvas-bg"></canvas>
+          <img src="assets/images/img5.jpg" class="image-bg" />
+        </div>
+      </div>
+      <header class="header">
+        <img class="logo" src="assets/svg/wolt-logo.svg" />
+      </header>
+      <div class="content">
+        <h1 class="title">
+          BlurHash
+        </h1>
+        <p class="description">
+          BlurHash is a compact representation of a placeholder for an image.
+        </p>
+        <button class="button" id="get-started">
+          Get started
+        </button>
+        <a class="link" href="#">
+          More on our blog
+        </a>
+      </div>
+    </div>
+    <div class="section why-blurhash">
+      <div class="content">
+        <h2>Why BlurHash?</h2>
+        <h3>Why would you want this?</h3>
+        <p>
+          Does your designer cry every time you load their beautifully designed screen, and it is
+          full of empty boxes because all the images have not loaded yet? Does your database
+          engineer cry when you want to solve this by trying to cram little thumbnail images into
+          your data to show as placeholders?
+        </p>
+        <h3>BlurHash to the rescue</h3>
+        <p>
+            Replace boring grey boxes with beautiful blurhash states and the designers will be happy.
+            Blurhash strings are short enough to be added as a field in a JSON object and to be stored
+            in a database. The implementations are small and easy to port to new languages, and the end
+            result is a smooth and interesting experience for your users.
+        </p>
+      </div>
+    </div>
+    <div class="section how-it-works">
+      <h2>How does it work?</h2>
+      <p>
+        In short, BlurHash takes an image, and gives you a short string (only 20-30 characters!)
+        that represents the placeholder for this image. You do this on the backend of your service,
+        and store the string along with the image. When you send data to your client, you send both
+        the URL to the image, and the BlurHash string. Your client then takes the string, and
+        decodes it into an image that it shows while the real image is loading over the network. The
+        string is short enough that it comfortably fits into whatever data format you use. For
+        instance, it can easily be added as a field in a JSON object.
+      </p>
+      <div class="demo">
+        <div class="part">
+          <div class="predefined">
+            <label>
+              <input type="radio" value="0" name="predefined" checked />
+              <img src="assets/images/img1.jpg" />
+            </label>
+            <label>
+              <input type="radio" value="1" name="predefined" />
+              <img src="assets/images/img2.jpg" />
+            </label>
+            <label>
+              <input type="radio" value="2" name="predefined" />
+              <img src="assets/images/img3.jpg" />
+            </label>
+            <label>
+              <input type="radio" value="3" name="predefined" />
+              <img src="assets/images/img4.jpg" />
+            </label>
+            <canvas id="original-canvas"></canvas>
+          </div>
+          <p class="explain">
+            Pick image or upload your own
+          </p>
+          <label for="file-upload" class="button">
+            Upload
+          </label>
+          <input id="file-upload" type="file" accept="image/*" />
+          <div class="dimension">
+            Components
+            <div>
+              <input id="component-x" type="text" value="4" />
+              x
+              <input id="component-y" type="text" value="3" />
+            </div>
+          </div>
+        </div>
+        <div class="part">
+          <div class="demo-blurhash">
+            <input type="text" id="demo-blurhash" value="" />
+            <span id="demo-blurhash-output" ></span>
+          </div>
+          <p class="explain">
+            BlurHash string
+          </p>
+          <p class="explain-small">
+            The blurhash algorithm encodes your image into the short string above, ready to save in a database
+          </p>
+        </div>
+        <div class="part">
+          <canvas id="demo-canvas" width="32" height="32"></canvas>
+          <p class="explain">
+            Result
+          </p>
+          <p class="explain-small">
+              The blurhash string is decoded into a small image that is rendered on to a canvas.
+            </p>
+          </div>
+      </div>
+    </div>
+    <div class="section get-started">
+      <h2>Get started</h2>
+      <p>
+        The same exported data can be used on all platforms. Get the BlurHash library for your
+        platform of choice.
+      </p>
+      <a class="white-button" href="https://github.com/woltapp/blurhash">
+        More on github
+      </a>
+    </div>
+  <script type="text/javascript" src="blurhash.9ff0be442c083ccf656c.js"></script></body>
+</html>
