@@ -41,6 +41,7 @@ So far, we have created these implementations:
 * [Kotlin](Kotlin) - A decoder implementation for Android.
 * [TypeScript](TypeScript) - Encoder and decoder implementations, and an example page to test.
 * [Python](https://github.com/creditornot/blurhash-python) - Integration of the C encoder code into Python.
+* [Pure Python](https://github.com/halcy/blurhash-python) - Implementation of both the encoder and decoder in pure Python.
 
 These cover our use cases, but could probably use polishing, extending and improving. Perhaps you'd like to help?
 Which brings us to...
@@ -130,6 +131,7 @@ to see what you can come up with!
 * [Hang Duy Khiem](https://github.com/hangduykhiem) - Android demo app
 * [Olli Mahlamäki](https://github.com/omahlama) - TypeScript decoder and encoder implemenations
 * [Atte Lautanala](https://github.com/lautat) - Python integration
+* [Lorenz Diener](https://github.com/halcy) - Pure Python implementation
 * _Your name here?_
 
 ## License
