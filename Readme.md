@@ -105,6 +105,7 @@ Well, that is what it was designed for originally, but it turns out to be useful
 
 * Masking images without having to use expensive blurs - [Mastodon](http://github.com/tootsuite/mastodon) uses it for this.
 * The data representation makes it quite easy to extract colour averages of the image for different areas. You can easily find approximations of things like the average colour of the top edge of the image, or of a corner. There is some code in the Swift BlurHashKit implementation to experiment with this. Also, the average colour of the entire image is just the DC component and can be decoded even without implementing any of the more complicated DCT stuff.
+* We have been meaning to try to implement tinted drop shadows for UI elements by using the BlurHash and extending the borders. Haven't actually had time to implement this yet though.
 
 ### Why base 83?
 
