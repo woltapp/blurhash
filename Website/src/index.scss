@@ -343,8 +343,10 @@ h2 {
     label {
       position: relative;
       width: 45%;
+      height: 90px;
       margin-bottom: 5%;
       cursor: pointer;
+      background-size: cover;
 
       input {
         position: absolute;
@@ -352,9 +354,21 @@ h2 {
         left: 16px;
       }
 
-      img {
-        width: 100%;
-        height: 90px;
+      &:nth-of-type(1) {
+        background-image: url(../assets/images/img1.jpg);
+      }
+      &:nth-of-type(2) {
+        background-image: url(../assets/images/img2.jpg);
+      }
+      &:nth-of-type(3) {
+        background-image: url(../assets/images/img3.jpg);
+      }
+      &:nth-of-type(4) {
+        background-image: url(../assets/images/img4.jpg);
+      }
+
+      > img {
+        display: none;
       }
     }
 
