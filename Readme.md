@@ -12,7 +12,9 @@ BlurHash will solve your problems! How? Like this:
 
 <img src="Media/WhyBlurHash.jpg" width="600">
 
-## How does it work
+You can also see nice examples and try it out yourself at [blurhash.tech](http://blurhash.tech/)!
+
+## How does it work?
 
 In short, BlurHash takes an image, and gives you a short string (only 20-30 characters!) that represents the placeholder for this
 image. You do this on the backend of your service, and store the string along with the image. When you send data to your
@@ -42,6 +44,13 @@ So far, we have created these implementations:
 
 These cover our use cases, but could probably use polishing, extending and improving. Perhaps you'd like to help?
 Which brings us to...
+
+## Users
+
+Who uses BlurHash? Here are some projects we know about:
+
+* [Wolt](http://wolt.com/) - We are of course using it ourselves. BlurHashes are used in the mobile clients on iOS and Android, as well as on the web, as placeholders during image loading.
+* [Mastodon](https://github.com/tootsuite/mastodon) - The Mastodon decentralised social media network uses BlurHashes both as loading placeholders, as well as for hiding media marked as sensitive.
 
 ## Contributing
 
