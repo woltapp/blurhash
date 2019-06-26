@@ -109,6 +109,7 @@ h2 {
     &::after {
       position: absolute;
       bottom: 0;
+      left: 0;
       width: 100%;
       content: '';
       border: 1px solid $dark-grey;
@@ -265,9 +266,9 @@ h2 {
 }
 
 .demo {
-  max-width: 1180px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 0 130px;
+  padding: 100px 10px 130px;
   display: flex;
   justify-content: stretch;
 
@@ -347,8 +348,8 @@ h2 {
 
       input {
         position: absolute;
-        top: 10;
-        left: 10;
+        top: 16px;
+        left: 16px;
       }
 
       img {
