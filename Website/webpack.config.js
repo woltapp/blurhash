@@ -16,11 +16,13 @@ const dirAssets = path.join(__dirname, 'assets');
  */
 module.exports = {
   entry: {
-    vendor: ['lodash'],
-    bundle: path.join(dirApp, 'index'),
+    blurhash: path.join(dirApp, 'index'),
   },
   resolve: {
     modules: [dirNode, dirApp, dirAssets],
+  },
+  output: {
+    filename: '[name].[hash].js',
   },
   devtool: IS_DEV ? '#cheap-module-source-map' : '#source-map',
   plugins: [
