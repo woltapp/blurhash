@@ -12,7 +12,7 @@ BlurHash will solve your problems! How? Like this:
 
 <img src="Media/WhyBlurHash.png" width="600">
 
-You can also see nice examples and try it out yourself at [blurhash.tech](http://blurhash.tech/)!
+You can also see nice examples and try it out yourself at [blurhash.com](http://blurhash.com/)!
 
 ## How does it work?
 
