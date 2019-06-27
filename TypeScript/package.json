@@ -4,6 +4,11 @@
   "description": "Decoder for the Wolt BlurHash alrgorithm.",
   "main": "dist/index.js",
   "types": "dist/index.t.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/woltapp/blurhash/TypeScript"
+  },
+  "homepage": "http://blurhash.com",
   "scripts": {
     "build": "npm run ts",
     "demo": "webpack-dev-server --mode development",
@@ -13,7 +18,10 @@
     "ts:watch": "npm run ts -- --noEmit --watch"
   },
   "keywords": [
-    "blurhash"
+    "blurhash",
+    "blur",
+    "hash",
+    "image"
   ],
   "author": "omahlama",
   "license": "MIT",
