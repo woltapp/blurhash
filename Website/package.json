@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "clean": "rm -rf dist/*"
+    "clean": "rm -rf dist/*",
+    "deploy": "npm run clean && npm run build && ./deploy.sh"
   },
   "author": "serushakov",
   "license": "ISC",
