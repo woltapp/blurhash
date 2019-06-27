@@ -137,7 +137,7 @@ to see what you can come up with!
 * [Dag Ågren](https://github.com/DagAgren) - Original algorithm design, Swift and C implementations
 * [Mykhailo Shchurov](https://github.com/shchurov) - Kotlin decoder implementation
 * [Hang Duy Khiem](https://github.com/hangduykhiem) - Android demo app
-* [Olli Mahlamäki](https://github.com/omahlama) - TypeScript decoder and encoder implemenations
+* [Olli Mahlamäki](https://github.com/omahlama) - TypeScript decoder and encoder implementations
 * [Atte Lautanala](https://github.com/lautat) - Python integration
 * [Lorenz Diener](https://github.com/halcy) - Pure Python implementation
 * _Your name here?_
