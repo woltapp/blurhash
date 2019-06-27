@@ -1,0 +1,773 @@
+@import url(//hello.myfonts.net/count/346526);
+@charset "UTF-8";
+/* ----------------------------------------------------------------------------------------------------
+
+Super Form Reset
+
+A couple of things to watch out for:
+
+- IE8: If a text input doesn't have padding on all sides or none the text won't be centered.
+- The default border sizes on text inputs in all UAs seem to be slightly different. You're better off using custom borders.
+- You NEED to set the font-size and family on all form elements
+- Search inputs need to have their appearance reset and the box-sizing set to content-box to match other UAs
+- You can style the upload button in webkit using ::-webkit-file-upload-button
+- ::-webkit-file-upload-button selectors can't be used in the same selector as normal ones. FF and IE freak out.
+- IE: You don't need to fake inline-block with labels and form controls in IE. They function as inline-block.
+- By turning off ::-webkit-search-decoration, it removes the extra whitespace on the left on search inputs
+
+----------------------------------------------------------------------------------------------------*/
+input,
+label,
+select,
+button,
+textarea {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  background: none;
+  line-height: 1;
+  /* Browsers have different default form fonts */
+  font-size: 13px;
+  font-family: Arial; }
+
+/* Remove the stupid outer glow in Webkit */
+input:focus {
+  outline: 0; }
+
+/* Box Sizing Reset
+-----------------------------------------------*/
+/* All of our custom controls should be what we expect them to be */
+input,
+textarea {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box; }
+
+/* These elements are usually rendered a certain way by the browser */
+button,
+input[type='reset'],
+input[type='button'],
+input[type='submit'],
+input[type='checkbox'],
+input[type='radio'],
+select {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/* Text Inputs
+-----------------------------------------------*/
+/* Button Controls
+-----------------------------------------------*/
+input[type='checkbox'],
+input[type='radio'] {
+  width: 13px;
+  height: 13px; }
+
+/* File Uploads
+-----------------------------------------------*/
+/* Search Input
+-----------------------------------------------*/
+/* Make webkit render the search input like a normal text field */
+input[type='search'] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box; }
+
+/* Turn off the recent search for webkit. It adds about 15px padding on the left */
+::-webkit-search-decoration {
+  display: none; }
+
+/* Buttons
+-----------------------------------------------*/
+button,
+input[type='reset'],
+input[type='button'],
+input[type='submit'] {
+  /* Fix IE7 display bug */
+  overflow: visible;
+  width: auto; }
+
+/* IE8 and FF freak out if this rule is within another selector */
+::-webkit-file-upload-button {
+  padding: 0;
+  border: 0;
+  background: none; }
+
+/* Textarea
+-----------------------------------------------*/
+textarea {
+  /* Move the label to the top */
+  vertical-align: top;
+  /* Turn off scroll bars in IE unless needed */
+  overflow: auto; }
+
+/* Selects
+-----------------------------------------------*/
+select[multiple] {
+  /* Move the label to the top */
+  vertical-align: top; }
+
+/* selected Foundation resets */
+/* copied from node_modules/foundation-sites/scss/_global.scss */
+html {
+  box-sizing: border-box; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; }
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+img {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+  -ms-interpolation-mode: bicubic; }
+
+html {
+  height: 100%; }
+  html {
+    font-size: 0.8rem; }
+    @media screen and (min-width: 20rem) {
+      html {
+        font-size: calc( 0.8rem + 0.2 * (100vw - 20rem) / 80); } }
+    @media screen and (min-width: 100rem) {
+      html {
+        font-size: 1rem; } }
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  min-width: 320px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-tap-highlight-color: transparent; }
+
+strong,
+label,
+input,
+textarea,
+input,
+button {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; }
+
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder,
+input:-moz-placeholder {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  color: #acacac; }
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+li,
+strong,
+label,
+input,
+textarea {
+  color: #202125;
+  line-height: 1.4;
+  text-rendering: optimizeLegibility; }
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700; }
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700; }
+
+h3 {
+  font-size: 1.6rem;
+  font-weight: 700; }
+
+h4 {
+  font-size: 1.4rem;
+  font-weight: 700; }
+
+h5 {
+  font-size: 1.2rem;
+  font-weight: 700; }
+
+h6 {
+  font-size: 1rem;
+  font-weight: 700; }
+
+body > svg {
+  display: none; }
+
+p,
+label,
+textarea,
+input,
+label,
+select,
+button,
+textarea {
+  font-size: 1rem; }
+
+/**
+ * @license
+ * MyFonts Webfont Build ID 3433766, 2017-08-08T04:46:45-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: AvertaStdPE-Black by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/black-177285/
+ * 
+ * Webfont: AvertaStdPE-BlackItalic by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/black-ital-177285/
+ * 
+ * Webfont: AvertaStdPE-Bold by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/bold-177285/
+ * 
+ * Webfont: AvertaStdPE-Extrabold by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/exbold-177285/
+ * 
+ * Webfont: AvertaStdPE-BoldItalic by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/bold-ital-177285/
+ * 
+ * Webfont: AvertaStdPE-ExtraboldItalic by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/exbold-ital-177285/
+ * 
+ * Webfont: AvertaStdPE-Extrathin by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/pe-exthin/
+ * 
+ * Webfont: AvertaStdPE-ExtrathinItalic by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/exthin-italic-177285/
+ * 
+ * Webfont: AvertaStdPE-Light by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/light-177285/
+ * 
+ * Webfont: AvertaStdPE-LightItalic by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/light-ital-177285/
+ * 
+ * Webfont: AvertaStdPE-Regular by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/regular-177285/
+ * 
+ * Webfont: AvertaStdPE-RegularItalic by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/italic-177285/
+ * 
+ * Webfont: AvertaStdPE-Semibold by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/semibold-177285/
+ * 
+ * Webfont: AvertaStdPE-SemiboldItalic by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/semibold-ital-177285/
+ * 
+ * Webfont: AvertaStdPE-Thin by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/thin-177285/
+ * 
+ * Webfont: AvertaStdPE-ThinItalic by Intelligent Design
+ * URL: https://www.myfonts.com/fonts/intelligent-foundry/averta-standard/thin-italic-177285/
+ * 
+ * 
+ * License: https://www.myfonts.com/viewlicense?type=web&buildid=3433766
+ * Licensed pageviews: 10,000
+ * Webfonts copyright: Copyright (c) 2015 by Kostas Bartsokas. All rights reserved.
+ * 
+ * © 2017 MyFonts Inc
+*/
+/* @import must be at top of file, otherwise CSS will not work */
+@font-face {
+  font-family: 'AvertaStdPE-Black';
+  src: url(fonts/346526_0_0.eot);
+  src: url(fonts/346526_0_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_0_0.woff2) format("woff2"), url(fonts/346526_0_0.woff) format("woff"), url(fonts/346526_0_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-BlackItalic';
+  src: url(fonts/346526_1_0.eot);
+  src: url(fonts/346526_1_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_1_0.woff2) format("woff2"), url(fonts/346526_1_0.woff) format("woff"), url(fonts/346526_1_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-Bold';
+  src: url(fonts/346526_2_0.eot);
+  src: url(fonts/346526_2_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_2_0.woff2) format("woff2"), url(fonts/346526_2_0.woff) format("woff"), url(fonts/346526_2_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-Extrabold';
+  src: url(fonts/346526_3_0.eot);
+  src: url(fonts/346526_3_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_3_0.woff2) format("woff2"), url(fonts/346526_3_0.woff) format("woff"), url(fonts/346526_3_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-BoldItalic';
+  src: url(fonts/346526_4_0.eot);
+  src: url(fonts/346526_4_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_4_0.woff2) format("woff2"), url(fonts/346526_4_0.woff) format("woff"), url(fonts/346526_4_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-ExtraboldItalic';
+  src: url(fonts/346526_5_0.eot);
+  src: url(fonts/346526_5_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_5_0.woff2) format("woff2"), url(fonts/346526_5_0.woff) format("woff"), url(fonts/346526_5_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-Extrathin';
+  src: url(fonts/346526_6_0.eot);
+  src: url(fonts/346526_6_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_6_0.woff2) format("woff2"), url(fonts/346526_6_0.woff) format("woff"), url(fonts/346526_6_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-ExtrathinItalic';
+  src: url(fonts/346526_7_0.eot);
+  src: url(fonts/346526_7_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_7_0.woff2) format("woff2"), url(fonts/346526_7_0.woff) format("woff"), url(fonts/346526_7_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-Light';
+  src: url(fonts/346526_8_0.eot);
+  src: url(fonts/346526_8_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_8_0.woff2) format("woff2"), url(fonts/346526_8_0.woff) format("woff"), url(fonts/346526_8_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-LightItalic';
+  src: url(fonts/346526_9_0.eot);
+  src: url(fonts/346526_9_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_9_0.woff2) format("woff2"), url(fonts/346526_9_0.woff) format("woff"), url(fonts/346526_9_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-Regular';
+  src: url(fonts/346526_A_0.eot);
+  src: url(fonts/346526_A_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_A_0.woff2) format("woff2"), url(fonts/346526_A_0.woff) format("woff"), url(fonts/346526_A_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-RegularItalic';
+  src: url(fonts/346526_B_0.eot);
+  src: url(fonts/346526_B_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_B_0.woff2) format("woff2"), url(fonts/346526_B_0.woff) format("woff"), url(fonts/346526_B_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-Semibold';
+  src: url(fonts/346526_C_0.eot);
+  src: url(fonts/346526_C_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_C_0.woff2) format("woff2"), url(fonts/346526_C_0.woff) format("woff"), url(fonts/346526_C_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-SemiboldItalic';
+  src: url(fonts/346526_D_0.eot);
+  src: url(fonts/346526_D_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_D_0.woff2) format("woff2"), url(fonts/346526_D_0.woff) format("woff"), url(fonts/346526_D_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-Thin';
+  src: url(fonts/346526_E_0.eot);
+  src: url(fonts/346526_E_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_E_0.woff2) format("woff2"), url(fonts/346526_E_0.woff) format("woff"), url(fonts/346526_E_0.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'AvertaStdPE-ThinItalic';
+  src: url(fonts/346526_F_0.eot);
+  src: url(fonts/346526_F_0.eot?#iefix) format("embedded-opentype"), url(fonts/346526_F_0.woff2) format("woff2"), url(fonts/346526_F_0.woff) format("woff"), url(fonts/346526_F_0.ttf) format("truetype"); }
+
+h2 {
+  font-family: Helvetica;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 70px; }
+  @media screen and (max-width: 600px) {
+    h2 {
+      font-size: 40px;
+      line-height: 50px; } }
+
+.button {
+  border-radius: 4px;
+  padding: 1rem;
+  min-width: 10rem;
+  color: #fff;
+  font-weight: 500;
+  background-color: #0019ff; }
+  .button:hover, .button:focus {
+    outline: none;
+    background-color: #3d50ff; }
+  .button:active {
+    background-color: #041ae5; }
+
+.hero {
+  height: 100vh; }
+  .hero .header {
+    height: 70px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .hero .button {
+    margin-bottom: 2.5rem; }
+  .hero .logo {
+    z-index: 1; }
+  .hero .content {
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0; }
+  .hero .title {
+    font-family: AvertaStdPE-Semibold;
+    font-size: 6.6rem;
+    margin: 0;
+    margin-bottom: 2rem; }
+    @media screen and (max-width: 600px) {
+      .hero .title {
+        font-size: 4rem; } }
+  .hero .description {
+    margin: 0 2rem 3.5rem;
+    font-size: 1.5rem;
+    max-width: 700px;
+    text-align: center; }
+  .hero .link {
+    position: relative;
+    font-weight: 500;
+    text-decoration: none;
+    line-height: 1.8; }
+    .hero .link::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      content: '';
+      border: 1px solid #202125;
+      border-bottom: 0; }
+  .hero .title,
+  .hero .description,
+  .hero .link {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)); }
+  .hero .imagesContainer {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    will-change: transform; }
+  .hero .img1 {
+    position: absolute;
+    top: 7.16146%;
+    left: 63.81944%; }
+    .hero .img1 > .image-canvas-bg {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      width: 100%;
+      height: 100%; }
+    .hero .img1 > .image-bg {
+      will-change: opacity;
+      opacity: 1; }
+  .hero .img2 {
+    position: absolute;
+    top: 22.00521%;
+    left: 15%; }
+    .hero .img2 > .image-canvas-bg {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      width: 100%;
+      height: 100%; }
+    .hero .img2 > .image-bg {
+      will-change: opacity;
+      opacity: 1; }
+  .hero .img3 {
+    position: absolute;
+    top: 44.01042%;
+    left: 80.69444%; }
+    .hero .img3 > .image-canvas-bg {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      width: 100%;
+      height: 100%; }
+    .hero .img3 > .image-bg {
+      will-change: opacity;
+      opacity: 1; }
+  .hero .img4 {
+    position: absolute;
+    top: 62.76042%;
+    left: 72.08333%; }
+    .hero .img4 > .image-canvas-bg {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      width: 100%;
+      height: 100%; }
+    .hero .img4 > .image-bg {
+      will-change: opacity;
+      opacity: 1; }
+  .hero .img5 {
+    position: absolute;
+    top: 71.74479%;
+    left: 16.31944%; }
+    .hero .img5 > .image-canvas-bg {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      width: 100%;
+      height: 100%; }
+    .hero .img5 > .image-bg {
+      will-change: opacity;
+      opacity: 1; }
+
+.animateImages {
+  animation: revealBlurhash 5s 2.5s infinite; }
+
+@keyframes revealBlurhash {
+  0% {
+    opacity: 1; }
+  25%,
+  50% {
+    opacity: 0; }
+  75%,
+  100% {
+    opacity: 1; } }
+
+.section {
+  position: relative;
+  background: #fff;
+  display: flex;
+  flex-direction: column; }
+
+@keyframes cross-fade {
+  0% {
+    opacity: 0; }
+  10% {
+    opacity: 1; }
+  50% {
+    opacity: 1; }
+  60% {
+    opacity: 0; } }
+
+.why-blurhash {
+  position: relative;
+  padding-top: 24px;
+  padding-bottom: 50px;
+  padding-left: 10vw;
+  display: flex;
+  min-height: 800px; }
+  .why-blurhash:before, .why-blurhash:after {
+    content: '';
+    height: 731px;
+    width: 365px;
+    position: absolute;
+    top: 75px;
+    right: 75%;
+    background-size: 100% 100%; }
+  .why-blurhash:before {
+    background-image: url(assets/images/Bad_screen@2x.png); }
+  .why-blurhash:after {
+    background-image: url(assets/images/Good_screen@2x.png);
+    opacity: 0;
+    animation: cross-fade 5s infinite; }
+  @media screen and (min-width: 600px) {
+    .why-blurhash {
+      padding-left: 30vw; }
+      .why-blurhash:before, .why-blurhash:after {
+        right: 60%; } }
+  .why-blurhash .content {
+    background: rgba(229, 238, 255, 0.37);
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 22px;
+    padding: 0 24px 24px 20vw; }
+    @media screen and (min-width: 600px) {
+      .why-blurhash .content {
+        padding: 0 20vw 50px; } }
+    .why-blurhash .content p {
+      max-width: 590px; }
+  .why-blurhash h3 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.34px; }
+
+.how-it-works {
+  text-align: center; }
+  .how-it-works p {
+    font-family: Helvetica;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    max-width: 870px;
+    margin: 0 auto; }
+    @media screen and (max-width: 600px) {
+      .how-it-works p {
+        font-size: 20px;
+        padding: 0 24px; } }
+
+.demo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 10px 130px;
+  display: flex;
+  justify-content: stretch; }
+  @media screen and (max-width: 600px) {
+    .demo {
+      flex-direction: column;
+      padding: 24px; } }
+  .demo .part {
+    position: relative;
+    flex: 1;
+    margin: 0 24px; }
+    .demo .part:first-child {
+      margin-left: 0; }
+    .demo .part:last-child {
+      margin-right: 0; }
+      .demo .part:last-child:after {
+        content: unset; }
+    @media screen and (max-width: 600px) {
+      .demo .part {
+        margin: 24px 0; } }
+    .demo .part:after {
+      content: '';
+      background: url(assets/images/arrow.svg);
+      width: 72px;
+      height: 25px;
+      position: absolute;
+      top: -32px;
+      right: -63px; }
+      @media screen and (max-width: 600px) {
+        .demo .part:after {
+          top: unset;
+          right: unset;
+          bottom: -45px;
+          left: calc(50% - 32px);
+          transform: rotate(90deg);
+          z-index: 1; } }
+  .demo .explain {
+    margin: 24px 0;
+    font-size: 18px;
+    text-align: center;
+    line-height: 24px; }
+  .demo .explain-small {
+    font-size: 14px;
+    color: #838383;
+    letter-spacing: -0.15px;
+    text-align: center;
+    line-height: 18px; }
+  .demo .predefined {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 200px; }
+    .demo .predefined label {
+      position: relative;
+      width: 45%;
+      height: 90px;
+      margin-bottom: 5%;
+      cursor: pointer;
+      background-size: cover; }
+      .demo .predefined label input {
+        position: absolute;
+        top: 16px;
+        left: 16px; }
+      .demo .predefined label:nth-of-type(1) {
+        background-image: url(assets/images/img1.jpg); }
+      .demo .predefined label:nth-of-type(2) {
+        background-image: url(assets/images/img2.jpg); }
+      .demo .predefined label:nth-of-type(3) {
+        background-image: url(assets/images/img3.jpg); }
+      .demo .predefined label:nth-of-type(4) {
+        background-image: url(assets/images/img4.jpg); }
+      .demo .predefined label > img {
+        display: none; }
+    .demo .predefined #original-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+      background: #eee; }
+      .demo .predefined #original-canvas.visible {
+        pointer-events: unset;
+        opacity: 1;
+        cursor: pointer; }
+  .demo #file-upload {
+    display: none; }
+  .demo .dimension {
+    margin-top: 24px;
+    font-size: 14px;
+    color: #868789;
+    letter-spacing: -0.15px;
+    text-align: center;
+    line-height: 20px; }
+    .demo .dimension > div {
+      margin-top: 12px; }
+    .demo .dimension input {
+      background: #ffffff;
+      border: 1px solid rgba(32, 33, 37, 0.12);
+      border-radius: 4px;
+      text-align: center;
+      width: 46px;
+      height: 40px; }
+  .demo .demo-blurhash {
+    position: relative;
+    box-shadow: 0 4px 20px rgba(32, 33, 37, 0.2);
+    height: 200px;
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 2px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .demo .demo-blurhash:focus-within {
+      box-shadow: 0 4px 20px rgba(32, 33, 37, 0.4); }
+  .demo #demo-blurhash {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute; }
+  .demo #demo-blurhash-output {
+    color: #0019ff;
+    word-break: break-all; }
+    .demo #demo-blurhash-output.error {
+      color: #ff1900; }
+  .demo #demo-canvas {
+    height: 200px;
+    width: 100%;
+    background: #ddd; }
+
+.get-started {
+  background: url(assets/images/get-started-bg.jpg);
+  max-width: 1180px;
+  height: 556px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; }
+  .get-started h2 {
+    margin: 0; }
+  .get-started h2,
+  .get-started p {
+    color: #fff; }
+  .get-started p {
+    font-size: 24px;
+    line-height: 32px;
+    padding: 0 20%; }
+    @media screen and (max-width: 600px) {
+      .get-started p {
+        padding: 0 24px; } }
+  .get-started .white-button {
+    background: #fff;
+    padding: 1rem 2rem;
+    color: #0019ff;
+    text-decoration: none; }
+
+
+/*# sourceMappingURL=blurhash.e7d6f48eed298348e562.css.map*/
