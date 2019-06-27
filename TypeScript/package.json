@@ -1,22 +1,36 @@
 {
   "name": "blurhash",
   "version": "1.0.0",
-  "description": "Decoder for the Wolt BlurHash alrgorithm.",
+  "description": "Encoder and decoder for the Wolt BlurHash algorithm.",
   "main": "dist/index.js",
   "types": "dist/index.t.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/woltapp/blurhash/TypeScript"
+  },
+  "homepage": "http://blurhash.com",
   "scripts": {
-    "build": "tsc",
-    "demo": "webpack-dev-server"
+    "build": "npm run ts",
+    "demo": "webpack-dev-server --mode development",
+    "prettier": "prettier src/**/*.ts",
+    "prettier-fix": "npm run prettier -- --write",
+    "ts": "tsc",
+    "ts:watch": "npm run ts -- --noEmit --watch"
   },
   "keywords": [
-    "blurhash"
+    "blurhash",
+    "blur",
+    "hash",
+    "image"
   ],
   "author": "omahlama",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "ts-loader": "3.2.0",
-    "typescript": "2.6.2",
-    "webpack": "3.10.0",
-    "webpack-dev-server": "2.9.7"
+    "prettier": "1.18.2",
+    "ts-loader": "6.0.4",
+    "typescript": "3.5.2",
+    "webpack": "4.35.0",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "3.7.2"
   }
 }

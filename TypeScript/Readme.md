@@ -1,1 +1,0 @@
-# BlurHash in TypeScript

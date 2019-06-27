@@ -1,4 +1,4 @@
-import { decode83, encode83 } from "./base83";
+import { encode83 } from "./base83";
 import { sRGBToLinear, signPow, linearTosRGB } from "./utils";
 
 type NumberTriplet = [number, number, number];
@@ -9,7 +9,7 @@ const multiplyBasisFunction = (
   pixels: Uint8ClampedArray,
   width: number,
   height: number,
-  basisFunction: ((i: number, j: number) => number)
+  basisFunction: (i: number, j: number) => number
 ): NumberTriplet => {
   let r = 0;
   let g = 0;
@@ -87,8 +87,8 @@ const encode = (
         height,
         (i: number, j: number) =>
           normalisation *
-          Math.cos(Math.PI * x * i / width) *
-          Math.cos(Math.PI * y * j / height)
+          Math.cos((Math.PI * x * i) / width) *
+          Math.cos((Math.PI * y * j) / height)
       );
       factors.push(factor);
     }

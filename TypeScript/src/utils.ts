@@ -18,4 +18,5 @@ export const linearTosRGB = (value: number) => {
 
 export const sign = (n: number) => (n < 0 ? -1 : 1);
 
-export const signPow = (val: number, exp: number) => sign(val) * Math.pow(Math.abs(val), exp);
+export const signPow = (val: number, exp: number) =>
+  sign(val) * Math.pow(Math.abs(val), exp);
