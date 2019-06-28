@@ -1,7 +1,6 @@
 import { encode, decode } from '../../../TypeScript/dist/';
 
 const blurhashElement = document.getElementById('demo-blurhash');
-const blurhashOutput = document.getElementById('demo-blurhash-output');
 const canvas = document.getElementById('demo-canvas');
 const originalCanvas = document.getElementById('original-canvas');
 const fileInput = document.getElementById('file-upload');
@@ -10,18 +9,17 @@ const componentYElement = document.getElementById('component-y');
 const predefined = document.querySelector('.predefined');
 
 function render() {
-  const blurhash = blurhashElement.value;
-  blurhashOutput.textContent = blurhash;
+  const blurhash = blurhashElement.textContent;
   if (blurhash) {
     const pixels = decode(blurhash, 32, 32);
     if (pixels) {
-      blurhashOutput.classList.remove('error');
+      blurhashElement.classList.remove('error');
       const ctx = canvas.getContext('2d');
 
       const imageData = new ImageData(pixels, 32, 32);
       ctx.putImageData(imageData, 0, 0);
     } else {
-      blurhashOutput.classList.add('error');
+      blurhashElement.classList.add('error');
     }
   }
 }
@@ -64,7 +62,7 @@ function renderBlurhash() {
     componentX,
     componentY,
   );
-  blurhashElement.value = blurhash;
+  blurhashElement.textContent = blurhash;
   render();
 }
 
