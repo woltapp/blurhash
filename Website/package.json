@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
     "clean": "rm -rf dist/*",
-    "deploy": "npm run clean && npm run build && ./deploy.sh"
+    "deploy": "npm run clean && npm run build && echo 'blurha.sh' > dist/CNAME && ./deploy.sh"
   },
   "author": "serushakov",
   "license": "ISC",
