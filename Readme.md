@@ -1,4 +1,4 @@
-# BlurHash
+# [BlurHash](http://blurha.sh)
 
 BlurHash is a compact representation of a placeholder for an image.
 
@@ -12,7 +12,7 @@ BlurHash will solve your problems! How? Like this:
 
 <img src="Media/WhyBlurHash.png" width="600">
 
-You can also see nice examples and try it out yourself at [blurhash.com](http://blurhash.com/)!
+You can also see nice examples and try it out yourself at [blurha.sh](http://blurha.sh/)!
 
 ## How does it work?
 
