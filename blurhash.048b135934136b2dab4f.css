@@ -728,14 +728,9 @@ h2 {
     .demo .demo-blurhash:focus-within {
       box-shadow: 0 4px 20px rgba(32, 33, 37, 0.4); }
   .demo #demo-blurhash {
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute; }
-  .demo #demo-blurhash-output {
     color: #0019ff;
     word-break: break-all; }
-    .demo #demo-blurhash-output.error {
+    .demo #demo-blurhash.error {
       color: #ff1900; }
   .demo #demo-canvas {
     height: 200px;
@@ -770,4 +765,4 @@ h2 {
     text-decoration: none; }
 
 
-/*# sourceMappingURL=blurhash.e7d6f48eed298348e562.css.map*/
+/*# sourceMappingURL=blurhash.048b135934136b2dab4f.css.map*/
