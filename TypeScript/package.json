@@ -10,6 +10,7 @@
   },
   "homepage": "http://blurhash.com",
   "scripts": {
+    "prepublishOnly": "npm run build",
     "build": "npm run ts",
     "demo": "webpack-dev-server --mode development",
     "prettier": "prettier src/**/*.ts",
