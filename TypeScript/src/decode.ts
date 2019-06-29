@@ -2,6 +2,42 @@ import { decode83 } from "./base83";
 import { sRGBToLinear, signPow, linearTosRGB } from "./utils";
 import { ValidationError } from "./error";
 
+/**
+ * Returns an error message if invalid or undefined if valid
+ * @param blurhash
+ */
+const validateBlurhash = (blurhash: string) => {
+  if (!blurhash || blurhash.length < 6) {
+    throw new ValidationError(
+      "The blurhash string must be at least 6 characters"
+    );
+  }
+
+  const sizeFlag = decode83(blurhash[0]);
+  const numY = Math.floor(sizeFlag / 9) + 1;
+  const numX = (sizeFlag % 9) + 1;
+
+  if (blurhash.length !== 4 + 2 * numX * numY) {
+    throw new ValidationError(
+      `blurhash length mismatch: length is ${
+        blurhash.length
+      } but it should be ${4 + 2 * numX * numY}`
+    );
+  }
+};
+
+export const isBlurhashValid = (
+  blurhash: string
+): { result: boolean; errorReason?: string } => {
+  try {
+    validateBlurhash(blurhash);
+  } catch (error) {
+    return { result: false, errorReason: error.message };
+  }
+
+  return { result: true };
+};
+
 const decodeDC = (value: number) => {
   const intR = value >> 16;
   const intG = (value >> 8) & 255;
@@ -29,13 +65,9 @@ const decode = (
   height: number,
   punch?: number
 ) => {
-  punch = punch | 1;
+  validateBlurhash(blurhash);
 
-  if (blurhash.length < 6) {
-    throw new ValidationError(
-      "The blurhash string must be at least 6 characters"
-    );
-  }
+  punch = punch | 1;
 
   const sizeFlag = decode83(blurhash[0]);
   const numY = Math.floor(sizeFlag / 9) + 1;
@@ -44,17 +76,8 @@ const decode = (
   const quantisedMaximumValue = decode83(blurhash[1]);
   const maximumValue = (quantisedMaximumValue + 1) / 166;
 
-  if (blurhash.length !== 4 + 2 * numX * numY) {
-    throw new ValidationError(
-      `blurhash length mismatch: length is ${
-        blurhash.length
-      } but it should be ${4 + 2 * numX * numY}`
-    );
-
-    return null;
-  }
-
   const colors = new Array(numX * numY);
+
   for (let i = 0; i < colors.length; i++) {
     if (i === 0) {
       const value = decode83(blurhash.substring(2, 6));
