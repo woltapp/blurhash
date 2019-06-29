@@ -1,5 +1,6 @@
 import { encode83 } from "./base83";
 import { sRGBToLinear, signPow, linearTosRGB } from "./utils";
+import { ValidationError } from "./error";
 
 type NumberTriplet = [number, number, number];
 
@@ -71,10 +72,10 @@ const encode = (
   componentY: number
 ): string => {
   if (componentX < 1 || componentX > 9 || componentY < 1 || componentY > 9) {
-    throw new Error("BlurHash must have between 1 and 9 components");
+    throw new ValidationError("BlurHash must have between 1 and 9 components");
   }
   if (width * height * 4 !== pixels.length) {
-    throw new Error("Width and height must match the pixels array");
+    throw new ValidationError("Width and height must match the pixels array");
   }
 
   let factors: Array<[number, number, number]> = [];

@@ -1,5 +1,6 @@
 import { decode83 } from "./base83";
 import { sRGBToLinear, signPow, linearTosRGB } from "./utils";
+import { ValidationError } from "./error";
 
 const decodeDC = (value: number) => {
   const intR = value >> 16;
@@ -31,8 +32,9 @@ const decode = (
   punch = punch | 1;
 
   if (blurhash.length < 6) {
-    console.error("too short blurhash");
-    return null;
+    throw new ValidationError(
+      "The blurhash string must be at least 6 characters"
+    );
   }
 
   const sizeFlag = decode83(blurhash[0]);
@@ -43,11 +45,12 @@ const decode = (
   const maximumValue = (quantisedMaximumValue + 1) / 166;
 
   if (blurhash.length !== 4 + 2 * numX * numY) {
-    console.error(
-      "blurhash length mismatch",
-      blurhash.length,
-      4 + 2 * numX * numY
+    throw new ValidationError(
+      `blurhash length mismatch: length is ${
+        blurhash.length
+      } but it should be ${4 + 2 * numX * numY}`
     );
+
     return null;
   }
 
