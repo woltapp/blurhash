@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0B2577A6-2946-43B0-8288-09C671EC3AA7}"
+	ProjectSection(SolutionItems) = preProject
+		License.txt = License.txt
+		Readme.MD = Readme.MD
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blurhash.Core", "Blurhash.Core\Blurhash.Core.csproj", "{B292D7A1-172D-45A7-86CF-AAB0D7565C5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blurhash.Core.Test", "Blurhash.Core.Test\Blurhash.Core.Test.csproj", "{6F6F35CD-F355-498A-A686-230607E76F5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Drawing.Blurhash.DotNetFramework", "System.Drawing.Blurhash.DotNetFramework\System.Drawing.Blurhash.DotNetFramework.csproj", "{E7D76BB0-FE08-42A4-8F0C-40AB5C842196}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Drawing.Blurhash.DotNetStandard", "System.Drawing.Blurhash.DotNetStandard\System.Drawing.Blurhash.DotNetStandard.csproj", "{55E82354-33D7-4B17-BAC5-E46567456661}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Drawing.Blurhash.DotNetFramework.Test", "System.Drawing.Blurhash.DotNetFramework.Test\System.Drawing.Blurhash.DotNetFramework.Test.csproj", "{3931F97A-6F7B-41C8-8EB0-6632C5989783}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B292D7A1-172D-45A7-86CF-AAB0D7565C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B292D7A1-172D-45A7-86CF-AAB0D7565C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B292D7A1-172D-45A7-86CF-AAB0D7565C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B292D7A1-172D-45A7-86CF-AAB0D7565C5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F6F35CD-F355-498A-A686-230607E76F5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F6F35CD-F355-498A-A686-230607E76F5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F6F35CD-F355-498A-A686-230607E76F5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F6F35CD-F355-498A-A686-230607E76F5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7D76BB0-FE08-42A4-8F0C-40AB5C842196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D76BB0-FE08-42A4-8F0C-40AB5C842196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7D76BB0-FE08-42A4-8F0C-40AB5C842196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D76BB0-FE08-42A4-8F0C-40AB5C842196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55E82354-33D7-4B17-BAC5-E46567456661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E82354-33D7-4B17-BAC5-E46567456661}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E82354-33D7-4B17-BAC5-E46567456661}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E82354-33D7-4B17-BAC5-E46567456661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3931F97A-6F7B-41C8-8EB0-6632C5989783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3931F97A-6F7B-41C8-8EB0-6632C5989783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3931F97A-6F7B-41C8-8EB0-6632C5989783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3931F97A-6F7B-41C8-8EB0-6632C5989783}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BAAE36B0-9BF1-46D3-BA1F-051172483AE0}
+	EndGlobalSection
+EndGlobal
