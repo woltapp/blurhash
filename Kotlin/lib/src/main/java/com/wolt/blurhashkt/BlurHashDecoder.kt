@@ -33,7 +33,7 @@ object BlurHashDecoder {
         val numX = (sizeFlag % 9) + 1
 
         val quantisedMaximumValue = blurHash[1].toString().decode83()
-        val maximumValue = (quantisedMaximumValue + 1) / 166
+        val maximumValue = (quantisedMaximumValue + 1) / 166f
 
         if (blurHash.length != 4 + 2 * numX * numY) {
             return null
