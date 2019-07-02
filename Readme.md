@@ -40,18 +40,14 @@ So far, we have created these implementations:
   There is also an example app to play around with the algorithm.
 * [Kotlin](Kotlin) - A decoder implementation for Android.
 * [TypeScript](TypeScript) - Encoder and decoder implementations, and an example page to test.
-* [Python](https://github.com/creditornot/blurhash-python) - Integration of the C encoder code into Python.
+* [Python](https://github.com/woltapp/blurhash-python) - Integration of the C encoder code into Python.
+
+These cover our use cases, but could probably use polishing, extending and improving. There are also these third party implementations that we know of:
+
 * [Pure Python](https://github.com/halcy/blurhash-python) - Implementation of both the encoder and decoder in pure Python.
+* [One version in Go](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwjJ9ueT9pXjAhXRw6YKHfrGBNcQFjAAegQIABAB&url=https%3A%2F%2Fgithub.com%2Fbbrks%2Fgo-blurhash&usg=AOvVaw2alZSHvT7HbublYbpNn9fY), and [another version in Go](https://github.com/buckket/go-blurhash).
 
-These cover our use cases, but could probably use polishing, extending and improving. Perhaps you'd like to help?
-Which brings us to...
-
-## Users
-
-Who uses BlurHash? Here are some projects we know about:
-
-* [Wolt](http://wolt.com/) - We are of course using it ourselves. BlurHashes are used in the mobile clients on iOS and Android, as well as on the web, as placeholders during image loading.
-* [Mastodon](https://github.com/tootsuite/mastodon) - The Mastodon decentralised social media network uses BlurHashes both as loading placeholders, as well as for hiding media marked as sensitive.
+Perhaps you'd like to help extend this list? Which brings us to...
 
 ## Contributing
 
@@ -65,6 +61,13 @@ if you just want to dip in, go have a look.
 You can file a pull request with us, or you can start your own repo and project if you want to run everything yourself, we don't mind.
 
 If you do want to contribute to this project, we have a [code of conduct](CodeOfConduct.md).
+
+## Users
+
+Who uses BlurHash? Here are some projects we know about:
+
+* [Wolt](http://wolt.com/) - We are of course using it ourselves. BlurHashes are used in the mobile clients on iOS and Android, as well as on the web, as placeholders during image loading.
+* [Mastodon](https://github.com/tootsuite/mastodon) - The Mastodon decentralised social media network uses BlurHashes both as loading placeholders, as well as for hiding media marked as sensitive.
 
 ## Good Questions
 
