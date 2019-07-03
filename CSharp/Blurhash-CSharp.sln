@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Drawing.Blurhash.Dot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Drawing.Blurhash.DotNetFramework.Test", "System.Drawing.Blurhash.DotNetFramework.Test\System.Drawing.Blurhash.DotNetFramework.Test.csproj", "{3931F97A-6F7B-41C8-8EB0-6632C5989783}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Drawing.Blurhash.DotNetStandard.Test", "System.Drawing.Blurhash.DotNetStandard.Test\System.Drawing.Blurhash.DotNetStandard.Test.csproj", "{C72CB808-7AF6-451C-94D1-4D34F787DE70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{3931F97A-6F7B-41C8-8EB0-6632C5989783}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3931F97A-6F7B-41C8-8EB0-6632C5989783}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3931F97A-6F7B-41C8-8EB0-6632C5989783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C72CB808-7AF6-451C-94D1-4D34F787DE70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C72CB808-7AF6-451C-94D1-4D34F787DE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C72CB808-7AF6-451C-94D1-4D34F787DE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C72CB808-7AF6-451C-94D1-4D34F787DE70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
