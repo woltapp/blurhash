@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blurhash.Core\Blurhash.Core.csproj">
-      <Project>{B292D7A1-172D-45A7-86CF-AAB0D7565C5B}</Project>
+      <Project>{b292d7a1-172d-45a7-86cf-aab0d7565c5b}</Project>
       <Name>Blurhash.Core</Name>
     </ProjectReference>
   </ItemGroup>

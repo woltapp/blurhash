@@ -66,13 +66,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Blurhash-System.Drawing.Common\Blurhash-System.Drawing.Common.csproj">
+      <Project>{93979e1c-cdd4-4b1b-9096-a0caeb176551}</Project>
+      <Name>Blurhash-System.Drawing.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Blurhash.Core\Blurhash.Core.csproj">
       <Project>{b292d7a1-172d-45a7-86cf-aab0d7565c5b}</Project>
       <Name>Blurhash.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\System.Drawing.Blurhash.DotNetStandard\System.Drawing.Blurhash.DotNetStandard.csproj">
-      <Project>{55e82354-33d7-4b17-bac5-e46567456661}</Project>
-      <Name>System.Drawing.Blurhash.DotNetStandard</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -10,14 +10,14 @@ namespace System.Drawing.Blurhash
         public string Encode(Image image, int componentsX, int componentsY)
         {
             var bmp = image as Bitmap ?? new Bitmap(image);
-            (double r, double g, double b)[,] convertedBitmap;
+            Pixel[,] convertedBitmap;
 
             convertedBitmap = ConvertBitmap(bmp);
 
             return CoreEncode(convertedBitmap, componentsX, componentsY);
         }
 
-        public static (double r, double g, double b)[,] ConvertBitmap(Bitmap sourceBitmap)
+        public static Pixel[,] ConvertBitmap(Bitmap sourceBitmap)
         {
             var width = sourceBitmap.Width;
             var height = sourceBitmap.Height;
@@ -29,7 +29,6 @@ namespace System.Drawing.Blurhash
                     graphics.DrawImageUnscaled(sourceBitmap, 0, 0);
                 }
 
-                // Lock the bitmap's bits.  
                 var bmpData = temporaryBitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadOnly, temporaryBitmap.PixelFormat);
 
                 // Get the address of the first line.
@@ -42,7 +41,7 @@ namespace System.Drawing.Blurhash
                 // Copy the RGB values into the array.
                 Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
 
-                var result = new (double r, double g, double b)[width, height];
+                var result = new Pixel[width, height];
 
                 Parallel.ForEach(Enumerable.Range(0, height), y =>
                 {

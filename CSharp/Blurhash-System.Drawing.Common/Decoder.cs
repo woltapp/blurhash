@@ -12,7 +12,7 @@ namespace System.Drawing.Blurhash
             return ConvertToBitmap(pixelData);
         }
 
-        internal static unsafe Bitmap ConvertToBitmap((double r, double g, double b)[,] pixelData)
+        internal static unsafe Bitmap ConvertToBitmap(Pixel[,] pixelData)
         {
             var width = pixelData.GetLength(0);
             var height = pixelData.GetLength(1);

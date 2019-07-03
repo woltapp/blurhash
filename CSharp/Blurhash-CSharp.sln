@@ -13,13 +13,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blurhash.Core", "Blurhash.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blurhash.Core.Test", "Blurhash.Core.Test\Blurhash.Core.Test.csproj", "{6F6F35CD-F355-498A-A686-230607E76F5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Drawing.Blurhash.DotNetFramework", "System.Drawing.Blurhash.DotNetFramework\System.Drawing.Blurhash.DotNetFramework.csproj", "{E7D76BB0-FE08-42A4-8F0C-40AB5C842196}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System.Drawing", "System.Drawing", "{1F0D4320-FCC3-4566-8411-A331684876F2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Drawing.Blurhash.DotNetStandard", "System.Drawing.Blurhash.DotNetStandard\System.Drawing.Blurhash.DotNetStandard.csproj", "{55E82354-33D7-4B17-BAC5-E46567456661}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3F545997-6ABA-40B1-9982-2446655A60B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Drawing.Blurhash.DotNetFramework.Test", "System.Drawing.Blurhash.DotNetFramework.Test\System.Drawing.Blurhash.DotNetFramework.Test.csproj", "{3931F97A-6F7B-41C8-8EB0-6632C5989783}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blurhash-System.Drawing", "Blurhash-System.Drawing\Blurhash-System.Drawing.csproj", "{E7D76BB0-FE08-42A4-8F0C-40AB5C842196}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Drawing.Blurhash.DotNetStandard.Test", "System.Drawing.Blurhash.DotNetStandard.Test\System.Drawing.Blurhash.DotNetStandard.Test.csproj", "{C72CB808-7AF6-451C-94D1-4D34F787DE70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blurhash-System.Drawing.Test", "Blurhash-System.Drawing.Test\Blurhash-System.Drawing.Test.csproj", "{3931F97A-6F7B-41C8-8EB0-6632C5989783}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System.Drawing.Common", "System.Drawing.Common", "{1E9AAF8F-5723-4B38-BE3E-ADB0F0CB9188}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blurhash-System.Drawing.Common", "Blurhash-System.Drawing.Common\Blurhash-System.Drawing.Common.csproj", "{93979E1C-CDD4-4B1B-9096-A0CAEB176551}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blurhash-System.Drawing.Common.Test", "Blurhash-System.Drawing.Common.Test\Blurhash-System.Drawing.Common.Test.csproj", "{C72CB808-7AF6-451C-94D1-4D34F787DE70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,14 +45,14 @@ Global
 		{E7D76BB0-FE08-42A4-8F0C-40AB5C842196}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7D76BB0-FE08-42A4-8F0C-40AB5C842196}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7D76BB0-FE08-42A4-8F0C-40AB5C842196}.Release|Any CPU.Build.0 = Release|Any CPU
-		{55E82354-33D7-4B17-BAC5-E46567456661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55E82354-33D7-4B17-BAC5-E46567456661}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55E82354-33D7-4B17-BAC5-E46567456661}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{55E82354-33D7-4B17-BAC5-E46567456661}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3931F97A-6F7B-41C8-8EB0-6632C5989783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3931F97A-6F7B-41C8-8EB0-6632C5989783}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3931F97A-6F7B-41C8-8EB0-6632C5989783}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3931F97A-6F7B-41C8-8EB0-6632C5989783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93979E1C-CDD4-4B1B-9096-A0CAEB176551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93979E1C-CDD4-4B1B-9096-A0CAEB176551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93979E1C-CDD4-4B1B-9096-A0CAEB176551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93979E1C-CDD4-4B1B-9096-A0CAEB176551}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C72CB808-7AF6-451C-94D1-4D34F787DE70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C72CB808-7AF6-451C-94D1-4D34F787DE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C72CB808-7AF6-451C-94D1-4D34F787DE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,6 +60,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B292D7A1-172D-45A7-86CF-AAB0D7565C5B} = {3F545997-6ABA-40B1-9982-2446655A60B2}
+		{6F6F35CD-F355-498A-A686-230607E76F5E} = {3F545997-6ABA-40B1-9982-2446655A60B2}
+		{E7D76BB0-FE08-42A4-8F0C-40AB5C842196} = {1F0D4320-FCC3-4566-8411-A331684876F2}
+		{3931F97A-6F7B-41C8-8EB0-6632C5989783} = {1F0D4320-FCC3-4566-8411-A331684876F2}
+		{93979E1C-CDD4-4B1B-9096-A0CAEB176551} = {1E9AAF8F-5723-4B38-BE3E-ADB0F0CB9188}
+		{C72CB808-7AF6-451C-94D1-4D34F787DE70} = {1E9AAF8F-5723-4B38-BE3E-ADB0F0CB9188}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BAAE36B0-9BF1-46D3-BA1F-051172483AE0}

@@ -9,18 +9,18 @@ namespace Blurhash.Core
     {
         public Action<double> ProgressCallback { get; set; }
 
-        protected string CoreEncode((double r, double g, double b)[,] pixels, int componentsX, int componentsY)
+        protected string CoreEncode(Pixel[,] pixels, int componentsX, int componentsY)
         {
             if (componentsX < 1) throw new ArgumentException("componentsX needs to be at least 1");
             if (componentsX > 9) throw new ArgumentException("componentsX needs to be at most 9");
             if (componentsY < 1) throw new ArgumentException("componentsY needs to be at least 1");
             if (componentsY > 9) throw new ArgumentException("componentsY needs to be at most 9");
 
-            var factors = new (double r, double g, double b)[componentsX, componentsY];
+            var factors = new Pixel[componentsX, componentsY];
 
             var components = Enumerable
                 .Range(0, componentsX)
-                .SelectMany(i => Enumerable.Range(0, componentsY).Select(j => (i, j)))
+                .SelectMany(i => Enumerable.Range(0, componentsY).Select(j => new Coordinate(i, j)))
                 .ToArray(); // Create tuples (i,j) for all components
 
             var factorCount = componentsX * componentsY;
@@ -30,10 +30,9 @@ namespace Blurhash.Core
 
             // Parallel
             Parallel.ForEach(components,
-                (tuple) =>
+                (coordinate) =>
                 {
-                    var (x, y) = tuple;
-                    factors[x, y] = MultiplyBasisFunction(x, y, pixels);
+                    factors[coordinate.x, coordinate.y] = MultiplyBasisFunction(coordinate.x, coordinate.y, pixels);
 
                     lock (locker)
                     {
@@ -91,7 +90,7 @@ namespace Blurhash.Core
             return resultBuilder.ToString();
         }
 
-        private static (double r, double g, double b) MultiplyBasisFunction(int xComponent, int yComponent, (double r, double g, double b)[,] pixels)
+        private static Pixel MultiplyBasisFunction(int xComponent, int yComponent, Pixel[,] pixels)
         {
             double r = 0, g = 0, b = 0;
             double normalization = (xComponent == 0 && yComponent == 0) ? 1 : 2;
@@ -110,7 +109,7 @@ namespace Blurhash.Core
             }
 
             var scale = normalization / (width * height);
-            return (r * scale, g * scale, b * scale);
+            return new Pixel(r * scale, g * scale, b * scale);
         }
 
         private static int EncodeAc(double r, double g, double b, double maximumValue) {
