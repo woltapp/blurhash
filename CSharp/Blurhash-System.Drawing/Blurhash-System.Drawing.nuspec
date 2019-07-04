@@ -1,0 +1,21 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Blurhash.System.Drawing</id>
+    <version>1.0.0</version>
+    <title>Blurhash.System.Drawing</title>
+    <authors>Markus Palcer</authors>
+    <projectUrl>https://github.com/woltapp/blurhash</projectUrl>
+    <description>Bridge library to use Blurhash with System.Drawing</description>
+    <copyright>Copyright 2018 Wolt Enterprises</copyright>
+    <tags>blurhash image preview compression encoding</tags>
+
+    <dependencies>
+      <dependency id="Blurhash.Core" version="1.0.0" />
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="bin\Release\System.Drawing.Blurhash.DotNetFramework.dll" target="lib/net472" />
+  </files>
+</package>

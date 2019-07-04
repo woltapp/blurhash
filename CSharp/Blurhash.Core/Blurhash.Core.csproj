@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
+    <PackageId>Blurhash.Core</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>Markus Palcer</Authors>
+    <Description>BlurHash is a compact representation of a placeholder for an image.</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright 2018 Wolt Enterprises</Copyright>
+    <PackageTags>blurhash image preview compression encoding</PackageTags>
+    <PackageProjectUrl>https://github.com/woltapp/blurhash</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
