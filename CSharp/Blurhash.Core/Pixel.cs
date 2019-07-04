@@ -1,16 +1,19 @@
 ﻿namespace Blurhash.Core
 {
+    /// <summary>
+    /// Represents a pixel within the Blurhash algorithm
+    /// </summary>
     public struct Pixel
     {
-        public double r;
-        public double g;
-        public double b;
+        public double Red;
+        public double Green;
+        public double Blue;
 
-        public Pixel(double r, double g, double b)
+        public Pixel(double red, double green, double blue)
         {
-            this.r = r;
-            this.g = g;
-            this.b = b;
+            this.Red = red;
+            this.Green = green;
+            this.Blue = blue;
         }
     }
 }

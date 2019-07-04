@@ -5,10 +5,25 @@ using System.Threading.Tasks;
 
 namespace Blurhash.Core
 {
+    /// <summary>
+    /// The core encoding algorithm of Blurhash.
+    /// To be not specific to any graphics manipulation library this algorithm only operates on <c>double</c> values.
+    /// </summary>
     public class CoreEncoder
     {
+        /// <summary>
+        /// A callback to be called when the progress of the operation changes.
+        /// It receives a value between 0.0 and 1.0 that indicates the progress.
+        /// </summary>
         public Action<double> ProgressCallback { get; set; }
 
+        /// <summary>
+        /// Encodes a 2-dimensional array of pixels into a Blurhash string
+        /// </summary>
+        /// <param name="pixels">The 2-dimensional array of pixels to encode</param>
+        /// <param name="componentsX">The number of components used on the X-Axis for the DCT</param>
+        /// <param name="componentsY">The number of components used on the Y-Axis for the DCT</param>
+        /// <returns>The resulting Blurhash string</returns>
         protected string CoreEncode(Pixel[,] pixels, int componentsX, int componentsY)
         {
             if (componentsX < 1) throw new ArgumentException("componentsX needs to be at least 1");
@@ -32,7 +47,7 @@ namespace Blurhash.Core
             Parallel.ForEach(components,
                 (coordinate) =>
                 {
-                    factors[coordinate.x, coordinate.y] = MultiplyBasisFunction(coordinate.x, coordinate.y, pixels);
+                    factors[coordinate.X, coordinate.Y] = MultiplyBasisFunction(coordinate.X, coordinate.Y, pixels);
 
                     lock (locker)
                     {
@@ -60,9 +75,9 @@ namespace Blurhash.Core
                         // Ignore DC component
                         if (x == 0 && y == 0) continue;
 
-                        actualMaximumValue = Math.Max(Math.Abs(factors[x,y].r), actualMaximumValue);
-                        actualMaximumValue = Math.Max(Math.Abs(factors[x,y].g), actualMaximumValue);
-                        actualMaximumValue = Math.Max(Math.Abs(factors[x,y].b), actualMaximumValue);
+                        actualMaximumValue = Math.Max(Math.Abs(factors[x,y].Red), actualMaximumValue);
+                        actualMaximumValue = Math.Max(Math.Abs(factors[x,y].Green), actualMaximumValue);
+                        actualMaximumValue = Math.Max(Math.Abs(factors[x,y].Blue), actualMaximumValue);
                     }
                 }
 
@@ -74,7 +89,7 @@ namespace Blurhash.Core
                 resultBuilder.Append(0.EncodeBase83(1));
             }
 
-            resultBuilder.Append(EncodeDc(dc.r, dc.g, dc.b).EncodeBase83(4));
+            resultBuilder.Append(EncodeDc(dc.Red, dc.Green, dc.Blue).EncodeBase83(4));
 
 
             for (var y = 0; y < componentsY; y++)
@@ -83,7 +98,7 @@ namespace Blurhash.Core
                 {
                     // Ignore DC component
                     if (x == 0 && y == 0) continue;
-                    resultBuilder.Append(EncodeAc(factors[x, y].r, factors[x, y].g, factors[x, y].b, maximumValue).EncodeBase83(2));
+                    resultBuilder.Append(EncodeAc(factors[x, y].Red, factors[x, y].Green, factors[x, y].Blue, maximumValue).EncodeBase83(2));
                 }
             }
 
@@ -102,9 +117,9 @@ namespace Blurhash.Core
             {
                 for(var x = 0; x < width; x++) {
                     var basis = Math.Cos(Math.PI * xComponent * x / width) * Math.Cos(Math.PI * yComponent * y / height);
-                    r += basis * pixels[x,y].r;
-                    g += basis * pixels[x,y].g;
-                    b += basis * pixels[x,y].b;
+                    r += basis * pixels[x,y].Red;
+                    g += basis * pixels[x,y].Green;
+                    b += basis * pixels[x,y].Blue;
                 }
             }
 

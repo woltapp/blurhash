@@ -1,14 +1,17 @@
 ﻿namespace Blurhash.Core
 {
+    /// <summary>
+    /// Represents a 2D-coordinate 
+    /// </summary>
     public class Coordinate
     {
-        public int x;
-        public int y;
+        public int X;
+        public int Y;
 
         public Coordinate(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            this.X = x;
+            this.Y = y;
         }
     }
 }

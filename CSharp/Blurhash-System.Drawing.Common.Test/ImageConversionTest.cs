@@ -27,9 +27,9 @@ namespace System.Drawing.Blurhash.DotNetStandard.Test
             {
                 var pixel = sourceImage.GetPixel(x, y);
 
-                sourceData[x, y].r.Should().BeApproximately(pixel.R == 0 ? 0.0 : 1.0, double.Epsilon);
-                sourceData[x, y].g.Should().BeApproximately(pixel.G == 0 ? 0.0 : 1.0, double.Epsilon);
-                sourceData[x, y].b.Should().BeApproximately(pixel.B == 0 ? 0.0 : 1.0, double.Epsilon);
+                sourceData[x, y].Red.Should().BeApproximately(pixel.R == 0 ? 0.0 : 1.0, double.Epsilon);
+                sourceData[x, y].Green.Should().BeApproximately(pixel.G == 0 ? 0.0 : 1.0, double.Epsilon);
+                sourceData[x, y].Blue.Should().BeApproximately(pixel.B == 0 ? 0.0 : 1.0, double.Epsilon);
             }
 
             var targetImage = Decoder.ConvertToBitmap(sourceData);
@@ -61,9 +61,9 @@ namespace System.Drawing.Blurhash.DotNetStandard.Test
             {
                 var pixel = sourceImage.GetPixel(x, y);
 
-                sourceData[x, y].r.Should().BeApproximately(pixel.R == 0 ? 0.0 : 1.0, double.Epsilon);
-                sourceData[x, y].g.Should().BeApproximately(pixel.G == 0 ? 0.0 : 1.0, double.Epsilon);
-                sourceData[x, y].b.Should().BeApproximately(pixel.B == 0 ? 0.0 : 1.0, double.Epsilon);
+                sourceData[x, y].Red.Should().BeApproximately(pixel.R == 0 ? 0.0 : 1.0, double.Epsilon);
+                sourceData[x, y].Green.Should().BeApproximately(pixel.G == 0 ? 0.0 : 1.0, double.Epsilon);
+                sourceData[x, y].Blue.Should().BeApproximately(pixel.B == 0 ? 0.0 : 1.0, double.Epsilon);
             }
 
             var targetImage = Decoder.ConvertToBitmap(sourceData);

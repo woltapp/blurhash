@@ -5,6 +5,9 @@ using System.Numerics;
 
 namespace Blurhash.Core
 {
+    /// <summary>
+    /// Contains methods to encode or decode integers to Base83-Strings
+    /// </summary>
     public static class Base83
     {
         internal const string Charset = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~";

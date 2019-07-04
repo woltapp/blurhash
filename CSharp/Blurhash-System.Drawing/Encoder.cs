@@ -5,18 +5,27 @@ using Blurhash.Core;
 
 namespace System.Drawing.Blurhash
 {
+    /// <summary>
+    /// The Blurhash encoder for use with the <code>System.Drawing.dll</code>
+    /// </summary>
     public class Encoder : CoreEncoder 
     {
+        /// <summary>
+        /// Encodes a picture into a Blurhash string
+        /// </summary>
+        /// <param name="image">The picture to encode</param>
+        /// <param name="componentsX">The number of components used on the X-Axis for the DCT</param>
+        /// <param name="componentsY">The number of components used on the Y-Axis for the DCT</param>
+        /// <returns>The resulting Blurhash string</returns>
         public string Encode(Image image, int componentsX, int componentsY)
         {
-            var bmp = image as Bitmap ?? new Bitmap(image);
-            Pixel[,] convertedBitmap;
-
-            convertedBitmap = ConvertBitmap(bmp);
-
-            return CoreEncode(convertedBitmap, componentsX, componentsY);
+            return CoreEncode(ConvertBitmap(image as Bitmap ?? new Bitmap(image)), componentsX, componentsY);
         }
 
+        /// <summary>
+        /// Converts the given bitmap to the library-independent representation used within the Blurhash-core
+        /// </summary>
+        /// <param name="sourceBitmap">The bitmap to encode</param>
         public static Pixel[,] ConvertBitmap(Bitmap sourceBitmap)
         {
             var width = sourceBitmap.Width;
@@ -50,9 +59,9 @@ namespace System.Drawing.Blurhash
 
                     for (var x = 0; x < width; x++)
                     {
-                        result[x, y].r = MathUtils.SRgbToLinear(rgbValues[index + 2]);
-                        result[x, y].g = MathUtils.SRgbToLinear(rgbValues[index + 1]);
-                        result[x, y].b = MathUtils.SRgbToLinear(rgbValues[index]);
+                        result[x, y].Red = MathUtils.SRgbToLinear(rgbValues[index + 2]);
+                        result[x, y].Green = MathUtils.SRgbToLinear(rgbValues[index + 1]);
+                        result[x, y].Blue = MathUtils.SRgbToLinear(rgbValues[index]);
                         index += 3;
                     }
                 });

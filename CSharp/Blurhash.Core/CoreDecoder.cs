@@ -5,11 +5,27 @@ using System.Threading.Tasks;
 
 namespace Blurhash.Core
 {
+    /// <summary>
+    /// The core decoding algorithm of Blurhash.
+    /// To be not specific to any graphics manipulation library this algorithm only operates on <c>double</c> values.
+    /// </summary>
     public class CoreDecoder
     {
+        /// <summary>
+        /// A callback to be called when the progress of the operation changes.
+        /// It receives a value between 0.0 and 1.0 that indicates the progress.
+        /// </summary>
         public Action<double> ProgressCallback { get; set; }
 
-        protected Pixel[,] CoreDecode(string blurhash, int width, int height, double punch = 1.0) {
+        /// <summary>
+        /// Decodes a Blurhash string into a 2-dimensional array of pixels
+        /// </summary>
+        /// <param name="blurhash">The blurhash string to decode</param>
+        /// <param name="outputWidth">The desired width of the output in pixels</param>
+        /// <param name="outputHeight">The desired height of the output in pixels</param>
+        /// <param name="punch">A value that affects the contrast of the decoded image. 1 means normal, smaller values will make the effect more subtle, and larger values will make it stronger.</param>
+        /// <returns>A 2-dimensional array of <see cref="Pixel"/>s </returns>
+        protected Pixel[,] CoreDecode(string blurhash, int outputWidth, int outputHeight, double punch = 1.0) {
             if (blurhash.Length < 6) {
                 throw new ArgumentException("Blurhash value needs to be at least 6 characters", nameof(blurhash));
             }
@@ -51,19 +67,19 @@ namespace Blurhash.Core
                 }
             }
 
-            var pixels = new Pixel[width, height];
-            var pixelCount = height * width;
+            var pixels = new Pixel[outputWidth, outputHeight];
+            var pixelCount = outputHeight * outputWidth;
             var currentPixel = 0;
 
-            var coordinates = Enumerable.Range(0, width)
-                .SelectMany(x => Enumerable.Range(0, height).Select(y => new Coordinate(x, y)))
+            var coordinates = Enumerable.Range(0, outputWidth)
+                .SelectMany(x => Enumerable.Range(0, outputHeight).Select(y => new Coordinate(x, y)))
                 .ToArray();
 
             var locker = new object();
             Parallel.ForEach(coordinates,
                 (coordinate) =>
                 {
-                    pixels[coordinate.x, coordinate.y] = DecodePixel(componentsY, componentsX, coordinate.x, coordinate.y, width, height, coefficients);
+                    pixels[coordinate.X, coordinate.Y] = DecodePixel(componentsY, componentsX, coordinate.X, coordinate.Y, outputWidth, outputHeight, coefficients);
 
                     lock (locker)
                     {
@@ -91,9 +107,9 @@ namespace Blurhash.Core
                 {
                     var basis = Math.Cos((Math.PI * x * i) / width) * Math.Cos((Math.PI * y * j) / height);
                     var coefficient = coefficients[i, j];
-                    r += coefficient.r * basis;
-                    g += coefficient.g * basis;
-                    b += coefficient.b * basis;
+                    r += coefficient.Red * basis;
+                    g += coefficient.Green * basis;
+                    b += coefficient.Blue * basis;
                 }
             }
 
@@ -101,7 +117,7 @@ namespace Blurhash.Core
             return result;
         }
 
-        static Pixel DecodeDc(BigInteger value)
+        private static Pixel DecodeDc(BigInteger value)
         {
             var intR = (int)value >> 16;
             var intG = (int)(value >> 8) & 255;
@@ -109,7 +125,7 @@ namespace Blurhash.Core
             return new Pixel(MathUtils.SRgbToLinear(intR), MathUtils.SRgbToLinear(intG), MathUtils.SRgbToLinear(intB));
         }
 
-        static Pixel DecodeAc(BigInteger value, double maximumValue) {
+        private static Pixel DecodeAc(BigInteger value, double maximumValue) {
             var quantizedR = (double) (value / (19 * 19));
             var quantizedG = (double) ((value / 19) % 19);
             var quantizedB = (double) (value % 19);
@@ -122,7 +138,6 @@ namespace Blurhash.Core
 
             return result;
         }
-
 
     }
 }
