@@ -32,6 +32,8 @@
 		1B6C72042272453D000D3BB1 /* ColourSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA607C1FF422AE00E42DD7 /* ColourSpace.swift */; };
 		1B6C72052272453D000D3BB1 /* StringCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA607A1FF40D8900E42DD7 /* StringCoding.swift */; };
 		1B6C72062272453D000D3BB1 /* ColourProbes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE56D02011EC5F00569DCB /* ColourProbes.swift */; };
+		1B83DED122D88D1500CAA12F /* EscapeSequences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B83DED022D88D1500CAA12F /* EscapeSequences.swift */; };
+		1B83DED222D88D1500CAA12F /* EscapeSequences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B83DED022D88D1500CAA12F /* EscapeSequences.swift */; };
 		1BAA606D1FF40A0800E42DD7 /* BlurHashEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD261EC47243006F8E7D /* BlurHashEncode.swift */; };
 		1BAA606E1FF40A0B00E42DD7 /* BlurHashDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49CD281EC4724C006F8E7D /* BlurHashDecode.swift */; };
 		1BAA60711FF40A2F00E42DD7 /* BlurHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA60701FF40A2F00E42DD7 /* BlurHash.swift */; };
@@ -131,6 +133,7 @@
 		1B49CD281EC4724C006F8E7D /* BlurHashDecode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurHashDecode.swift; sourceTree = "<group>"; };
 		1B6C71F122724500000D3BB1 /* BlurHashKit copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BlurHashKit copy-Info.plist"; path = "/Users/dag/Code/Toot/BlurHash/BlurHashKit copy-Info.plist"; sourceTree = "<absolute>"; };
 		1B6C71F62272451E000D3BB1 /* libBlurHashKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBlurHashKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B83DED022D88D1500CAA12F /* EscapeSequences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscapeSequences.swift; sourceTree = "<group>"; };
 		1BAA60701FF40A2F00E42DD7 /* BlurHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurHash.swift; sourceTree = "<group>"; };
 		1BAA60721FF40AEA00E42DD7 /* ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToString.swift; sourceTree = "<group>"; };
 		1BAA60741FF40AF200E42DD7 /* FromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromString.swift; sourceTree = "<group>"; };
@@ -338,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				1BAA60701FF40A2F00E42DD7 /* BlurHash.swift */,
+				1B83DED022D88D1500CAA12F /* EscapeSequences.swift */,
 				1BAA60741FF40AF200E42DD7 /* FromString.swift */,
 				1BAA60721FF40AEA00E42DD7 /* ToString.swift */,
 				1BAA60781FF40C5800E42DD7 /* FromUIImage.swift */,
@@ -596,6 +600,7 @@
 				1BAA60751FF40AF200E42DD7 /* FromString.swift in Sources */,
 				1BAA607B1FF40D8900E42DD7 /* StringCoding.swift in Sources */,
 				1BAA60771FF40C4C00E42DD7 /* ToUIImage.swift in Sources */,
+				1B83DED122D88D1500CAA12F /* EscapeSequences.swift in Sources */,
 				1BAA60731FF40AEA00E42DD7 /* ToString.swift in Sources */,
 				1BC34D8020098E2F00A17481 /* Generation.swift in Sources */,
 				1BDE56D12011EC5F00569DCB /* ColourProbes.swift in Sources */,
@@ -613,6 +618,7 @@
 				1B6C72002272453D000D3BB1 /* FromUIImage.swift in Sources */,
 				1B6C72042272453D000D3BB1 /* ColourSpace.swift in Sources */,
 				1B6C72052272453D000D3BB1 /* StringCoding.swift in Sources */,
+				1B83DED222D88D1500CAA12F /* EscapeSequences.swift in Sources */,
 				1B6C71FF2272453D000D3BB1 /* ToString.swift in Sources */,
 				1B6C71FD2272453D000D3BB1 /* BlurHash.swift in Sources */,
 				1B6C72062272453D000D3BB1 /* ColourProbes.swift in Sources */,
