@@ -21,7 +21,7 @@ See [react-blurhash](https://github.com/woltapp/react-blurhash) to use blurhash 
 ```js
 import { decode } from "blurhash";
 
-const pixels = decode("LEHV6nWB2yk8pyo0adR*.7kCMdnj");
+const pixels = decode("LEHV6nWB2yk8pyo0adR*.7kCMdnj", 32, 32);
 
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
