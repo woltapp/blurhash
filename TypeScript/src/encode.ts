@@ -78,7 +78,7 @@ const encode = (
     throw new ValidationError("Width and height must match the pixels array");
   }
 
-  let factors: Array<[number, number, number]> = [];
+  let factors: Array<NumberTriplet> = [];
   for (let y = 0; y < componentY; y++) {
     for (let x = 0; x < componentX; x++) {
       const normalisation = x == 0 && y == 0 ? 1 : 2;
