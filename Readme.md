@@ -47,6 +47,7 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Pure Python](https://github.com/halcy/blurhash-python) - Implementation of both the encoder and decoder in pure Python.
 * [One version in Go](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwjJ9ueT9pXjAhXRw6YKHfrGBNcQFjAAegQIABAB&url=https%3A%2F%2Fgithub.com%2Fbbrks%2Fgo-blurhash&usg=AOvVaw2alZSHvT7HbublYbpNn9fY), and [another version in Go](https://github.com/buckket/go-blurhash).
 * [PHP](https://github.com/kornrunner/php-blurhash) - Encoder and decoder implementations in pure PHP.
+* [Rust and WebAssembly](https://github.com/fpapado/blurhash-rust-wasm) - Encoder and decoder implementations in Rust. Distributed as both native Rust and WebAssembly packages.
 
 Perhaps you'd like to help extend this list? Which brings us to...
 
@@ -145,6 +146,7 @@ to see what you can come up with!
 * [Atte Lautanala](https://github.com/lautat) - Python integration
 * [Lorenz Diener](https://github.com/halcy) - Pure Python implementation
 * [Boris Momčilović](https://github.com/kornrunner) - Pure PHP implementation
+* [Fotis Papadogeorgopoulos](https://github.com/fpapado) - Rust and WebAssembly implementation
 * _Your name here?_
 
 ## License
