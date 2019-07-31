@@ -1,5 +1,8 @@
 # blurhash
 
+[![NPM Version](https://img.shields.io/npm/v/react-blurhash.svg?style=flat)](https://npmjs.org/package/blurhash)
+[![NPM Downloads](https://img.shields.io/npm/dm/react-blurhash.svg?style=flat)](https://npmjs.org/package/blurhash)
+
 > JavaScript encoder and decoder for the [Wolt BlurHash](https://github.com/woltapp/blurhash) algorithm
 
 ## Install
