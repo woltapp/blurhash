@@ -15,7 +15,7 @@ See [react-blurhash](https://github.com/woltapp/react-blurhash) to use blurhash 
 
 ## API
 
-### `decode(blurhash: string) => Uint8ClampedArray`
+### `decode(blurhash: string, width: number, height: number, punch?: number) => Uint8ClampedArray`
 
 > Decodes a blurhash string to pixels
 
