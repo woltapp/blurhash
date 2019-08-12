@@ -1,5 +1,8 @@
 # blurhash
 
+[![NPM Version](https://img.shields.io/npm/v/blurhash.svg?style=flat)](https://npmjs.org/package/blurhash)
+[![NPM Downloads](https://img.shields.io/npm/dm/blurhash.svg?style=flat)](https://npmjs.org/package/blurhash)
+
 > JavaScript encoder and decoder for the [Wolt BlurHash](https://github.com/woltapp/blurhash) algorithm
 
 ## Install
@@ -12,7 +15,7 @@ See [react-blurhash](https://github.com/woltapp/react-blurhash) to use blurhash 
 
 ## API
 
-### `decode(blurhash: string) => Uint8ClampedArray`
+### `decode(blurhash: string, width: number, height: number, punch?: number) => Uint8ClampedArray`
 
 > Decodes a blurhash string to pixels
 
@@ -21,7 +24,7 @@ See [react-blurhash](https://github.com/woltapp/react-blurhash) to use blurhash 
 ```js
 import { decode } from "blurhash";
 
-const pixels = decode("LEHV6nWB2yk8pyo0adR*.7kCMdnj");
+const pixels = decode("LEHV6nWB2yk8pyo0adR*.7kCMdnj", 32, 32);
 
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");

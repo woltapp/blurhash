@@ -1,6 +1,6 @@
 {
   "name": "blurhash",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Encoder and decoder for the Wolt BlurHash algorithm.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,9 +29,9 @@
   "devDependencies": {
     "prettier": "1.18.2",
     "ts-loader": "6.0.4",
-    "typescript": "3.5.2",
-    "webpack": "4.35.0",
-    "webpack-cli": "^3.3.5",
+    "typescript": "3.5.3",
+    "webpack": "4.38.0",
+    "webpack-cli": "^3.3.6",
     "webpack-dev-server": "3.7.2"
   }
 }
