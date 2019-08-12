@@ -48,6 +48,8 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [One version in Go](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwjJ9ueT9pXjAhXRw6YKHfrGBNcQFjAAegQIABAB&url=https%3A%2F%2Fgithub.com%2Fbbrks%2Fgo-blurhash&usg=AOvVaw2alZSHvT7HbublYbpNn9fY), and [another version in Go](https://github.com/buckket/go-blurhash).
 * [PHP](https://github.com/kornrunner/php-blurhash) - Encoder and decoder implementations in pure PHP.
 * [Java](https://github.com/hsch/blurhash-java) - Encoder implementation in Java.
+* [Clojure](https://github.com/siili-core/blurhash) - Encoder and decoder implementations in Clojure.
+* [Nim](https://github.com/SolitudeSF/blurhash) - Encoder and decoder implementation in pure Nim.
 
 Perhaps you'd like to help extend this list? Which brings us to...
 
@@ -127,7 +129,7 @@ option. It might also be awkward to copy-paste, depending on OS capabilities.
 
 If you think it can be done and is worth it, though, do make your own version and show us! We'd love to see it in action.
 
-### What about other basis represenations than DCT?
+### What about other basis representations than DCT?
 
 This is something we'd *love* to try. The DCT looks quite ugly when you increase the number of components, probably because
 the shape of the basis functions becomes too visible. Using a different basis with more aesthetically pleasing shape might be
@@ -147,6 +149,7 @@ to see what you can come up with!
 * [Lorenz Diener](https://github.com/halcy) - Pure Python implementation
 * [Boris Momčilović](https://github.com/kornrunner) - Pure PHP implementation
 * [Hendrik Schnepel](https://github.com/hsch) - Java encoder implementation
+* [Tuomo Virolainen](https://github.com/tvirolai) - Clojure implementation
 * _Your name here?_
 
 ## License
