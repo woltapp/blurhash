@@ -1,55 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilBlurHash"
+    <EditText
+        android:id="@+id/etInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/etBlurHash"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
-            android:hint="@string/hint_blurhash"
-            android:inputType="text"
-            android:singleLine="true"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:hint="@string/hint_blurhash"
+        android:inputType="text"
+        android:singleLine="true"
+        android:text="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/tvDecode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_blue_rounded_rect_8"
-        android:gravity="center"
-        android:minWidth="100dp"
-        android:minHeight="40dp"
-        android:padding="8dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        android:background="@color/colorPrimary"
+        android:elevation="8dp"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="8dp"
         android:text="@string/title_button_decode"
-        android:textColor="#ffffff"
-        android:textSize="16sp"
-        android:foreground="@drawable/fg_light_rounded_8_rect_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilBlurHash"/>
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
 
     <ImageView
-        android:id="@+id/ivBlurHash"
+        android:id="@+id/ivResult"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        android:scaleType="fitXY"
-        app:layout_constraintDimensionRatio="4:3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDecode"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:adjustViewBounds="true" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
