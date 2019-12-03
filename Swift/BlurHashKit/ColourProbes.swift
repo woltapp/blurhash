@@ -26,12 +26,12 @@ extension BlurHash {
     }
 
     public func linearRGB(from upperLeft: (Float, Float), to lowerRight: (Float, Float)) -> (Float, Float, Float) {
-        return components.enumerated().reduce((0, 0, 0)) { (sum, yEnumerated) in
-            let (y, xComponents) = yEnumerated
-            return xComponents.enumerated().reduce(sum) { (sum, xEnumerated) in
-                let (x, component) = xEnumerated
-                let horizontalAverage: Float = x == 0 ? 1 : (sin(Float.pi * Float(x) * lowerRight.0) - sin(Float.pi * Float(x) * upperLeft.0)) / (Float(x) * Float.pi * (lowerRight.0 - upperLeft.0))
-                let veritcalAverage: Float = y == 0 ? 1 : (sin(Float.pi * Float(y) * lowerRight.1) - sin(Float.pi * Float(y) * upperLeft.1)) / (Float(y) * Float.pi * (lowerRight.1 - upperLeft.1))
+        return components.enumerated().reduce((0, 0, 0)) { (sum, verticalEnumerated) in
+            let (j, horizontalComponents) = verticalEnumerated
+            return horizontalComponents.enumerated().reduce(sum) { (sum, horizontalEnumerated) in
+                let (i, component) = horizontalEnumerated
+                let horizontalAverage: Float = i == 0 ? 1 : (sin(Float.pi * Float(i) * lowerRight.0) - sin(Float.pi * Float(i) * upperLeft.0)) / (Float(i) * Float.pi * (lowerRight.0 - upperLeft.0))
+                let veritcalAverage: Float = j == 0 ? 1 : (sin(Float.pi * Float(j) * lowerRight.1) - sin(Float.pi * Float(j) * upperLeft.1)) / (Float(j) * Float.pi * (lowerRight.1 - upperLeft.1))
                 return sum + component * horizontalAverage * veritcalAverage
             }
         }
