@@ -12,18 +12,18 @@ extension BlurHash {
         ]
 
         let rgb: [(Float, Float, Float)] = areas.map { area in
-            linearRgb(from: area.from, to: area.to)
+            linearRGB(from: area.from, to: area.to)
         }
 
         let maxRgb: (Float, Float, Float) = rgb.reduce((-Float.infinity, -Float.infinity, -Float.infinity), max)
         let minRgb: (Float, Float, Float) = rgb.reduce((Float.infinity, Float.infinity, Float.infinity), min)
 
-        let positiveScale: (Float, Float, Float) = ((1, 1, 1) - averageLinearRgb) / (maxRgb - averageLinearRgb)
-        let negativeScale: (Float, Float, Float) = averageLinearRgb / (averageLinearRgb - minRgb)
+        let positiveScale: (Float, Float, Float) = ((1, 1, 1) - averageLinearRGB) / (maxRgb - averageLinearRGB)
+        let negativeScale: (Float, Float, Float) = averageLinearRGB / (averageLinearRGB - minRgb)
         let scale: (Float, Float, Float) = min(positiveScale, negativeScale)
 
         let scaledRgb: [(Float, Float, Float)] = rgb.map { rgb in
-            return (rgb - averageLinearRgb) * scale + averageLinearRgb
+            return (rgb - averageLinearRGB) * scale + averageLinearRGB
         }
 
         let c = scaledRgb.map { rgb in

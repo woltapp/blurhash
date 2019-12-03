@@ -91,12 +91,12 @@ class GeneratedViewController: UIViewController {
 		cornerBottomLeftView?.backgroundColor = cornerBottomLeftColour
 		cornerBottomRightView?.backgroundColor = cornerBottomRightColour
 
-		let horizontalBlurHash = BlurHash(horizontalGradientFrom: horizontalLeftColour, to: horizontalRightColour)
+		let horizontalBlurHash = BlurHash(blendingLeft: horizontalLeftColour, right: horizontalRightColour)
 		horizontalUncompressedImageView?.image = horizontalBlurHash.image(size: CGSize(width: 32, height: 32))
 		horizontalCompressedImageView?.image = BlurHash(string: horizontalBlurHash.string)?.image(size: CGSize(width: 32, height: 32))
 		horizontalHashLabel?.text = horizontalBlurHash.string
 
-		let verticalBlurHash = BlurHash(verticalGradientFrom: verticalTopColour, to: verticalBottomColour)
+		let verticalBlurHash = BlurHash(blendingTop: verticalTopColour, bottom: verticalBottomColour)
 		verticalUncompressedImageView?.image = verticalBlurHash.image(size: CGSize(width: 32, height: 32))
 		verticalCompressedImageView?.image = BlurHash(string: verticalBlurHash.string)?.image(size: CGSize(width: 32, height: 32))
 		verticalHashLabel?.text = verticalBlurHash.string

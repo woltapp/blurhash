@@ -6,13 +6,17 @@ public struct BlurHash {
 	public var numberOfHorizontalComponents: Int { return components.first!.count }
 	public var numberOfVerticalComponents: Int { return components.count }
 
+	public init(components: [[(Float, Float, Float)]]) {
+		self.components = components
+	}
+
 	public func punch(_ factor: Float) -> BlurHash {
-		return BlurHash(components: components.enumerated().map { (y, xComponents) in
-			return xComponents.enumerated().map { (x, component) in
-				if x == 0 && y == 0 {
+		return BlurHash(components: components.enumerated().map { (j, horizontalComponents) -> [(Float, Float, Float)] in
+			return horizontalComponents.enumerated().map { (i, component) -> (Float, Float, Float) in
+				if i == 0 && j == 0 {
 					return component
 				} else {
-					return (component.0 * factor, component.1 * factor, component.2 * factor)
+					return component * factor
 				}
 			}
 		})
