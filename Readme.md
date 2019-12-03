@@ -73,6 +73,7 @@ Who uses BlurHash? Here are some projects we know about:
 
 * [Wolt](http://wolt.com/) - We are of course using it ourselves. BlurHashes are used in the mobile clients on iOS and Android, as well as on the web, as placeholders during image loading.
 * [Mastodon](https://github.com/tootsuite/mastodon) - The Mastodon decentralised social media network uses BlurHashes both as loading placeholders, as well as for hiding media marked as sensitive.
+* [Signal](https://signal.org/) - Signal Private Messenger uses Blurhashes as placeholders before photo & video messages are downloaded in chat conversations.
 
 ## Good Questions
 
