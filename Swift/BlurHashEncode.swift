@@ -2,15 +2,32 @@ import UIKit
 
 extension UIImage {
     public func blurHash(numberOfComponents components: (Int, Int)) -> String? {
-        guard components.0 >= 1, components.0 <= 9,
-        components.1 >= 1, components.1 <= 9,
-        cgImage?.colorSpace?.numberOfComponents == 3,
-        cgImage?.bitsPerPixel == 24 || cgImage?.bitsPerPixel == 32 else { return nil }
+		let pixelWidth = Int(round(size.width * scale))
+		let pixelHeight = Int(round(size.height * scale))
 
-        guard let cgImage = cgImage,
-        let dataProvider = cgImage.dataProvider,
-        let data = dataProvider.data,
-        let pixels = CFDataGetBytePtr(data) else { return nil }
+		let context = CGContext(
+			data: nil,
+			width: pixelWidth,
+			height: pixelHeight,
+			bitsPerComponent: 8,
+			bytesPerRow: pixelWidth * 4,
+			space: CGColorSpace(name: CGColorSpace.sRGB)!,
+			bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+		)!
+		context.scaleBy(x: scale, y: -scale)
+		context.translateBy(x: 0, y: -size.height)
+
+		UIGraphicsPushContext(context)
+		draw(at: .zero)
+		UIGraphicsPopContext()
+
+		guard let cgImage = context.makeImage(),
+		let dataProvider = cgImage.dataProvider,
+		let data = dataProvider.data,
+		let pixels = CFDataGetBytePtr(data) else {
+			assertionFailure("Unexpected error!")
+			return nil
+		}
 
         let width = cgImage.width
         let height = cgImage.height
