@@ -56,17 +56,17 @@ extension BlurHash {
 }
 
 extension BlurHash {
-    public func isDark(linearRGB rgb: (Float, Float, Float)) -> Bool {
-        return rgb.0 * 0.299 + rgb.1 * 0.587 + rgb.2 * 0.114 < 0.5
+    public func isDark(linearRGB rgb: (Float, Float, Float), threshold: Float = 0.3) -> Bool {
+        return rgb.0 * 0.299 + rgb.1 * 0.587 + rgb.2 * 0.114 < threshold
     }
 
-    public var isDark: Bool { return isDark(linearRGB: averageLinearRGB) }
+    public func isDark(threshold: Float = 0.3) -> Bool { return isDark(linearRGB: averageLinearRGB, threshold: threshold) }
 
-    public func isDark(atX x: Float) -> Bool { return isDark(linearRGB: linearRGB(atX: x)) }
-    public func isDark(atY y: Float) -> Bool { return isDark(linearRGB: linearRGB(atY: y)) }
-    public func isDark(at position: (Float, Float)) -> Bool { return isDark(linearRGB: linearRGB(at: position)) }
-    public func isDark(from upperLeft: (Float, Float), to lowerRight: (Float, Float)) -> Bool { return isDark(linearRGB: linearRGB(from: upperLeft, to: lowerRight)) }
-    public func isDark(at upperLeft: (Float, Float), size: (Float, Float)) -> Bool { return isDark(linearRGB: linearRGB(at: upperLeft, size: size)) }
+    public func isDark(atX x: Float, threshold: Float = 0.3) -> Bool { return isDark(linearRGB: linearRGB(atX: x), threshold: threshold) }
+    public func isDark(atY y: Float, threshold: Float = 0.3) -> Bool { return isDark(linearRGB: linearRGB(atY: y), threshold: threshold) }
+    public func isDark(at position: (Float, Float), threshold: Float = 0.3) -> Bool { return isDark(linearRGB: linearRGB(at: position), threshold: threshold) }
+    public func isDark(from upperLeft: (Float, Float), to lowerRight: (Float, Float), threshold: Float = 0.3) -> Bool { return isDark(linearRGB: linearRGB(from: upperLeft, to: lowerRight), threshold: threshold) }
+    public func isDark(at upperLeft: (Float, Float), size: (Float, Float), threshold: Float = 0.3) -> Bool { return isDark(linearRGB: linearRGB(at: upperLeft, size: size), threshold: threshold) }
 
     public var isLeftEdgeDark: Bool { return isDark(atX: 0) }
     public var isRightEdgeDark: Bool { return isDark(atX: 1) }

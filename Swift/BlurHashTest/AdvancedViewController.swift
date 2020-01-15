@@ -92,7 +92,7 @@ class AdvancedViewController: UIViewController {
         setDarkness(label: topEdgeLabel, isDark: decodedBlurHash.isTopEdgeDark, light: "------Light------", dark: "------Dark------")
         setDarkness(label: topRightCornerLabel, isDark: decodedBlurHash.isTopRightCornerDark, light: "Ⓛ", dark: "Ⓓ")
         setDarkness(label: leftEdgeLabel, isDark: decodedBlurHash.isLeftEdgeDark, light: "|\n|\nLight\n|\n|", dark: "|\n|\nDark\n|\n|")
-        setDarkness(label: centreLabel, isDark: decodedBlurHash.isDark, light: "Light", dark: "Dark")
+        setDarkness(label: centreLabel, isDark: decodedBlurHash.isDark(), light: "Light", dark: "Dark")
         setDarkness(label: rightEdgeLabel, isDark: decodedBlurHash.isRightEdgeDark, light: "|\n|\nLight\n|\n|", dark: "|\n|\nDark\n|\n|")
         setDarkness(label: bottomLeftCornerLabel, isDark: decodedBlurHash.isBottomLeftCornerDark, light: "Ⓛ", dark: "Ⓓ")
         setDarkness(label: bottomEdgeLabel, isDark: decodedBlurHash.isBottomEdgeDark, light: "------Light------", dark: "------Dark------")
