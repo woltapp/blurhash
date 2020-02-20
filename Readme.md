@@ -125,7 +125,7 @@ characters.
 
 ### What about using the full Unicode character set to get a more efficient encoding?
 
-We haven't looked into how much overehead UTF-8 encoding would introduce versus base 83 in single-byte characters, but
+We haven't looked into how much overhead UTF-8 encoding would introduce versus base 83 in single-byte characters, but
 the encoding and decoding would probably be a lot more complicated, so in the spirit of minimalism BlurHash uses the simpler
 option. It might also be awkward to copy-paste, depending on OS capabilities.
 
