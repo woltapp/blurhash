@@ -5,7 +5,7 @@
 BlurHash applies a simple [DCT transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) to the image data,
 keeping only the first few components, and then encodes these components using a base 83 encoding, with a JSON,
 HTML and shell-safe character set. The DC component, which represents the average colour of the image, is stored exactly
-as an sRGB value, for easy use without impleneting the full algorithm. The AC components are encoded lossily.
+as an sRGB value, for easy use without implementing the full algorithm. The AC components are encoded lossily.
 
 ## Reference implementation
 
