@@ -45,7 +45,7 @@ So far, we have created these implementations:
 These cover our use cases, but could probably use polishing, extending and improving. There are also these third party implementations that we know of:
 
 * [Pure Python](https://github.com/halcy/blurhash-python) - Implementation of both the encoder and decoder in pure Python.
-* [One version in Go](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwjJ9ueT9pXjAhXRw6YKHfrGBNcQFjAAegQIABAB&url=https%3A%2F%2Fgithub.com%2Fbbrks%2Fgo-blurhash&usg=AOvVaw2alZSHvT7HbublYbpNn9fY), and [another version in Go](https://github.com/buckket/go-blurhash).
+* [One version in Go](https://github.com/bbrks/go-blurhash), and [another version in Go](https://github.com/buckket/go-blurhash).
 * [PHP](https://github.com/kornrunner/php-blurhash) - Encoder and decoder implementations in pure PHP.
 * [Java](https://github.com/hsch/blurhash-java) - Encoder implementation in Java.
 * [Clojure](https://github.com/siili-core/blurhash) - Encoder and decoder implementations in Clojure.
