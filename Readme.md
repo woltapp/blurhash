@@ -52,6 +52,7 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Nim](https://github.com/SolitudeSF/blurhash) - Encoder and decoder implementation in pure Nim.
 * [Rust and WebAssembly](https://github.com/fpapado/blurhash-rust-wasm) - Encoder and decoder implementations in Rust. Distributed as both native Rust and WebAssembly packages.
 * [Ruby](https://github.com/Gargron/blurhash) - Encoder implementation in Ruby.
+* [Elm](https://github.com/WhileTruu/elm-blurhash) - Encoder and decoder in Elm.
 
 Perhaps you'd like to help extend this list? Which brings us to...
 
