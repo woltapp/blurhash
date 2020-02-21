@@ -9,9 +9,9 @@ as an sRGB value, for easy use without impleneting the full algorithm. The AC co
 
 ## Reference implementation
 
-[Simplified Swift decoder implemenation.](Swift/BlurHashDecode.swift)
+[Simplified Swift decoder implementation.](Swift/BlurHashDecode.swift)
 
-[Simplified Swift encoder implemenation.](Swift/BlurHashEncode.swift)
+[Simplified Swift encoder implementation.](Swift/BlurHashEncode.swift)
 
 ## Structure
 
