@@ -156,7 +156,7 @@
 		1BEFFFBD20BEE66400187F3F /* index.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = index.ts; sourceTree = "<group>"; };
 		1BEFFFBE20BEE66400187F3F /* base83.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = base83.ts; sourceTree = "<group>"; };
 		1BEFFFBF20BFDC1600187F3F /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		1BEFFFC120BFE05600187F3F /* BlurHashDecoder.kt */ = {isa = PBXFileReference; lastKnownFileType = text; path = BlurHashDecoder.kt; sourceTree = "<group>"; };
+		1BEFFFC120BFE05600187F3F /* BlurHashDecoder.kt */ = {isa = PBXFileReference; lastKnownFileType = text; name = BlurHashDecoder.kt; path = lib/src/main/java/com/wolt/blurhashkt/BlurHashDecoder.kt; sourceTree = "<group>"; };
 		1BEFFFC220BFE33E00187F3F /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		1BEFFFC320BFE34800187F3F /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Readme.md; path = ../Readme.md; sourceTree = "<group>"; };
 		1BEFFFC420BFE35300187F3F /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
