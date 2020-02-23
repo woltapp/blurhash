@@ -50,6 +50,8 @@
 		1BDE56D12011EC5F00569DCB /* ColourProbes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE56D02011EC5F00569DCB /* ColourProbes.swift */; };
 		7EF2115B2402CDD000E24FC2 /* BlurHashKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2115A2402CDD000E24FC2 /* BlurHashKitTests.swift */; };
 		7EF2115D2402CDD000E24FC2 /* BlurHashKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B49CD1B1EC4721A006F8E7D /* BlurHashKit.framework */; };
+		7EF211672402CFA100E24FC2 /* EncodeComponentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF211632402CF4900E24FC2 /* EncodeComponentsTests.swift */; };
+		7EF211682402CFA300E24FC2 /* EncodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF211642402CF4900E24FC2 /* EncodeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +178,8 @@
 		7EF211582402CDD000E24FC2 /* BlurHashKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlurHashKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF2115A2402CDD000E24FC2 /* BlurHashKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurHashKitTests.swift; sourceTree = "<group>"; };
 		7EF2115C2402CDD000E24FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EF211632402CF4900E24FC2 /* EncodeComponentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodeComponentsTests.swift; sourceTree = "<group>"; };
+		7EF211642402CF4900E24FC2 /* EncodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,8 +429,10 @@
 		7EF211592402CDD000E24FC2 /* BlurHashKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				7EF2115A2402CDD000E24FC2 /* BlurHashKitTests.swift */,
 				7EF2115C2402CDD000E24FC2 /* Info.plist */,
+				7EF2115A2402CDD000E24FC2 /* BlurHashKitTests.swift */,
+				7EF211642402CF4900E24FC2 /* EncodeTests.swift */,
+				7EF211632402CF4900E24FC2 /* EncodeComponentsTests.swift */,
 			);
 			path = BlurHashKitTests;
 			sourceTree = "<group>";
@@ -692,6 +698,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EF2115B2402CDD000E24FC2 /* BlurHashKitTests.swift in Sources */,
+				7EF211682402CFA300E24FC2 /* EncodeTests.swift in Sources */,
+				7EF211672402CFA100E24FC2 /* EncodeComponentsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
