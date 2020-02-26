@@ -53,7 +53,9 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Rust and WebAssembly](https://github.com/fpapado/blurhash-rust-wasm) - Encoder and decoder implementations in Rust. Distributed as both native Rust and WebAssembly packages.
 * [Ruby](https://github.com/Gargron/blurhash) - Encoder implementation in Ruby.
 * [Elm](https://github.com/WhileTruu/elm-blurhash) - Encoder and decoder in Elm.
-* [Flutter](https://github.com/Raincal/blurhash) - Flutter decoder wrapper for iOS and Android.
+* [Flutter](https://github.com/Solido/Flutter-BlurHash) - Flutter decoder.
+* [Dart](https://github.com/justacid/blurhash-dart) - Encoder and decoder implementation in pure Dart.
+* [.NET](https://github.com/MarkusPalcer/blurhash.net) - Encoder and decoder in C#.
 
 Perhaps you'd like to help extend this list? Which brings us to...
 
