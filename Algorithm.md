@@ -35,7 +35,7 @@ Here follows an example of a BlurHash string, with the different parts labelled:
 
 4. **AC components, 2 digits each, `nx * ny - 1` components in total.**
    
-   The AC components of the DCT transform, ordred by increasing X first, then Y. They  are encoded as three values for `R`, `G` and `B`,
+   The AC components of the DCT transform, ordered by increasing X first, then Y. They  are encoded as three values for `R`, `G` and `B`,
    each between 0 and 18. They are combined together as `R * 19^2 + G * 19 + B`, for a total range of 0 to 6859.
    
    Each value represents a floating-point value between -1 and 1. 0-8 represent negative values, 9 represents zero, and 10-18
