@@ -2,4 +2,9 @@
     <string name="app_name">BlurHash</string>
     <string name="hint_blurhash">BlurHash string</string>
     <string name="title_button_decode">Decode!</string>
+    <string name="title_button_encode1">Encode 1!</string>
+    <string name="title_button_encode2">Encode 2!</string>
+    <string name="title_button_encode3">Encode 3!</string>
+    <string name="title_button_encode4">Encode 4!</string>
+    <string name="title_button_encode5">Encode 5!</string>
 </resources>
