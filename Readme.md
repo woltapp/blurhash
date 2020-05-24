@@ -55,6 +55,7 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Elm](https://github.com/WhileTruu/elm-blurhash) - Encoder and decoder in Elm.
 * [Dart](https://github.com/justacid/blurhash-dart) - Encoder and decoder implementation in pure Dart.
 * [.NET](https://github.com/MarkusPalcer/blurhash.net) - Encoder and decoder in C#.
+* [Haskell](https://github.com/SamProtas/JuicyPixels-blurhash) - Encoder and decoder in pure Haskell.
 
 Perhaps you'd like to help extend this list? Which brings us to...
 
@@ -157,4 +158,5 @@ to see what you can come up with!
 * [Hendrik Schnepel](https://github.com/hsch) - Java encoder implementation
 * [Tuomo Virolainen](https://github.com/tvirolai) - Clojure implementation
 * [Fotis Papadogeorgopoulos](https://github.com/fpapado) - Rust and WebAssembly implementation
+* [Sam Protas](https://github.com/SamProtas) - Pure Haskell implementation
 * _Your name here?_
