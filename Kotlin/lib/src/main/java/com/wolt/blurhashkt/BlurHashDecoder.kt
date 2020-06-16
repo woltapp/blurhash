@@ -9,6 +9,7 @@ import kotlin.math.withSign
 
 // this is to optimize the number of calculations for "Math.cos()",
 // is is slow and for many images with same size it can be cached, improving performance.
+// the improvement can be noticed with images bigger than 80x80
 private const val USE_CACHE_FOR_MATH_COS = true
 
 object BlurHashDecoder {
