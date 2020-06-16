@@ -2,12 +2,19 @@ package com.wolt.blurhashkt
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import kotlin.math.PI
+import java.util.*
 import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.withSign
 
+// this is to optimize the number of calculations for "Math.cos()",
+// is is slow and for many images with same size it can be cached, improving performance.
+private const val USE_CACHE_FOR_MATH_COS = true
+
 object BlurHashDecoder {
+
+    private val cacheCosinesX = HashMap<Int, DoubleArray>()
+    private val cacheCosinesY = HashMap<Int, DoubleArray>()
 
     fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f): Bitmap? {
         if (blurHash == null || blurHash.length < 6) {
@@ -79,7 +86,18 @@ object BlurHashDecoder {
             numCompX: Int, numCompY: Int,
             colors: Array<FloatArray>
     ): Bitmap {
-        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        // use an array for better performance when writing pixel colors
+        val imageArray = IntArray(width * height)
+        val calculateCosX = !USE_CACHE_FOR_MATH_COS || !cacheCosinesX.containsKey(width * numCompX)
+        val cosinesX: DoubleArray = getCosinesX(calculateCosX, width, numCompX)
+        val calculateCosY = !USE_CACHE_FOR_MATH_COS || !cacheCosinesY.containsKey(height * numCompY)
+        val cosinesY: DoubleArray
+        if (calculateCosY) {
+            cosinesY = DoubleArray(height * numCompY)
+            cacheCosinesY[height * numCompY] = cosinesY
+        } else {
+            cosinesY = cacheCosinesY[height * numCompY]!!
+        }
         for (y in 0 until height) {
             for (x in 0 until width) {
                 var r = 0f
@@ -87,17 +105,62 @@ object BlurHashDecoder {
                 var b = 0f
                 for (j in 0 until numCompY) {
                     for (i in 0 until numCompX) {
-                        val basis = (cos(PI * x * i / width) * cos(PI * y * j / height)).toFloat()
+                        val cosX = getCosX(calculateCosX, cosinesX, i, numCompX, x, width)
+                        val cosY = getCosY(calculateCosY, cosinesY, j, numCompY, y, height)
+                        val basis = (cosX * cosY).toFloat()
                         val color = colors[j * numCompX + i]
                         r += color[0] * basis
                         g += color[1] * basis
                         b += color[2] * basis
                     }
                 }
-                bitmap.setPixel(x, y, Color.rgb(linearToSrgb(r), linearToSrgb(g), linearToSrgb(b)))
+                imageArray[x + width * y] = Color.rgb(linearToSrgb(r), linearToSrgb(g), linearToSrgb(b))
             }
         }
-        return bitmap
+        return Bitmap.createBitmap(imageArray, width, height, Bitmap.Config.ARGB_8888)
+    }
+
+    private fun getCosY(
+            calculateCosY: Boolean,
+            cosinesY: DoubleArray,
+            j: Int,
+            numCompY: Int,
+            y: Int,
+            height: Int
+    ): Double {
+        if (calculateCosY) {
+            cosinesY[j + numCompY * y] =
+                    cos(Math.PI * y * j / height)
+        }
+        val cosY = cosinesY[j + numCompY * y]
+        return cosY
+    }
+
+    private fun getCosX(
+            calculateCosX: Boolean,
+            cosinesX: DoubleArray,
+            i: Int,
+            numCompX: Int,
+            x: Int,
+            width: Int
+    ): Double {
+        if (calculateCosX) {
+            cosinesX[i + numCompX * x] =
+                    cos(Math.PI * x * i / width)
+        }
+        val cosX = cosinesX[i + numCompX * x]
+        return cosX
+    }
+
+    private fun getCosinesX(calculateCosX: Boolean, width: Int, numCompX: Int): DoubleArray {
+        return when {
+            calculateCosX -> {
+                DoubleArray(width * numCompX).also {
+                    cacheCosinesX[width * numCompX] = it
+                }
+            }
+            else -> cacheCosinesX[width * numCompX]!!
+        }
     }
 
     private fun linearToSrgb(value: Float): Int {
@@ -109,13 +172,14 @@ object BlurHashDecoder {
         }
     }
 
-    private val charMap = listOf(
+    val listOfChars = listOf(
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
             'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
             'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
             'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '#', '$', '%', '*', '+', ',',
             '-', '.', ':', ';', '=', '?', '@', '[', ']', '^', '_', '{', '|', '}', '~'
     )
+    private val charMap = listOfChars
             .mapIndexed { i, c -> c to i }
             .toMap()
 
