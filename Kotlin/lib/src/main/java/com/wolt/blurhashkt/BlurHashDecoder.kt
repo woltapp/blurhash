@@ -89,9 +89,9 @@ object BlurHashDecoder {
         // use an array for better performance when writing pixel colors
         val imageArray = IntArray(width * height)
         val calculateCosX = !USE_CACHE_FOR_MATH_COS || !cacheCosinesX.containsKey(width * numCompX)
-        val cosinesX: DoubleArray = getCosinesX(calculateCosX, width, numCompX)
+        val cosinesX = getCosinesX(calculateCosX, width, numCompX)
         val calculateCosY = !USE_CACHE_FOR_MATH_COS || !cacheCosinesY.containsKey(height * numCompY)
-        val cosinesY: DoubleArray = getCosinesY(calculateCosY, height, numCompY)
+        val cosinesY = getCosinesY(calculateCosY, height, numCompY)
         for (y in 0 until height) {
             for (x in 0 until width) {
                 var r = 0f
@@ -134,11 +134,9 @@ object BlurHashDecoder {
             height: Int
     ): Double {
         if (calculateCosY) {
-            cosinesY[j + numCompY * y] =
-                    cos(Math.PI * y * j / height)
+            cosinesY[j + numCompY * y] = cos(Math.PI * y * j / height)
         }
-        val cosY = cosinesY[j + numCompY * y]
-        return cosY
+        return cosinesY[j + numCompY * y]
     }
 
     private fun getCosX(
@@ -150,11 +148,9 @@ object BlurHashDecoder {
             width: Int
     ): Double {
         if (calculateCosX) {
-            cosinesX[i + numCompX * x] =
-                    cos(Math.PI * x * i / width)
+            cosinesX[i + numCompX * x] = cos(Math.PI * x * i / width)
         }
-        val cosX = cosinesX[i + numCompX * x]
-        return cosX
+        return cosinesX[i + numCompX * x]
     }
 
     private fun getCosinesX(calculateCosX: Boolean, width: Int, numCompX: Int): DoubleArray {
@@ -177,14 +173,13 @@ object BlurHashDecoder {
         }
     }
 
-    val listOfChars = listOf(
+    private val charMap = listOf(
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
             'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
             'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
             'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '#', '$', '%', '*', '+', ',',
             '-', '.', ':', ';', '=', '?', '@', '[', ']', '^', '_', '{', '|', '}', '~'
     )
-    private val charMap = listOfChars
             .mapIndexed { i, c -> c to i }
             .toMap()
 
