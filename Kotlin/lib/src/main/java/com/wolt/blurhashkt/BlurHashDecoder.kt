@@ -91,13 +91,7 @@ object BlurHashDecoder {
         val calculateCosX = !USE_CACHE_FOR_MATH_COS || !cacheCosinesX.containsKey(width * numCompX)
         val cosinesX: DoubleArray = getCosinesX(calculateCosX, width, numCompX)
         val calculateCosY = !USE_CACHE_FOR_MATH_COS || !cacheCosinesY.containsKey(height * numCompY)
-        val cosinesY: DoubleArray
-        if (calculateCosY) {
-            cosinesY = DoubleArray(height * numCompY)
-            cacheCosinesY[height * numCompY] = cosinesY
-        } else {
-            cosinesY = cacheCosinesY[height * numCompY]!!
-        }
+        val cosinesY: DoubleArray = getCosinesY(calculateCosY, height, numCompY)
         for (y in 0 until height) {
             for (x in 0 until width) {
                 var r = 0f
@@ -118,6 +112,17 @@ object BlurHashDecoder {
             }
         }
         return Bitmap.createBitmap(imageArray, width, height, Bitmap.Config.ARGB_8888)
+    }
+
+    private fun getCosinesY(calculateCosY: Boolean, height: Int, numCompY: Int): DoubleArray {
+        val cosinesY: DoubleArray
+        if (calculateCosY) {
+            cosinesY = DoubleArray(height * numCompY)
+            cacheCosinesY[height * numCompY] = cosinesY
+        } else {
+            cosinesY = cacheCosinesY[height * numCompY]!!
+        }
+        return cosinesY
     }
 
     private fun getCosY(
