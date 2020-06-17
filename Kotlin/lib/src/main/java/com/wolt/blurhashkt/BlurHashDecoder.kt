@@ -11,6 +11,11 @@ object BlurHashDecoder {
     private val cacheCosinesX = HashMap<Int, DoubleArray>()
     private val cacheCosinesY = HashMap<Int, DoubleArray>()
 
+    fun clearCache() {
+        cacheCosinesX.clear()
+        cacheCosinesY.clear()
+    }
+
     fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f, useArray: Boolean = true, useCache: Boolean = true): Bitmap? {
 
         if (blurHash == null || blurHash.length < 6) {

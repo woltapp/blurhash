@@ -1,10 +1,7 @@
 package com.wolt.blurhashapp
 
 import android.graphics.Bitmap
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.SystemClock
+import android.os.*
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
@@ -64,6 +61,11 @@ class Vm : ViewModel() {
         executor.execute {
             notifyBenchmark("START")
         }
+        executor.execute {
+            notifyBenchmark("-----------------------------------")
+            notifyBenchmark("Device: ${Build.MANUFACTURER} - ${Build.MODEL}")
+            notifyBenchmark("OS: Android ${Build.VERSION.CODENAME} - API ${Build.VERSION.SDK_INT}")
+        }
         for (useArray in 1 downTo 0) {
             val useArray1 = useArray == 1
             for (useCache in 1 downTo 0) {
@@ -74,8 +76,8 @@ class Vm : ViewModel() {
                     notifyBenchmark("-----------------------------------")
                 }
                 for (s in 1..3) {
-                    val width = 20 * 2.toDouble().pow(s - 1).toInt()
-                    val height = 12 * 2.toDouble().pow(s - 1).toInt()
+                    val width = 20 * 2.0.pow(s - 1).toInt()
+                    val height = 12 * 2.0.pow(s - 1).toInt()
                     executor.execute {
                         notifyBenchmark("width: $width, height: $height")
                     }
@@ -102,6 +104,7 @@ class Vm : ViewModel() {
     private fun benchmark(max: Int, width: Int, height: Int, blurHash: String, useArray: Boolean, useCache: Boolean) {
         notifyBenchmark("-> $max bitmaps")
         var bmp: Bitmap? = null
+        BlurHashDecoder.clearCache()
         val time = timed {
             for (i in 1..max) {
                 bmp = BlurHashDecoder.decode(blurHash, width, height, useArray = useArray, useCache = useCache)
