@@ -8,6 +8,9 @@ import kotlin.math.withSign
 
 object BlurHashDecoder {
 
+    // cache Math.cos() calculations to improve performance.
+    // The number of calculations can be huge for many bitmaps: width * height * numCompX * numCompY * 2 * nBitmaps
+    // the cache is enabled by default, it is recommended to disable it only when just a few images are displayed
     private val cacheCosinesX = HashMap<Int, DoubleArray>()
     private val cacheCosinesY = HashMap<Int, DoubleArray>()
 
@@ -16,7 +19,7 @@ object BlurHashDecoder {
         cacheCosinesY.clear()
     }
 
-    fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f, useArray: Boolean = true, useCache: Boolean = true): Bitmap? {
+    fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f, useCache: Boolean = true): Bitmap? {
 
         if (blurHash == null || blurHash.length < 6) {
             return null
@@ -39,10 +42,7 @@ object BlurHashDecoder {
                 decodeAc(colorEnc, maxAc * punch)
             }
         }
-        if (useArray)
-            return composeBitmapArray(width, height, numCompX, numCompY, colors, useCache)
-        else
-            return composeBitmap(width, height, numCompX, numCompY, colors, useCache)
+        return composeBitmap(width, height, numCompX, numCompY, colors, useCache)
     }
 
     private fun decode83(str: String, from: Int = 0, to: Int = str.length): Int {
@@ -85,7 +85,7 @@ object BlurHashDecoder {
 
     private fun signedPow2(value: Float) = value.pow(2f).withSign(value)
 
-    private fun composeBitmapArray(
+    private fun composeBitmap(
             width: Int, height: Int,
             numCompX: Int, numCompY: Int,
             colors: Array<FloatArray>,
@@ -117,39 +117,6 @@ object BlurHashDecoder {
             }
         }
         return Bitmap.createBitmap(imageArray, width, height, Bitmap.Config.ARGB_8888)
-    }
-
-    private fun composeBitmap(
-            width: Int, height: Int,
-            numCompX: Int, numCompY: Int,
-            colors: Array<FloatArray>,
-            useCache: Boolean
-    ): Bitmap {
-        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        val calculateCosX = !useCache || !cacheCosinesX.containsKey(width * numCompX)
-        val cosinesX = getCosinesX(calculateCosX, width, numCompX)
-        val calculateCosY = !useCache || !cacheCosinesY.containsKey(height * numCompY)
-        val cosinesY = getCosinesY(calculateCosY, height, numCompY)
-        for (y in 0 until height) {
-            for (x in 0 until width) {
-                var r = 0f
-                var g = 0f
-                var b = 0f
-                for (j in 0 until numCompY) {
-                    for (i in 0 until numCompX) {
-                        val cosX = getCosX(calculateCosX, cosinesX, i, numCompX, x, width)
-                        val cosY = getCosY(calculateCosY, cosinesY, j, numCompY, y, height)
-                        val basis = (cosX * cosY).toFloat()
-                        val color = colors[j * numCompX + i]
-                        r += color[0] * basis
-                        g += color[1] * basis
-                        b += color[2] * basis
-                    }
-                }
-                bitmap.setPixel(x, y, Color.rgb(linearToSrgb(r), linearToSrgb(g), linearToSrgb(b)))
-            }
-        }
-        return bitmap
     }
 
     private fun getCosinesY(calculateCosY: Boolean, height: Int, numCompY: Int): DoubleArray {
