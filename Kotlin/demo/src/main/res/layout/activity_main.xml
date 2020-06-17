@@ -41,12 +41,26 @@
         android:layout_marginTop="24dp"
         android:adjustViewBounds="true" />
 
-    <TextView
-        android:id="@+id/ivResultMs"
-        android:layout_width="wrap_content"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:visibility="invisible"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/ivResultBenchmark"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp"
+        android:editable="false"
+        android:inputType="none"
+        android:scrollbars="vertical"
+        android:textIsSelectable="true"
+        android:textSize="16sp"
         tools:text="0 ms" />
+
 
 </LinearLayout>
