@@ -66,48 +66,40 @@ class Vm : ViewModel() {
             notifyBenchmark("Device: ${Build.MANUFACTURER} - ${Build.MODEL}")
             notifyBenchmark("OS: Android ${Build.VERSION.CODENAME} - API ${Build.VERSION.SDK_INT}")
         }
-        for (useArray in 1 downTo 0) {
-            val useArray1 = useArray == 1
-            for (useCache in 1 downTo 0) {
-                val useCache1 = useCache == 1
+        executor.execute {
+            notifyBenchmark("-----------------------------------")
+        }
+        for (s in 1..3) {
+            val width = 20 * 2.0.pow(s - 1).toInt()
+            val height = 12 * 2.0.pow(s - 1).toInt()
+            executor.execute {
+                notifyBenchmark("width: $width, height: $height")
+            }
+            for (n in 0..3) {
                 executor.execute {
-                    notifyBenchmark("-----------------------------------")
-                    notifyBenchmark("Array: $useArray1, cache: $useCache1")
-                    notifyBenchmark("-----------------------------------")
-                }
-                for (s in 1..3) {
-                    val width = 20 * 2.0.pow(s - 1).toInt()
-                    val height = 12 * 2.0.pow(s - 1).toInt()
-                    executor.execute {
-                        notifyBenchmark("width: $width, height: $height")
-                    }
-                    for (n in 1..3) {
-                        executor.execute {
-                            benchmark(10.toDouble().pow(n).toInt(), width, height, blurHash, useArray1, useCache1)
-                        }
-                    }
-                    executor.execute {
-                        notifyBenchmark("\n")
-                    }
-                }
-                val s = "-----------------------------------\n"
-                executor.execute {
-                    notifyBenchmark(s)
+                    benchmark(10.0.pow(n).toInt(), width, height, blurHash)
                 }
             }
+            executor.execute {
+                notifyBenchmark("\n")
+            }
+        }
+        val s = "-----------------------------------\n"
+        executor.execute {
+            notifyBenchmark(s)
         }
         executor.execute {
             notifyBenchmark("END")
         }
     }
 
-    private fun benchmark(max: Int, width: Int, height: Int, blurHash: String, useArray: Boolean, useCache: Boolean) {
+    private fun benchmark(max: Int, width: Int, height: Int, blurHash: String, useCache: Boolean = true) {
         notifyBenchmark("-> $max bitmaps")
         var bmp: Bitmap? = null
         BlurHashDecoder.clearCache()
         val time = timed {
             for (i in 1..max) {
-                bmp = BlurHashDecoder.decode(blurHash, width, height, useArray = useArray, useCache = useCache)
+                bmp = BlurHashDecoder.decode(blurHash, width, height, useCache = useCache)
             }
         }
         notifyBenchmark("<- $time ms, Avg: ${time / max.toDouble()} ms")
