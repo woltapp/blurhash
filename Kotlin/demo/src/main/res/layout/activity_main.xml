@@ -50,6 +50,4 @@
         android:textIsSelectable="true"
         android:textSize="16sp"
         tools:text="0 ms" />
-
-
 </LinearLayout>
