@@ -47,7 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text=""
         android:textIsSelectable="true"
         android:textSize="16sp"
         tools:text="0 ms" />
