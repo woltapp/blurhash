@@ -1,43 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="24dp">
 
     <EditText
         android:id="@+id/etInput"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:autofillHints="@null"
         android:gravity="center_horizontal"
         android:hint="@string/hint_blurhash"
         android:inputType="text"
-        android:singleLine="true"
-        android:text="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
-        android:textColor="@color/colorAccent" />
+        android:maxLines="1"
+        android:text="@string/demo_blurhash_string"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvDecode"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btnDecode"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="12dp"
-        android:background="@color/colorPrimary"
-        android:elevation="8dp"
-        android:paddingStart="12dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="8dp"
         android:text="@string/title_button_decode"
-        android:textColor="@color/colorAccent"
-        android:textSize="16sp" />
+        android:textColor="@color/textColor"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/btnEncode1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etInput" />
+
+    <Button
+        android:id="@+id/btnEncode1"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/title_button_encode1"
+        android:textColor="@color/textColor"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/btnEncode2"
+        app:layout_constraintStart_toEndOf="@id/btnDecode"
+        app:layout_constraintTop_toBottomOf="@id/etInput" />
+
+    <Button
+        android:id="@+id/btnEncode2"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/title_button_encode2"
+        android:textColor="@color/textColor"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnEncode1"
+        app:layout_constraintTop_toBottomOf="@id/etInput" />
+
+    <Button
+        android:id="@+id/btnEncode3"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/title_button_encode3"
+        android:textColor="@color/textColor"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/btnEncode4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnDecode" />
+
+    <Button
+        android:id="@+id/btnEncode4"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/title_button_encode4"
+        android:textColor="@color/textColor"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/btnEncode5"
+        app:layout_constraintStart_toEndOf="@id/btnEncode3"
+        app:layout_constraintTop_toBottomOf="@id/btnDecode" />
+
+    <Button
+        android:id="@+id/btnEncode5"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/title_button_encode5"
+        android:textColor="@color/textColor"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnEncode4"
+        app:layout_constraintTop_toBottomOf="@id/btnDecode" />
 
     <ImageView
         android:id="@+id/ivResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnEncode5" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
