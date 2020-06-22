@@ -14,6 +14,11 @@ object BlurHashDecoder {
     private val cacheCosinesX = HashMap<Int, DoubleArray>()
     private val cacheCosinesY = HashMap<Int, DoubleArray>()
 
+    /**
+     * Clear calculations stored in memory cache.
+     * The cache is not big, but will increase when many image sizes are used,
+     * if the app needs memory it is recommended to clear it.
+     */
     fun clearCache() {
         cacheCosinesX.clear()
         cacheCosinesY.clear()
@@ -94,9 +99,9 @@ object BlurHashDecoder {
         // use an array for better performance when writing pixel colors
         val imageArray = IntArray(width * height)
         val calculateCosX = !useCache || !cacheCosinesX.containsKey(width * numCompX)
-        val cosinesX = getCosinesX(calculateCosX, width, numCompX)
+        val cosinesX = getArrayForCosinesX(calculateCosX, width, numCompX)
         val calculateCosY = !useCache || !cacheCosinesY.containsKey(height * numCompY)
-        val cosinesY = getCosinesY(calculateCosY, height, numCompY)
+        val cosinesY = getArrayForCosinesY(calculateCosY, height, numCompY)
         for (y in 0 until height) {
             for (x in 0 until width) {
                 var r = 0f
@@ -104,8 +109,8 @@ object BlurHashDecoder {
                 var b = 0f
                 for (j in 0 until numCompY) {
                     for (i in 0 until numCompX) {
-                        val cosX = getCosX(calculateCosX, cosinesX, i, numCompX, x, width)
-                        val cosY = getCosY(calculateCosY, cosinesY, j, numCompY, y, height)
+                        val cosX = cosinesX.getCos(calculateCosX, i, numCompX, x, width)
+                        val cosY = cosinesY.getCos(calculateCosY, j, numCompY, y, height)
                         val basis = (cosX * cosY).toFloat()
                         val color = colors[j * numCompX + i]
                         r += color[0] * basis
@@ -119,54 +124,37 @@ object BlurHashDecoder {
         return Bitmap.createBitmap(imageArray, width, height, Bitmap.Config.ARGB_8888)
     }
 
-    private fun getCosinesY(calculateCosY: Boolean, height: Int, numCompY: Int): DoubleArray {
-        val cosinesY: DoubleArray
-        if (calculateCosY) {
-            cosinesY = DoubleArray(height * numCompY)
-            cacheCosinesY[height * numCompY] = cosinesY
-        } else {
-            cosinesY = cacheCosinesY[height * numCompY]!!
-        }
-        return cosinesY
-    }
-
-    private fun getCosY(
-            calculateCosY: Boolean,
-            cosinesY: DoubleArray,
-            j: Int,
-            numCompY: Int,
-            y: Int,
-            height: Int
-    ): Double {
-        if (calculateCosY) {
-            cosinesY[j + numCompY * y] = cos(Math.PI * y * j / height)
-        }
-        return cosinesY[j + numCompY * y]
-    }
-
-    private fun getCosX(
-            calculateCosX: Boolean,
-            cosinesX: DoubleArray,
-            i: Int,
-            numCompX: Int,
-            x: Int,
-            width: Int
-    ): Double {
-        if (calculateCosX) {
-            cosinesX[i + numCompX * x] = cos(Math.PI * x * i / width)
-        }
-        return cosinesX[i + numCompX * x]
-    }
-
-    private fun getCosinesX(calculateCosX: Boolean, width: Int, numCompX: Int): DoubleArray {
-        return when {
-            calculateCosX -> {
-                DoubleArray(width * numCompX).also {
-                    cacheCosinesX[width * numCompX] = it
-                }
+    private fun getArrayForCosinesY(calculate: Boolean, height: Int, numCompY: Int) = when {
+        calculate -> {
+            DoubleArray(height * numCompY).also {
+                cacheCosinesY[height * numCompY] = it
             }
-            else -> cacheCosinesX[width * numCompX]!!
         }
+        else -> {
+            cacheCosinesY[height * numCompY]!!
+        }
+    }
+
+    private fun getArrayForCosinesX(calculate: Boolean, width: Int, numCompX: Int) = when {
+        calculate -> {
+            DoubleArray(width * numCompX).also {
+                cacheCosinesX[width * numCompX] = it
+            }
+        }
+        else -> cacheCosinesX[width * numCompX]!!
+    }
+
+    private fun DoubleArray.getCos(
+            calculate: Boolean,
+            x: Int,
+            numComp: Int,
+            y: Int,
+            size: Int
+    ): Double {
+        if (calculate) {
+            this[x + numComp * y] = cos(Math.PI * y * x / size)
+        }
+        return this[x + numComp * y]
     }
 
     private fun linearToSrgb(value: Float): Int {
