@@ -7,4 +7,6 @@
     <string name="title_button_encode3">Encode 3!</string>
     <string name="title_button_encode4">Encode 4!</string>
     <string name="title_button_encode5">Encode 5!</string>
+
+    <string name="demo_blurhash_string">LEHV6nWB2yk8pyo0adR*.7kCMdnj</string>
 </resources>
