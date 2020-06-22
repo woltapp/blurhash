@@ -3,7 +3,7 @@ package com.wolt.blurhashkt
 import android.graphics.Bitmap
 import com.wolt.blurhashkt.Base83.encode
 import com.wolt.blurhashkt.Utils.linearToSrgb
-import com.wolt.blurhashkt.Utils.signedPow2
+import com.wolt.blurhashkt.Utils.signedPow
 import com.wolt.blurhashkt.Utils.srgbToLinear
 import kotlin.math.*
 
@@ -37,12 +37,12 @@ object BlurHashEncoder {
     }
 
     private fun encodeAC(value: FloatArray, maximumValue: Float): Int {
-        val quantR = floor(max(0.0,
-                min(18.0, floor(signedPow2(value[0] / maximumValue) * 9 + 9.5))))
-        val quantG = floor(max(0.0,
-                min(18.0, floor(signedPow2(value[1] / maximumValue) * 9 + 9.5))))
-        val quantB = floor(max(0.0,
-                min(18.0, floor(signedPow2(value[2] / maximumValue) * 9 + 9.5))))
+        val quantR = floor(max(0f,
+                min(18f, floor(signedPow(value[0] / maximumValue, 0.5f) * 9 + 9.5f))))
+        val quantG = floor(max(0f,
+                min(18f, floor(signedPow(value[1] / maximumValue, 0.5f) * 9 + 9.5f))))
+        val quantB = floor(max(0f,
+                min(18f, floor(signedPow(value[2] / maximumValue, 0.5f) * 9 + 9.5f))))
         return round(quantR * 19 * 19 + quantG * 19 + quantB).toInt()
     }
 

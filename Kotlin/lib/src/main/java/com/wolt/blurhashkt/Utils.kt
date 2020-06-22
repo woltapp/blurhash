@@ -1,5 +1,6 @@
 package com.wolt.blurhashkt
 
+import kotlin.math.abs
 import kotlin.math.pow
 import kotlin.math.withSign
 
@@ -24,6 +25,8 @@ internal object Utils {
     }
 
     internal fun signedPow2(value: Float) = value.pow(2f).withSign(value)
+
+    internal fun signedPow(value: Float, exp: Float) = abs(value).pow(exp).withSign(value)
 
     internal fun max(values: Array<FloatArray>, from: Int, endExclusive: Int): Float {
         var result = Float.NEGATIVE_INFINITY
