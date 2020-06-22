@@ -30,9 +30,9 @@ object BlurHashEncoder {
     }
 
     private fun encodeDC(value: FloatArray): Int {
-        val r: Int = linearToSrgb(value[0])
-        val g: Int = linearToSrgb(value[1])
-        val b: Int = linearToSrgb(value[2])
+        val r = linearToSrgb(value[0])
+        val g = linearToSrgb(value[1])
+        val b = linearToSrgb(value[2])
         return (r shl 16) + (g shl 8) + b
     }
 
