@@ -25,7 +25,6 @@ object BlurHashDecoder {
     }
 
     fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f, useCache: Boolean = true): Bitmap? {
-
         if (blurHash == null || blurHash.length < 6) {
             return null
         }
