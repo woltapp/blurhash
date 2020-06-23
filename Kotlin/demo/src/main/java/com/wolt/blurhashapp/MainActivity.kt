@@ -48,6 +48,8 @@ private inline fun timed(function: () -> Unit): Long {
     return SystemClock.elapsedRealtimeNanos() - start
 }
 
+private const val NANOS = 1000000.0
+
 class Vm : ViewModel() {
     private val liveData = MutableLiveData<String>()
     private val executor = Executors.newSingleThreadExecutor()
@@ -111,7 +113,10 @@ class Vm : ViewModel() {
                 bmp = BlurHashDecoder.decode(blurHash, width, height, useCache = useCache, parallelTasks = tasks)
             })
         }
-        notifyBenchmark("<- ${listOfTimes.sum() / 1000000.0} ms, Avg: ${listOfTimes.sum() / 1000000.0 / max.toDouble()} ms, Max: ${(listOfTimes.max()?.toDouble() ?: 0.0) / 1000000.0}, Min: ${(listOfTimes.min()?.toDouble() ?: 0.0) / 1000000.0}")
+        notifyBenchmark("<- ${listOfTimes.sum().millis().format()} ms, " +
+                "Avg: ${(listOfTimes.sum().millis() / max.toDouble()).format()} ms, " +
+                "Max: ${listOfTimes.max().millis().format()}, " +
+                "Min: ${listOfTimes.min().millis().format()}")
         // log the bitmap size
         println("bmp size: ${bmp?.byteCount}")
     }
@@ -122,3 +127,6 @@ class Vm : ViewModel() {
         }
     }
 }
+
+private fun Long?.millis() = (this?.toDouble() ?: 0.0) / NANOS
+private fun Double.format() = "%.${2}f".format(this)
