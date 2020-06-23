@@ -19,7 +19,7 @@ object BlurHashDecoder {
         cacheCosinesY.clear()
     }
 
-    fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f, useCache: Boolean = true, parallelTasks: Int = 3): Bitmap? {
+    fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f, useCache: Boolean = true, parallelTasks: Int = 1): Bitmap? {
 
         if (blurHash == null || blurHash.length < 6) {
             return null
@@ -138,9 +138,12 @@ object BlurHashDecoder {
         runBlocking {
             COROUTINES_SCOPE_FOR_PARALLEL_TASKS.launch {
                 val tasks = ArrayList<Deferred<Unit>>()
-                val step = height / parallelTasks
+                var step = height / parallelTasks
                 for (t in 0 until parallelTasks) {
                     val start = step * t
+                    if (t == parallelTasks - 1 && step * parallelTasks < height) {
+                        step += (height - step * parallelTasks)
+                    }
                     tasks.add(async {
                         for (y in start until start + step) {
                             compositBitmapOnlyX(width, numCompY, numCompX, calculateCosX, cosinesX, calculateCosY, cosinesY, y, height, colors, imageArray)
