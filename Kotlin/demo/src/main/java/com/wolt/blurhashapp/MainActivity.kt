@@ -43,9 +43,9 @@ class MainActivity : AppCompatActivity() {
  * Executes a function and return the time spent in milliseconds.
  */
 private inline fun timed(function: () -> Unit): Long {
-    val start = SystemClock.elapsedRealtime()
+    val start = SystemClock.elapsedRealtimeNanos()
     function()
-    return SystemClock.elapsedRealtime() - start
+    return SystemClock.elapsedRealtimeNanos() - start
 }
 
 class Vm : ViewModel() {
@@ -111,7 +111,7 @@ class Vm : ViewModel() {
                 bmp = BlurHashDecoder.decode(blurHash, width, height, useCache = useCache, parallelTasks = tasks)
             })
         }
-        notifyBenchmark("<- ${listOfTimes.sum()} ms, Avg: ${listOfTimes.sum() / max.toDouble()} ms, Max: ${listOfTimes.max()}, Min: ${listOfTimes.min()}")
+        notifyBenchmark("<- ${listOfTimes.sum() / 1000000.0} ms, Avg: ${listOfTimes.sum() / 1000000.0 / max.toDouble()} ms, Max: ${(listOfTimes.max()?.toDouble() ?: 0.0) / 1000000.0}, Min: ${(listOfTimes.min()?.toDouble() ?: 0.0) / 1000000.0}")
         // log the bitmap size
         println("bmp size: ${bmp?.byteCount}")
     }
