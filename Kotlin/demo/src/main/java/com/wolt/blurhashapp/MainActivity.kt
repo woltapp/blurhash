@@ -69,19 +69,27 @@ class Vm : ViewModel() {
         executor.execute {
             notifyBenchmark("-----------------------------------")
         }
-        for (s in 1..3) {
-            val width = 20 * 2.0.pow(s - 1).toInt()
-            val height = 12 * 2.0.pow(s - 1).toInt()
+        for (tasks in 1..3) {
             executor.execute {
-                notifyBenchmark("width: $width, height: $height")
+                notifyBenchmark("")
+                notifyBenchmark("-----------------------------------")
+                notifyBenchmark("Parallel tasks: $tasks")
+                notifyBenchmark("-----------------------------------")
             }
-            for (n in 0..3) {
+            for (size in 1..3) {
+                val width = 20 * 2.0.pow(size - 1).toInt()
+                val height = 12 * 2.0.pow(size - 1).toInt()
                 executor.execute {
-                    benchmark(10.0.pow(n).toInt(), width, height, blurHash)
+                    notifyBenchmark("width: $width, height: $height")
                 }
-            }
-            executor.execute {
-                notifyBenchmark("\n")
+                for (n in 0..3) {
+                    executor.execute {
+                        benchmark(10.0.pow(n).toInt(), width, height, blurHash, useCache = true, tasks = tasks)
+                    }
+                }
+                executor.execute {
+                    notifyBenchmark("\n")
+                }
             }
         }
         val s = "-----------------------------------\n"
@@ -93,13 +101,13 @@ class Vm : ViewModel() {
         }
     }
 
-    private fun benchmark(max: Int, width: Int, height: Int, blurHash: String, useCache: Boolean = true) {
+    private fun benchmark(max: Int, width: Int, height: Int, blurHash: String, useCache: Boolean, tasks: Int) {
         notifyBenchmark("-> $max bitmaps")
         var bmp: Bitmap? = null
         BlurHashDecoder.clearCache()
         val time = timed {
             for (i in 1..max) {
-                bmp = BlurHashDecoder.decode(blurHash, width, height, useCache = useCache)
+                bmp = BlurHashDecoder.decode(blurHash, width, height, useCache = useCache, parallelTasks = tasks)
             }
         }
         notifyBenchmark("<- $time ms, Avg: ${time / max.toDouble()} ms")

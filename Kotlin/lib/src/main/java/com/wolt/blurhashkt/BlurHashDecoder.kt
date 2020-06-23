@@ -7,7 +7,6 @@ import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.withSign
 
-private const val NUMBER_OF_PARALLEL_TASKS = 3
 private val COROUTINES_SCOPE_FOR_PARALLEL_TASKS = GlobalScope
 
 object BlurHashDecoder {
@@ -20,7 +19,7 @@ object BlurHashDecoder {
         cacheCosinesY.clear()
     }
 
-    fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f, useCache: Boolean = true): Bitmap? {
+    fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f, useCache: Boolean = true, parallelTasks: Int = 3): Bitmap? {
 
         if (blurHash == null || blurHash.length < 6) {
             return null
@@ -43,7 +42,7 @@ object BlurHashDecoder {
                 decodeAc(colorEnc, maxAc * punch)
             }
         }
-        return composeBitmap(width, height, numCompX, numCompY, colors, useCache)
+        return composeBitmap(width, height, numCompX, numCompY, colors, useCache, parallelTasks)
     }
 
     private fun decode83(str: String, from: Int = 0, to: Int = str.length): Int {
@@ -90,7 +89,8 @@ object BlurHashDecoder {
             width: Int, height: Int,
             numCompX: Int, numCompY: Int,
             colors: Array<FloatArray>,
-            useCache: Boolean
+            useCache: Boolean,
+            parallelTasks: Int
     ): Bitmap {
         // use an array for better performance when writing pixel colors
         val imageArray = IntArray(width * height)
@@ -101,8 +101,8 @@ object BlurHashDecoder {
         runBlocking {
             COROUTINES_SCOPE_FOR_PARALLEL_TASKS.launch {
                 val tasks = ArrayList<Deferred<Unit>>()
-                val step = height / NUMBER_OF_PARALLEL_TASKS
-                for (t in 0 until NUMBER_OF_PARALLEL_TASKS) {
+                val step = height / parallelTasks
+                for (t in 0 until parallelTasks) {
                     val start = step * t
                     tasks.add(async {
                         for (y in start until start + step) {
