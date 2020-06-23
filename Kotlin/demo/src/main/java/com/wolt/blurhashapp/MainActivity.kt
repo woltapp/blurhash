@@ -69,22 +69,22 @@ class Vm : ViewModel() {
         executor.execute {
             notifyBenchmark("-----------------------------------")
         }
-        for (tasks in 1..6) {
+        for (tasks in 1..3) {
             executor.execute {
                 notifyBenchmark("")
                 notifyBenchmark("-----------------------------------")
                 notifyBenchmark("Parallel tasks: $tasks")
                 notifyBenchmark("-----------------------------------")
             }
-            for (size in 1..1) {
+            for (size in 1..3) {
                 val width = 20 * 2.0.pow(size - 1).toInt()
                 val height = 12 * 2.0.pow(size - 1).toInt()
                 executor.execute {
                     notifyBenchmark("width: $width, height: $height")
                 }
-                for (n in 0..3) {
+                for (imageCount in 0..2) {
                     executor.execute {
-                        benchmark(10.0.pow(n).toInt(), width, height, blurHash, useCache = true, tasks = tasks)
+                        benchmark(10.0.pow(imageCount).toInt(), width, height, blurHash, useCache = true, tasks = tasks)
                     }
                 }
                 executor.execute {
@@ -105,12 +105,13 @@ class Vm : ViewModel() {
         notifyBenchmark("-> $max bitmaps")
         var bmp: Bitmap? = null
         BlurHashDecoder.clearCache()
-        val time = timed {
-            for (i in 1..max) {
+        val listOfTimes = ArrayList<Long>()
+        for (i in 1..max) {
+            listOfTimes.add(timed {
                 bmp = BlurHashDecoder.decode(blurHash, width, height, useCache = useCache, parallelTasks = tasks)
-            }
+            })
         }
-        notifyBenchmark("<- $time ms, Avg: ${time / max.toDouble()} ms")
+        notifyBenchmark("<- ${listOfTimes.sum()} ms, Avg: ${listOfTimes.sum() / max.toDouble()} ms, Max: ${listOfTimes.max()}, Min: ${listOfTimes.min()}")
         // log the bitmap size
         println("bmp size: ${bmp?.byteCount}")
     }
