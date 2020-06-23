@@ -69,14 +69,14 @@ class Vm : ViewModel() {
         executor.execute {
             notifyBenchmark("-----------------------------------")
         }
-        for (tasks in 1..3) {
+        for (tasks in 1..6) {
             executor.execute {
                 notifyBenchmark("")
                 notifyBenchmark("-----------------------------------")
                 notifyBenchmark("Parallel tasks: $tasks")
                 notifyBenchmark("-----------------------------------")
             }
-            for (size in 1..3) {
+            for (size in 1..1) {
                 val width = 20 * 2.0.pow(size - 1).toInt()
                 val height = 12 * 2.0.pow(size - 1).toInt()
                 executor.execute {
