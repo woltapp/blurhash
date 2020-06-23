@@ -2,14 +2,25 @@ package com.wolt.blurhashkt
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import kotlin.math.PI
+import kotlinx.coroutines.*
 import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.withSign
 
+private val COROUTINES_SCOPE_FOR_PARALLEL_TASKS = GlobalScope
+
 object BlurHashDecoder {
 
-    fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f): Bitmap? {
+    private val cacheCosinesX = HashMap<Int, DoubleArray>()
+    private val cacheCosinesY = HashMap<Int, DoubleArray>()
+
+    fun clearCache() {
+        cacheCosinesX.clear()
+        cacheCosinesY.clear()
+    }
+
+    fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f, useCache: Boolean = true, parallelTasks: Int = 1): Bitmap? {
+
         if (blurHash == null || blurHash.length < 6) {
             return null
         }
@@ -31,7 +42,10 @@ object BlurHashDecoder {
                 decodeAc(colorEnc, maxAc * punch)
             }
         }
-        return composeBitmap(width, height, numCompX, numCompY, colors)
+        return when (parallelTasks) {
+            1 -> composeBitmap(width, height, numCompX, numCompY, colors, useCache)
+            else -> composeBitmapCoroutines(width, height, numCompX, numCompY, colors, useCache, parallelTasks)
+        }
     }
 
     private fun decode83(str: String, from: Int = 0, to: Int = str.length): Int {
@@ -77,9 +91,15 @@ object BlurHashDecoder {
     private fun composeBitmap(
             width: Int, height: Int,
             numCompX: Int, numCompY: Int,
-            colors: Array<FloatArray>
+            colors: Array<FloatArray>,
+            useCache: Boolean
     ): Bitmap {
-        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        // use an array for better performance when writing pixel colors
+        val imageArray = IntArray(width * height)
+        val calculateCosX = !useCache || !cacheCosinesX.containsKey(width * numCompX)
+        val cosinesX = getArrayForCosinesX(calculateCosX, width, numCompX)
+        val calculateCosY = !useCache || !cacheCosinesY.containsKey(height * numCompY)
+        val cosinesY = getArrayForCosinesY(calculateCosY, height, numCompY)
         for (y in 0 until height) {
             for (x in 0 until width) {
                 var r = 0f
@@ -87,17 +107,113 @@ object BlurHashDecoder {
                 var b = 0f
                 for (j in 0 until numCompY) {
                     for (i in 0 until numCompX) {
-                        val basis = (cos(PI * x * i / width) * cos(PI * y * j / height)).toFloat()
+                        val cosX = cosinesX.getCos(calculateCosX, i, numCompX, x, width)
+                        val cosY = cosinesY.getCos(calculateCosY, j, numCompY, y, height)
+                        val basis = (cosX * cosY).toFloat()
                         val color = colors[j * numCompX + i]
                         r += color[0] * basis
                         g += color[1] * basis
                         b += color[2] * basis
                     }
                 }
-                bitmap.setPixel(x, y, Color.rgb(linearToSrgb(r), linearToSrgb(g), linearToSrgb(b)))
+                imageArray[x + width * y] = Color.rgb(linearToSrgb(r), linearToSrgb(g), linearToSrgb(b))
             }
         }
-        return bitmap
+        return Bitmap.createBitmap(imageArray, width, height, Bitmap.Config.ARGB_8888)
+    }
+
+    private fun composeBitmapCoroutines(
+            width: Int, height: Int,
+            numCompX: Int, numCompY: Int,
+            colors: Array<FloatArray>,
+            useCache: Boolean,
+            parallelTasks: Int
+    ): Bitmap {
+        // use an array for better performance when writing pixel colors
+        val imageArray = IntArray(width * height)
+        val calculateCosX = !useCache || !cacheCosinesX.containsKey(width * numCompX)
+        val cosinesX = getArrayForCosinesX(calculateCosX, width, numCompX)
+        val calculateCosY = !useCache || !cacheCosinesY.containsKey(height * numCompY)
+        val cosinesY = getArrayForCosinesY(calculateCosY, height, numCompY)
+        runBlocking {
+            COROUTINES_SCOPE_FOR_PARALLEL_TASKS.launch {
+                val tasks = ArrayList<Deferred<Unit>>()
+                var step = height / parallelTasks
+                for (t in 0 until parallelTasks) {
+                    val start = step * t
+                    if (t == parallelTasks - 1 && step * parallelTasks < height) {
+                        step += (height - step * parallelTasks)
+                    }
+                    tasks.add(async {
+                        for (y in start until start + step) {
+                            compositBitmapOnlyX(width, numCompY, numCompX, calculateCosX, cosinesX, calculateCosY, cosinesY, y, height, colors, imageArray)
+                        }
+                        return@async
+                    })
+                }
+                tasks.forEach { it.await() }
+            }.join()
+        }
+        return Bitmap.createBitmap(imageArray, width, height, Bitmap.Config.ARGB_8888)
+    }
+
+    private fun compositBitmapOnlyX(
+            width: Int,
+            numCompY: Int,
+            numCompX: Int,
+            calculateCosX: Boolean,
+            cosinesX: DoubleArray,
+            calculateCosY: Boolean,
+            cosinesY: DoubleArray,
+            y: Int,
+            height: Int,
+            colors: Array<FloatArray>,
+            imageArray: IntArray
+    ) {
+        for (x in 0 until width) {
+            var r = 0f
+            var g = 0f
+            var b = 0f
+            for (j in 0 until numCompY) {
+                for (i in 0 until numCompX) {
+                    val cosX = cosinesX.getCos(calculateCosX, i, numCompX, x, width)
+                    val cosY = cosinesY.getCos(calculateCosY, j, numCompY, y, height)
+                    val basis = (cosX * cosY).toFloat()
+                    val color = colors[j * numCompX + i]
+                    r += color[0] * basis
+                    g += color[1] * basis
+                    b += color[2] * basis
+                }
+            }
+            imageArray[x + width * y] = Color.rgb(linearToSrgb(r), linearToSrgb(g), linearToSrgb(b))
+        }
+    }
+
+    private fun getArrayForCosinesY(calculate: Boolean, height: Int, numCompY: Int) = when {
+        calculate -> {
+            DoubleArray(height * numCompY).also {
+                cacheCosinesY[height * numCompY] = it
+            }
+        }
+        else -> {
+            cacheCosinesY[height * numCompY]!!
+        }
+    }
+
+    private fun getArrayForCosinesX(calculate: Boolean, width: Int, numCompX: Int) = when {
+        calculate -> {
+            DoubleArray(width * numCompX).also {
+                cacheCosinesX[width * numCompX] = it
+            }
+        }
+        else -> cacheCosinesX[width * numCompX]!!
+    }
+
+    private fun DoubleArray.getCos(calculate: Boolean, x: Int, numComp: Int, y: Int, size: Int): Double {
+        if (calculate) {
+            this[x + numComp * y] = cos(Math.PI * y * x / size)
+        }
+        return this[x + numComp * y]
     }
 
     private fun linearToSrgb(value: Float): Int {

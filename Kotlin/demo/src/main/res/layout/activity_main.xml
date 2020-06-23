@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -39,5 +40,27 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:adjustViewBounds="true" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:visibility="invisible"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/ivResultBenchmark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:editable="false"
+        android:inputType="none"
+        android:scrollbars="vertical"
+        android:textIsSelectable="true"
+        android:textSize="16sp"
+        tools:text="0 ms" />
+
 
 </LinearLayout>
