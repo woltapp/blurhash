@@ -16,25 +16,28 @@ static int encodeDC(float r, float g, float b);
 static int encodeAC(float r, float g, float b, float maximumValue);
 static float signPow(float value, float exp);
 
+#define FACTOR_ACCESS(x, y, z) &factors[(x * (xComponents * 3) + y * 3 + z)]
+
 const char *blurHashForPixels(int xComponents, int yComponents, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
 	static char buffer[2 + 4 + (9 * 9 - 1) * 2 + 1];
 
 	if(xComponents < 1 || xComponents > 9) return NULL;
 	if(yComponents < 1 || yComponents > 9) return NULL;
 
-	float factors[yComponents][xComponents][3];
-	memset(factors, 0, sizeof(factors));
+	int size = (sizeof(float)) * yComponents * xComponents * 3;
+	float* factors = (float* )malloc(size);
+	memset(factors, 0, size);
 
 	for(int y = 0; y < yComponents; y++) {
 		for(int x = 0; x < xComponents; x++) {
 			float *factor = multiplyBasisFunction(x, y, width, height, rgb, bytesPerRow);
-			factors[y][x][0] = factor[0];
-			factors[y][x][1] = factor[1];
-			factors[y][x][2] = factor[2];
+			*FACTOR_ACCESS(y, x, 0) = factor[0];
+			*FACTOR_ACCESS(y, x, 1) = factor[1];
+			*FACTOR_ACCESS(y, x, 2) = factor[2];
 		}
 	}
 
-	float *dc = factors[0][0];
+	float *dc = FACTOR_ACCESS(0, 0, 0);
 	float *ac = dc + 3;
 	int acCount = xComponents * yComponents - 1;
 	char *ptr = buffer;
@@ -65,6 +68,7 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 
 	*ptr = 0;
 
+	free(factors);
 	return buffer;
 }
 
