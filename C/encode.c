@@ -122,7 +122,7 @@ static float signPow(float value, float exp) {
 	return copysignf(powf(fabsf(value), exp), value);
 }
 
-static char characters[83]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~";
+static const char characters[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~";
 
 static char *encode_int(int value, int length, char *destination) {
 	int divisor = 1;
