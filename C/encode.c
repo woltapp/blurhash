@@ -16,7 +16,7 @@ static int encodeDC(float r, float g, float b);
 static int encodeAC(float r, float g, float b, float maximumValue);
 static float signPow(float value, float exp);
 
-#define FACTOR_ACCESS(x, y, z) &factors[(x * (xComponents * 3) + y * 3 + z)]
+#define FACTOR_ACCESS(y, x, channel) factors[(y * xComponents + x) * 3 + channel]
 
 const char *blurHashForPixels(int xComponents, int yComponents, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
 	static char buffer[2 + 4 + (9 * 9 - 1) * 2 + 1];
@@ -24,20 +24,19 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 	if(xComponents < 1 || xComponents > 9) return NULL;
 	if(yComponents < 1 || yComponents > 9) return NULL;
 
-	int size = (sizeof(float)) * yComponents * xComponents * 3;
-	float* factors = (float* )malloc(size);
-	memset(factors, 0, size);
+	int count = (sizeof(float)) * yComponents * xComponents * 3;
+	float* factors = calloc(count, sizeof(float));
 
 	for(int y = 0; y < yComponents; y++) {
 		for(int x = 0; x < xComponents; x++) {
 			float *factor = multiplyBasisFunction(x, y, width, height, rgb, bytesPerRow);
-			*FACTOR_ACCESS(y, x, 0) = factor[0];
-			*FACTOR_ACCESS(y, x, 1) = factor[1];
-			*FACTOR_ACCESS(y, x, 2) = factor[2];
+			FACTOR_ACCESS(y, x, 0) = factor[0];
+			FACTOR_ACCESS(y, x, 1) = factor[1];
+			FACTOR_ACCESS(y, x, 2) = factor[2];
 		}
 	}
 
-	float *dc = FACTOR_ACCESS(0, 0, 0);
+	float *dc = factors;
 	float *ac = dc + 3;
 	int acCount = xComponents * yComponents - 1;
 	char *ptr = buffer;
@@ -52,7 +51,7 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 			actualMaximumValue = fmaxf(fabsf(ac[i]), actualMaximumValue);
 		}
 
-		int quantisedMaximumValue = fmaxf(0, fminf(82, floorf(actualMaximumValue * 166 - 0.5)));
+		int quantisedMaximumValue = (int)fmax(0, fmin(82, floor(actualMaximumValue * 166 - 0.5)));
 		maximumValue = ((float)quantisedMaximumValue + 1) / 166;
 		ptr = encode_int(quantisedMaximumValue, 1, ptr);
 	} else {
@@ -74,11 +73,11 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 
 static float *multiplyBasisFunction(int xComponent, int yComponent, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
 	float r = 0, g = 0, b = 0;
-	float normalisation = (xComponent == 0 && yComponent == 0) ? 1 : 2;
+	float normalisation = (float)((xComponent == 0 && yComponent == 0) ? 1 : 2);
 
 	for(int y = 0; y < height; y++) {
 		for(int x = 0; x < width; x++) {
-			float basis = cosf(M_PI * xComponent * x / width) * cosf(M_PI * yComponent * y / height);
+			float basis = cosf((float)(M_PI * xComponent * x / width)) * cosf((float)(M_PI * yComponent * y / height));
 			r += basis * sRGBToLinear(rgb[3 * x + 0 + y * bytesPerRow]);
 			g += basis * sRGBToLinear(rgb[3 * x + 1 + y * bytesPerRow]);
 			b += basis * sRGBToLinear(rgb[3 * x + 2 + y * bytesPerRow]);
@@ -97,14 +96,14 @@ static float *multiplyBasisFunction(int xComponent, int yComponent, int width, i
 
 static int linearTosRGB(float value) {
 	float v = fmaxf(0, fminf(1, value));
-	if(v <= 0.0031308) return v * 12.92 * 255 + 0.5;
-	else return (1.055 * powf(v, 1 / 2.4) - 0.055) * 255 + 0.5;
+	if(v <= 0.0031308) return (int)(v * 12.92 * 255 + 0.5);
+	else return (int)((1.055 * powf(v, (float)(1 / 2.4)) - 0.055) * 255 + 0.5);
 }
 
 static float sRGBToLinear(int value) {
 	float v = (float)value / 255;
-	if(v <= 0.04045) return v / 12.92;
-	else return powf((v + 0.055) / 1.055, 2.4);
+	if(v <= 0.04045) return (float)(v / 12.92);
+	else return powf((float)((v + 0.055) / 1.055), 2.4f);
 }
 
 static int encodeDC(float r, float g, float b) {
@@ -115,9 +114,9 @@ static int encodeDC(float r, float g, float b) {
 }
 
 static int encodeAC(float r, float g, float b, float maximumValue) {
-	int quantR = fmaxf(0, fminf(18, floorf(signPow(r / maximumValue, 0.5) * 9 + 9.5)));
-	int quantG = fmaxf(0, fminf(18, floorf(signPow(g / maximumValue, 0.5) * 9 + 9.5)));
-	int quantB = fmaxf(0, fminf(18, floorf(signPow(b / maximumValue, 0.5) * 9 + 9.5)));
+	int quantR = (int)fmaxf(0.f, fminf(18.f, floorf(signPow((float)(r / maximumValue), 0.5f) * 9 + 9.5f)));
+	int quantG = (int)fmaxf(0.f, fminf(18.f, floorf(signPow((float)(g / maximumValue), 0.5f) * 9 + 9.5f)));
+	int quantB = (int)fmaxf(0.f, fminf(18.f, floorf(signPow((float)(b / maximumValue), 0.5f) * 9 + 9.5f)));
 
 	return quantR * 19 * 19 + quantG * 19 + quantB;
 }
