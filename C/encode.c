@@ -49,7 +49,7 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 			actualMaximumValue = fmaxf(fabsf(ac[i]), actualMaximumValue);
 		}
 
-		int quantisedMaximumValue = fmaxf(0, fminf(82, floorf(actualMaximumValue * 166 - 0.5)));
+		int quantisedMaximumValue = (int)fmax(0, fmin(82, floor(actualMaximumValue * 166 - 0.5)));
 		maximumValue = ((float)quantisedMaximumValue + 1) / 166;
 		ptr = encode_int(quantisedMaximumValue, 1, ptr);
 	} else {
@@ -70,11 +70,11 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 
 static float *multiplyBasisFunction(int xComponent, int yComponent, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
 	float r = 0, g = 0, b = 0;
-	float normalisation = (xComponent == 0 && yComponent == 0) ? 1 : 2;
+	float normalisation = (xComponent == 0 && yComponent == 0) ? 1.f : 2.f;
 
 	for(int y = 0; y < height; y++) {
 		for(int x = 0; x < width; x++) {
-			float basis = cosf(M_PI * xComponent * x / width) * cosf(M_PI * yComponent * y / height);
+			float basis = cosf((float)M_PI * xComponent * x / width) * cosf((float)M_PI * yComponent * y / height);
 			r += basis * sRGBToLinear(rgb[3 * x + 0 + y * bytesPerRow]);
 			g += basis * sRGBToLinear(rgb[3 * x + 1 + y * bytesPerRow]);
 			b += basis * sRGBToLinear(rgb[3 * x + 2 + y * bytesPerRow]);
@@ -93,14 +93,14 @@ static float *multiplyBasisFunction(int xComponent, int yComponent, int width, i
 
 static int linearTosRGB(float value) {
 	float v = fmaxf(0, fminf(1, value));
-	if(v <= 0.0031308) return v * 12.92 * 255 + 0.5;
-	else return (1.055 * powf(v, 1 / 2.4) - 0.055) * 255 + 0.5;
+	if(v <= 0.0031308) return (int)(v * 12.92 * 255 + 0.5);
+	else return (int)((1.055 * powf(v, 1.f / 2.4f) - 0.055) * 255 + 0.5);
 }
 
 static float sRGBToLinear(int value) {
 	float v = (float)value / 255;
-	if(v <= 0.04045) return v / 12.92;
-	else return powf((v + 0.055) / 1.055, 2.4);
+	if(v <= 0.04045) return v / 12.92f;
+	else return powf((v + 0.055f) / 1.055f, 2.4f);
 }
 
 static int encodeDC(float r, float g, float b) {
@@ -111,9 +111,9 @@ static int encodeDC(float r, float g, float b) {
 }
 
 static int encodeAC(float r, float g, float b, float maximumValue) {
-	int quantR = fmaxf(0, fminf(18, floorf(signPow(r / maximumValue, 0.5) * 9 + 9.5)));
-	int quantG = fmaxf(0, fminf(18, floorf(signPow(g / maximumValue, 0.5) * 9 + 9.5)));
-	int quantB = fmaxf(0, fminf(18, floorf(signPow(b / maximumValue, 0.5) * 9 + 9.5)));
+	int quantR = (int)fmaxf(0.f, fminf(18.f, floorf(signPow(r / maximumValue, 0.5f) * 9 + 9.5f)));
+	int quantG = (int)fmaxf(0.f, fminf(18.f, floorf(signPow(g / maximumValue, 0.5f) * 9 + 9.5f)));
+	int quantB = (int)fmaxf(0.f, fminf(18.f, floorf(signPow(b / maximumValue, 0.5f) * 9 + 9.5f)));
 
 	return quantR * 19 * 19 + quantG * 19 + quantB;
 }
