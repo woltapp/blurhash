@@ -5,5 +5,6 @@
 #include <stdlib.h>
 
 const char *blurHashForPixels(int xComponents, int yComponents, int width, int height, uint8_t *rgb, size_t bytesPerRow);
+const char *blurHashForPixels_r(char *out, int size, int xComponents, int yComponents, int width, int height, uint8_t *rgb, size_t bytesPerRow);
 
 #endif

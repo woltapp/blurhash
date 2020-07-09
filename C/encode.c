@@ -16,11 +16,11 @@ static int encodeDC(float r, float g, float b);
 static int encodeAC(float r, float g, float b, float maximumValue);
 static float signPow(float value, float exp);
 
-const char *blurHashForPixels(int xComponents, int yComponents, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
-	static char buffer[2 + 4 + (9 * 9 - 1) * 2 + 1];
-
+const char *blurHashForPixels_r(char *buffer, int size, int xComponents, int yComponents, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
 	if(xComponents < 1 || xComponents > 9) return NULL;
 	if(yComponents < 1 || yComponents > 9) return NULL;
+
+	if(size < 2 + 4 + (xComponents * yComponents - 1) * 2 + 1) return NULL;
 
 	int count = (sizeof(float)) * yComponents * xComponents * 3;
 	float* factors = calloc(count, sizeof(float));
@@ -65,6 +65,11 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 
 	free(factors);
 	return buffer;
+}
+
+const char *blurHashForPixels(int xComponents, int yComponents, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
+	static char buffer[2 + 4 + (9 * 9 - 1) * 2 + 1];
+	return blurHashForPixels_r(buffer, sizeof(buffer), xComponents, yComponents, width, height, rgb, bytesPerRow);
 }
 
 static void multiplyBasisFunction(float *result, int xComponent, int yComponent, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
