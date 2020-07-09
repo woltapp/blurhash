@@ -7,7 +7,7 @@
 #define M_PI 3.14159265358979323846
 #endif
 
-static float *multiplyBasisFunction(int xComponent, int yComponent, int width, int height, uint8_t *rgb, size_t bytesPerRow);
+static void multiplyBasisFunction(float *result, int xComponent, int yComponent, int width, int height, uint8_t *rgb, size_t bytesPerRow);
 static char *encode_int(int value, int length, char *destination);
 
 static int linearTosRGB(float value);
@@ -27,10 +27,7 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 
 	for(int y = 0; y < yComponents; y++) {
 		for(int x = 0; x < xComponents; x++) {
-			float *factor = multiplyBasisFunction(x, y, width, height, rgb, bytesPerRow);
-			factors[y][x][0] = factor[0];
-			factors[y][x][1] = factor[1];
-			factors[y][x][2] = factor[2];
+			multiplyBasisFunction(factors[y][x], x, y, width, height, rgb, bytesPerRow);
 		}
 	}
 
@@ -68,7 +65,7 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 	return buffer;
 }
 
-static float *multiplyBasisFunction(int xComponent, int yComponent, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
+static void multiplyBasisFunction(float *result, int xComponent, int yComponent, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
 	float r = 0, g = 0, b = 0;
 	float normalisation = (xComponent == 0 && yComponent == 0) ? 1.f : 2.f;
 
@@ -83,12 +80,9 @@ static float *multiplyBasisFunction(int xComponent, int yComponent, int width, i
 
 	float scale = normalisation / (width * height);
 
-	static float result[3];
 	result[0] = r * scale;
 	result[1] = g * scale;
 	result[2] = b * scale;
-
-	return result;
 }
 
 static int linearTosRGB(float value) {
