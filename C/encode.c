@@ -22,16 +22,17 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 	if(xComponents < 1 || xComponents > 9) return NULL;
 	if(yComponents < 1 || yComponents > 9) return NULL;
 
-	float factors[yComponents][xComponents][3];
-	memset(factors, 0, sizeof(factors));
+	int count = (sizeof(float)) * yComponents * xComponents * 3;
+	float* factors = calloc(count, sizeof(float));
+	if(!factors) return NULL;
 
 	for(int y = 0; y < yComponents; y++) {
 		for(int x = 0; x < xComponents; x++) {
-			multiplyBasisFunction(factors[y][x], x, y, width, height, rgb, bytesPerRow);
+			multiplyBasisFunction(factors + (y * xComponents + x) * 3, x, y, width, height, rgb, bytesPerRow);
 		}
 	}
 
-	float *dc = factors[0][0];
+	float *dc = factors;
 	float *ac = dc + 3;
 	int acCount = xComponents * yComponents - 1;
 	char *ptr = buffer;
@@ -62,6 +63,7 @@ const char *blurHashForPixels(int xComponents, int yComponents, int width, int h
 
 	*ptr = 0;
 
+	free(factors);
 	return buffer;
 }
 
