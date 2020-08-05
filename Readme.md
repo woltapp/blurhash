@@ -2,6 +2,8 @@
 
 BlurHash is a compact representation of a placeholder for an image.
 
+I've created this fork for my own purposes, mostly for the [Springsale](https://github.com/Springsale) app.
+
 ## Why would you want this?
 
 Does your designer cry every time you load their beautifully designed screen, and it is full of empty boxes because all the
