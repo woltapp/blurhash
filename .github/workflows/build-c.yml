@@ -19,8 +19,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ GITHUB_SHA }}
-          release_name: Release ${{ GITHUB_SHA }}
+          tag_name: ${{ echo $GITHUB_SHA | cut -c1-8 }}
+          release_name: Release ${{ echo $GITHUB_SHA | cut -c1-8 }}
           body: |
             Built for Linux x86_64 from GH actions.
           draft: false
