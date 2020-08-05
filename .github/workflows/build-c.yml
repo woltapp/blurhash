@@ -19,8 +19,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ github.event.after }}
+          release_name: Release ${{ github.event.after }}
           body: |
             Built for Linux x86_64 from GH actions.
           draft: false
