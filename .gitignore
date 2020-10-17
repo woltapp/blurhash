@@ -19,6 +19,7 @@ Python/build/
 *.so
 *.o
 *.pyc
+.build/
 
 # Website
 Website/node_modules/
