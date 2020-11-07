@@ -12,7 +12,7 @@ static char chars[83] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs
 
 /*
 	Image processing functions start
-*/ 
+*/
 
 static float sRGBToLinear(int value) {
 	float v = (float)value / 255;
@@ -59,7 +59,7 @@ static inline unsigned char *  create_byte_array(int size) {
 float decode_to_int(const char * string, int start, int end) {
 	int value = 0, itr_1 = 0, itr_2 = 0;
 	for( itr_1 = start; itr_1 < end; itr_1 ++) {
-		
+
 		int index = -1;
 		for(itr_2 = 0; itr_2 < 83; itr_2 ++) {
 			if (chars[itr_2] == string[itr_1]) {
@@ -100,7 +100,7 @@ bool is_valid_blurhash(const char * string) {
 
 void decodeDc(int value, float * r, float * g, float * b) {
 	*r = sRGBToLinear(value >> 16); 	// R-component
-	
+
 	*g = sRGBToLinear((value >> 8) & 255); // G-Component
 
 	*b = sRGBToLinear(value & 255);	// B-Component
@@ -109,7 +109,7 @@ void decodeDc(int value, float * r, float * g, float * b) {
 
 
 void decodeAc(int value, float maximumValue, float * r, float * g, float * b) {
-    
+
     int quantR = (int)floorf(value / (19 * 19));
 	int quantG = (int)floorf(value / 19) % 19;
 	int quantB = (int)value % 19;
@@ -142,7 +142,7 @@ unsigned char * decode(const char * blurhash, int width, int height, int punch) 
 
 	int colors_size = num_x * num_y;
 	float colors[colors_size][3];
-	
+
 	for(iter = 0; iter < colors_size; iter ++) {
 		if (iter == 0) {
 			int value = decode_to_int(blurhash, 2, 6);
@@ -151,7 +151,7 @@ unsigned char * decode(const char * blurhash, int width, int height, int punch) 
 			colors[iter][0] = r;
 			colors[iter][1] = g;
 			colors[iter][2] = b;
-			
+
 		} else {
 			int value = decode_to_int(blurhash, 4 + iter * 2, 6 + iter * 2);
 			if (value == -1) return NULL;
@@ -179,7 +179,7 @@ unsigned char * decode(const char * blurhash, int width, int height, int punch) 
 					int idx = i + j * num_x;
 					r += colors[idx][0] * basics;
 					g += colors[idx][1] * basics;
-					b += colors[idx][2] * basics;			
+					b += colors[idx][2] * basics;
 				}
 			}
 
@@ -197,4 +197,4 @@ unsigned char * decode(const char * blurhash, int width, int height, int punch) 
 
 	return pixel_array;
 
-} 
+}

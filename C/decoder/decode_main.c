@@ -1,10 +1,10 @@
-#include "decode.h" 
+#include "decode.h"
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_writer.h"
 
 int main(int argc, char **argv) {
-    
+
     if(argc < 5) {
         fprintf(stderr, "Usage: %s hash width height output_file [punch]\n", argv[0]);
         return 1;
@@ -17,9 +17,9 @@ int main(int argc, char **argv) {
     height = atoi(argv[3]);
     char * output_file = argv[4];
 
-    if(argc == 6) 
+    if(argc == 6)
         punch = atoi(argv[5]);
-    
+
     unsigned char * bytes = decode(hash, width, height, punch);
 
     if (!bytes) {
