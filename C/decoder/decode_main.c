@@ -17,17 +17,19 @@ int main(int argc, char **argv) {
     height = atoi(argv[3]);
     char * output_file = argv[4];
 
+    const int nChannels = 4;
+
     if(argc == 6)
         punch = atoi(argv[5]);
 
-    unsigned char * bytes = decode(hash, width, height, punch);
+    uint8_t * bytes = decode(hash, width, height, punch, nChannels);
 
     if (!bytes) {
         fprintf(stderr, "%s is not a valid blurhash, decoding failed.\n", hash);
         return 1;
     }
 
-    if (stbi_write_png(output_file, width, height, 4, bytes, 4 * width) == 0) {
+    if (stbi_write_png(output_file, width, height, nChannels, bytes, nChannels * width) == 0) {
         fprintf(stderr, "Failed to write PNG file %s\n", output_file);
         return 1;
     }

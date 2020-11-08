@@ -1,9 +1,5 @@
 #include "decode.h"
 
-#define NUMERIC_ASCII_START 48
-#define UPPER_ALPHA_ASCII_START 65
-#define LOWER_ALPHA_ASCII_START 97
-
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -36,14 +32,16 @@ static int linearTosRGB(float value) {
 
 /*
 	decoder helper functions start
-*/
+*/ 
 
-static inline unsigned char clamp_to_ubyte(int * src) {
-	return (unsigned char)((*src >= 0 && *src <= 255) ? *src : 0);
+static inline uint8_t clampToUByte(int * src) {
+	if( *src >= 0 && *src <= 255 )
+		return *src;
+	return (*src < 0) ? 0 : 255; 
 }
 
 
-static inline unsigned char *  create_byte_array(int size) {
+static inline uint8_t *  createByteArray(int size) {
 	return (unsigned char *)malloc(size * sizeof(unsigned char));
 }
 
@@ -56,14 +54,14 @@ static inline unsigned char *  create_byte_array(int size) {
 	Base-83 decoder start
 */
 
-float decode_to_int(const char * string, int start, int end) {
-	int value = 0, itr_1 = 0, itr_2 = 0;
-	for( itr_1 = start; itr_1 < end; itr_1 ++) {
+int decodeToInt(const char * string, int start, int end) {
+	int value = 0, iter1 = 0, iter2 = 0;
+	for( iter1 = start; iter1 < end; iter1 ++) {
 
 		int index = -1;
-		for(itr_2 = 0; itr_2 < 83; itr_2 ++) {
-			if (chars[itr_2] == string[itr_1]) {
-				index = itr_2;
+		for(iter2 = 0; iter2 < 83; iter2 ++) {
+			if (chars[iter2] == string[iter1]) {
+				index = iter2;
 				break;
 			}
 		}
@@ -83,22 +81,22 @@ float decode_to_int(const char * string, int start, int end) {
 	Blurhash functions start
 */
 
-bool is_valid_blurhash(const char * string) {
+bool isValidBlurhash(const char * blurhash) {
 
-	const int hash_length = strlen(string);
+	const int hashLength = strlen(blurhash);
 
-	if ( !string || strlen(string) < 6) return false;
+	if ( !blurhash || strlen(blurhash) < 6) return false;
 
-	int sizeFlag = decode_to_int(string, 0, 1);	//Get size from first character
-	int num_y = (int)floorf(sizeFlag / 9) + 1;
-	int num_x = (sizeFlag % 9) + 1;
+	int sizeFlag = decodeToInt(blurhash, 0, 1);	//Get size from first character
+	int numY = (int)floorf(sizeFlag / 9) + 1;
+	int numX = (sizeFlag % 9) + 1;
 
-	if (hash_length != 4 + 2 * num_x * num_y) return false;
+	if (hashLength != 4 + 2 * numX * numY) return false;
 
 	return true;
 }
 
-void decodeDc(int value, float * r, float * g, float * b) {
+void decodeDC(int value, float * r, float * g, float * b) {
 	*r = sRGBToLinear(value >> 16); 	// R-component
 
 	*g = sRGBToLinear((value >> 8) & 255); // G-Component
@@ -108,7 +106,7 @@ void decodeDc(int value, float * r, float * g, float * b) {
 }
 
 
-void decodeAc(int value, float maximumValue, float * r, float * g, float * b) {
+void decodeAC(int value, float maximumValue, float * r, float * g, float * b) {
 
     int quantR = (int)floorf(value / (19 * 19));
 	int quantG = (int)floorf(value / 19) % 19;
@@ -123,60 +121,60 @@ void decodeAc(int value, float maximumValue, float * r, float * g, float * b) {
 }
 
 
-unsigned char * decode(const char * blurhash, int width, int height, int punch) {
+int decodeToArray(const char * blurhash, int width, int height, int punch, int nChannels, uint8_t * pixelArray) {
 
-	if (! is_valid_blurhash(blurhash)) return NULL;
+	if (! isValidBlurhash(blurhash)) return -1;
 
-	int size_flag = decode_to_int(blurhash, 0, 1);
-	int num_y = (int)floorf(size_flag / 9) + 1;
-	int num_x = (size_flag % 9) + 1;
+	if (punch <= 1) punch = 1;
+
+	int sizeFlag = decodeToInt(blurhash, 0, 1);
+	int numY = (int)floorf(sizeFlag / 9) + 1;
+	int numX = (sizeFlag % 9) + 1;
 	int iter = 0;
 
 	float r = 0, g = 0, b = 0;
 
-	int quantizedMaxValue = decode_to_int(blurhash, 1, 2);
-	if (quantizedMaxValue == -1) return NULL;
+	int quantizedMaxValue = decodeToInt(blurhash, 1, 2);
+	if (quantizedMaxValue == -1) return -1;
 
 	float maxValue = ((float)(quantizedMaxValue + 1)) / 166;
 
 
-	int colors_size = num_x * num_y;
+	int colors_size = numX * numY;
 	float colors[colors_size][3];
 
 	for(iter = 0; iter < colors_size; iter ++) {
 		if (iter == 0) {
-			int value = decode_to_int(blurhash, 2, 6);
-			if (value == -1) return NULL;
-			decodeDc(value, &r, &g, &b);
+			int value = decodeToInt(blurhash, 2, 6);
+			if (value == -1) return -1;
+			decodeDC(value, &r, &g, &b);
 			colors[iter][0] = r;
 			colors[iter][1] = g;
 			colors[iter][2] = b;
 
 		} else {
-			int value = decode_to_int(blurhash, 4 + iter * 2, 6 + iter * 2);
-			if (value == -1) return NULL;
-			decodeAc(value, maxValue * punch, &r, &g, &b);
+			int value = decodeToInt(blurhash, 4 + iter * 2, 6 + iter * 2);
+			if (value == -1) return -1;
+			decodeAC(value, maxValue * punch, &r, &g, &b);
 			colors[iter][0] = r;
 			colors[iter][1] = g;
 			colors[iter][2] = b;
 		}
 	}
 
-	int bytesPerRow = width * 4;
+	int bytesPerRow = width * nChannels;
 	int x = 0, y = 0, i = 0, j = 0;
 	int intR = 0, intG = 0, intB = 0;
-
-	unsigned char * pixel_array = create_byte_array(bytesPerRow * height);
 
 	for(y = 0; y < height; y ++) {
 		for(x = 0; x < width; x ++) {
 
 			float r = 0, g = 0, b = 0;
 
-			for(j = 0; j < num_y; j ++) {
-				for(i = 0; i < num_x; i ++) {
+			for(j = 0; j < numY; j ++) {
+				for(i = 0; i < numX; i ++) {
 					float basics = cos((M_PI * x * i) / width) * cos((M_PI * y * j) / height);
-					int idx = i + j * num_x;
+					int idx = i + j * numX;
 					r += colors[idx][0] * basics;
 					g += colors[idx][1] * basics;
 					b += colors[idx][2] * basics;
@@ -187,14 +185,27 @@ unsigned char * decode(const char * blurhash, int width, int height, int punch) 
 			intG = linearTosRGB(g);
 			intB = linearTosRGB(b);
 
-			pixel_array[4 * x + 0 + y * bytesPerRow] = clamp_to_ubyte(&intR);
-			pixel_array[4 * x + 1 + y * bytesPerRow] = clamp_to_ubyte(&intG);
-			pixel_array[4 * x + 2 + y * bytesPerRow] = clamp_to_ubyte(&intB);
+			pixelArray[4 * x + 0 + y * bytesPerRow] = clampToUByte(&intR);
+			pixelArray[4 * x + 1 + y * bytesPerRow] = clampToUByte(&intG);
+			pixelArray[4 * x + 2 + y * bytesPerRow] = clampToUByte(&intB);
 
-			pixel_array[4 * x + 3 + y * bytesPerRow] = 255;
+			if (nChannels == 4) 
+				pixelArray[4 * x + 3 + y * bytesPerRow] = 255;   // If nChannels=4, treat each pixel as RGBA instead of RGB
+			
 		}
 	}
 
-	return pixel_array;
-
+	return 9;
 }
+
+uint8_t * decode(const char * blurhash, int width, int height, int punch, int nChannels) {
+	int bytesPerRow = width * nChannels;
+	uint8_t * pixelArray = createByteArray(bytesPerRow * height);
+
+	if (decodeToArray(blurhash, width, height, punch, nChannels, pixelArray) == -1) 
+		return NULL;
+
+	return pixelArray;
+}
+
+
