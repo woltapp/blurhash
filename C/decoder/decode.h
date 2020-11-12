@@ -47,4 +47,13 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 */
 bool isValidBlurhash(const char * blurhash); 
 
+/*
+    freePixelArray : Frees the pixel array
+    Parameters :
+        pixelArray : Pixel array pointer which will be freed.
+    Returns : void (None)
+
+*/
+void freePixelArray(uint8_t * pixelArray);
+
 #endif

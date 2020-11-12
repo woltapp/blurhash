@@ -32,17 +32,17 @@ static int linearTosRGB(float value) {
 
 /*
 	decoder helper functions start
-*/ 
+*/
 
 static inline uint8_t clampToUByte(int * src) {
 	if( *src >= 0 && *src <= 255 )
 		return *src;
-	return (*src < 0) ? 0 : 255; 
+	return (*src < 0) ? 0 : 255;
 }
 
 
 static inline uint8_t *  createByteArray(int size) {
-	return (unsigned char *)malloc(size * sizeof(unsigned char));
+	return (uint8_t *)malloc(size * sizeof(uint8_t));
 }
 
 /*
@@ -125,7 +125,7 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 
 	if (! isValidBlurhash(blurhash)) return -1;
 
-	if (punch <= 1) punch = 1;
+	if (punch < 1) punch = 1;
 
 	int sizeFlag = decodeToInt(blurhash, 0, 1);
 	int numY = (int)floorf(sizeFlag / 9) + 1;
@@ -185,27 +185,31 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 			intG = linearTosRGB(g);
 			intB = linearTosRGB(b);
 
-			pixelArray[4 * x + 0 + y * bytesPerRow] = clampToUByte(&intR);
-			pixelArray[4 * x + 1 + y * bytesPerRow] = clampToUByte(&intG);
-			pixelArray[4 * x + 2 + y * bytesPerRow] = clampToUByte(&intB);
+			pixelArray[nChannels * x + 0 + y * bytesPerRow] = clampToUByte(&intR);
+			pixelArray[nChannels * x + 1 + y * bytesPerRow] = clampToUByte(&intG);
+			pixelArray[nChannels * x + 2 + y * bytesPerRow] = clampToUByte(&intB);
 
-			if (nChannels == 4) 
-				pixelArray[4 * x + 3 + y * bytesPerRow] = 255;   // If nChannels=4, treat each pixel as RGBA instead of RGB
-			
+			if (nChannels == 4)
+				pixelArray[nChannels * x + 3 + y * bytesPerRow] = 255;   // If nChannels=4, treat each pixel as RGBA instead of RGB
+
 		}
 	}
 
-	return 9;
+	return 0;
 }
 
 uint8_t * decode(const char * blurhash, int width, int height, int punch, int nChannels) {
 	int bytesPerRow = width * nChannels;
 	uint8_t * pixelArray = createByteArray(bytesPerRow * height);
 
-	if (decodeToArray(blurhash, width, height, punch, nChannels, pixelArray) == -1) 
+	if (decodeToArray(blurhash, width, height, punch, nChannels, pixelArray) == -1)
 		return NULL;
 
 	return pixelArray;
 }
 
-
+void freePixelArray(uint8_t * pixelArray) {
+    if (pixelArray) {
+        free(pixelArray);
+    }
+}

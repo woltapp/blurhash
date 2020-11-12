@@ -34,6 +34,8 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    freePixelArray(bytes);
+
     fprintf(stdout, "Decoded blurhash successfully, wrote PNG file %s\n", output_file);
     return 0;
 
