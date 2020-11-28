@@ -11,7 +11,7 @@
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
-C/blurhash
+C/blurhash_encoder
 C/blurhash_decoder
 Ruby/.*
 Ruby/Makefile

@@ -1,10 +1,10 @@
-PROGRAM=blurhash
+PROGRAM=blurhash_encoder
 DECODER=blurhash_decoder
-$(PROGRAM): blurhash_stb.c encode.c encode.h stb_image.h
-	$(CC) -o $@ blurhash_stb.c encode.c -lm
+$(PROGRAM): encode_stb.c encode.c encode.h stb_image.h common.h
+	$(CC) -o $@ encode_stb.c encode.c -lm
 
-$(DECODER): decoder/decode_main.c decoder/decode.c decoder/decode.h decoder/stb_writer.h
-	$(CC) -o $(DECODER) decoder/decode_main.c decoder/decode.c  -Idecoder/ -lm
+$(DECODER): decode_stb.c decode.c decode.h stb_writer.h common.h
+	$(CC) -o $(DECODER) decode_stb.c decode.c -lm
 
 .PHONY: clean
 clean:

@@ -1,20 +1,13 @@
 #include "encode.h"
+#include "common.h"
 
 #include <string.h>
-#include <math.h>
-
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
 
 static float *multiplyBasisFunction(int xComponent, int yComponent, int width, int height, uint8_t *rgb, size_t bytesPerRow);
 static char *encode_int(int value, int length, char *destination);
 
-static int linearTosRGB(float value);
-static float sRGBToLinear(int value);
 static int encodeDC(float r, float g, float b);
 static int encodeAC(float r, float g, float b, float maximumValue);
-static float signPow(float value, float exp);
 
 const char *blurHashForPixels(int xComponents, int yComponents, int width, int height, uint8_t *rgb, size_t bytesPerRow) {
 	static char buffer[2 + 4 + (9 * 9 - 1) * 2 + 1];
@@ -91,17 +84,7 @@ static float *multiplyBasisFunction(int xComponent, int yComponent, int width, i
 	return result;
 }
 
-static int linearTosRGB(float value) {
-	float v = fmaxf(0, fminf(1, value));
-	if(v <= 0.0031308) return v * 12.92 * 255 + 0.5;
-	else return (1.055 * powf(v, 1 / 2.4) - 0.055) * 255 + 0.5;
-}
 
-static float sRGBToLinear(int value) {
-	float v = (float)value / 255;
-	if(v <= 0.04045) return v / 12.92;
-	else return powf((v + 0.055) / 1.055, 2.4);
-}
 
 static int encodeDC(float r, float g, float b) {
 	int roundedR = linearTosRGB(r);
@@ -116,10 +99,6 @@ static int encodeAC(float r, float g, float b, float maximumValue) {
 	int quantB = fmaxf(0, fminf(18, floorf(signPow(b / maximumValue, 0.5) * 9 + 9.5)));
 
 	return quantR * 19 * 19 + quantG * 19 + quantB;
-}
-
-static float signPow(float value, float exp) {
-	return copysignf(powf(fabsf(value), exp), value);
 }
 
 static char characters[83]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~";
