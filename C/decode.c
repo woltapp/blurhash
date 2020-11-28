@@ -50,7 +50,6 @@ void decodeDC(int value, float * r, float * g, float * b) {
 }
 
 void decodeAC(int value, float maximumValue, float * r, float * g, float * b) {
-
 	int quantR = (int)floorf(value / (19 * 19));
 	int quantG = (int)floorf(value / 19) % 19;
 	int quantB = (int)value % 19;
@@ -61,7 +60,6 @@ void decodeAC(int value, float maximumValue, float * r, float * g, float * b) {
 }
 
 int decodeToArray(const char * blurhash, int width, int height, int punch, int nChannels, uint8_t * pixelArray) {
-
 	if (! isValidBlurhash(blurhash)) return -1;
 	if (punch < 1) punch = 1;
 
