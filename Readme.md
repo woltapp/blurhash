@@ -35,7 +35,7 @@ platform.
 
 So far, we have created these implementations:
 
-* [C](C) - An encoder implemenation in portable C code.
+* [C](C) - An encoder implementation in portable C code.
 * [Swift](Swift) - Encoder and decoder implementations, and a larger library offering advanced features.
   There is also an example app to play around with the algorithm.
 * [Kotlin](Kotlin) - A decoder implementation for Android.
