@@ -30,7 +30,7 @@ Here follows an example of a BlurHash string, with the different parts labelled:
 
 3. **Average colour. 4 digits.**
    
-   The average colour of the image in sRGB space, encoded as a 24-bit RGB value, with R in the most signficant position. This value can
+   The average colour of the image in sRGB space, encoded as a 24-bit RGB value, with R in the most significant position. This value can
    be used directly if you only want the average colour rather than the full DCT-encoded image.
 
 4. **AC components, 2 digits each, `nx * ny - 1` components in total.**
@@ -46,7 +46,7 @@ Here follows an example of a BlurHash string, with the different parts labelled:
 ## Base 83
 
 A custom base 83 encoding is used. Values are encoded individually, using 1 to 4 digits, and concatenated together. Multiple-digit
-values are encoded in big-endian order, with the most signficant digit first.
+values are encoded in big-endian order, with the most significant digit first.
 
 The character used set is `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~`.
 
