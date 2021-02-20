@@ -145,7 +145,7 @@ object BlurHashDecoder {
     private fun getArrayForCosinesX(calculate: Boolean, width: Int, numCompX: Int) = when {
         calculate -> {
             DoubleArray(width * numCompX).also {
-                cacheCosinesX.plut(width * numCompX, it)
+                cacheCosinesX.put(width * numCompX, it)
             }
         }
         else -> cacheCosinesX.get(width * numCompX)!!
