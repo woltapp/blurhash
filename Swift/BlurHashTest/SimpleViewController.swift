@@ -1,4 +1,5 @@
 import UIKit
+import BlurHashKitCodable
 
 class SimpleViewController: UIViewController {
     @IBOutlet weak var originalImageView: UIImageView?
