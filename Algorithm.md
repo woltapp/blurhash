@@ -63,4 +63,4 @@ you calculate the following for each of R, G and B:
 The `C00` component is the DC component, while the others are the AC components. The DC component must first be converted
 from sRGB to linear RGB space. AC components are already linear.
 
-Once the R, G and B values have been calculated, the must be converted from linear to your output colourspace, usually sRGB.
+Once the R, G and B values have been calculated, they must be converted from linear to your output colourspace, usually sRGB.
