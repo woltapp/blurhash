@@ -34,5 +34,6 @@ Nevertheless, if you want to try it out quickly, simply run:
 	LaJHjmVu8_~po#smR+a~xaoLWCRj
 
 If you want to try out the decoder, simply run:
+
 	$ make blurhash_decoder
 	$ ./blurhash_decoder "LaJHjmVu8_~po#smR+a~xaoLWCRj" 32 32 decoded_output.png
