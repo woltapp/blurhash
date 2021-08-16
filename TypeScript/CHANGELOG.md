@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.4 (August 16, 2021)
+
+- added esm build target
+
 ## 1.1.2 (June 29, 2019)
 
 - added `isBlurhashValid()` utility
