@@ -20,7 +20,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -28,7 +28,7 @@ android {
 }
 
 dependencies {
-    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "junit:junit:4.13.2"
 }
 
 
