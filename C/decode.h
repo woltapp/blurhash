@@ -1,6 +1,6 @@
 #ifndef __BLURHASH_DECODE_H__
 
-#define __BLURHASH_DECODE_H
+#define __BLURHASH_DECODE_H__
 
 #include <math.h>
 #include <stdbool.h>
