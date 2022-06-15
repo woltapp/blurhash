@@ -35,7 +35,7 @@ platform.
 
 So far, we have created these implementations:
 
-* [C](C) - An encoder implemenation in portable C code.
+* [C](C) - An encoder implementation in portable C code.
 * [Swift](Swift) - Encoder and decoder implementations, and a larger library offering advanced features.
   There is also an example app to play around with the algorithm.
 * [Kotlin](Kotlin) - A decoder implementation for Android.
@@ -56,6 +56,11 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Dart](https://github.com/justacid/blurhash-dart) - Encoder and decoder implementation in pure Dart.
 * [.NET](https://github.com/MarkusPalcer/blurhash.net) - Encoder and decoder in C#.
 * [Haskell](https://github.com/SamProtas/JuicyPixels-blurhash) - Encoder and decoder in pure Haskell.
+* [Scala](https://github.com/markussammallahti/blurhash-scala) - Encoder and decoder in Scala.
+* [Elixir](https://github.com/perzanko/blurhash-elixir) - Encoder implementation in pure Elixir.
+* [ReScript](https://github.com/armedi/rescript-blurhash) - Encoder and decoder implementation in ReScript (BuckleScript).
+* [JavaScript](https://github.com/mad-gooze/fast-blurhash) - Tiny optimized decoder implementation JS.
+
 
 Perhaps you'd like to help extend this list? Which brings us to...
 
@@ -159,4 +164,9 @@ to see what you can come up with!
 * [Tuomo Virolainen](https://github.com/tvirolai) - Clojure implementation
 * [Fotis Papadogeorgopoulos](https://github.com/fpapado) - Rust and WebAssembly implementation
 * [Sam Protas](https://github.com/SamProtas) - Pure Haskell implementation
+* [Markus Sammallahti](https://github.com/markussammallahti) - Scala implementation
+* [Kacper Perzankowski](https://github.com/perzanko) - Elixir encoder implementation
+* [Belvi Nosakhare](https://github.com/KingsMentor/BlurHashExt) - Kotlin extensions of Blurhash for ImageView, Glide, and Piccasso optimized for Android.
+* [Armedi](https://github.com/armedi) - ReScript (BuckleScript) implementation.
+
 * _Your name here?_
