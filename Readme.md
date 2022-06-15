@@ -35,7 +35,7 @@ platform.
 
 So far, we have created these implementations:
 
-* [C](C) - An encoder implemenation in portable C code.
+* [C](C) - An encoder implementation in portable C code.
 * [Swift](Swift) - Encoder and decoder implementations, and a larger library offering advanced features.
   There is also an example app to play around with the algorithm.
 * [Kotlin](Kotlin) - A decoder implementation for Android.
@@ -56,6 +56,8 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Dart](https://github.com/justacid/blurhash-dart) - Encoder and decoder implementation in pure Dart.
 * [.NET](https://github.com/MarkusPalcer/blurhash.net) - Encoder and decoder in C#.
 * [ReScript](https://github.com/armedi/rescript-blurhash) - Encoder and decoder implementation in ReScript (BuckleScript).
+* [JavaScript](https://github.com/mad-gooze/fast-blurhash) - Tiny optimized decoder implementation JS.
+
 
 Perhaps you'd like to help extend this list? Which brings us to...
 
