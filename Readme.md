@@ -160,5 +160,7 @@ to see what you can come up with!
 * [Hendrik Schnepel](https://github.com/hsch) - Java encoder implementation
 * [Tuomo Virolainen](https://github.com/tvirolai) - Clojure implementation
 * [Fotis Papadogeorgopoulos](https://github.com/fpapado) - Rust and WebAssembly implementation
+* [Belvi Nosakhare](https://github.com/KingsMentor/BlurHashExt) - Kotlin extensions of Blurhash for ImageView, Glide, and Piccasso optimized for Android.
 * [Armedi](https://github.com/armedi) - ReScript (BuckleScript) implementation.
+
 * _Your name here?_
