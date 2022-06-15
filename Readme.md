@@ -65,6 +65,8 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [JavaScript](https://github.com/mad-gooze/fast-blurhash) - Tiny optimized decoder implementation JS.
 
 
+Can't find the language you're looking for? Try your luck with the GitHub search. For example, here are the search results for [repos which have "blurhash" in their name](https://github.com/search?q=blurhash+in%3Aname&type=repositories).
+
 Perhaps you'd like to help extend this list? Which brings us to...
 
 ## Contributing
