@@ -63,6 +63,7 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Elixir](https://github.com/perzanko/blurhash-elixir) - Encoder implementation in pure Elixir.
 * [ReScript](https://github.com/armedi/rescript-blurhash) - Encoder and decoder implementation in ReScript (BuckleScript).
 * [JavaScript](https://github.com/mad-gooze/fast-blurhash) - Tiny optimized decoder implementation JS.
+* [React Native](https://github.com/mrousavy/react-native-blurhash) - UI Component for React Native. (Decoder in Swift and Kotlin)
 
 
 Can't find the language you're looking for? Try your luck with the GitHub search. For example, here are the search results for [repos which have "blurhash" in their name](https://github.com/search?q=blurhash+in%3Aname&type=repositories).
@@ -173,5 +174,6 @@ to see what you can come up with!
 * [Kacper Perzankowski](https://github.com/perzanko) - Elixir encoder implementation
 * [Belvi Nosakhare](https://github.com/KingsMentor/BlurHashExt) - Kotlin extensions of Blurhash for ImageView, Glide, and Piccasso optimized for Android.
 * [Armedi](https://github.com/armedi) - ReScript (BuckleScript) implementation.
+* [Marc Rousavy](https://github.com/mrousavy) - React Native UI Component
 
 * _Your name here?_
