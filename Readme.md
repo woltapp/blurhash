@@ -176,5 +176,4 @@ to see what you can come up with!
 * [Armedi](https://github.com/armedi) - ReScript (BuckleScript) implementation.
 * [Marc Rousavy](https://github.com/mrousavy) - React Native UI Component
 
-
 * _Your name here?_
