@@ -105,7 +105,7 @@ const encode = (
 
   let maximumValue: number;
   if (ac.length > 0) {
-    let actualMaximumValue = Math.max(...ac.map(val => Math.max(...val)));
+    let actualMaximumValue = Math.max(...ac.map((val) => Math.max(...val)));
     let quantisedMaximumValue = Math.floor(
       Math.max(0, Math.min(82, Math.floor(actualMaximumValue * 166 - 0.5)))
     );
@@ -118,7 +118,7 @@ const encode = (
 
   hash += encode83(encodeDC(dc), 4);
 
-  ac.forEach(factor => {
+  ac.forEach((factor) => {
     hash += encode83(encodeAC(factor, maximumValue), 2);
   });
 

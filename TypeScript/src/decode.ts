@@ -53,7 +53,7 @@ const decodeAC = (value: number, maximumValue: number) => {
   const rgb = [
     signPow((quantR - 9) / 9, 2.0) * maximumValue,
     signPow((quantG - 9) / 9, 2.0) * maximumValue,
-    signPow((quantB - 9) / 9, 2.0) * maximumValue
+    signPow((quantB - 9) / 9, 2.0) * maximumValue,
   ];
 
   return rgb;
