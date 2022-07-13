@@ -1,2 +1,5 @@
+.DS_Store
+.prettierrc
 tsconfig.json
 demo
+webpack.config.js
