@@ -81,7 +81,7 @@ const digitCharacters = [
   "{",
   "|",
   "}",
-  "~"
+  "~",
 ];
 
 export const decode83 = (str: String) => {

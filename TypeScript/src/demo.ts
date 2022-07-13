@@ -32,7 +32,7 @@ function doEncode() {
   if (file) {
     const ctx = originalCanvas.getContext("2d");
     var img = new Image();
-    img.onload = function() {
+    img.onload = function () {
       ctx.drawImage(img, 0, 0, originalCanvas.width, originalCanvas.height);
       URL.revokeObjectURL(img.src);
 
