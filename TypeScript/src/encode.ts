@@ -21,7 +21,7 @@ const multiplyBasisFunction = (
     const bytesPerPixelX = bytesPerPixel * x;
 
     for (let y = 0; y < height; y++) {
-      const basePixelIndex = bytesPerPixelX + (y * bytesPerRow);
+      const basePixelIndex = bytesPerPixelX + y * bytesPerRow;
       const basis = basisFunction(x, y);
       r +=
         basis * sRGBToLinear(pixels[basePixelIndex]);
