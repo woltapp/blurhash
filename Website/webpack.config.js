@@ -24,7 +24,7 @@ module.exports = {
   output: {
     filename: '[name].[hash].js',
   },
-  devtool: IS_DEV ? '#cheap-module-source-map' : '#source-map',
+  devtool: IS_DEV ? 'cheap-module-source-map' : 'source-map',
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
@@ -65,7 +65,9 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: IS_DEV,
-              includePaths: [dirAssets],
+              sassOptions: {
+                includePaths: [dirAssets],
+              },
             },
           },
         ],
@@ -73,16 +75,13 @@ module.exports = {
       // IMAGES
       {
         test: /\.(jpe?g|png|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[ext]',
-        },
+        type: 'asset/resource',
       },
 
       // FONTS
       {
         test: /\.(eot|otf|woff2?|ttf)[\?]?.*$/, // eslint-disable-line
-        use: 'file-loader?name=fonts/[name].[ext]',
+        type: 'asset/resource',
       },
     ],
   },
