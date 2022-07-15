@@ -1,4 +1,4 @@
-import { encode, decode } from '../../../TypeScript/dist/';
+import { encode, decode } from 'blurhash';
 
 const blurhashElement = document.getElementById('demo-blurhash');
 const canvas = document.getElementById('demo-canvas');
@@ -33,7 +33,7 @@ function renderSelectedFile() {
   if (file) {
     var img = new Image();
     originalCanvas.classList.add('visible');
-    img.onload = function() {
+    img.onload = function () {
       renderImage(img);
     };
     img.src = URL.createObjectURL(fileInput.files[0]);
@@ -82,6 +82,6 @@ componentYElement.addEventListener('keyup', renderBlurhash);
 predefined.addEventListener('change', renderSelectedImage);
 originalCanvas.addEventListener('click', renderSelectedImage);
 
-export default function() {
+export default function () {
   renderSelectedImage();
 }
