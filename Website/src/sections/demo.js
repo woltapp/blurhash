@@ -71,7 +71,7 @@ function renderSelectedImage() {
   const firstPredefinedImage = document.querySelector('.predefined input:checked + img');
   originalCanvas.classList.remove('visible');
   fileInput.value = '';
-  renderImage(firstPredefinedImage);
+  requestAnimationFrame(() => renderImage(firstPredefinedImage));
 }
 
 blurhashElement.addEventListener('change', render);
