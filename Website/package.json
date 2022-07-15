@@ -33,6 +33,7 @@
     "webpack-dev-server": "4.9.3"
   },
   "dependencies": {
+    "blurhash": "file:../TypeScript",
     "@babel/runtime": "7.18.6",
     "smoothscroll-polyfill": "0.4.4",
     "velocity-animate": "1.5.2"

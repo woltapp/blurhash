@@ -1,5 +1,5 @@
 import { imageHashes } from '../constants';
-import decode from '../../../TypeScript/dist/decode';
+import { decode } from 'blurhash';
 import Velocity from 'velocity-animate';
 import smoothscroll from 'smoothscroll-polyfill';
 
@@ -79,7 +79,7 @@ function hero() {
     });
   }
 
-  const translateY = amount => `translate3d(0%, ${amount}px, 0)`;
+  const translateY = (amount) => `translate3d(0%, ${amount}px, 0)`;
 
   function startParallax() {
     window.addEventListener('scroll', scrollImages);
@@ -91,9 +91,9 @@ function hero() {
     imageContainer[0].style.webkitTransform = translateY(transform);
   }
 
-  document.getElementById("get-started").addEventListener('click', () => {
-    document.querySelector(".why-blurhash").scrollIntoView({ behavior: 'smooth' });
-  })
+  document.getElementById('get-started').addEventListener('click', () => {
+    document.querySelector('.why-blurhash').scrollIntoView({ behavior: 'smooth' });
+  });
 }
 
 export default hero;
