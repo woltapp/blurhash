@@ -18,14 +18,17 @@ const multiplyBasisFunction = (
   const bytesPerRow = width * bytesPerPixel;
 
   for (let x = 0; x < width; x++) {
+    const bytesPerPixelX = bytesPerPixel * x;
+
     for (let y = 0; y < height; y++) {
+      const basePixelIndex = bytesPerPixelX + y * bytesPerRow;
       const basis = basisFunction(x, y);
       r +=
-        basis * sRGBToLinear(pixels[bytesPerPixel * x + 0 + y * bytesPerRow]);
+        basis * sRGBToLinear(pixels[basePixelIndex]);
       g +=
-        basis * sRGBToLinear(pixels[bytesPerPixel * x + 1 + y * bytesPerRow]);
+        basis * sRGBToLinear(pixels[basePixelIndex + 1]);
       b +=
-        basis * sRGBToLinear(pixels[bytesPerPixel * x + 2 + y * bytesPerRow]);
+        basis * sRGBToLinear(pixels[basePixelIndex + 2]);
     }
   }
 
