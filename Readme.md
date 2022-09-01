@@ -65,6 +65,7 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [JavaScript](https://github.com/mad-gooze/fast-blurhash) - Tiny optimized decoder implementation JS.
 * [Xojo](https://github.com/piradoiv/xojo-blurhash/) - Encoder and decoder implementation in pure Xojo.
 * [React Native](https://github.com/mrousavy/react-native-blurhash) - UI Component for React Native. (Decoder in Swift and Kotlin)
+* [Zig](https://github.com/mhoward540/blurhash-zig) - Encoder implementation in Zig.
 
 
 Can't find the language you're looking for? Try your luck with the GitHub search. For example, here are the search results for [repos which have "blurhash" in their name](https://github.com/search?q=blurhash+in%3Aname&type=repositories).
@@ -177,5 +178,6 @@ to see what you can come up with!
 * [Armedi](https://github.com/armedi) - ReScript (BuckleScript) implementation.
 * [Ricardo Cruz](https://github.com/piradoiv) - Xojo implementation.
 * [Marc Rousavy](https://github.com/mrousavy) - React Native UI Component
+* [Matt Howard](https://github.com/mhoward540) - Zig implementation
 
 * _Your name here?_
