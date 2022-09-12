@@ -11,6 +11,7 @@ export default defineConfig([
     clean: true,
     splitting: false,
     dts: false,
+    minify: true,
   },
   {
     name: "typedefs",
