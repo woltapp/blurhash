@@ -66,6 +66,7 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Xojo](https://github.com/piradoiv/xojo-blurhash/) - Encoder and decoder implementation in pure Xojo.
 * [React Native](https://github.com/mrousavy/react-native-blurhash) - UI Component for React Native. (Decoder in Swift and Kotlin)
 * [Zig](https://github.com/mhoward540/blurhash-zig) - Encoder implementation in Zig.
+* [Titanium Mobile](https://github.com/m1ga/ti.blurhash) - Decoder for Titanium Mobile (Android)
 
 
 Can't find the language you're looking for? Try your luck with the GitHub search. For example, here are the search results for [repos which have "blurhash" in their name](https://github.com/search?q=blurhash+in%3Aname&type=repositories).
