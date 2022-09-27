@@ -14,6 +14,18 @@ export default defineConfig([
     minify: true,
   },
   {
+    name: "esm",
+    entry: ["./src/index.ts"],
+    outDir: "./dist",
+    format: ["esm"],
+    legacyOutput: false,
+    sourcemap: true,
+    clean: true,
+    splitting: false,
+    dts: false,
+    minify: true,
+  },
+  {
     name: "typedefs",
     entry: ["./src/index.ts"],
     outDir: "./dist",

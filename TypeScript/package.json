@@ -3,12 +3,14 @@
   "version": "2.0.0",
   "description": "Encoder and decoder for the Wolt BlurHash algorithm.",
   "main": "dist/index.js",
-  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
+      "default": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "module": "./dist/esm/index.js",
       "require": "./dist/index.js",
-      "import": "./dist/esm/index.js",
       "types": "./dist/index.d.ts"
     }
   },
