@@ -9,11 +9,11 @@
     "./package.json": "./package.json",
     ".": {
       "browser": "./dist/esm/index.js",
-      "default": "./dist/index.js",
       "import": "./dist/index.mjs",
       "module": "./dist/esm/index.js",
       "node": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "sideEffects": false,
