@@ -180,6 +180,6 @@ to see what you can come up with!
 * [Ricardo Cruz](https://github.com/piradoiv) - Xojo implementation.
 * [Marc Rousavy](https://github.com/mrousavy) - React Native UI Component
 * [Matt Howard](https://github.com/mhoward540) - Zig implementation
-* [Wajahat Iqbal](https://github.com/wajahat-iqbal) - jetpack compose-based implementation optimized for using any component as a painter..
+* [Wajahat Iqbal](https://github.com/wajahat-iqbal) - Jetpack compose-based implementation optimized for using any component as a painter.
 
 * _Your name here?_
