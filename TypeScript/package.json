@@ -1,6 +1,6 @@
 {
   "name": "blurhash",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Encoder and decoder for the Wolt BlurHash algorithm.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
