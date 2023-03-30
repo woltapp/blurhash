@@ -67,7 +67,7 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [React Native](https://github.com/mrousavy/react-native-blurhash) - UI Component for React Native. (Decoder in Swift and Kotlin)
 * [Zig](https://github.com/mhoward540/blurhash-zig) - Encoder implementation in Zig.
 * [Jetpack Compose](https://github.com/wajahat-iqbal/BlurHashPainter) - Decoder Jetpack Compose implementation
-
+* [C++](https://github.com/Nheko-Reborn/blurhash) - Encoder and decoder in C++.
 
 Can't find the language you're looking for? Try your luck with the GitHub search. For example, here are the search results for [repos which have "blurhash" in their name](https://github.com/search?q=blurhash+in%3Aname&type=repositories).
 
