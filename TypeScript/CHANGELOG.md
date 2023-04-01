@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0 (September 12, 2022)
+
+- Modern bundling
+- Fix DC encoding
+- Drop IE11 support
+
 ## 1.1.5 (February 15, 2022)
 
 - added typescript sources to npm package for source map support
