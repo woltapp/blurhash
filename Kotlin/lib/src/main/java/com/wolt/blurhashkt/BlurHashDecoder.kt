@@ -114,9 +114,9 @@ object BlurHashDecoder {
                 var g = 0f
                 var b = 0f
                 for (j in 0 until numCompY) {
+                    val cosY = cosinesY.getCos(calculateCosY, j, numCompY, y, height)
                     for (i in 0 until numCompX) {
                         val cosX = cosinesX.getCos(calculateCosX, i, numCompX, x, width)
-                        val cosY = cosinesY.getCos(calculateCosY, j, numCompY, y, height)
                         val basis = (cosX * cosY).toFloat()
                         val color = colors[j * numCompX + i]
                         r += color[0] * basis
