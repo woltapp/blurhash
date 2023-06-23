@@ -98,11 +98,10 @@ const decode = (
       let b = 0;
 
       for (let j = 0; j < numY; j++) {
+        const basisY = Math.cos((Math.PI * y * j) / height);
         for (let i = 0; i < numX; i++) {
-          const basis =
-            Math.cos((Math.PI * x * i) / width) *
-            Math.cos((Math.PI * y * j) / height);
-          let color = colors[i + j * numX];
+          const basis = Math.cos((Math.PI * x * i) / width) * basisY;
+          const color = colors[i + j * numX];
           r += color[0] * basis;
           g += color[1] * basis;
           b += color[2] * basis;

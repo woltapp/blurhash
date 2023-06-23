@@ -66,8 +66,10 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Xojo](https://github.com/piradoiv/xojo-blurhash/) - Encoder and decoder implementation in pure Xojo.
 * [React Native](https://github.com/mrousavy/react-native-blurhash) - UI Component for React Native. (Decoder in Swift and Kotlin)
 * [Zig](https://github.com/mhoward540/blurhash-zig) - Encoder implementation in Zig.
-* [Titanium Mobile](https://github.com/m1ga/ti.blurhash) - Decoder for Titanium Mobile (Android)
-
+* [Titanium SDK](https://github.com/m1ga/ti.blurhash) - Decoder for Titanium SDK (Android)
+* [Jetpack Compose](https://github.com/wajahat-iqbal/BlurHashPainter) - Decoder Jetpack Compose implementation
+* [C++](https://github.com/Nheko-Reborn/blurhash) - Encoder and decoder in C++.
+* [Kotlin Multiplatform](https://github.com/vanniktech/blurhash) - Encoding & decoding for Android, iOS & JVM
 
 Can't find the language you're looking for? Try your luck with the GitHub search. For example, here are the search results for [repos which have "blurhash" in their name](https://github.com/search?q=blurhash+in%3Aname&type=repositories).
 
@@ -180,5 +182,6 @@ to see what you can come up with!
 * [Ricardo Cruz](https://github.com/piradoiv) - Xojo implementation.
 * [Marc Rousavy](https://github.com/mrousavy) - React Native UI Component
 * [Matt Howard](https://github.com/mhoward540) - Zig implementation
+* [Wajahat Iqbal](https://github.com/wajahat-iqbal) - Jetpack compose-based implementation optimized for using any component as a painter.
 
 * _Your name here?_
