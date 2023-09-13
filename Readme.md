@@ -69,6 +69,7 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Jetpack Compose](https://github.com/wajahat-iqbal/BlurHashPainter) - Decoder Jetpack Compose implementation
 * [C++](https://github.com/Nheko-Reborn/blurhash) - Encoder and decoder in C++.
 * [Kotlin Multiplatform](https://github.com/vanniktech/blurhash) - Encoding & decoding for Android, iOS & JVM
+* [OCaml](https://github.com/ushitora-anqou/ocaml-blurhash) - Encoder implementation in OCaml.
 
 Can't find the language you're looking for? Try your luck with the GitHub search. For example, here are the search results for [repos which have "blurhash" in their name](https://github.com/search?q=blurhash+in%3Aname&type=repositories).
 
