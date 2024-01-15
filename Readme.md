@@ -67,9 +67,11 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [React Native](https://github.com/mrousavy/react-native-blurhash) - UI Component for React Native. (Decoder in Swift and Kotlin)
 * [Zig](https://github.com/mhoward540/blurhash-zig) - Encoder implementation in Zig.
 * [Titanium SDK](https://github.com/m1ga/ti.blurhash) - Decoder for Titanium SDK (Android)
+* [BQN](https://github.com/dancek/blurhash-bqn) - Encoder, decoder and terminal viewer in pure BQN.
 * [Jetpack Compose](https://github.com/wajahat-iqbal/BlurHashPainter) - Decoder Jetpack Compose implementation
 * [C++](https://github.com/Nheko-Reborn/blurhash) - Encoder and decoder in C++.
 * [Kotlin Multiplatform](https://github.com/vanniktech/blurhash) - Encoding & decoding for Android, iOS & JVM
+* [OCaml](https://github.com/ushitora-anqou/ocaml-blurhash) - Encoder implementation in OCaml.
 
 Can't find the language you're looking for? Try your luck with the GitHub search. For example, here are the search results for [repos which have "blurhash" in their name](https://github.com/search?q=blurhash+in%3Aname&type=repositories).
 
@@ -95,6 +97,7 @@ Who uses BlurHash? Here are some projects we know about:
 * [Wolt](http://wolt.com/) - We are of course using it ourselves. BlurHashes are used in the mobile clients on iOS and Android, as well as on the web, as placeholders during image loading.
 * [Mastodon](https://github.com/tootsuite/mastodon) - The Mastodon decentralised social media network uses BlurHashes both as loading placeholders, as well as for hiding media marked as sensitive.
 * [Signal](https://signal.org/) - Signal Private Messenger uses Blurhashes as placeholders before photo & video messages are downloaded in chat conversations.
+* [Jellyfin](https://jellyfin.org/) - Jellyfin the free software media system uses Blurhashes as placeholders for images of movies and TV shows when they are being downloaded.
 
 ## Good Questions
 
@@ -182,6 +185,8 @@ to see what you can come up with!
 * [Ricardo Cruz](https://github.com/piradoiv) - Xojo implementation.
 * [Marc Rousavy](https://github.com/mrousavy) - React Native UI Component
 * [Matt Howard](https://github.com/mhoward540) - Zig implementation
+* [Hannu Hartikainen](https://github.com/dancek) - BQN implementation
 * [Wajahat Iqbal](https://github.com/wajahat-iqbal) - Jetpack compose-based implementation optimized for using any component as a painter.
+
 
 * _Your name here?_
