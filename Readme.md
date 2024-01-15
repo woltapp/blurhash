@@ -66,6 +66,7 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Xojo](https://github.com/piradoiv/xojo-blurhash/) - Encoder and decoder implementation in pure Xojo.
 * [React Native](https://github.com/mrousavy/react-native-blurhash) - UI Component for React Native. (Decoder in Swift and Kotlin)
 * [Zig](https://github.com/mhoward540/blurhash-zig) - Encoder implementation in Zig.
+* [Titanium SDK](https://github.com/m1ga/ti.blurhash) - Decoder for Titanium SDK (Android)
 * [BQN](https://github.com/dancek/blurhash-bqn) - Encoder, decoder and terminal viewer in pure BQN.
 * [Jetpack Compose](https://github.com/wajahat-iqbal/BlurHashPainter) - Decoder Jetpack Compose implementation
 * [C++](https://github.com/Nheko-Reborn/blurhash) - Encoder and decoder in C++.
