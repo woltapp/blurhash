@@ -1,3 +1,6 @@
 [submodule "Python"]
 	path = Python
 	url = https://github.com/creditornot/blurhash-python.git
+[submodule "Dart"]
+	path = Dart
+	url = https://github.com/folksable/blurhash_ffi.git
