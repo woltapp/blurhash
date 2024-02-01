@@ -54,7 +54,8 @@ These cover our use cases, but could probably use polishing, extending and impro
 * [Ruby](https://github.com/Gargron/blurhash) - Encoder implementation in Ruby.
 * [Crystal](https://github.com/Sija/blurhash.cr) - Encoder implementation in pure Crystal.
 * [Elm](https://github.com/WhileTruu/elm-blurhash) - Encoder and decoder in Elm.
-* [Dart](https://github.com/justacid/blurhash-dart) - Encoder and decoder implementation in pure Dart.
+* [Dart](https://github.com/folksable/blurhash_ffi) - Encoder and decoder implementation in C into Dart using dart-ffi.
+* [Pure Dart](https://github.com/justacid/blurhash-dart) - Encoder and decoder implementation in pure Dart.
 * [.NET](https://github.com/MarkusPalcer/blurhash.net) - Encoder and decoder in C#.
 * [JavaScript](https://github.com/Dens49/blurhash-js) - Encoder and decoder implementation in pure JavaScript.
 * [.NET](https://github.com/Bond-009/BlurHashSharp) - Encoder implementation in C#.
