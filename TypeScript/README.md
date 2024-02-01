@@ -11,7 +11,7 @@
 npm install --save blurhash
 ```
 
-See [react-blurhash](https://github.com/woltapp/react-blurhash) to use blurhash with React.
+See [react-blurhash](https://github.com/woltapp/react-blurhash) to use blurhash with React or [stimulus-blurhash](https://github.com/bb/stimulus-blurhash) to use it with Hotwire Stimulus.
 
 ## API
 
