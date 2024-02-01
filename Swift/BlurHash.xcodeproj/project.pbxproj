@@ -48,6 +48,10 @@
 		1BC34D7E20098E1500A17481 /* TupleMaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC34D7D20098E1500A17481 /* TupleMaths.swift */; };
 		1BC34D8020098E2F00A17481 /* Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC34D7F20098E2F00A17481 /* Generation.swift */; };
 		1BDE56D12011EC5F00569DCB /* ColourProbes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE56D02011EC5F00569DCB /* ColourProbes.swift */; };
+		7EF2115B2402CDD000E24FC2 /* BlurHashKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2115A2402CDD000E24FC2 /* BlurHashKitTests.swift */; };
+		7EF2115D2402CDD000E24FC2 /* BlurHashKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B49CD1B1EC4721A006F8E7D /* BlurHashKit.framework */; };
+		7EF211672402CFA100E24FC2 /* EncodeComponentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF211632402CF4900E24FC2 /* EncodeComponentsTests.swift */; };
+		7EF211682402CFA300E24FC2 /* EncodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF211642402CF4900E24FC2 /* EncodeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1B49CD1A1EC4721A006F8E7D;
 			remoteInfo = BlurHash;
+		};
+		7EF2115E2402CDD000E24FC2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1B49CD121EC4721A006F8E7D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B49CD1A1EC4721A006F8E7D;
+			remoteInfo = BlurHashKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -164,6 +175,11 @@
 		1BEFFFC620BFF7B100187F3F /* Algorithm.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Algorithm.md; path = ../Algorithm.md; sourceTree = "<group>"; };
 		1BEFFFC720BFF7B100187F3F /* CodeOfConduct.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CodeOfConduct.md; path = ../CodeOfConduct.md; sourceTree = "<group>"; };
 		1BEFFFC820C000DE00187F3F /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		7EF211582402CDD000E24FC2 /* BlurHashKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlurHashKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EF2115A2402CDD000E24FC2 /* BlurHashKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurHashKitTests.swift; sourceTree = "<group>"; };
+		7EF2115C2402CDD000E24FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EF211632402CF4900E24FC2 /* EncodeComponentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodeComponentsTests.swift; sourceTree = "<group>"; };
+		7EF211642402CF4900E24FC2 /* EncodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +209,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EF211552402CDD000E24FC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF2115D2402CDD000E24FC2 /* BlurHashKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +345,7 @@
 				1B0A250C1EC5E90C00F25F08 /* BlurHashTest.app */,
 				1B2BA1BD1F0E5EC5006057C1 /* blurhash */,
 				1B6C71F62272451E000D3BB1 /* libBlurHashKit.a */,
+				7EF211582402CDD000E24FC2 /* BlurHashKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -330,6 +355,7 @@
 			children = (
 				1B0A250D1EC5E90C00F25F08 /* BlurHashTest */,
 				1BAA606F1FF40A1E00E42DD7 /* BlurHashKit */,
+				7EF211592402CDD000E24FC2 /* BlurHashKitTests */,
 				1B49CD261EC47243006F8E7D /* BlurHashEncode.swift */,
 				1B49CD281EC4724C006F8E7D /* BlurHashDecode.swift */,
 				1BEFFFC420BFE35300187F3F /* Readme.md */,
@@ -398,6 +424,17 @@
 			);
 			name = Kotlin;
 			path = ../Kotlin;
+			sourceTree = "<group>";
+		};
+		7EF211592402CDD000E24FC2 /* BlurHashKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				7EF2115C2402CDD000E24FC2 /* Info.plist */,
+				7EF2115A2402CDD000E24FC2 /* BlurHashKitTests.swift */,
+				7EF211642402CF4900E24FC2 /* EncodeTests.swift */,
+				7EF211632402CF4900E24FC2 /* EncodeComponentsTests.swift */,
+			);
+			path = BlurHashKitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -484,6 +521,24 @@
 			productReference = 1B6C71F62272451E000D3BB1 /* libBlurHashKit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		7EF211572402CDD000E24FC2 /* BlurHashKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EF211622402CDD000E24FC2 /* Build configuration list for PBXNativeTarget "BlurHashKitTests" */;
+			buildPhases = (
+				7EF211542402CDD000E24FC2 /* Sources */,
+				7EF211552402CDD000E24FC2 /* Frameworks */,
+				7EF211562402CDD000E24FC2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7EF2115F2402CDD000E24FC2 /* PBXTargetDependency */,
+			);
+			name = BlurHashKitTests;
+			productName = BlurHashKitTests;
+			productReference = 7EF211582402CDD000E24FC2 /* BlurHashKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -491,7 +546,7 @@
 			isa = PBXProject;
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Latest;
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Dag Ågren";
 				TargetAttributes = {
@@ -517,6 +572,10 @@
 						DevelopmentTeam = M9KXCWYWYR;
 						ProvisioningStyle = Automatic;
 					};
+					7EF211572402CDD000E24FC2 = {
+						CreatedOnToolsVersion = 11.3.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 1B49CD151EC4721A006F8E7D /* Build configuration list for PBXProject "BlurHash" */;
@@ -537,6 +596,7 @@
 				1B6C71F52272451E000D3BB1 /* libBlurHashKit */,
 				1B0A250B1EC5E90C00F25F08 /* BlurHashTest */,
 				1B2BA1BC1F0E5EC5006057C1 /* blurhash */,
+				7EF211572402CDD000E24FC2 /* BlurHashKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -559,6 +619,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1B49CD191EC4721A006F8E7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EF211562402CDD000E24FC2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -626,6 +693,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7EF211542402CDD000E24FC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF2115B2402CDD000E24FC2 /* BlurHashKitTests.swift in Sources */,
+				7EF211682402CFA300E24FC2 /* EncodeTests.swift in Sources */,
+				7EF211672402CFA100E24FC2 /* EncodeComponentsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -633,6 +710,11 @@
 			isa = PBXTargetDependency;
 			target = 1B49CD1A1EC4721A006F8E7D /* BlurHashKit */;
 			targetProxy = 1B0A25201EC5EA0500F25F08 /* PBXContainerItemProxy */;
+		};
+		7EF2115F2402CDD000E24FC2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B49CD1A1EC4721A006F8E7D /* BlurHashKit */;
+			targetProxy = 7EF2115E2402CDD000E24FC2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -905,6 +987,49 @@
 			};
 			name = Release;
 		};
+		7EF211602402CDD000E24FC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = BlurHashKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		7EF211612402CDD000E24FC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = BlurHashKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolt.BlurHashKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -949,6 +1074,15 @@
 			buildConfigurations = (
 				1B6C71FB2272451E000D3BB1 /* Debug */,
 				1B6C71FC2272451E000D3BB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EF211622402CDD000E24FC2 /* Build configuration list for PBXNativeTarget "BlurHashKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EF211602402CDD000E24FC2 /* Debug */,
+				7EF211612402CDD000E24FC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
