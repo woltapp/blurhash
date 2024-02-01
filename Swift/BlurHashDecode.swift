@@ -1,21 +1,63 @@
+#if canImport(SwiftUI)
+import SwiftUI
+
+extension Image {
+
+#if canImport(UIKit)
+    public init?(blurHash: String, size: CGSize, punch: Float = 1) {
+        guard let uiImage = UIImage(blurHash: blurHash, size: size, punch: punch) else { return nil }
+        self.init(uiImage: uiImage)
+    }
+#elseif canImport(AppKit)
+    public init?(blurHash: String, size: CGSize, punch: Float = 1) {
+        guard let nsImage = NSImage(blurHash: blurHash, size: size, punch: punch) else { return nil }
+        self.init(nsImage: nsImage)
+    }
+#endif
+    
+}
+
+#endif
+
+#if canImport(UIKit)
 import UIKit
 
 extension UIImage {
     public convenience init?(blurHash: String, size: CGSize, punch: Float = 1) {
+        
+        guard let cgImage = CGImage.from(blurHash: blurHash, size: size, punch: punch) else { return nil }
+
+        self.init(cgImage: cgImage)
+    }
+}
+#elseif canImport(AppKit)
+import AppKit
+
+extension NSImage {
+    public convenience init?(blurHash: String, size: CGSize, punch: Float = 1) {
+        guard let cgImage = CGImage.from(blurHash: blurHash, size: size, punch: punch) else { return nil }
+
+        self.init(cgImage: cgImage, size: .zero)
+    }
+}
+#endif
+
+extension CGImage {
+    static func from(blurHash: String, size: CGSize, punch: Float = 1) -> CGImage? {
         guard blurHash.count >= 6 else { return nil }
 
-		let sizeFlag = String(blurHash[0]).decode83()
-		let numY = (sizeFlag / 9) + 1
-		let numX = (sizeFlag % 9) + 1
+        let sizeFlag = String(blurHash[0]).decode83()
+        let numY = (sizeFlag / 9) + 1
+        let numX = (sizeFlag % 9) + 1
 
-		let quantisedMaximumValue = String(blurHash[1]).decode83()
+        let quantisedMaximumValue = String(blurHash[1]).decode83()
         let maximumValue = Float(quantisedMaximumValue + 1) / 166
 
         guard blurHash.count == 4 + 2 * numX * numY else { return nil }
 
         let colours: [(Float, Float, Float)] = (0 ..< numX * numY).map { i in
             if i == 0 {
-				let value = String(blurHash[2 ..< 6]).decode83()
+                let value = String(blurHash[2 ..< 6]).decode83()
                 return decodeDC(value)
             } else {
                 let value = String(blurHash[4 + i * 2 ..< 4 + i * 2 + 2]).decode83()
@@ -59,10 +101,9 @@ extension UIImage {
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
 
         guard let provider = CGDataProvider(data: data) else { return nil }
-        guard let cgImage = CGImage(width: width, height: height, bitsPerComponent: 8, bitsPerPixel: 24, bytesPerRow: bytesPerRow,
-        space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: bitmapInfo, provider: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent) else { return nil }
-
-        self.init(cgImage: cgImage)
+        
+        return CGImage(width: width, height: height, bitsPerComponent: 8, bitsPerPixel: 24, bytesPerRow: bytesPerRow,
+        space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: bitmapInfo, provider: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
     }
 }
 
