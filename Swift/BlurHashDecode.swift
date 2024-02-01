@@ -37,8 +37,9 @@ extension UIImage {
                 var b: Float = 0
 
                 for j in 0 ..< numY {
+                    let basisY = cos(Float.pi * Float(y) * Float(j) / Float(height)
                     for i in 0 ..< numX {
-                        let basis = cos(Float.pi * Float(x) * Float(i) / Float(width)) * cos(Float.pi * Float(y) * Float(j) / Float(height))
+                        let basis = cos(Float.pi * Float(x) * Float(i) / Float(width)) * basisY)
                         let colour = colours[i + j * numX]
                         r += colour.0 * basis
                         g += colour.1 * basis
