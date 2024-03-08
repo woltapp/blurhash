@@ -6,6 +6,16 @@
 and encoder for BlurHash to and from `UIImage`. Both files are completeiy standalone, and can simply be copied into your
 project directly.
 
+### Usage
+
+#### Swift Package Manager
+
+Add the following dependency to your Package.swift file:
+
+```swift
+.package(name: "blurhash", url: "https://github.com/woltapp/blurhash.git", .branch("master")),
+```
+
 ### Decoding
 
 [BlurHashDecode.swift](BlurHashDecode.swift) implements the following extension on `UIImage`:
