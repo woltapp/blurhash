@@ -18,7 +18,7 @@ It will be overwritten on the next call into the function, so be careful!
 * `yComponents` - The number of components in the Y direction. Must be between 1 and 9. 3 to 5 is usually a good range for this.
 * `width` - The width in pixels of the supplied image.
 * `height` - The height in pixels of the supplied image.
-* `rgb` - A pointer to the pixel data. This is supplied in RGB order, with 3 bytes per pixels.
+* `rgb` - A pointer to the pixel data. This can either be RGB or RGBA.
 * `bytesPerRow` - The number of bytes per row of the RGB pixel data.
 
 ## Usage as a command-line tool
