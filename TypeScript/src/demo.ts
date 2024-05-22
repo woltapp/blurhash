@@ -58,9 +58,9 @@ function doEncode() {
   }
 }
 
-blurhashElement.addEventListener("keyup", render);
-fileInput.addEventListener("change", doEncode);
-componentXElement.addEventListener("change", doEncode);
-componentYElement.addEventListener("change", doEncode);
+blurhashElement.addEventListener("keyup", render, { passive: true });
+fileInput.addEventListener("change", doEncode, { passive: true });
+componentXElement.addEventListener("change", doEncode, { passive: true });
+componentYElement.addEventListener("change", doEncode, { passive: true });
 
 render();
