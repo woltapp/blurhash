@@ -1,6 +1,9 @@
 import UIKit
 
 extension UIImage {
+    /// This returns a string containing the BlurHash for the image, or nil if the image was in a weird format that is not supported.
+    /// - Parameter components: A Tuple of integers specifying the number of components in the X and Y directions. Both must be between 1 and 9 inclusive, or the function will return nil. 3 to 5 is usually a good range.
+    /// - Returns: A string containing the BlurHash for the image.
     public func blurHash(numberOfComponents components: (Int, Int)) -> String? {
 		let pixelWidth = Int(round(size.width * scale))
 		let pixelHeight = Int(round(size.height * scale))
