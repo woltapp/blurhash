@@ -4,21 +4,27 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
+import com.wolt.blurhashapp.databinding.ActivityMainBinding
 import com.wolt.blurhashkt.BlurHashDecoder
-import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        tvDecode.setOnClickListener {
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.tvDecode.setOnClickListener {
             var bitmap: Bitmap? = null
             val time = timed {
-                bitmap = BlurHashDecoder.decode(etInput.text.toString(), 20, 12)
+                bitmap = BlurHashDecoder.decode(binding.etInput.text.toString(), 20, 12)
             }
-            ivResult.setImageBitmap(bitmap)
-            ivResultTime.text = "Time: $time ms"
+            binding.ivResult.setImageBitmap(bitmap)
+            binding.ivResultTime.text = "Time: $time ms"
         }
     }
 

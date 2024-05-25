@@ -1,1 +1,1 @@
-include ':demo', ':lib'
+include ':demo', ':blurhashkt-lib'
