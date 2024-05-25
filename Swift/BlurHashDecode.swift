@@ -1,6 +1,11 @@
 import UIKit
 
 extension UIImage {
+    /// This creates a UIImage containing the placeholder image decoded from the BlurHash string, or returns nil if decoding failed.
+    /// - Parameters:
+    ///   - blurHash: A string containing the BlurHash.
+    ///   - size: The requested output size. You should keep this small, and let UIKit scale it up for you. 32 pixels wide is plenty.
+    ///   - punch: Adjusts the contrast of the output image. Tweak it if you want a different look for your placeholders.
     public convenience init?(blurHash: String, size: CGSize, punch: Float = 1) {
         guard blurHash.count >= 6 else { return nil }
 
