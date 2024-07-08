@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
-
-    compileSdkVersion 29
+    namespace "com.wolt.blurhashapp"
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.wolt.blurhash"
-        minSdkVersion 14
-        targetSdkVersion 29
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
     }
@@ -21,9 +20,16 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
 
 dependencies {
-    implementation project(path: ':lib')
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation project(':lib')
+    implementation 'androidx.appcompat:appcompat:1.7.0'
 }
