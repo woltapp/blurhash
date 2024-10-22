@@ -1,34 +1,27 @@
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
-extension UIImage {
-    public func blurHash(numberOfComponents components: (Int, Int)) -> String? {
-		let pixelWidth = Int(round(size.width * scale))
-		let pixelHeight = Int(round(size.height * scale))
+protocol BlurHashEncodable {
+    var cgImage: CGImage? { get }
+    
+    func blurHash(numberOfComponents components: (Int, Int)) -> String?
+}
 
-		let context = CGContext(
-			data: nil,
-			width: pixelWidth,
-			height: pixelHeight,
-			bitsPerComponent: 8,
-			bytesPerRow: pixelWidth * 4,
-			space: CGColorSpace(name: CGColorSpace.sRGB)!,
-			bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-		)!
-		context.scaleBy(x: scale, y: -scale)
-		context.translateBy(x: 0, y: -size.height)
-
-		UIGraphicsPushContext(context)
-		draw(at: .zero)
-		UIGraphicsPopContext()
-
-		guard let cgImage = context.makeImage(),
-		let dataProvider = cgImage.dataProvider,
-		let data = dataProvider.data,
-		let pixels = CFDataGetBytePtr(data) else {
-			assertionFailure("Unexpected error!")
-			return nil
-		}
-
+extension BlurHashEncodable {
+    func blurHash(numberOfComponents components: (Int, Int)) -> String? {
+        guard
+            let cgImage,
+            let dataProvider = cgImage.dataProvider,
+            let data = dataProvider.data,
+            let pixels = CFDataGetBytePtr(data)
+        else {
+            assertionFailure("Unexpected error!")
+            return nil
+        }
+        
         let width = cgImage.width
         let height = cgImage.height
         let bytesPerRow = cgImage.bytesPerRow
@@ -93,6 +86,57 @@ extension UIImage {
         return (r * scale, g * scale, b * scale)
     }
 }
+
+#if os(iOS)
+extension UIImage: BlurHashEncodable {
+    var cgImage: CGImage? {
+        let pixelWidth = Int(round(size.width * scale))
+        let pixelHeight = Int(round(size.height * scale))
+        
+        let context = CGContext(
+            data: nil,
+            width: pixelWidth,
+            height: pixelHeight,
+            bitsPerComponent: 8,
+            bytesPerRow: pixelWidth * 4,
+            space: CGColorSpace(name: CGColorSpace.sRGB)!,
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+        )!
+        context.scaleBy(x: scale, y: -scale)
+        context.translateBy(x: 0, y: -size.height)
+        
+        UIGraphicsPushContext(context)
+        draw(at: .zero)
+        UIGraphicsPopContext()
+        return context.makeImage()
+    }
+}
+
+#elseif os(macOS)
+extension NSImage: BlurHashEncodable {
+    var cgImage: CGImage? {
+        let pixelWidth = Int(round(size.width))
+        let pixelHeight = Int(round(size.height))
+        
+        let context = CGContext(
+            data: nil,
+            width: pixelWidth,
+            height: pixelHeight,
+            bitsPerComponent: 8,
+            bytesPerRow: pixelWidth * 4,
+            space: CGColorSpace(name: CGColorSpace.sRGB)!,
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+        )!
+        
+        let graphicsContext = NSGraphicsContext(cgContext: context, flipped: true)
+        NSGraphicsContext.saveGraphicsState()
+        NSGraphicsContext.current = graphicsContext
+        draw(at: .zero, from: NSRect(x: 0, y: 0, width: pixelWidth, height: pixelHeight), operation: .sourceOver, fraction: 1.0)
+        NSGraphicsContext.restoreGraphicsState()
+        return context.makeImage()
+    }
+}
+#endif
 
 private func encodeDC(_ value: (Float, Float, Float)) -> Int {
     let roundedR = linearTosRGB(value.0)
