@@ -98,16 +98,22 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 	int x = 0, y = 0, i = 0, j = 0;
 	int intR = 0, intG = 0, intB = 0;
 
-	float *cosx = malloc(width * numX * sizeof(float));
-	float *cosy = malloc(height * numX * sizeof(float));
+	float *cosX = malloc(width * colors_size * sizeof(float));
+	float *cosY = malloc(height * colors_size * sizeof(float));
 	for(x = 0; x < width; x ++) {
 		for(i = 0; i < numX; i ++) {
-			cosx[x*numX + i] = cosf((M_PI * x * i) / width);
+			float weight = cosf(M_PI * x * i / width);
+			for(j = 0; j < numY; j ++) {
+				cosX[x * colors_size + j * numX + i] = weight;
+			}
 		}
 	}
 	for(y = 0; y < height; y ++) {
 		for(j = 0; j < numY; j ++) {
-			cosy[y*numY + j] = cosf((M_PI * y * j) / height);
+			float weight = cosf((M_PI * y * j) / height);
+			for(i = 0; i < numX; i ++) {
+				cosY[y * colors_size + j * numX + i] = weight;
+			}
 		}
 	}
 
@@ -116,14 +122,11 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 
 			float r = 0, g = 0, b = 0;
 
-			for(j = 0; j < numY; j ++) {
-				for(i = 0; i < numX; i ++) {
-					float basics = cosx[x*numX + i] * cosy[y*numY + j];
-					int idx = i + j * numX;
-					r += colors[idx][0] * basics;
-					g += colors[idx][1] * basics;
-					b += colors[idx][2] * basics;
-				}
+			for (int idx = 0; idx < colors_size; idx ++) {
+				float basics = cosX[x * colors_size + idx] * cosY[y * colors_size + idx];
+				r += colors[idx][0] * basics;
+				g += colors[idx][1] * basics;
+				b += colors[idx][2] * basics;
 			}
 
 			intR = linearTosRGB(r);
@@ -140,8 +143,8 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 		}
 	}
 
-	free(cosx);
-	free(cosy);
+	free(cosX);
+	free(cosY);
 
 	return 0;
 }
