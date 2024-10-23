@@ -3,8 +3,26 @@
 
 static char chars[83] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~";
 
-static inline uint8_t clampToUByte(int src) {
-	return (src < 0) ? 0 : (src > 255) ? 255 : src;
+#define CACHE_ACCURACY 8191
+
+static inline int convertToCacheIdx(float src) {
+	int res = src * CACHE_ACCURACY + 0.5;
+	return (res < 0) ? 0 : (res > CACHE_ACCURACY) ? CACHE_ACCURACY : res;
+}
+
+uint8_t *linearTosRGB_cache = NULL;
+
+static void init_linearTosRGB_cache() {
+	uint8_t *cache;
+	if (linearTosRGB_cache != NULL) {
+		return;
+	}
+	cache = (uint8_t *)malloc(sizeof(uint8_t) * (CACHE_ACCURACY + 1));
+	for (int x = 0; x <= CACHE_ACCURACY; x++) {
+		cache[x] = linearTosRGB((float)x / CACHE_ACCURACY);
+	}
+	// Assign cache after population to avoid races
+	linearTosRGB_cache = cache;
 }
 
 static inline uint8_t *  createByteArray(int size) {
@@ -96,7 +114,6 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 
 	int bytesPerRow = width * nChannels;
 	int x = 0, y = 0, i = 0, j = 0;
-	int intR = 0, intG = 0, intB = 0;
 
 	float *cosX = malloc(width * colors_size * sizeof(float));
 	float *cosY = malloc(height * colors_size * sizeof(float));
@@ -117,6 +134,8 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 		}
 	}
 
+	init_linearTosRGB_cache();
+
 	for(y = 0; y < height; y ++) {
 		for(x = 0; x < width; x ++) {
 
@@ -129,13 +148,9 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 				b += colors[idx][2] * basics;
 			}
 
-			intR = linearTosRGB(r);
-			intG = linearTosRGB(g);
-			intB = linearTosRGB(b);
-
-			pixelArray[nChannels * x + 0 + y * bytesPerRow] = clampToUByte(intR);
-			pixelArray[nChannels * x + 1 + y * bytesPerRow] = clampToUByte(intG);
-			pixelArray[nChannels * x + 2 + y * bytesPerRow] = clampToUByte(intB);
+			pixelArray[nChannels * x + 0 + y * bytesPerRow] = linearTosRGB_cache[convertToCacheIdx(r)];
+			pixelArray[nChannels * x + 1 + y * bytesPerRow] = linearTosRGB_cache[convertToCacheIdx(g)];
+			pixelArray[nChannels * x + 2 + y * bytesPerRow] = linearTosRGB_cache[convertToCacheIdx(b)];
 
 			if (nChannels == 4)
 				pixelArray[nChannels * x + 3 + y * bytesPerRow] = 255;   // If nChannels=4, treat each pixel as RGBA instead of RGB
