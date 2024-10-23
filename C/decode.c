@@ -3,10 +3,8 @@
 
 static char chars[83] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~";
 
-static inline uint8_t clampToUByte(int * src) {
-	if( *src >= 0 && *src <= 255 )
-		return *src;
-	return (*src < 0) ? 0 : 255;
+static inline uint8_t clampToUByte(int src) {
+	return (src < 0) ? 0 : (src > 255) ? 255 : src;
 }
 
 static inline uint8_t *  createByteArray(int size) {
@@ -107,7 +105,7 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 
 			for(j = 0; j < numY; j ++) {
 				for(i = 0; i < numX; i ++) {
-					float basics = cos((M_PI * x * i) / width) * cos((M_PI * y * j) / height);
+					float basics = cosf((M_PI * x * i) / width) * cosf((M_PI * y * j) / height);
 					int idx = i + j * numX;
 					r += colors[idx][0] * basics;
 					g += colors[idx][1] * basics;
@@ -119,9 +117,9 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 			intG = linearTosRGB(g);
 			intB = linearTosRGB(b);
 
-			pixelArray[nChannels * x + 0 + y * bytesPerRow] = clampToUByte(&intR);
-			pixelArray[nChannels * x + 1 + y * bytesPerRow] = clampToUByte(&intG);
-			pixelArray[nChannels * x + 2 + y * bytesPerRow] = clampToUByte(&intB);
+			pixelArray[nChannels * x + 0 + y * bytesPerRow] = clampToUByte(intR);
+			pixelArray[nChannels * x + 1 + y * bytesPerRow] = clampToUByte(intG);
+			pixelArray[nChannels * x + 2 + y * bytesPerRow] = clampToUByte(intB);
 
 			if (nChannels == 4)
 				pixelArray[nChannels * x + 3 + y * bytesPerRow] = 255;   // If nChannels=4, treat each pixel as RGBA instead of RGB
