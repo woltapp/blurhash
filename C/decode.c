@@ -98,6 +98,19 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 	int x = 0, y = 0, i = 0, j = 0;
 	int intR = 0, intG = 0, intB = 0;
 
+	float *cosx = malloc(width * numX * sizeof(float));
+	float *cosy = malloc(height * numX * sizeof(float));
+	for(x = 0; x < width; x ++) {
+		for(i = 0; i < numX; i ++) {
+			cosx[x*numX + i] = cosf((M_PI * x * i) / width);
+		}
+	}
+	for(y = 0; y < height; y ++) {
+		for(j = 0; j < numY; j ++) {
+			cosy[y*numY + j] = cosf((M_PI * y * j) / height);
+		}
+	}
+
 	for(y = 0; y < height; y ++) {
 		for(x = 0; x < width; x ++) {
 
@@ -105,7 +118,7 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 
 			for(j = 0; j < numY; j ++) {
 				for(i = 0; i < numX; i ++) {
-					float basics = cosf((M_PI * x * i) / width) * cosf((M_PI * y * j) / height);
+					float basics = cosx[x*numX + i] * cosy[y*numY + j];
 					int idx = i + j * numX;
 					r += colors[idx][0] * basics;
 					g += colors[idx][1] * basics;
@@ -126,6 +139,9 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 
 		}
 	}
+
+	free(cosx);
+	free(cosy);
 
 	return 0;
 }
