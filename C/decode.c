@@ -3,10 +3,26 @@
 
 static char chars[83] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~";
 
-static inline uint8_t clampToUByte(int * src) {
-	if( *src >= 0 && *src <= 255 )
-		return *src;
-	return (*src < 0) ? 0 : 255;
+#define CACHE_ACCURACY 8191
+
+static inline int convertToCacheIdx(float src) {
+	int res = src * CACHE_ACCURACY + 0.5;
+	return (res < 0) ? 0 : (res > CACHE_ACCURACY) ? CACHE_ACCURACY : res;
+}
+
+uint8_t *linearTosRGB_cache = NULL;
+
+static void init_linearTosRGB_cache() {
+	uint8_t *cache;
+	if (linearTosRGB_cache != NULL) {
+		return;
+	}
+	cache = (uint8_t *)malloc(sizeof(uint8_t) * (CACHE_ACCURACY + 1));
+	for (int x = 0; x <= CACHE_ACCURACY; x++) {
+		cache[x] = linearTosRGB((float)x / CACHE_ACCURACY);
+	}
+	// Assign cache after population to avoid races
+	linearTosRGB_cache = cache;
 }
 
 static inline uint8_t *  createByteArray(int size) {
@@ -98,36 +114,52 @@ int decodeToArray(const char * blurhash, int width, int height, int punch, int n
 
 	int bytesPerRow = width * nChannels;
 	int x = 0, y = 0, i = 0, j = 0;
-	int intR = 0, intG = 0, intB = 0;
+
+	float *cosX = malloc(width * colors_size * sizeof(float));
+	float *cosY = malloc(height * colors_size * sizeof(float));
+	for(x = 0; x < width; x ++) {
+		for(i = 0; i < numX; i ++) {
+			float weight = cosf(M_PI * x * i / width);
+			for(j = 0; j < numY; j ++) {
+				cosX[x * colors_size + j * numX + i] = weight;
+			}
+		}
+	}
+	for(y = 0; y < height; y ++) {
+		for(j = 0; j < numY; j ++) {
+			float weight = cosf((M_PI * y * j) / height);
+			for(i = 0; i < numX; i ++) {
+				cosY[y * colors_size + j * numX + i] = weight;
+			}
+		}
+	}
+
+	init_linearTosRGB_cache();
 
 	for(y = 0; y < height; y ++) {
 		for(x = 0; x < width; x ++) {
 
 			float r = 0, g = 0, b = 0;
 
-			for(j = 0; j < numY; j ++) {
-				for(i = 0; i < numX; i ++) {
-					float basics = cos((M_PI * x * i) / width) * cos((M_PI * y * j) / height);
-					int idx = i + j * numX;
-					r += colors[idx][0] * basics;
-					g += colors[idx][1] * basics;
-					b += colors[idx][2] * basics;
-				}
+			for (int idx = 0; idx < colors_size; idx ++) {
+				float basics = cosX[x * colors_size + idx] * cosY[y * colors_size + idx];
+				r += colors[idx][0] * basics;
+				g += colors[idx][1] * basics;
+				b += colors[idx][2] * basics;
 			}
 
-			intR = linearTosRGB(r);
-			intG = linearTosRGB(g);
-			intB = linearTosRGB(b);
-
-			pixelArray[nChannels * x + 0 + y * bytesPerRow] = clampToUByte(&intR);
-			pixelArray[nChannels * x + 1 + y * bytesPerRow] = clampToUByte(&intG);
-			pixelArray[nChannels * x + 2 + y * bytesPerRow] = clampToUByte(&intB);
+			pixelArray[nChannels * x + 0 + y * bytesPerRow] = linearTosRGB_cache[convertToCacheIdx(r)];
+			pixelArray[nChannels * x + 1 + y * bytesPerRow] = linearTosRGB_cache[convertToCacheIdx(g)];
+			pixelArray[nChannels * x + 2 + y * bytesPerRow] = linearTosRGB_cache[convertToCacheIdx(b)];
 
 			if (nChannels == 4)
 				pixelArray[nChannels * x + 3 + y * bytesPerRow] = 255;   // If nChannels=4, treat each pixel as RGBA instead of RGB
 
 		}
 	}
+
+	free(cosX);
+	free(cosY);
 
 	return 0;
 }

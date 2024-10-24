@@ -1,11 +1,8 @@
 #ifndef __BLURHASH_COMMON_H__
 #define __BLURHASH_COMMON_H__
 
-#include<math.h>
-
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 static inline int linearTosRGB(float value) {
 	float v = fmaxf(0, fminf(1, value));

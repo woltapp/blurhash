@@ -15,8 +15,8 @@ int main(int argc, const char **argv) {
 
 	int xComponents = atoi(argv[1]);
 	int yComponents = atoi(argv[2]);
-	if(xComponents < 1 || xComponents > 8 || yComponents < 1 || yComponents > 8) {
-		fprintf(stderr, "Component counts must be between 1 and 8.\n");
+	if(xComponents < 1 || xComponents > 9 || yComponents < 1 || yComponents > 9) {
+		fprintf(stderr, "Component counts must be between 1 and 9.\n");
 		return 1;
 	}
 
