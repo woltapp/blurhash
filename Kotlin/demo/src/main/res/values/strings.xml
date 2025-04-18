@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">BlurHash</string>
-    <string name="hint_blurhash">BlurHash string</string>
-    <string name="title_button_decode">Decode!</string>
-</resources>
