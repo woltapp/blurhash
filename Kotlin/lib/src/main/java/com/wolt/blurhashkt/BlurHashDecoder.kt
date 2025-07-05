@@ -2,6 +2,7 @@ package com.wolt.blurhashkt
 
 import android.graphics.Bitmap
 import android.graphics.Color
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.withSign
@@ -11,8 +12,8 @@ object BlurHashDecoder {
     // cache Math.cos() calculations to improve performance.
     // The number of calculations can be huge for many bitmaps: width * height * numCompX * numCompY * 2 * nBitmaps
     // the cache is enabled by default, it is recommended to disable it only when just a few images are displayed
-    private val cacheCosinesX = HashMap<Int, DoubleArray>()
-    private val cacheCosinesY = HashMap<Int, DoubleArray>()
+    private val cacheCosinesX = ConcurrentHashMap<Int, DoubleArray>()
+    private val cacheCosinesY = ConcurrentHashMap<Int, DoubleArray>()
 
     /**
      * Clear calculations stored in memory cache.
@@ -127,14 +128,14 @@ object BlurHashDecoder {
                 imageArray[x + width * y] = Color.rgb(linearToSrgb(r), linearToSrgb(g), linearToSrgb(b))
             }
         }
+        cacheCosinesX[width * numCompX] = cosinesX
+        cacheCosinesY[height * numCompY] = cosines
         return Bitmap.createBitmap(imageArray, width, height, Bitmap.Config.ARGB_8888)
     }
 
     private fun getArrayForCosinesY(calculate: Boolean, height: Int, numCompY: Int) = when {
         calculate -> {
-            DoubleArray(height * numCompY).also {
-                cacheCosinesY[height * numCompY] = it
-            }
+            DoubleArray(height * numCompY)
         }
         else -> {
             cacheCosinesY[height * numCompY]!!
@@ -143,9 +144,7 @@ object BlurHashDecoder {
 
     private fun getArrayForCosinesX(calculate: Boolean, width: Int, numCompX: Int) = when {
         calculate -> {
-            DoubleArray(width * numCompX).also {
-                cacheCosinesX[width * numCompX] = it
-            }
+            DoubleArray(width * numCompX)
         }
         else -> cacheCosinesX[width * numCompX]!!
     }
